@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html = r'''<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -6,24 +6,162 @@
   <title>برای فاطمه ❤️</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap');
-    body {
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       background: #09070a;
-      color: #f8eef2;
+    }
+
+    body {
       font-family: "Vazirmatn", sans-serif;
+      color: #f8eef2;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+      height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      flex-direction: column;
+      padding: 28px;
+      isolation: isolate;
     }
-    .heart { font-size: 25px; animation: heartbeat 2s infinite; }
-    @Keyframes heartbeat {
-      0%,100%{transform:scale(1)}50%{transform:scale(1.2)}
+
+    /* نور خیلی ظریف و مرموز پشت محتوا */
+    .glow {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(184, 55, 91, 0.13);
+      filter: blur(75px);
+      z-index: -1;
+      animation: breathe 5s ease-in-out infinite;
+    }
+
+    .content {
+      width: min(560px, 100%);
+      text-align: center;
+      animation: appear 1.5s ease both;
+    }
+
+    .heart {
+      font-size: 25px;
+      margin-bottom: 32px;
+      display: inline-block;
+      opacity: 0.9;
+      animation: heartbeat 2.2s ease-in-out infinite;
+    }
+
+    .message {
+      font-size: clamp(18px, 4.5vw, 25px);
+      line-height: 2.25;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+    }
+
+    .message .soft {
+      opacity: 0;
+      animation: lineIn 0.9s ease forwards;
+    }
+
+    .message .l1 { animation-delay: 0.35s; }
+    .message .l2 { animation-delay: 0.9s; }
+    .message .l3 { animation-delay: 1.45s; }
+    .message .l4 { animation-delay: 2s; }
+
+    .question {
+      margin-top: 12px;
+    }
+
+    .button-wrap {
+      margin-top: 42px;
+      opacity: 0;
+      animation: lineIn 0.9s ease 2.7s forwards;
+    }
+
+    button {
+      border: 1px solid rgba(255, 190, 210, 0.3);
+      background: rgba(255, 255, 255, 0.035);
+      color: #fff4f7;
+      padding: 13px 30px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 190, 210, 0.55);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .hint {
+      margin-top: 15px;
+      font-size: 11px;
+      opacity: 0.28;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes lineIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      12% { transform: scale(1.12); }
+      24% { transform: scale(1); }
+      36% { transform: scale(1.08); }
+      50% { transform: scale(1); }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.9); opacity: 0.65; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="heart">♥</div>
-  <h2>سلام فاطمه، این پیام مخصوص توئه 💌</h2>
-</body>
-</html>
+  <main class="page">
+    <div class="glow"></div>
+
+    <section class="content" aria-label="پیام">
+      <div class="heart">♥️</div>
+
+      <div class="message">
+        <div class="soft l1">خب خب خانوم خوشگله... ❤️</div>
+        <div class="soft l2">من مدت‌ها داخل این شیشه بودم</div>
+        <div class="soft l3">و منتظر اینکه پیدام کنی.</div>
+
+        <div class="soft l4 question">
+          حالا که بالاخره پیدام کردی...<br>
+          نظرت چیه بفهمی من برای چی اینجام؟ 👀
+        </div>
+     
