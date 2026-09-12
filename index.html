@@ -1,8 +1,9 @@
+M, [21/06/1405 06:53 ب.ظ]
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>برای فاطمه ❤️</title>
   <style>
     body {
@@ -80,10 +81,7 @@
 
     /* مرحله بطری و قلب‌ها */
     .bottle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1);
+      margin: 20px auto;
       width: 180px;
       height: 280px;
       background: rgba(255,255,255,0.08);
@@ -98,9 +96,8 @@
       overflow: hidden;
     }
     .bottle.shrink {
-      transform: translate(20px, 20px) scale(0.5);
-      top: auto;
-      left: auto;
+      transform: scale(0.5);
+      position: absolute;
       bottom: 20px;
       right: 20px;
     }
@@ -152,20 +149,21 @@
     // وقتی انیمیشن عنکبوت تمام شد → دکمه آماده ظاهر میشه
     spider.addEventListener("animationend", () => {
       spider.style.display = "none";
-      content.innerHTML =
-          <button id="readyBtn" class="big-btn">من آماده‌ام...</button>
-      
-;
+      content.innerHTML = 
+        <button id="readyBtn" class="big-btn">من آماده‌ام...</button>
+      ;
       document.getElementById("readyBtn").addEventListener("click", () => {
         loadQuizPage();
       });
     });
+
     // صفحه‌ی سوال
     function loadQuizPage() {
-      content.innerHTML = 
-
+      content.innerHTML = `
         <div class="question-text">
-          برای اینکه مطمئن بشم من به دست آدم درستی افتادم باید اول به سوال زیر جواب بدی:<br>
+
+M, [21/06/1405 06:53 ب.ظ]
+برای اینکه مطمئن بشم من به دست آدم درستی افتادم باید اول به سوال زیر جواب بدی:<br>
           محمدحسینِ <span id="fateme" style="cursor:pointer; color:#ff69b4; font-weight:bold;">فاطمه</span> چیو بیشتر از همه چی دوست داره؟
         </div>
         <ul class="options">
@@ -175,8 +173,7 @@
           <li>۴. پول</li>
         </ul>
         <div id="response" class="response"></div>
-      
-;
+      ;
 
       document.querySelectorAll(".options li").forEach(li => {
         li.addEventListener("click", () => {
@@ -194,14 +191,12 @@
     // مرحله بطری و قلب‌ها
     function startBottleStage() {
       content.innerHTML = 
-
         <div class="bottle" id="bottle">❤️</div>
         <div class="next-message" id="msg">
           آفرین 😏 با حالت تمسخر تو درست جواب دادی<br>
           بعد کلی تلاش محمدحسینت تو رو از کل دنیا هم بیشتر دوست داره کله‌پوک!
         </div>
-      
-;
+      ;
 
       // بارش قلب‌ها
       function createHeart() {
@@ -226,10 +221,8 @@
       // تنها راه رفتن به مرحله بعد: کلیک روی بطری
       bottle.addEventListener("click", () => {
         content.innerHTML = 
-
           <h1 style="text-align:center; margin-top:40vh;">مرحله‌ی بعدی شروع شد... ❤️</h1>
-        
-;
+        `;
       });
     }
   </script>
