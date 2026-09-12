@@ -1,1 +1,380 @@
-<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stage 3</title><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet"><style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:Vazirmatn,sans-serif;background:#09070a;color:#fff;display:flex;align-items:center;justify-content:center}.glow{position:fixed;inset:-30%;background:radial-gradient(circle,rgba(150,20,60,.12),transparent 55%)}main{width:min(680px,90vw);text-align:center;transition:opacity .8s,transform .8s}.q{font-size:clamp(20px,4vw,30px);line-height:2;margin-bottom:34px}.secret{color:inherit;text-decoration:none;cursor:default}.options{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:440px;margin:auto}.opt{padding:15px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.035);color:#fff;font:inherit;cursor:pointer;transition:.25s}.opt:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}.answer{min-height:72px;margin-top:28px;line-height:2;color:rgba(255,255,255,.78);opacity:0;transition:.5s}.answer.show{opacity:1}.hint{font-size:13px;color:rgba(255,255,255,.4);opacity:0;transition:.7s}.hint.show{opacity:1}.fly{position:fixed;pointer-events:none;font-size:24px;z-index:10;animation:fly .9s forwards}@keyframes fly{to{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}}.out{opacity:0;transform:scale(.96)}</style></head><body><div class="glow"></div><main id="main"><div class="q">محمدحسینِ <span class="secret" id="fatemeh">فاطمه</span> چیو بیشتر از همه‌چی دوست داره؟</div><div class="options"><button class="opt">🍕 پیتزا</button><button class="opt">🎬 فیلم و سریال</button><button class="opt">⚽ فوتبال</button><button class="opt">💰 پول</button></div><div class="answer" id="answer"></div><div class="hint" id="hint">هنوز یه راه برای ادامه وجود داره...</div></main><script>const answers=['یه پیتزای خوب وقتی گرسنه باشم می‌تونه خیلی چیزها رو برای چند دقیقه از یادم ببره... ولی جواب این سؤال نیست 😏','ممکنه بگم فقط یه قسمت دیگه؛ بعد یهو ساعت چهار صبح بشه! ولی اینم جواب نیست 😂','نود دقیقه می‌تونم کاملاً حواسم به بازی باشه... البته اگه تو پیام بدی، احتمالاً اول پیام تو رو چک می‌کنم 😌 ولی باز هم جواب نیست.','پول خوبه، خیلی هم خوبه 😌 ولی حتی پول هم جواب این سؤال نیست.'];document.querySelectorAll('.opt').forEach((b,i)=>b.onclick=()=>{answer.textContent=answers[i];answer.classList.add('show');hint.classList.add('show')});document.getElementById('fatemeh').onclick=()=>{const h=document.createElement('div');h.className='fly';h.textContent='❤️';h.style.left='50%';h.style.top='50%';h.style.setProperty('--x',(Math.random()*120-60)+'px');h.style.setProperty('--y',(Math.random()*-160-80)+'px');document.body.appendChild(h);document.getElementById('main').classList.add('out');setTimeout(()=>location.href='stage4.html',850)};</script></body></html>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<title>یک سؤال مهم ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+  box-sizing:border-box
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#09070a
+}
+
+body{
+  font-family:Vazirmatn,sans-serif;
+  color:#fff
+}
+
+.page{
+
+  height:100dvh;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:24px;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(150,20,65,.17),
+      transparent 58%
+    ),
+    #09070a;
+
+  transition:
+    opacity .8s,
+    transform .8s,
+    filter .8s
+}
+
+.page.out{
+
+  opacity:0;
+
+  transform:scale(.98);
+
+  filter:blur(5px)
+}
+
+.content{
+
+  text-align:center;
+
+  width:min(620px,94vw)
+}
+
+.heart{
+
+  font-size:25px;
+
+  animation:beat 1.6s infinite;
+
+  margin-bottom:24px
+}
+
+.question{
+
+  font-size:clamp(19px,4.7vw,27px);
+
+  line-height:2.2;
+
+  margin-bottom:28px
+}
+
+
+/*
+  این قسمت عمداً هیچ تفاوت ظاهری
+  با متن اطراف ندارد.
+*/
+
+.secret{
+
+  color:inherit;
+
+  text-decoration:none;
+
+  cursor:default
+}
+
+.answers{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:12px;
+
+  width:min(430px,90vw);
+
+  margin:auto
+}
+
+.answer{
+
+  border:
+    1px solid rgba(255,255,255,.14);
+
+  background:
+    rgba(255,255,255,.035);
+
+  color:#fff;
+
+  padding:14px 10px;
+
+  border-radius:17px;
+
+  font:inherit;
+
+  font-size:15px;
+
+  cursor:pointer;
+
+  transition:.3s
+}
+
+.answer:hover{
+
+  background:
+    rgba(255,255,255,.075);
+
+  transform:translateY(-2px)
+}
+
+.reply{
+
+  min-height:50px;
+
+  margin:
+    22px auto 0;
+
+  width:min(500px,90vw);
+
+  font-size:13px;
+
+  line-height:2;
+
+  color:rgba(255,255,255,.58);
+
+  opacity:0;
+
+  transition:opacity .6s
+}
+
+.reply.show{
+  opacity:1
+}
+
+.hint{
+
+  font-size:11px;
+
+  color:rgba(255,255,255,.25);
+
+  margin-top:12px;
+
+  opacity:0;
+
+  transition:opacity .8s
+}
+
+.hint.show{
+  opacity:1
+}
+
+@keyframes beat{
+
+  50%{
+    transform:scale(1.15)
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="page" id="page">
+
+  <section class="content">
+
+    <div class="heart">
+      ❤️
+    </div>
+
+    <div class="question">
+
+      محمدحسینِ
+
+      <span class="secret" id="fatemeh">
+        فاطمه
+      </span>
+
+      چیو بیشتر از همه‌چی دوست داره؟
+
+    </div>
+
+
+    <div class="answers">
+
+      <button class="answer" data-a="pizza">
+        🍕 پیتزا
+      </button>
+
+      <button class="answer" data-a="movies">
+        🎬 فیلم و سریال
+      </button>
+
+      <button class="answer" data-a="football">
+        ⚽️ فوتبال
+      </button>
+
+      <button class="answer" data-a="money">
+        💰 پول
+      </button>
+
+    </div>
+
+
+    <div class="reply" id="reply"></div>
+
+    <div class="hint" id="hint">
+      هنوز یه راه برای ادامه وجود داره...
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+(function(){
+
+  const page=document.getElementById('page');
+
+  const reply=document.getElementById('reply');
+
+  const hint=document.getElementById('hint');
+
+  const fatemeh=document.getElementById('fatemeh');
+
+  let moving=false;
+
+
+  const replies={
+
+    pizza:
+      'یه پیتزای خوب وقتی گرسنه باشم می‌تونه خیلی چیزا رو برای چند دقیقه از یادم ببره... ولی نه، جواب این نیست 😏',
+
+    movies:
+      'ممکنه بگم فقط یه قسمت دیگه... و یهو ساعت چهار صبح بشه؛ ولی اینم جواب نیست 😂',
+
+    football:
+      'نود دقیقه می‌تونم کامل حواسم به بازی باشه... البته اگه کسی پیام بده، احتمالاً اول پیام رو چک می‌کنم 😌 اینم نه.',
+
+    money:
+      'پول خوبه، خیلی هم خوبه... ولی چیزی که محمدحسین بیشتر از همه‌چی دوست داره با پول خریدنی نیست ❤️'
+
+  };
+
+
+  document
+    .querySelectorAll('.answer')
+    .forEach(function(button){
+
+      button.addEventListener('click',function(){
+
+        if(moving) return;
+
+        reply.textContent=
+          replies[button.dataset.a] || '';reply.classList.add('show');
+
+        hint.classList.add('show');
+
+      });
+
+    });
+
+
+  fatemeh.addEventListener('click',function(){
+
+    if(moving) return;
+
+    moving=true;
+
+
+    /*
+      یک قلب از وسط صفحه بزرگ می‌شود
+      و همراه با محو شدن صفحه،
+      مرحله بعد باز می‌شود.
+    */
+
+    const h=document.createElement('div');
+
+    h.textContent='❤️';
+
+
+    Object.assign(
+      h.style,
+      {
+        position:'fixed',
+        left:'50%',
+        top:'50%',
+        fontSize:'25px',
+        zIndex:20,
+        transform:'translate(-50%,-50%)',
+        transition:'1s ease',
+        pointerEvents:'none'
+      }
+    );
+
+
+    document.body.appendChild(h);
+
+
+    requestAnimationFrame(function(){
+
+      h.style.transform=
+        'translate(-50%,-50%) scale(7)';
+
+      h.style.opacity='0';
+
+    });
+
+
+    page.classList.add('out');
+
+
+    window.setTimeout(function(){
+
+      window.location.replace('./stage4.html');
+
+    },800);
+
+  });
+
+})();
+
+</script>
+
+</body>
+</html>
