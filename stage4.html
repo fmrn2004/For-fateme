@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>شیشه عشق</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#09070a;color:#fff;font-family:"Vazirmatn",Tahoma,Arial,sans-serif}
+.page{position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 45%,rgba(150,20,65,.18),transparent 55%),#09070a}
+.page:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,rgba(255,70,120,.07),transparent 58%);animation:glow 5s ease-in-out infinite}
+.stage{position:absolute;inset:0}
+/* قلبی که از مرحله قبل وارد می‌شود */
+.first-heart{position:absolute;left:50%;top:-45px;z-index:20;font-size:27px;opacity:0;filter:drop-shadow(0 0 10px rgba(255,70,120,.65));animation:fallIn 2.1s cubic-bezier(.2,.72,.25,1) .35s forwards}
+/* شیشه */
+.bottle{position:absolute;left:50%;bottom:55px;width:154px;height:315px;transform:translateX(-50%);opacity:0;z-index:10;animation:bottleIn 1s ease 1.85s forwards;cursor:default}
+.neck{position:absolute;left:50%;top:0;width:48px;height:67px;transform:translateX(-50%);border:1px solid rgba(255,255,255,.27);border-bottom:0;border-radius:14px 14px 3px 3px;background:linear-gradient(90deg,rgba(255,255,255,.03),rgba(255,80,130,.045),rgba(255,255,255,.015))}
+.rim{position:absolute;left:50%;top:-5px;width:59px;height:14px;transform:translateX(-50%);border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(255,255,255,.035);z-index:2}
+.body{position:absolute;left:50%;top:48px;width:154px;height:267px;transform:translateX(-50%);border:1px solid rgba(255,255,255,.27);border-radius:43px 43px 30px 30px;background:linear-gradient(90deg,rgba(255,255,255,.035),rgba(255,80,130,.055),rgba(255,255,255,.018));box-shadow:inset 12px 0 25px rgba(255,255,255,.025),inset -14px 0 30px rgba(255,40,100,.035),0 0 35px rgba(255,40,100,.08);overflow:hidden}
+.shine{position:absolute;left:15px;top:18px;width:8px;height:200px;border-radius:50%;background:linear-gradient(to bottom,rgba(255,255,255,.24),transparent);filter:blur(2px);opacity:.45}
+.inside{position:absolute;inset:0;overflow:hidden}
+.inside .heart{position:absolute;color:#ff5b87;font-size:var(--s);left:var(--x);bottom:var(--y);filter:drop-shadow(0 0 6px rgba(255,60,110,.4));animation:tinyBeat 1.5s ease-in-out infinite var(--d)}
+/* بارش */
+.rain-heart{position:absolute;left:var(--x);top:-45px;z-index:15;font-size:var(--s);opacity:0;color:#ff668f;filter:drop-shadow(0 0 7px rgba(255,60,110,.45));animation:rain var(--t) cubic-bezier(.2,.68,.25,1) var(--delay) forwards}
+/* گوشی */
+.phone{position:absolute;left:50%;top:50%;width:208px;height:394px;transform:translate(-50%,-50%) scale(.12);opacity:0;z-index:30;border:5px solid #272229;border-radius:33px;background:#050406;box-shadow:0 20px 70px rgba(0,0,0,.7),0 0 45px rgba(255,40,100,.13);overflow:hidden;pointer-events:none}
+.phone:before{content:"";position:absolute;top:8px;left:50%;width:72px;height:16px;transform:translateX(-50%);border-radius:0 0 12px 12px;background:#111014;z-index:3}
+.screen{position:absolute;inset:7px;border-radius:25px;background:radial-gradient(circle at 50% 35%,rgba(130,20,55,.28),transparent 52%),#0b080c;display:flex;align-items:center;justify-content:center;padding:32px 18px;text-align:center}
+.phone-text{opacity:0;transform:translateY(15px);font-size:16px;line-height:2.25;font-weight:500;text-shadow:0 0 16px rgba(255,100,145,.15)}
+.phone-text .ph{display:block;margin-top:12px;font-size:25px;animation:tinyBeat 1.3s ease-in-out infinite}
+/* وضعیت پایان */
+.page.complete .bottle{animation:bottleIntoPhone 1.45s cubic-bezier(.2,.8,.2,1) forwards}
+.page.complete .phone{animation:phoneIn 1.45s cubic-bezier(.2,.8,.2,1) forwards}
+.page.complete .phone-text{animation:textIn 1.1s ease 1.45s forwards}
+.page.exit{animation:exit .8s ease forwards}
+@keyframes fallIn{0%{opacity:0;top:-45px;transform:translateX(-50%) scale(.4)}12%{opacity:1}82%{top:405px;transform:translateX(-50%) scale(1)}100%{opacity:0;top:430px;transform:translateX(-50%) scale(.5)}}
+@keyframes bottleIn{from{opacity:0;transform:translateX(-50%) translateY(18px) scale(.93)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+@keyframes rain{0%{opacity:0;top:-45px;transform:translateX(0) rotate(0) scale(.65)}10%{opacity:1}78%{opacity:1;top:465px;transform:translateX(var(--drift)) rotate(260deg) scale(1)}100%{opacity:0;top:530px;transform:translateX(var(--drift)) rotate(330deg) scale(.75)}}
+@keyframes bottleIntoPhone{0%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}45%{opacity:1;transform:translateX(-50%) translateY(-28px) scale(.7)}100%{opacity:0;transform:translateX(-50%) translateY(0) scale(.15)}}
+@keyframes phoneIn{0%{opacity:0;transform:translate(-50%,-50%) scale(.12)}45%{opacity:1;transform:translate(-50%,-50%) scale(.34)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes textIn{to{opacity:1;transform:translateY(0)}}
+@keyframes tinyBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.16)}30%{transform:scale(1)}}
+@keyframes glow{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes exit{to{opacity:0;transform:scale(.97);filter:blur(5px)}}
+@media(max-height:650px){.bottle{bottom:35px;transform:translateX(-50%) scale(.82)}.page.complete .bottle{animation:bottleIntoPhoneSmall 1.45s cubic-bezier(.2,.8,.2,1) forwards}}@keyframes bottleIntoPhoneSmall{0%{opacity:1;transform:translateX(-50%) scale(.82)}45%{opacity:1;transform:translateX(-50%) translateY(-25px) scale(.57)}100%{opacity:0;transform:translateX(-50%) scale(.12)}}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+  <div class="stage">
+    <div class="first-heart">❤️</div>
+    <div class="bottle" id="bottle">
+      <div class="neck"></div><div class="rim"></div>
+      <div class="body"><div class="shine"></div><div class="inside" id="inside"></div></div>
+    </div>
+    <div class="phone" id="phone">
+      <div class="screen">
+        <div class="phone-text" id="phoneText">کله پوک اینقدر فکر کردن نداشت،<br>معلومه که محمدحسین تو رو از کل دنیا بیشتر دوست داره<span class="ph">❤️</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const page=document.getElementById('page');
+const inside=document.getElementById('inside');
+const phone=document.getElementById('phone');
+let active=false,done=false;
+function addInsideHeart(first=false){
+  const h=document.createElement('span');h.className='heart';h.textContent='❤️';
+  h.style.setProperty('--s',first?'24px':(13+Math.random()*15)+'px');
+  h.style.setProperty('--x',(5+Math.random()*88)+'%');
+  h.style.setProperty('--y',(2+Math.random()*88)+'%');
+  h.style.setProperty('--d',(Math.random()*1.5)+'s');
+  inside.appendChild(h);
+}
+function rain(i){
+  const h=document.createElement('div');h.className='rain-heart';h.textContent=Math.random()>.18?'❤️':'🩷';
+  const delay=i*.13+Math.random()*.35, duration=2.45+Math.random()*1.55;
+  h.style.setProperty('--x',(7+Math.random()*86)+'%');h.style.setProperty('--s',(13+Math.random()*15)+'px');
+  h.style.setProperty('--t',duration+'s');h.style.setProperty('--delay',delay+'s');h.style.setProperty('--drift',(Math.random()*55-27)+'px');
+  document.body.appendChild(h);
+  setTimeout(()=>{addInsideHeart();h.remove()},(delay+duration)*1000-70);
+}
+/* قلب مرحله قبل */
+setTimeout(()=>{
+  addInsideHeart(true);
+  for(let i=0;i<34;i++) rain(i);
+},2250);
+/* بعد از بارش، شیشه پر می‌شود و وارد گوشی می‌شود */
+setTimeout(()=>{page.classList.add('complete');active=true},7900);
+/* هیچ نشانه‌ای برای کلیک وجود ندارد؛ خود گوشی هدف مخفی است */
+phone.addEventListener('click',()=>{
+  if(!active||done)return;done=true;
+  page.classList.add('exit');
+  setTimeout(()=>{window.location.href='stage5.html'},800);
+});
+</script>
+</body>
+</html>

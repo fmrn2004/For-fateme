@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -155,7 +153,7 @@ html = r'''<!DOCTYPE html>
     <div class="glow"></div>
 
     <section class="content" aria-label="پیام">
-      <div class="heart">♥️</div>
+      <div class="heart">♥</div>
 
       <div class="message">
         <div class="soft l1">خب خب خانوم خوشگله... ❤️</div>
@@ -167,7 +165,8 @@ html = r'''<!DOCTYPE html>
           نظرت چیه بفهمی من برای چی اینجام؟ 👀
         </div>
       </div>
-<div class="button-wrap">
+
+      <div class="button-wrap">
         <button id="nextButton">بگو ببینم... ❤️</button>
         <div class="hint">یک راز کوچولو پشت این دکمه منتظرته</div>
       </div>
@@ -188,9 +187,3 @@ html = r'''<!DOCTYPE html>
   </script>
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/love_jar_stage1.html")
-path.write_text(html, encoding="utf-8")
-
-print(f"فایل صفحه اول ساخته شد: {path}")
