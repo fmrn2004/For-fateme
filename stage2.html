@@ -1,1 +1,340 @@
-<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stage 2</title><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet"><style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:Vazirmatn,sans-serif;background:#09070a;color:#fff;display:flex;align-items:center;justify-content:center}.glow{position:fixed;inset:-30%;background:radial-gradient(circle,rgba(150,20,60,.13),transparent 55%);pointer-events:none}.scene{position:relative;width:min(680px,90vw);text-align:center;z-index:2;transition:opacity .9s,transform .9s}.spider{position:fixed;top:-18px;left:50%;width:2px;height:145px;background:rgba(255,255,255,.25);transform-origin:top;animation:sway 3.2s ease-in-out infinite}.spider:after{content:'🕷️';position:absolute;top:125px;left:50%;transform:translateX(-50%);font-size:27px;filter:drop-shadow(0 0 8px rgba(255,80,130,.35))}.heart{font-size:25px;animation:beat 1.3s infinite;margin-bottom:25px}.line{opacity:0;transform:translateY(10px);animation:show .9s forwards}.l1{animation-delay:.7s}.l2{animation-delay:1.5s}.l3{animation-delay:2.3s}.btn{margin-top:35px;padding:13px 24px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.04);color:#fff;font:inherit;cursor:pointer;opacity:0;animation:show .9s 3.2s forwards}.btn:hover{background:rgba(255,255,255,.08)}@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.2)}30%{transform:scale(1)}}@keyframes show{to{opacity:1;transform:none}}.out{opacity:0;transform:scale(.96)}</style></head><body><div class="glow"></div><div class="spider"></div><main class="scene" id="scene"><div class="heart">❤️</div><div class="line l1">اول باید مطمئن باشم</div><div class="line l2">که تو فرد مورد نظر هستی... 👀</div><div class="line l3">پس قبل از اینکه جلوتر بری،<br>باید به یه سؤال جواب بدی. ❤️</div><button class="btn" id="go">سؤال رو بپرس 👀</button></main><script>document.getElementById('go').onclick=()=>{document.getElementById('scene').classList.add('out');setTimeout(()=>location.href='stage3.html',850)}</script></body></html>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<title>یک سؤال...</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+  box-sizing:border-box
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#09070a
+}
+
+body{
+  font-family:Vazirmatn,sans-serif;
+  color:#f8eef2
+}
+
+.page{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(150,20,65,.16),
+      transparent 55%
+    ),
+    #09070a
+}
+
+.glow{
+  position:absolute;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  background:rgba(190,45,90,.1);
+  filter:blur(80px);
+  animation:breathe 5s infinite
+}
+
+.web{
+  position:absolute;
+  top:-25px;
+  left:50%;
+
+  width:150px;
+  height:230px;
+
+  transform:translateX(-50%);
+
+  opacity:0;
+
+  animation:webIn 2.2s ease .2s forwards
+}
+
+.web:before{
+
+  content:'🕷️';
+
+  position:absolute;
+
+  top:0;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  font-size:25px;
+
+  animation:sway 2.5s ease-in-out infinite
+}
+
+.web:after{
+
+  content:'';
+
+  position:absolute;
+
+  top:27px;
+  left:50%;
+
+  width:2px;
+  height:185px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  box-shadow:
+    0 40px 0 -0.5px rgba(255,255,255,.08)
+}
+
+.content{
+
+  z-index:2;
+
+  text-align:center;
+
+  width:min(560px,92vw);
+
+  opacity:0;
+
+  transform:translateY(15px);
+
+  animation:in 1s ease 1.7s forwards
+}
+
+.heart{
+
+  font-size:25px;
+
+  animation:beat 1.6s infinite;
+
+  margin-bottom:25px
+}
+
+.line{
+
+  font-size:clamp(18px,4.5vw,24px);
+
+  line-height:2.2;
+
+  margin:8px 0
+}
+
+.soft{
+
+  font-size:15px;
+
+  color:rgba(255,255,255,.58);
+
+  margin-top:13px
+}
+
+.btn{
+
+  margin-top:35px;
+
+  border:1px solid rgba(255,190,210,.28);
+
+  background:rgba(255,255,255,.035);
+
+  color:white;
+
+  padding:13px 28px;
+
+  border-radius:999px;
+
+  font:inherit;
+
+  cursor:pointer;
+
+  transition:.3s
+}
+
+.btn:hover{
+
+  background:rgba(255,255,255,.08)
+}
+
+.fade{
+
+  animation:out .7s forwards
+}
+
+@keyframes in{
+
+  to{
+    opacity:1;
+    transform:none
+  }
+
+}
+
+@keyframes out{
+
+  to{
+    opacity:0;
+    transform:scale(.98);
+    filter:blur(4px)
+  }
+
+}
+
+@keyframes webIn{
+
+  from{
+    opacity:0;
+    transform:translate(-50%,-25px)
+  }
+
+  to{
+    opacity:1;
+    transform:translate(-50%,0)
+  }
+
+}
+
+@keyframes sway{
+
+  0%,100%{
+    transform:translateX(-50%) rotate(-3deg)
+  }
+
+  50%{
+    transform:translateX(-50%) rotate(3deg)
+  }
+
+}
+
+@keyframes beat{
+
+  50%{
+    transform:scale(1.15)
+  }
+
+}
+
+@keyframes breathe{
+
+  50%{
+    transform:scale(1.08);
+    opacity:.9
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="page" id="page">
+
+  <div class="glow"></div>
+
+  <div class="web"></div>
+
+  <section class="content">
+
+    <div class="heart">
+      ❤️
+    </div>
+
+    <div class="line">
+
+      اول باید مطمئن باشم<br>
+
+      که تو فرد مورد نظر هستی... 👀
+
+    </div>
+
+    <div class="line">
+
+      پس قبل از اینکه جلوتر بری،<br>
+
+      باید به یه سؤال جواب بدی. ❤️
+
+    </div>
+
+    <div class="soft">
+
+      بعضی سؤال‌ها رو فقط یک نفر می‌تونه درست جواب بده...
+
+    </div>
+
+    <button class="btn" id="go">
+
+      سؤال رو بپرس 👀
+
+    </button>
+
+  </section>
+
+</main>
+
+
+<script>
+
+(function(){
+
+  const page=document.getElementById('page');
+
+  const go=document.getElementById('go');
+
+  let moving=false;
+
+  go.addEventListener('click',function(){
+
+    if(moving) return;
+
+    moving=true;
+
+    go.disabled=true;
+
+    page.classList.add('fade');
+
+    window.setTimeout(function(){
+
+      window.location.replace('./stage3.html');
+
+    },700);
+
+  });
+
+})();
+
+</script>
+
+</body>
+</html>
