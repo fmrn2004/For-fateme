@@ -167,3 +167,30 @@ html = r'''<!DOCTYPE html>
           نظرت چیه بفهمی من برای چی اینجام؟ 👀
         </div>
       </div>
+<div class="button-wrap">
+        <button id="nextButton">بگو ببینم... ❤️</button>
+        <div class="hint">یک راز کوچولو پشت این دکمه منتظرته</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("nextButton").addEventListener("click", () => {
+      // مرحله‌ی دوم را در ادامه‌ی پروژه اینجا اضافه می‌کنیم.
+      document.querySelector(".content").animate(
+        [
+          { opacity: 1, transform: "translateY(0)" },
+          { opacity: 0, transform: "translateY(-10px)" }
+        ],
+        { duration: 500, easing: "ease", fill: "forwards" }
+      );
+    });
+  </script>
+</body>
+</html>
+'''
+
+path = Path("/mnt/data/love_jar_stage1.html")
+path.write_text(html, encoding="utf-8")
+
+print(f"فایل صفحه اول ساخته شد: {path}")
