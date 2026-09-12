@@ -77,13 +77,66 @@
       font-size: 14px;
       color: #ffb6c1;
     }
+
+    /* مرحله بطری و قلب‌ها */
+    .bottle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: 180px;
+      height: 280px;
+      background: rgba(255,255,255,0.08);
+      border: 3px solid #ff69b4;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      cursor: pointer;
+      transition: all 2s ease;
+      overflow: hidden;
+    }
+    .bottle.shrink {
+      transform: translate(20px, 20px) scale(0.5);
+      top: auto;
+      left: auto;
+      bottom: 20px;
+      right: 20px;
+    }
+    .message {
+      opacity: 0;
+      text-align: center;
+      max-width: 600px;
+      line-height: 2;
+      font-size: 20px;
+      transition: opacity 2s ease;
+    }
+    .message.show {
+      opacity: 1;
+    }
+    .heart {
+      position: absolute;
+      top: -20px;
+      font-size: 20px;
+      color: #ff69b4;
+      animation: fall 5s linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh); opacity: 0; }
+    }
   </style>
 </head>
 <body>
   <main class="page">
     <div class="spider">🕷️❤️</div>
     <section class="content">
-      <h2>هرجای صفحه کلیک کن...</h2>
+      <div class="message">
+        <div>خب خب خانوم خوشگله... ❤️</div>
+        <div>من مدت‌ها داخل این شیشه بودم</div>
+        <div>و منتظر اینکه پیدام کنی.</div>
+        <div>حالا که بالاخره پیدام کردی... 👀</div>
+      </div>
     </section>
   </main>
 
@@ -94,7 +147,7 @@
     // هرجای صفحه کلیک بشه → عنکبوت ظاهر میشه
     document.body.addEventListener("click", () => {
       spider.classList.add("show");
-    });
+    }, { once: true });
 
     // وقتی انیمیشن عنکبوت تمام شد → دکمه آماده ظاهر میشه
     spider.addEventListener("animationend", () => {
@@ -108,9 +161,7 @@
         loadQuizPage();
       });
     });
-
-    // صفحه‌ی سوال
-    function loadQuizPage() {
+       function loadQuizPage() {
       content.innerHTML = 
 
         <div class="question-text">
@@ -136,14 +187,51 @@
 
       // تنها راه درست: کلیک روی کلمه‌ی فاطمه
       document.getElementById("fateme").addEventListener("click", () => {
-        content.innerHTML = 
+        startBottleStage();
+      });
+    }
 
-          <h2>آفرین! تو رمز رو پیدا کردی ❤️</h2>
-          <p>مرحله‌ی بعدی شروع شد...</p>
+    // مرحله بطری و قلب‌ها
+    function startBottleStage() {
+      document.body.innerHTML = 
+
+        <div class="bottle" id="bottle">❤️</div>
+        <div class="message" id="msg">
+          آفرین 😏 با حالت تمسخر تو درست جواب دادی<br>
+          بعد کلی تلاش محمدحسینت تو رو از کل دنیا هم بیشتر دوست داره کله‌پوک!
+        </div>
+      
+;
+
+      // بارش قلب‌ها
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+      setInterval(createHeart, 400);
+
+      const bottle = document.getElementById("bottle");
+      const msg = document.getElementById("msg");
+
+      // بعد از چند ثانیه بطری کوچیک بشه و متن ظاهر بشه
+      setTimeout(() => {
+        bottle.classList.add("shrink");
+        msg.classList.add("show");
+      }, 5000);
+
+      // تنها راه رفتن به مرحله بعد: کلیک روی بطری
+      bottle.addEventListener("click", () => {
+        document.body.innerHTML = 
+
+          <h1 style="text-align:center; margin-top:40vh;">مرحله‌ی بعدی شروع شد... ❤️</h1>
         
 ;
       });
     }
   </script>
 </body>
-</html
+</html>
