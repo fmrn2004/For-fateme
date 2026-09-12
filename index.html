@@ -1,231 +1,169 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>برای فاطمه ❤️</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap');
+
+    * { box-sizing: border-box; }
+
+    html, body {
       margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       background: #09070a;
-      color: #f8eef2;
+    }
+
+    body {
       font-family: "Vazirmatn", sans-serif;
-      height: 100vh;
+      color: #f8eef2;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+      height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      padding: 28px;
+      isolation: isolate;
+    }
+
+    /* نور خیلی ظریف و مرموز پشت محتوا */
+    .glow {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(184, 55, 91, 0.13);
+      filter: blur(75px);
+      z-index: -1;
+      animation: breathe 5s ease-in-out infinite;
     }
 
     .content {
+      width: min(560px, 100%);
       text-align: center;
-      max-width: 600px;
+      animation: appear 1.5s ease both;
     }
 
-    .spider {
-      position: absolute;
-      top: -150px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 40px;
-      opacity: 0;
-    }
-    .spider.show {
-      animation: descend 4s ease forwards;
-    }
-    @keyframes descend {
-      0% { top: -150px; opacity: 0; }
-      30% { opacity: 1; }
-      100% { top: 60%; opacity: 1; }
-    }
-
-    .big-btn {
-      margin-top: 40px;
-      padding: 18px 40px;
-      font-size: 18px;
-      border-radius: 999px;
-      background: linear-gradient(145deg, #ffb6c1, #ff69b4);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255,105,180,0.4);
-      transition: transform 0.3s ease;
-    }
-    .big-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .options {
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-    }
-    .options li {
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .options li:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .response {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #ffb6c1;
-    }
-
-    /* مرحله بطری و قلب‌ها */
-    .bottle {
-      margin: 20px auto;
-      width: 180px;
-      height: 280px;
-      background: rgba(255,255,255,0.08);
-      border: 3px solid #ff69b4;
-      border-radius: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      cursor: pointer;
-      transition: all 2s ease;
-      overflow: hidden;
-    }
-    .bottle.shrink {
-      transform: scale(0.5);
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-    }
-    .next-message {
-      opacity: 0;
-      text-align: center;
-      max-width: 600px;
-      line-height: 2;
-      font-size: 20px;
-      transition: opacity 2s ease;
-    }
-    .next-message.show {
-      opacity: 1;
-    }
     .heart {
-      position: absolute;
-      top: -20px;
-      font-size: 20px;
-      color: #ff69b4;
-      animation: fall 5s linear forwards;
+      font-size: 25px;
+      margin-bottom: 32px;
+      display: inline-block;
+      opacity: 0.9;
+      animation: heartbeat 2.2s ease-in-out infinite;
     }
-    @keyframes fall {
-      to { transform: translateY(100vh); opacity: 0; }
+
+    .message {
+      font-size: clamp(18px, 4.5vw, 25px);
+      line-height: 2.25;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+    }
+
+    .message .soft {
+      opacity: 0;
+      animation: lineIn 0.9s ease forwards;
+    }
+
+    .message .l1 { animation-delay: 0.35s; }
+    .message .l2 { animation-delay: 0.9s; }
+    .message .l3 { animation-delay: 1.45s; }
+    .message .l4 { animation-delay: 2s; }
+
+    .question {
+      margin-top: 12px;
+    }
+
+    .button-wrap {
+      margin-top: 42px;
+      opacity: 0;
+      animation: lineIn 0.9s ease 2.7s forwards;
+    }
+
+    button {
+      border: 1px solid rgba(255, 190, 210, 0.3);
+      background: rgba(255, 255, 255, 0.035);
+      color: #fff4f7;
+      padding: 13px 30px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 190, 210, 0.55);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .hint {
+      margin-top: 15px;
+      font-size: 11px;
+      opacity: 0.28;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes lineIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      12% { transform: scale(1.12); }
+      24% { transform: scale(1); }
+      36% { transform: scale(1.08); }
+      50% { transform: scale(1); }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.9); opacity: 0.65; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <div class="spider">🕷️❤️</div>
-    <section class="content">
-      <div>
-        <div>خب خب خانوم خوشگله... ❤️</div>
-        <div>من مدت‌ها داخل این شیشه بودم</div>
-        <div>و منتظر اینکه پیدام کنی.</div>
-        <div>حالا که بالاخره پیدام کردی... 👀</div>
+    <div class="glow"></div>
+
+    <section class="content" aria-label="پیام">
+      <div class="heart">♥️</div>
+
+      <div class="message">
+        <div class="soft l1">خب خب خانوم خوشگله... ❤️</div>
+        <div class="soft l2">من مدت‌ها داخل این شیشه بودم</div>
+        <div class="soft l3">و منتظر اینکه پیدام کنی.</div>
+
+        <div class="soft l4 question">
+          حالا که بالاخره پیدام کردی...<br>
+          نظرت چیه بفهمی من برای چی اینجام؟ 👀
+        </div>
       </div>
-    </section>
-  </main>
-
-  <script>
-    const spider = document.querySelector(".spider");
-    const content = document.querySelector(".content");
-
-    // هرجای صفحه کلیک بشه → عنکبوت ظاهر میشه
-    document.body.addEventListener("click", () => {
-      spider.classList.add("show");
-    }, { once: true });
-
-    // وقتی انیمیشن عنکبوت تمام شد → دکمه آماده ظاهر میشه
-    spider.addEventListener("animationend", () => {
-      spider.style.display = "none";
-      content.innerHTML = 
-
-        <button id="readyBtn" class="big-btn">من آماده‌ام...</button>
-      
-;
-      document.getElementById("readyBtn").addEventListener("click", () => {
-        loadQuizPage();
-      });
-    });
-
-    // صفحه‌ی سوال
-    function loadQuizPage() {
-      content.innerHTML = `
-        <div class="question-text">
-        برای اینکه مطمئن بشم من به دست آدم درستی افتادم باید اول به سوال زیر جواب بدی:<br>
-          محمدحسینِ <span id="fateme" style="cursor:pointer; color:#ff69b4; font-weight:bold;">فاطمه</span> چیو بیشتر از همه چی دوست داره؟
-        </div>
-        <ul class="options">
-          <li>۱. پیتزا</li>
-          <li>۲. فیلم و سریال</li>
-          <li>۳. فوتبال</li>
-          <li>۴. پول</li>
-        </ul>
-        <div id="response" class="response"></div>
-      
-;
-
-      document.querySelectorAll(".options li").forEach(li => {
-        li.addEventListener("click", () => {
-          document.getElementById("response").textContent =
-            "نههه! جواب اشتباهه 😅 دوباره فکر کن...";
-        });
-      });
-
-      // تنها راه درست: کلیک روی کلمه‌ی فاطمه
-      document.getElementById("fateme").addEventListener("click", () => {
-        startBottleStage();
-      });
-    }
-
-    // مرحله بطری و قلب‌ها
-    function startBottleStage() {
-      content.innerHTML = 
-        <div class="bottle" id="bottle">❤️</div>
-        <div class="next-message" id="msg">
-          آفرین 😏 با حالت تمسخر تو درست جواب دادی<br>
-          بعد کلی تلاش محمدحسینت تو رو از کل دنیا هم بیشتر دوست داره کله‌پوک!
-        </div>
-      
-;
-
-      // بارش قلب‌ها
-      function createHeart() {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.textContent = "❤️";
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }
-      setInterval(createHeart, 400);
-
-      const bottle = document.getElementById("bottle");
-      const msg = document.getElementById("msg");
-
-      // بعد از چند ثانیه بطری کوچیک بشه و متن ظاهر بشه
-      setTimeout(() => {
-        bottle.classList.add("shrink");
-        msg.classList.add("show");
-      }, 5000);
-
-      // تنها راه رفتن به مرحله بعد: کلیک روی بطری
-      bottle.addEventListener("click", () => {
-        content.innerHTML = 
-          <h1 style="text-align:center; margin-top:40vh;">مرحله‌ی بعدی شروع شد... ❤️</h1>
-        `;
-      });
-    }
-  </script>
-</body>
-</html>
