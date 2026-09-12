@@ -17,36 +17,38 @@ rel="stylesheet">
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0
+  padding:0;
 }
 
-html,body{
-
+html,
+body{
   width:100%;
   height:100%;
-  overflow:hidden
+  overflow:hidden;
 }
 
 body{
-
   font-family:"Vazirmatn",sans-serif;
-
   background:#070609;
-
-  color:#fff
+  color:#fff;
 }
 
 
+/* =========================================================
+   PAGE
+========================================================= */
+
 .page{
-
   position:relative;
-
   width:100%;
   height:100%;
-
   overflow:hidden;
 
   background:
@@ -55,12 +57,13 @@ body{
       rgba(125,22,60,.16),
       transparent 42%
     ),
-    #070609
+    #070609;
 }
 
 
-.glow{
+/* نور مرکزی */
 
+.glow{
   position:absolute;
 
   width:420px;
@@ -81,12 +84,15 @@ body{
 
   filter:blur(25px);
 
-  pointer-events:none
+  pointer-events:none;
 }
 
 
-.scene{
+/* =========================================================
+   SCENES
+========================================================= */
 
+.scene{
   position:absolute;
 
   inset:0;
@@ -105,29 +111,29 @@ body{
 
   transition:
     opacity 1s ease,
-    visibility 1s ease
+    visibility 1s ease;
 }
 
-
 .scene.active{
-
   opacity:1;
-
-  visibility:visible
+  visibility:visible;
 }
 
 
 .content{
-
   width:min(560px,92vw);
 
   text-align:center;
 
   position:relative;
 
-  z-index:3
+  z-index:3;
 }
 
+
+/* =========================================================
+   NORMAL TEXT
+========================================================= */
 
 .line{
 
@@ -145,15 +151,14 @@ body{
 
   font-size:18px;
 
-  font-weight:300
+  font-weight:300;
 }
-
 
 .line.show{
 
   opacity:1;
 
-  transform:translateY(0)
+  transform:translateY(0);
 }
 
 
@@ -161,9 +166,13 @@ body{
 
   font-size:15px;
 
-  color:rgba(255,255,255,.62)
+  color:rgba(255,255,255,.62);
 }
 
+
+/* =========================================================
+   HEART
+========================================================= */
 
 .heart{
 
@@ -183,24 +192,26 @@ body{
     drop-shadow(
       0 0 10px
       rgba(255,40,100,.3)
-    )
+    );
 }
 
 
 @keyframes beat{
 
   0%,100%{
-    transform:scale(1)
+    transform:scale(1);
   }
 
   50%{
-    transform:scale(1.18)
+    transform:scale(1.18);
   }
 
 }
 
 
-/* کلمات اطراف قلب */
+/* =========================================================
+   WORD CLOUD
+========================================================= */
 
 .word-cloud{
 
@@ -211,7 +222,7 @@ body{
   margin:
     12px auto 18px;
 
-  width:min(430px,90vw)
+  width:min(430px,90vw);
 }
 
 
@@ -231,7 +242,7 @@ body{
 
   color:rgba(255,255,255,.82);
 
-  font-size:14px
+  font-size:14px;
 }
 
 
@@ -241,40 +252,42 @@ body{
 
   transform:
     translateY(0)
-    scale(1)
+    scale(1);
 }
 
 
 .w1{
   top:15px;
-  left:12%
+  left:12%;
 }
 
 .w2{
   top:50px;
-  right:8%
+  right:8%;
 }
 
 .w3{
   top:98px;
-  left:5%
+  left:5%;
 }
 
 .w4{
   top:125px;
-  right:18%
+  right:18%;
 }
 
 .w5{
   top:65px;
-  left:40%
+  left:40%;
 }
 
 .w6{
   top:155px;
-  left:39%
+  left:39%;
 }
 
+
+/* قلب مرکزی */
 
 .center-heart{
 
@@ -299,7 +312,7 @@ body{
     drop-shadow(
       0 0 18px
       rgba(255,40,100,.35)
-    )
+    );
 }
 
 
@@ -309,7 +322,7 @@ body{
 
   transform:
     translate(-50%,-50%)
-    scale(1)
+    scale(1);
 }
 
 
@@ -324,15 +337,16 @@ body{
   animation:
     beat
     1.4s
-    infinite
+    infinite;
 }
 
 
-/* دکمه/نقطه مخفی صدا */
+/* =========================================================
+   AUDIO TRIGGER
+========================================================= */
 
 .audio-trigger{
-
-  margin:
+[21/06/1405 09:52 ب.ظ] Mohammadhossein: margin:
     24px auto 0;
 
   width:78px;
@@ -363,7 +377,7 @@ body{
     opacity 1s ease,
     transform .8s ease,
     background .3s ease,
-    box-shadow .3s ease
+    box-shadow .3s ease;
 }
 
 
@@ -371,7 +385,7 @@ body{
 
   opacity:1;
 
-  transform:scale(1)
+  transform:scale(1);
 }
 
 
@@ -382,13 +396,13 @@ body{
 
   box-shadow:
     0 0 28px
-    rgba(255,40,100,.13)
+    rgba(255,40,100,.13);
 }
 
 
 .audio-trigger span{
 
-  font-size:26px
+  font-size:26px;
 }
 
 
@@ -403,18 +417,20 @@ body{
   opacity:0;
 
   transition:
-    opacity .7s ease
+    opacity .7s ease;
 }
 
 
 .audio-trigger.show
 + .audio-label{
 
-  opacity:1
+  opacity:1;
 }
 
 
-/* پخش‌کننده */
+/* =========================================================
+   AUDIO PLAYER
+========================================================= */
 
 .player{
 
@@ -424,6 +440,7 @@ body{
     26px auto 0;
 
   padding:22px 20px;
+
   border:
     1px solid
     rgba(255,255,255,.11);
@@ -445,7 +462,7 @@ body{
 
   transition:
     opacity .9s ease,
-    transform .9s ease
+    transform .9s ease;
 }
 
 
@@ -455,7 +472,7 @@ body{
 
   transform:
     translateY(0)
-    scale(1)
+    scale(1);
 }
 
 
@@ -463,7 +480,7 @@ body{
 
   font-size:26px;
 
-  margin-bottom:9px
+  margin-bottom:9px;
 }
 
 
@@ -471,7 +488,7 @@ body{
 
   font-size:16px;
 
-  margin-bottom:5px
+  margin-bottom:5px;
 }
 
 
@@ -481,15 +498,19 @@ body{
 
   color:rgba(255,255,255,.48);
 
-  margin-bottom:16px
+  margin-bottom:16px;
 }
 
+
+/* فایل صوتی واقعی مخفی */
 
 .audio-wrap{
 
-  display:none
+  display:none;
 }
 
+
+/* کنترل‌ها */
 
 .custom-controls{
 
@@ -499,14 +520,18 @@ body{
 
   gap:12px;
 
-  direction:ltr
+  direction:ltr;
 }
 
+
+/* دکمه پخش */
 
 .play{
 
   width:46px;
   height:46px;
+
+  flex-shrink:0;
 
   border-radius:50%;
 
@@ -519,13 +544,32 @@ body{
 
   font-size:18px;
 
-  cursor:pointer
+  cursor:pointer;
+
+  transition:
+    background .25s ease,
+    transform .2s ease;
 }
 
 
+.play:active{
+
+  transform:scale(.9);
+}
+
+
+.play:hover{
+
+  background:
+    rgba(255,255,255,.16);
+}
+
+
+/* نوار پیشرفت */
+
 .progress{
 
-  height:3px;
+  height:5px;
 
   background:
     rgba(255,255,255,.13);
@@ -536,9 +580,13 @@ body{
 
   overflow:hidden;
 
-  cursor:pointer
+  cursor:pointer;
+
+  position:relative;
 }
 
+
+/* قسمت پرشده */
 
 .progress-fill{
 
@@ -550,9 +598,13 @@ body{
     rgba(255,90,130,.8);
 
   transition:
-    width .1s linear
+    width .1s linear;
+
+  border-radius:5px;
 }
 
+
+/* زمان */
 
 .time{
 
@@ -562,45 +614,70 @@ body{
 
   min-width:60px;
 
-  text-align:center
+  text-align:center;
 }
 
 
-/* متن پایانی */
+/* =========================================================
+   متن راهنما
+========================================================= */
+
+.s4hint{
+
+  margin-top:18px;
+}
+
+
+/* =========================================================
+   FINAL TEXT
+   ماشین تحریر
+========================================================= */
 
 .final-text{
 
-  width:min(620px,92vw)
+  width:min(620px,92vw);
+
+  max-height:90vh;
+
+  overflow:hidden;
 }
 
+
+/*
+  نکته:
+  متن‌ها در ابتدا مخفی‌اند.
+  JavaScript آنها را حرف‌به‌حرف نمایش می‌دهد.
+*/
 
 .final-text p{
 
-  opacity:0;
+  opacity:1;
 
-  transform:translateY(13px);
-
-  transition:
-    opacity 1.1s ease,
-    transform 1.1s ease;
+  transform:none;
 
   line-height:2.25;
 
-  margin:9px 0;
+  margin:12px 0;
 
   font-size:17px;
 
-  font-weight:300
+  font-weight:300;
+
+  visibility:hidden;
+
+  min-height:1.2em;
 }
 
 
-.final-text p.show{
+/* پاراگراف در حال تایپ */
 
-  opacity:1;
+.final-text p.typing{
 
-  transform:translateY(0)
+  visibility:visible;
 }
 
+
+/* جمله‌های مهم */
 
 .final-text .last{
 
@@ -608,9 +685,11 @@ body{
 
   font-size:20px;
 
-  font-weight:400
+  font-weight:400;
 }
 
+
+/* امضا */
 
 .signature{
 
@@ -618,11 +697,51 @@ body{
 
   color:rgba(255,255,255,.45);
 
-  margin-top:30px!important
+  margin-top:30px!important;
 }
 
 
-/* ذرات */
+/* =========================================================
+   CURSOR ماشین تحریر
+========================================================= */
+
+.type-cursor{
+
+  display:inline-block;
+
+  width:2px;
+
+  height:1.15em;
+
+  margin-right:4px;
+
+  vertical-align:-.2em;
+
+  background:
+    rgba(255,255,255,.8);
+
+  animation:
+    cursorBlink
+    .7s
+    step-end
+    infinite;
+}
+
+
+@keyframes cursorBlink{
+
+  0%,45%{
+    opacity:1;
+  }
+
+  46%,100%{
+    opacity:0;
+  }
+
+}
+[21/06/1405 09:52 ب.ظ] Mohammadhossein: /* =========================================================
+   PARTICLES
+========================================================= */
 
 .particle{
 
@@ -643,7 +762,7 @@ body{
     linear
     infinite;
 
-  opacity:0
+  opacity:0;
 }
 
 
@@ -653,104 +772,258 @@ body{
 
     transform:translateY(30px);
 
-    opacity:0
+    opacity:0;
   }
 
   15%{
-    opacity:.5
+
+    opacity:.5;
   }
 
   80%{
-    opacity:.2
+
+    opacity:.2;
   }
 
   100%{
 
     transform:translateY(-80px);
 
-    opacity:0
+    opacity:0;
   }
+
 }
 
+
+/* =========================================================
+   FADE
+========================================================= */
 
 .fade-out{
 
   opacity:0!important;
 
-  visibility:hidden!important
+  visibility:hidden!important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:500px){
+
+  .content{
+
+    width:92vw;
+  }
+
+
+  .line{
+
+    font-size:16px;
+  }
+
+
+  .soft{
+
+    font-size:13px;
+  }
+
+
+  .final-text{
+
+    width:92vw;
+
+    max-height:88vh;
+  }
+
+
+  .final-text p{
+
+    font-size:15.5px;
+
+    line-height:2.25;
+
+    margin:9px 0;
+  }
+
+
+  .final-text .last{
+
+    font-size:19px;
+  }
+
+
+  .signature{
+
+    font-size:12px!important;
+  }
+
+
+  .player{
+
+    width:92vw;
+
+    padding:
+      20px 16px;
+  }
+
+}
+
+
+/* =========================================================
+   HEIGHT SMALL
+========================================================= */
+
+@media(max-height:650px){
+
+  .final-text{
+
+    max-height:91vh;
+  }
+
+
+  .final-text p{
+
+    margin:6px 0;
+
+    line-height:2;
+  }
+
+
+  .final-text .last{
+
+    margin-top:15px;
+  }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="page" id="page">
+
 
   <div class="glow"></div>
 
   <div id="particles"></div>
 
 
-  <!-- Scene 1 -->
+  <!-- =====================================================
+       SCENE 1
+  ====================================================== -->
 
-  <section class="scene active" id="scene1">
+  <section
+    class="scene active"
+    id="scene1">
 
     <div class="content">
+
 
       <div class="heart">
         ❤️
       </div>
 
-      <div class="line" id="s1a">
+
+      <div
+        class="line"
+        id="s1a">
+
         خب... حالا که فهمیدی جواب چی بود،
+
       </div>
 
-      <div class="line" id="s1b">
+
+      <div
+        class="line"
+        id="s1b">
+
         یه چیز دیگه مونده که باید بفهمی...
+
       </div>
 
-      <div class="line soft" id="s1c">
+
+      <div
+        class="line soft"
+        id="s1c">
+
         این قسمت دیگه جواب درست و غلط نداره.
+
       </div>
+
 
     </div>
 
   </section>
 
 
-  <!-- Scene 2 -->
+  <!-- =====================================================
+       SCENE 2
+  ====================================================== -->
 
-  <section class="scene" id="scene2">
+  <section
+    class="scene"
+    id="scene2">
 
     <div class="content">
 
+
       <div class="word-cloud">
 
-        <span class="word w1">
+
+        <span
+          class="word w1">
+
           خنده‌هات
+
         </span>
 
-        <span class="word w2">
+
+        <span
+          class="word w2">
+
           چشمات
+
         </span>
 
-        <span class="word w3">
+
+        <span
+          class="word w3">
+
           آغوشت
+
         </span>
 
-        <span class="word w4">
+
+        <span
+          class="word w4">
+
           صدات
+
         </span>
 
-        <span class="word w5">
+
+        <span
+          class="word w5">
+
           شیطنتات
+
         </span>
 
-        <span class="word w6">
+
+        <span
+          class="word w6">
+
           فاطمه بودنِ تو
+
         </span>
+
 
         <div
           class="center-heart"
@@ -760,60 +1033,81 @@ body{
 
         </div>
 
+
       </div>
 
 
-      <div class="line" id="s2a">
+      <div
+        class="line"
+        id="s2a">
 
         این شیشه فقط یه مشت کاغذ و قلب و یادداشت نیست...
 
       </div>
 
-      <div class="line" id="s2b">
+
+      <div
+        class="line"
+        id="s2b">
 
         یه تیکه از منه که گذاشتم پیشت.
 
       </div>
+
 
     </div>
 
   </section>
 
 
-  <!-- Scene 3 -->
+  <!-- =====================================================
+       SCENE 3
+  ====================================================== -->
 
-  <section class="scene" id="scene3">
+  <section
+    class="scene"
+    id="scene3">
 
     <div class="content">
+
 
       <div class="heart">
         ❤️
       </div>
 
-      <div class="line" id="s3a">
+
+      <div
+        class="line"
+        id="s3a">
 
         هر کدوم از این یادداشت‌ها یه دلیل کوچیک دارن.
 
       </div>
 
-      <div class="line" id="s3b">
+
+      <div
+        class="line"
+        id="s3b">
 
         یه چیزی که شاید همون لحظه نتونسته باشم بهت بگم.
 
       </div>
 
-      <div class="line" id="s3c">
+
+      <div
+        class="line"
+        id="s3c">
 
         ولی هنوز یه چیزی رو نشنیدی...
+[21/06/1405 09:52 ب.ظ] Mohammadhossein: </div>
 
-      </div>
+
       <div
         class="audio-trigger"
-        id="audioTrigger"
-        title="">
+        id="audioTrigger">
 
         <span>
-          🎙️
+          🎙
         </span>
 
       </div>
@@ -825,29 +1119,45 @@ body{
 
       </div>
 
+
     </div>
 
   </section>
 
 
-  <!-- Scene 4: Voice Player -->
+  <!-- =====================================================
+       SCENE 4
+       AUDIO
+  ====================================================== -->
 
-  <section class="scene" id="scene4">
+  <section
+    class="scene"
+    id="scene4">
 
     <div class="content">
 
-      <div class="player" id="player">
+
+      <div
+        class="player"
+        id="player">
+
 
         <div class="record-icon">
-          🎙️
+          🎙
         </div>
+
 
         <div class="player-title">
+
           یه چیزی برای تو
+
         </div>
 
+
         <div class="player-sub">
+
           از طرف محمدحسین ❤️
+
         </div>
 
 
@@ -864,9 +1174,11 @@ body{
 
         <div class="custom-controls">
 
+
           <button
             class="play"
-            id="play">
+            id="play"
+            type="button">
 
             ▶️
 
@@ -893,152 +1205,216 @@ body{
 
           </div>
 
+
         </div>
+
 
       </div>
 
 
       <div
         class="line soft"
-        id="s4hint"
-        style="margin-top:18px">
+        id="s4hint">
 
         آروم گوشش کن...
 
       </div>
 
+
     </div>
 
   </section>
 
 
-  <!-- Scene 5: Final Message -->
+  <!-- =====================================================
+       SCENE 5
+       FINAL
+  ====================================================== -->
 
-  <section class="scene" id="scene5">
+  <section
+    class="scene"
+    id="scene5">
 
-    <div class="content final-text">
+
+    <div
+      class="content final-text">
+
 
       <p id="f1">
         حالا فهمیدی چرا این شیشه رو درست کردم؟
       </p>
 
+
       <p id="f2">
         چون می‌دونستم شاید یه روزایی نتونم کنارت باشم...
       </p>
+
 
       <p id="f3">
         ولی دلم می‌خواست هر وقت دلت برای من تنگ شد،
       </p>
 
+
       <p id="f4">
         یه گوشه از من هنوز پیشت باشه.
       </p>
+
 
       <p id="f5">
         این شیشه رو باز کردی که یادداشت‌هامو بخونی؛
       </p>
 
+
       <p id="f6">
         ولی امیدوارم هر بار که دستت بهش خورد،
       </p>
+
 
       <p id="f7">
         یادت بیاد یه نفر اون طرف دنیا هست
       </p>
 
+
       <p id="f8">
         که تو رو انتخاب کرده...
       </p>
 
-      <p class="last" id="f9">
+
+      <p
+        class="last"
+        id="f9">
+
         و هنوزم انتخابت می‌کنه. ❤️
+
       </p>
 
-      <p class="last" id="f10">
+
+      <p
+        class="last"
+        id="f10">
+
         و این تازه اولشه، فاطمه...
+
       </p>
 
-      <p class="signature" id="f11">
+
+      <p
+        class="signature"
+        id="f11">
+
         — محمدحسین
+
       </p>
+
 
     </div>
 
   </section>
+
 
 </div>
 
 
 <script>
 
-const scenes=[
-  ...document.querySelectorAll('.scene')
-];
+/* =========================================================
+   SCENES
+========================================================= */
 
-let current=0;
+const scenes =
+  [
+    ...document.querySelectorAll('.scene')
+  ];
 
-let audioUnlocked=false;
 
+let current = 0;
+
+let audioUnlocked = false;
+
+let finalShown = false;
+
+
+/* تغییر Scene */
 
 function showScene(index){
 
   scenes.forEach(
-    (s,i)=>
+    (s,i)=>{
+
       s.classList.toggle(
         'active',
-        i===index
-      )
+        i === index
+      );
+
+    }
   );
 
-  current=index;
+
+  current = index;
 }
 
+
+/* =========================================================
+   GENERAL SHOW
+========================================================= */
 
 function show(id,delay){
 
   setTimeout(
-    ()=>
+    ()=>{
+
       document
         .getElementById(id)
-        ?.classList.add('show'),
+        ?.classList
+        .add('show');
 
+    },
     delay
   );
 
 }
 
 
-/* ذرات خیلی ظریف */
+/* =========================================================
+   PARTICLES
+========================================================= */
 
-const particles=
+const particles =
   document.getElementById('particles');
 
 
 for(let i=0;i<18;i++){
 
-  const p=
+  const p =
     document.createElement('span');
 
-  p.className='particle';
 
-  p.style.left=
+  p.className =
+    'particle';
+
+
+  p.style.left =
     Math.random()*100+'vw';
 
-  p.style.top=
+
+  p.style.top =
     (45+Math.random()*55)+'vh';
 
-  p.style.animationDelay=
-    (Math.random()*6)+'s';
 
-  p.style.animationDuration=
+  p.style.animationDelay =
+    Math.random()*6+'s';
+
+
+  p.style.animationDuration =
     (6+Math.random()*5)+'s';
+
 
   particles.appendChild(p);
 
 }
-
-
-/* Scene 1 */
+[21/06/1405 09:52 ب.ظ] Mohammadhossein: /* =========================================================
+   SCENE 1
+========================================================= */
 
 show('s1a',700);
 
@@ -1047,7 +1423,12 @@ show('s1b',2200);
 show('s1c',3900);
 
 
+/* =========================================================
+   SCENE 2
+========================================================= */
+
 setTimeout(()=>{
+
 
   showScene(1);
 
@@ -1059,57 +1440,91 @@ setTimeout(()=>{
     'w4',
     'w5',
     'w6'
-  ].forEach(
+  ]
+  .forEach(
     (x,i)=>
-      show(x,500+i*450)
+      show(
+        x,
+        500+i*450
+      )
   );
 
 
   setTimeout(
-    ()=>
+    ()=>{
+
       document
         .getElementById('centerHeart')
         .classList
-        .add('show'),
+        .add('show');
 
+    },
     2600
   );
 
 
-  show('s2a',3100);
+  show(
+    's2a',
+    3100
+  );
 
-  show('s2b',4700);
+
+  show(
+    's2b',
+    4700
+  );
+
 
 },5700);
 
 
-/* Scene 3 */
+/* =========================================================
+   SCENE 3
+========================================================= */
 
 setTimeout(()=>{
 
+
   showScene(2);
 
-  show('s3a',500);
 
-  show('s3b',1900);
+  show(
+    's3a',
+    500
+  );
 
-  show('s3c',3400);
+
+  show(
+    's3b',
+    1900
+  );
+
+
+  show(
+    's3c',
+    3400
+  );
 
 
   setTimeout(
-    ()=>
+    ()=>{
+
       document
         .getElementById('audioTrigger')
         .classList
-        .add('show'),
+        .add('show');
 
+    },
     4700
   );
+
 
 },7600);
 
 
-/* باز شدن مرحله صوتی */
+/* =========================================================
+   AUDIO TRIGGER
+========================================================= */
 
 document
   .getElementById('audioTrigger')
@@ -1117,68 +1532,101 @@ document
     'click',
     ()=>{
 
-      if(audioUnlocked) return;
 
-      audioUnlocked=true;
+      if(audioUnlocked)
+        return;
+
+
+      audioUnlocked = true;
+
+
       showScene(3);
 
+
       setTimeout(
-        ()=>
+        ()=>{
+
           document
             .getElementById('player')
             .classList
-            .add('show'),
+            .add('show');
 
+        },
         250
       );
 
-      show('s4hint',1300);
+
+      show(
+        's4hint',
+        1300
+      );
 
     }
   );
 
 
-/* کنترل صدا */
+/* =========================================================
+   AUDIO ELEMENTS
+========================================================= */
 
-const audio=
+const audio =
   document.getElementById('audio');
 
-const play=
+
+const play =
   document.getElementById('play');
 
-const progress=
+
+const progress =
   document.getElementById('progress');
 
-const fill=
+
+const fill =
   document.getElementById('progressFill');
 
-const time=
+
+const time =
   document.getElementById('time');
 
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
 
 function fmt(sec){
 
   if(!isFinite(sec))
     return '00:00';
 
-  const m=
-    Math.floor(sec/60)
-    .toString()
-    .padStart(2,'0');
 
-  const s=
+  const m =
+    Math.floor(sec/60)
+      .toString()
+      .padStart(2,'0');
+
+
+  const s =
     Math.floor(sec%60)
-    .toString()
-    .padStart(2,'0');
+      .toString()
+      .padStart(2,'0');
+
 
   return m+':'+s;
 
 }
 
 
+/* =========================================================
+   PLAY / PAUSE
+========================================================= */
+
 play.addEventListener(
   'click',
-  ()=>{
+  (e)=>{
+
+
+    e.stopPropagation();
+
 
     if(audio.paused){
 
@@ -1186,101 +1634,220 @@ play.addEventListener(
         .play()
         .catch(()=>{});
 
-      play.textContent='❚❚';
-
     }
 
     else{
 
       audio.pause();
 
-      play.textContent='▶️';
-
     }
 
   }
 );
 
 
+/* =========================================================
+   AUDIO METADATA
+========================================================= */
+
 audio.addEventListener(
   'loadedmetadata',
-  ()=>
-    time.textContent=
-      fmt(0)+
-      ' / '+
-      fmt(audio.duration)
-);
-
-
-audio.addEventListener(
-  'timeupdate',
   ()=>{
 
-    fill.style.width=
-      (
-        audio.duration
-        ?
-        audio.currentTime/
-        audio.duration*
-        100
-        :
-        0
-      )+'%';
-
-
-    time.textContent=
-      fmt(audio.currentTime)+
-      ' / '+
+    time.textContent =
+      fmt(0)
+      +
+      ' / '
+      +
       fmt(audio.duration);
 
   }
 );
 
 
+/* =========================================================
+   AUDIO PROGRESS
+========================================================= */
+
+audio.addEventListener(
+  'timeupdate',
+  ()=>{
+
+
+    const percent =
+      audio.duration
+      ?
+      (
+        audio.currentTime /
+        audio.duration
+      ) * 100
+      :
+      0;
+
+
+    fill.style.width =
+      percent+'%';
+
+
+    time.textContent =
+      fmt(audio.currentTime)
+      +
+      ' / '
+      +
+      fmt(audio.duration);
+
+  }
+);
+
+
+/* =========================================================
+   SEEK
+   هم کلیک و هم لمس موبایل
+========================================================= */
+
+function seekAudio(clientX){
+
+  if(
+    !audio.duration ||
+    !isFinite(audio.duration)
+  )
+    return;
+
+
+  const rect =
+    progress.getBoundingClientRect();
+
+
+  let percent =
+    (
+      clientX -
+      rect.left
+    )
+    /
+    rect.width;
+[21/06/1405 09:52 ب.ظ] Mohammadhossein: percent =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        percent
+      )
+    );
+
+
+  audio.currentTime =
+    percent *
+    audio.duration;
+
+}
+
+
+/* کلیک */
+
 progress.addEventListener(
   'click',
   e=>{
 
-    if(!audio.duration)
-      return;
+    e.stopPropagation();
 
-
-    const r=
-      progress.getBoundingClientRect();
-
-
-    audio.currentTime=
-      (
-        (e.clientX-r.left)/
-        r.width
-      )*
-      audio.duration;
+    seekAudio(
+      e.clientX
+    );
 
   }
 );
 
+
+/* لمس شروع */
+
+progress.addEventListener(
+  'touchstart',
+  e=>{
+
+    if(e.touches.length){
+
+      seekAudio(
+        e.touches[0].clientX
+      );
+
+    }
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* کشیدن روی موبایل */
+
+progress.addEventListener(
+  'touchmove',
+  e=>{
+
+    if(e.touches.length){
+
+      seekAudio(
+        e.touches[0].clientX
+      );
+
+    }
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* =========================================================
+   PLAY EVENT
+========================================================= */
 
 audio.addEventListener(
   'play',
   ()=>{
-    play.textContent='❚❚';
+
+    play.textContent =
+      '❚❚';
+
   }
 );
 
+
+/* =========================================================
+   PAUSE EVENT
+========================================================= */
 
 audio.addEventListener(
   'pause',
   ()=>{
-    play.textContent='▶️';
+
+    play.textContent =
+      '▶️';
+
   }
 );
 
+
+/* =========================================================
+   AUDIO ENDED
+========================================================= */
 
 audio.addEventListener(
   'ended',
   ()=>{
 
-    play.textContent='▶️';
+
+    play.textContent =
+      '▶️';
+
+
+    /*
+      بعد از تمام شدن صدا
+      1.1 ثانیه مکث
+      سپس متن پایانی
+    */
 
     setTimeout(
       showFinal,
@@ -1291,46 +1858,82 @@ audio.addEventListener(
 );
 
 
+/* =========================================================
+   AUDIO ERROR
+========================================================= */
+
 audio.addEventListener(
   'error',
   ()=>{
 
-    const el=
-      document.getElementById(
-        'audioError'
-      );
-
-    if(el)
-      el.classList.add('show');
+    console.warn(
+      'voice.mp3 پیدا نشد یا قابل پخش نیست.'
+    );
 
   }
 );
 
 
-/*
-  اگر فایل صوتی هنوز قرار داده نشده باشد،
-  با دوبار کلیک روی پلیر می‌توان
-  به پایان رفت.
-*/
+/* =========================================================
+   DOUBLE TAP / DOUBLE CLICK
+   برای رد کردن صدا
+========================================================= */
 
-document
-  .getElementById('player')
-  .addEventListener(
-    'dblclick',
-    showFinal
-  );
+let lastPlayerTap = 0;
 
+
+const player =
+  document.getElementById('player');
+
+
+player.addEventListener(
+  'click',
+  e=>{
+
+    const now =
+      Date.now();
+
+
+    if(
+      now-lastPlayerTap
+      <
+      420
+    ){
+
+      showFinal();
+
+    }
+
+
+    lastPlayerTap =
+      now;
+
+  }
+);
+
+
+/* =========================================================
+   FINAL
+========================================================= */
 
 function showFinal(){
 
-  if(current===4)
+  /*
+    جلوگیری از چند بار اجرا شدن
+  */
+
+  if(finalShown)
     return;
+
+
+  finalShown = true;
 
 
   showScene(4);
 
 
-  const ids=[
+  const ids = [
+
     'f1',
     'f2',
     'f3',
@@ -1342,20 +1945,300 @@ function showFinal(){
     'f9',
     'f10',
     'f11'
+
   ];
 
 
+  /*
+    همه متن‌ها را آماده می‌کنیم
+  */
+
   ids.forEach(
-    (id,i)=>
-      show(
-        id,
-        700+i*850
-      )
+    id=>{
+
+      const el =
+        document.getElementById(id);
+
+
+      /*
+        متن اصلی را نگه می‌داریم
+      */
+
+      el.dataset.text =
+        el.textContent.trim();
+
+
+      /*
+        خالی می‌کنیم
+      */
+
+      el.textContent =
+        '';
+
+
+      el.classList.remove(
+        'typing'
+      );
+
+    }
   );
+
+
+  /*
+    اجازه می‌دهیم Scene 5
+    کمی وارد شود
+  */
+
+  setTimeout(
+    ()=>{
+
+      typeFinalParagraph(
+        ids,
+        0
+      );
+
+    },
+    700
+  );
+
+}
+
+
+/* =========================================================
+   TYPEWRITER
+========================================================= */
+
+function typeFinalParagraph(
+  ids,
+  index
+){
+
+  /*
+    اگر تمام پاراگراف‌ها تمام شده‌اند
+  */
+
+  if(index >= ids.length)
+    return;
+
+
+  const el =
+    document.getElementById(
+      ids[index]
+    );
+
+
+  const original =
+    el.dataset.text || '';
+
+
+  /*
+    این پاراگراف قابل مشاهده می‌شود
+  */
+
+  el.classList.add(
+    'typing'
+  );
+
+
+  /*
+    متن خالی
+  */
+
+  el.textContent =
+    '';
+
+
+  /*
+    ساخت کرسر
+  */
+
+  const cursor =
+    document.createElement(
+      'span'
+    );
+
+
+  cursor.className =
+    'type-cursor';
+
+
+  el.appendChild(
+    cursor
+  );
+
+
+  let charIndex = 0;
+
+
+  /*
+    تایپ هر حرف
+  */
+
+  function typeCharacter(){
+
+    /*
+      پایان پاراگراف
+    */
+
+    if(
+      charIndex >=
+      original.length
+    ){
+
+      /*
+        کرسر کمی باقی بماند
+      */
+[21/06/1405 09:52 ب.ظ] Mohammadhossein: setTimeout(
+        ()=>{
+
+
+          cursor.remove();
+
+
+          /*
+            مکث بین پاراگراف‌ها
+          */
+
+          let pause = 650;
+
+
+          /*
+            مکث‌های احساسی‌تر
+          */
+
+          if(index === 2)
+            pause = 800;
+
+
+          if(index === 6)
+            pause = 1000;
+
+
+          if(index === 7)
+            pause = 1200;
+
+
+          if(index === 8)
+            pause = 1700;
+
+
+          if(index === 9)
+            pause = 2000;
+
+
+          if(index === 10)
+            pause = 1300;
+
+
+          setTimeout(
+            ()=>{
+
+              typeFinalParagraph(
+                ids,
+                index+1
+              );
+
+            },
+            pause
+          );
+
+
+        },
+        350
+      );
+
+
+      return;
+
+    }
+
+
+    /*
+      حرف فعلی
+    */
+
+    const char =
+      original.charAt(
+        charIndex
+      );
+
+
+    /*
+      قرار دادن حرف
+      قبل از کرسر
+    */
+
+    el.insertBefore(
+      document.createTextNode(
+        char
+      ),
+      cursor
+    );
+
+
+    charIndex++;
+
+
+    /*
+      سرعت پایه
+    */
+
+    let speed =
+      38 +
+      Math.random()*24;
+
+
+    /*
+      فاصله سریع‌تر
+    */
+
+    if(char === ' ')
+      speed = 16;
+
+
+    /*
+      علائم نگارشی
+      مکث ایجاد می‌کنند
+    */
+
+    if(
+      char === '،' ||
+      char === '؛' ||
+      char === '؟' ||
+      char === '!' ||
+      char === '.'
+    ){
+
+      speed = 260;
+
+    }
+
+
+    /*
+      سه نقطه
+    */
+
+    if(char === '…'){
+
+      speed = 420;
+
+    }
+
+
+    setTimeout(
+      typeCharacter,
+      speed
+    );
+
+  }
+
+
+  typeCharacter();
 
 }
 
 </script>
 
 </body>
+
 </html>
