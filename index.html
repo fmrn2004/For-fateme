@@ -1,189 +1,276 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>برای فاطمه ❤️</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-    * { box-sizing: border-box; }
+<title>برای فاطمه ❤️</title>
 
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #09070a;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    body {
-      font-family: "Vazirmatn", sans-serif;
-      color: #f8eef2;
-    }
+<style>
+*{
+  box-sizing:border-box
+}
 
-    .page {
-      position: relative;
-      width: 100%;
-      height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 28px;
-      isolation: isolate;
-    }
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#09070a
+}
 
-    /* نور خیلی ظریف و مرموز پشت محتوا */
-    .glow {
-      position: absolute;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: rgba(184, 55, 91, 0.13);
-      filter: blur(75px);
-      z-index: -1;
-      animation: breathe 5s ease-in-out infinite;
-    }
+body{
+  font-family:Vazirmatn,sans-serif;
+  color:#f8eef2
+}
 
-    .content {
-      width: min(560px, 100%);
-      text-align: center;
-      animation: appear 1.5s ease both;
-    }
+.page{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  isolation:isolate
+}
 
-    .heart {
-      font-size: 25px;
-      margin-bottom: 32px;
-      display: inline-block;
-      opacity: 0.9;
-      animation: heartbeat 2.2s ease-in-out infinite;
-    }
+.glow{
+  position:absolute;
+  width:340px;
+  height:340px;
+  border-radius:50%;
+  background:rgba(184,55,91,.13);
+  filter:blur(75px);
+  z-index:-1;
+  animation:breathe 5s ease-in-out infinite
+}
 
-    .message {
-      font-size: clamp(18px, 4.5vw, 25px);
-      line-height: 2.25;
-      font-weight: 400;
-      letter-spacing: -0.3px;
-    }
+.content{
+  width:min(560px,100%);
+  text-align:center
+}
 
-    .message .soft {
-      opacity: 0;
-      animation: lineIn 0.9s ease forwards;
-    }
+.heart{
+  font-size:25px;
+  margin-bottom:32px;
+  display:inline-block;
+  opacity:.9;
+  animation:heartbeat 2.2s ease-in-out infinite
+}
 
-    .message .l1 { animation-delay: 0.35s; }
-    .message .l2 { animation-delay: 0.9s; }
-    .message .l3 { animation-delay: 1.45s; }
-    .message .l4 { animation-delay: 2s; }
+.message{
+  font-size:clamp(18px,4.5vw,25px);
+  line-height:2.25;
+  font-weight:400;
+  letter-spacing:-.3px
+}
 
-    .question {
-      margin-top: 12px;
-    }
+.soft{
+  opacity:0;
+  animation:lineIn .9s ease forwards
+}
 
-    .button-wrap {
-      margin-top: 42px;
-      opacity: 0;
-      animation: lineIn 0.9s ease 2.7s forwards;
-    }
+.l1{
+  animation-delay:.35s
+}
 
-    button {
-      border: 1px solid rgba(255, 190, 210, 0.3);
-      background: rgba(255, 255, 255, 0.035);
-      color: #fff4f7;
-      padding: 13px 30px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.3s ease;
-      backdrop-filter: blur(10px);
-      -webkit-tap-highlight-color: transparent;
-    }
+.l2{
+  animation-delay:.9s
+}
 
-    button:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(255, 190, 210, 0.55);
-      transform: translateY(-2px);
-    }
+.l3{
+  animation-delay:1.45s
+}
 
-    button:active {
-      transform: scale(0.97);
-    }
+.l4{
+  animation-delay:2s
+}
 
-    .hint {
-      margin-top: 15px;
-      font-size: 11px;
-      opacity: 0.28;
-    }
+.question{
+  margin-top:12px
+}
 
-    @keyframes appear {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.button-wrap{
+  margin-top:42px;
+  opacity:0;
+  animation:lineIn .9s ease 2.7s forwards
+}
 
-    @keyframes lineIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+button{
+  border:1px solid rgba(255,190,210,.3);
+  background:rgba(255,255,255,.035);
+  color:#fff4f7;
+  padding:13px 30px;
+  border-radius:999px;
+  font-family:inherit;
+  font-size:15px;
+  cursor:pointer;
+  transition:.3s;
+  backdrop-filter:blur(10px)
+}
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      12% { transform: scale(1.12); }
-      24% { transform: scale(1); }
-      36% { transform: scale(1.08); }
-      50% { transform: scale(1); }
-    }
+button:hover{
+  background:rgba(255,255,255,.09);
+  border-color:rgba(255,190,210,.55);
+  transform:translateY(-2px)
+}
 
-    @keyframes breathe {
-      0%, 100% { transform: scale(0.9); opacity: 0.65; }
-      50% { transform: scale(1.08); opacity: 1; }
-    }
+button:active{
+  transform:scale(.97)
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-  </style>
+.hint{
+  margin-top:15px;
+  font-size:11px;
+  opacity:.28
+}
+
+@keyframes lineIn{
+  from{
+    opacity:0;
+    transform:translateY(8px)
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0)
+  }
+}
+
+@keyframes heartbeat{
+  0%,100%{
+    transform:scale(1)
+  }
+
+  12%{
+    transform:scale(1.12)
+  }
+
+  24%{
+    transform:scale(1)
+  }
+
+  36%{
+    transform:scale(1.08)
+  }
+
+  50%{
+    transform:scale(1)
+  }
+}
+
+@keyframes breathe{
+  0%,100%{
+    transform:scale(.9);
+    opacity:.65
+  }
+
+  50%{
+    transform:scale(1.08);
+    opacity:1
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="page">
-    <div class="glow"></div>
 
-    <section class="content" aria-label="پیام">
-      <div class="heart">♥</div>
+<main class="page">
 
-      <div class="message">
-        <div class="soft l1">خب خب خانوم خوشگله... ❤️</div>
-        <div class="soft l2">من مدت‌ها داخل این شیشه بودم</div>
-        <div class="soft l3">و منتظر اینکه پیدام کنی.</div>
+  <div class="glow"></div>
 
-        <div class="soft l4 question">
-          حالا که بالاخره پیدام کردی...<br>
-          نظرت چیه بفهمی من برای چی اینجام؟ 👀
-        </div>
+  <section class="content">
+
+    <div class="heart">♥️</div>
+
+    <div class="message">
+
+      <div class="soft l1">
+        خب خب خانوم خوشگله... ❤️
       </div>
 
-      <div class="button-wrap">
-        <button id="nextButton">بگو ببینم... ❤️</button>
-        <div class="hint">یک راز کوچولو پشت این دکمه منتظرته</div>
+      <div class="soft l2">
+        من مدت‌ها داخل این شیشه بودم
       </div>
-    </section>
-  </main>
 
-  <script>
-    document.getElementById("nextButton").addEventListener("click", () => {
-      // مرحله‌ی دوم را در ادامه‌ی پروژه اینجا اضافه می‌کنیم.
-      document.querySelector(".content").animate(
-        [
-          { opacity: 1, transform: "translateY(0)" },
-          { opacity: 0, transform: "translateY(-10px)" }
-        ],
-        { duration: 500, easing: "ease", fill: "forwards" }
-      );
-    });
-  </script>
+      <div class="soft l3">
+        و منتظر اینکه پیدام کنی.
+      </div>
+
+      <div class="soft l4 question">
+        حالا که بالاخره پیدام کردی...<br>
+        نظرت چیه بفهمی من برای چی اینجام؟ 👀
+      </div>
+
+    </div>
+
+    <div class="button-wrap">
+
+      <button id="nextButton">
+        بگو ببینم... ❤️
+      </button>
+
+      <div class="hint">
+        یک راز کوچولو پشت این دکمه منتظرته
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+(function(){
+
+  const next=document.getElementById('nextButton');
+
+  let moving=false;
+
+  next.addEventListener('click',function(){
+
+    if(moving) return;
+
+    moving=true;
+
+    next.disabled=true;
+
+    document.querySelector('.content').animate(
+      [
+        {
+          opacity:1,
+          transform:'translateY(0)'
+        },
+        {
+          opacity:0,
+          transform:'translateY(-10px)'
+        }
+      ],
+      {
+        duration:500,
+        easing:'ease',
+        fill:'forwards'
+      }
+    );
+
+    window.setTimeout(function(){
+
+      window.location.replace('./stage2.html');
+
+    },520);
+
+  });
+
+})();
+
+</script>
+
 </body>
 </html>
