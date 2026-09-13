@@ -465,4 +465,356 @@ body{
     }
 
     45%{
-        opacity
+        opacity:1;
+        transform:
+            translateX(-50%)
+            translateY(-28px)
+            scale(.7)
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(.15)
+    }
+}
+
+
+@keyframes phoneIn{
+
+    0%{
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            scale(.12)
+    }
+
+    45%{
+        opacity:1;
+        transform:
+            translate(-50%,-50%)
+            scale(.34)
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translate(-50%,-50%)
+            scale(1)
+    }
+}
+
+
+@keyframes textIn{
+
+    to{
+        opacity:1;
+        transform:translateY(0)
+    }
+}
+
+
+@keyframes tinyBeat{
+
+    0%,100%{
+        transform:scale(1)
+    }
+
+    15%{
+        transform:scale(1.16)
+    }
+
+    30%{
+        transform:scale(1)
+    }
+}
+
+
+@keyframes glow{
+
+    0%,100%{
+        opacity:.55;
+        transform:scale(1)
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.08)
+    }
+}
+
+
+@keyframes exit{
+
+    to{
+        opacity:0;
+        transform:scale(.97);
+        filter:blur(5px)
+    }
+}
+
+
+@media(max-height:650px){
+
+    .bottle{
+        bottom:35px;
+        transform:
+            translateX(-50%)
+            scale(.82)
+    }
+
+    .page.complete .bottle{
+        animation:
+            bottleIntoPhoneSmall
+            1.45s
+            cubic-bezier(.2,.8,.2,1)
+            forwards
+    }
+}
+
+
+@keyframes bottleIntoPhoneSmall{
+
+    0%{
+        opacity:1;
+        transform:
+            translateX(-50%)
+            scale(.82)
+    }
+
+    45%{
+        opacity:1;
+        transform:
+            translateX(-50%)
+            translateY(-25px)
+            scale(.57)
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateX(-50%)
+            scale(.12)
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="page" id="page">
+
+    <div class="stage">
+
+        <div class="first-heart">
+            ❤️
+        </div>
+
+
+        <div class="bottle" id="bottle">
+
+            <div class="neck"></div>
+
+            <div class="rim"></div>
+
+            <div class="body">
+
+                <div class="shine"></div>
+
+                <div
+                    class="inside"
+                    id="inside">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="phone" id="phone">
+
+            <div class="screen">
+
+                <div
+                    class="phone-text"
+                    id="phoneText">
+
+                    کله پوک اینقدر فکر کردن نداشت،
+                    <br>
+
+                    معلومه که محمدحسین تو رو از کل دنیا بیشتر دوست داره
+
+                    <span class="ph">
+                        ❤️
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const page =
+    document.getElementById('page');
+
+const inside =
+    document.getElementById('inside');
+
+const phone =
+    document.getElementById('phone');
+
+let active=false,
+    done=false;
+
+
+function addInsideHeart(first=false){
+
+    const h =
+        document.createElement('span');
+
+    h.className='heart';
+
+    h.textContent='❤️';
+
+    h.style.setProperty(
+        '--s',
+        first
+            ? '24px'
+            : (13+Math.random()*15)+'px'
+    );
+
+    h.style.setProperty(
+        '--x',
+        (5+Math.random()*88)+'%'
+    );
+
+    h.style.setProperty(
+        '--y',
+        (2+Math.random()*88)+'%'
+    );
+
+    h.style.setProperty(
+        '--d',
+        (Math.random()*1.5)+'s'
+    );
+
+    inside.appendChild(h);
+}
+
+
+function rain(i){
+
+    const h =
+        document.createElement('div');
+
+    h.className='rain-heart';
+
+    h.textContent =
+        Math.random()>.18
+            ? '❤️'
+            : '🩷';
+
+    const delay =
+        i*.13+
+        Math.random()*.35;
+
+    const duration =
+        2.45+
+        Math.random()*1.55;
+
+    h.style.setProperty(
+        '--x',
+        (7+Math.random()*86)+'%'
+    );
+
+    h.style.setProperty(
+        '--s',
+        (13+Math.random()*15)+'px'
+    );
+
+    h.style.setProperty(
+        '--t',
+        duration+'s'
+    );
+
+    h.style.setProperty(
+        '--delay',
+        delay+'s'
+    );
+
+    h.style.setProperty(
+        '--drift',
+        (Math.random()*55-27)+'px'
+    );
+
+    document.body.appendChild(h);
+
+    setTimeout(
+        ()=>{
+            addInsideHeart();
+            h.remove();
+        },
+        (delay+duration)*1000-70
+    );
+}
+
+
+/* قلب مرحله قبل */
+
+setTimeout(()=>{
+
+    addInsideHeart(true);
+
+    for(let i=0;i<34;i++)
+        rain(i);
+
+},2250);
+
+
+/* بعد از بارش، شیشه پر می‌شود و وارد گوشی می‌شود */
+
+setTimeout(()=>{
+
+    page.classList.add('complete');
+
+    active=true;
+
+},7900);
+
+
+/* فقط مقصد تغییر کرده: stage5 → stage4.5 */
+
+phone.addEventListener('click',()=>{
+
+    if(!active||done)
+        return;
+
+    done=true;
+
+    page.classList.add('exit');
+
+    setTimeout(
+        ()=>{
+            window.location.href='stage4.5.html';
+        },
+        800
+    );
+
+});
+
+</script>
+
+</body>
+</html>
