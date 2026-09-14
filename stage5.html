@@ -6,14 +6,16 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width,initial-scale=1.0">
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
-<title>حرف دل ❤️</title>
+<title>شیشه‌ی عشق | برای فاطمه ❤️</title>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap"
-rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
@@ -22,22 +24,23 @@ rel="stylesheet">
 ========================================================= */
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 html,
 body{
-  width:100%;
-  height:100%;
-  overflow:hidden;
+    width:100%;
+    height:100%;
+    overflow:hidden;
 }
 
 body{
-  font-family:"Vazirmatn",sans-serif;
-  background:#070609;
-  color:#fff;
+    font-family:"Vazirmatn",sans-serif;
+    background:#08050b;
+    color:#fff;
 }
 
 
@@ -46,45 +49,353 @@ body{
 ========================================================= */
 
 .page{
-  position:relative;
-  width:100%;
-  height:100%;
-  overflow:hidden;
+    position:relative;
 
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(125,22,60,.16),
-      transparent 42%
-    ),
-    #070609;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 12%,
+            rgba(255,75,160,.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(83,111,255,.08),
+            transparent 30%
+        ),
+        #08050b;
+
+    transition:
+        background 1.4s ease;
+}
+
+.page.romantic{
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,74,166,.25),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 100% 75%,
+            rgba(112,76,255,.14),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 0% 65%,
+            rgba(63,190,255,.08),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #120711,
+            #190a18 45%,
+            #09070f
+        );
 }
 
 
-/* نور مرکزی */
+/* =========================================================
+   GLOBAL ATMOSPHERE
+========================================================= */
 
-.glow{
-  position:absolute;
+.ambient{
+    position:absolute;
+    inset:-40%;
 
-  width:420px;
-  height:420px;
+    pointer-events:none;
 
-  left:50%;
-  top:50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.025),
+            transparent 48%
+        );
 
-  transform:
-    translate(-50%,-50%);
+    animation:
+        ambientMove 16s ease-in-out infinite alternate;
+}
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,35,100,.08),
-      transparent 68%
-    );
+@keyframes ambientMove{
 
-  filter:blur(25px);
+    from{
+        transform:
+            scale(1)
+            rotate(-2deg);
+    }
 
-  pointer-events:none;
+    to{
+        transform:
+            scale(1.16)
+            rotate(5deg);
+    }
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+#particles{
+    position:absolute;
+    inset:0;
+
+    z-index:1;
+
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.72);
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.55);
+
+    animation:
+        particleFloat
+        var(--duration)
+        ease-in-out
+        infinite;
+}
+
+@keyframes particleFloat{
+
+    0%{
+        transform:
+            translate3d(0,0,0)
+            scale(.4);
+
+        opacity:.05;
+    }
+
+    45%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:
+            translate3d(
+                var(--x),
+                var(--y),
+                0
+            )
+            scale(1.3);
+
+        opacity:.02;
+    }
+}
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+#floatingHearts{
+    position:absolute;
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    overflow:hidden;
+}
+
+.floating-heart{
+    position:absolute;
+
+    font-size:var(--size);
+
+    opacity:0;
+
+    animation:
+        floatingHeart
+        var(--duration)
+        linear
+        infinite;
+
+    animation-delay:var(--delay);
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,100,180,.35)
+        );
+}
+
+@keyframes floatingHeart{
+
+    0%{
+        transform:
+            translateY(110vh)
+            translateX(0)
+            rotate(0deg)
+            scale(.65);
+
+        opacity:0;
+    }
+
+    12%{
+        opacity:.5;
+    }
+
+    70%{
+        opacity:.25;
+    }
+
+    100%{
+        transform:
+            translateY(-15vh)
+            translateX(var(--drift))
+            rotate(var(--rotate))
+            scale(1);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   TOP BRAND
+========================================================= */
+
+.top-brand{
+    position:absolute;
+
+    top:18px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index:40;
+
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    white-space:nowrap;
+
+    pointer-events:none;
+}
+
+.brand-left{
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    color:
+        rgba(255,255,255,.36);
+}
+
+.brand-heart{
+    font-size:12px;
+
+    animation:
+        heartbeat
+        1.7s
+        ease-in-out
+        infinite;
+}
+
+.brand-name{
+    font-size:12px;
+
+    font-weight:700;
+
+    color:
+        rgba(255,255,255,.82);
+}
+
+
+/* =========================================================
+   HEARTBEAT
+========================================================= */
+
+@keyframes heartbeat{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    14%{
+        transform:scale(1.18);
+    }
+
+    28%{
+        transform:scale(1);
+    }
+
+    42%{
+        transform:scale(1.11);
+    }
+
+    56%{
+        transform:scale(1);
+    }
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress{
+    position:absolute;
+
+    top:45px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index:40;
+
+    display:flex;
+
+    gap:7px;
+}
+
+.progress-dot{
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.14);
+
+    transition:
+        all .6s cubic-bezier(.2,.8,.2,1);
+}
+
+.progress-dot.active{
+    width:22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff65ab,
+            #c36dff
+        );
+
+    box-shadow:
+        0 0 14px
+        rgba(255,70,160,.55);
 }
 
 
@@ -93,715 +404,2074 @@ body{
 ========================================================= */
 
 .scene{
-  position:absolute;
+    position:absolute;
 
-  inset:0;
+    inset:0;
 
-  display:flex;
+    display:flex;
 
-  align-items:center;
+    align-items:center;
+    justify-content:center;
 
-  justify-content:center;
+    padding:
+        78px
+        20px
+        40px;
 
-  padding:28px;
+    opacity:0;
 
-  opacity:0;
+    visibility:hidden;
 
-  visibility:hidden;
+    transform:
+        scale(.975)
+        translateY(10px);
 
-  transition:
-    opacity 1s ease,
-    visibility 1s ease;
+    transition:
+        opacity .75s ease,
+        transform .9s cubic-bezier(.2,.8,.2,1),
+        visibility .75s;
+
+    z-index:10;
 }
 
 .scene.active{
-  opacity:1;
-  visibility:visible;
-}
-
-
-.content{
-  width:min(560px,92vw);
-
-  text-align:center;
-
-  position:relative;
-
-  z-index:3;
-}
-
-
-/* =========================================================
-   NORMAL TEXT
-========================================================= */
-
-.line{
-
-  opacity:0;
-
-  transform:translateY(14px);
-
-  transition:
-    opacity 1s ease,
-    transform 1s ease;
-
-  margin:9px 0;
-
-  line-height:2.15;
-
-  font-size:18px;
-
-  font-weight:300;
-}
-
-.line.show{
-
-  opacity:1;
-
-  transform:translateY(0);
-}
-
-
-.soft{
-
-  font-size:15px;
-
-  color:rgba(255,255,255,.62);
-}
-
-
-/* =========================================================
-   HEART
-========================================================= */
-
-.heart{
-
-  font-size:26px;
-
-  margin:18px 0;
-
-  display:inline-block;
-
-  animation:
-    beat
-    1.5s
-    ease-in-out
-    infinite;
-
-  filter:
-    drop-shadow(
-      0 0 10px
-      rgba(255,40,100,.3)
-    );
-}
-
-
-@keyframes beat{
-
-  0%,100%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.18);
-  }
-
-}
-
-
-/* =========================================================
-   WORD CLOUD
-========================================================= */
-
-.word-cloud{
-
-  height:190px;
-
-  position:relative;
-
-  margin:
-    12px auto 18px;
-
-  width:min(430px,90vw);
-}
-
-
-.word{
-
-  position:absolute;
-
-  opacity:0;
-
-  transform:
-    translateY(10px)
-    scale(.95);
-
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
-
-  color:rgba(255,255,255,.82);
-
-  font-size:14px;
-}
-
-
-.word.show{
-
-  opacity:1;
-
-  transform:
-    translateY(0)
-    scale(1);
-}
-
-
-.w1{
-  top:15px;
-  left:12%;
-}
-
-.w2{
-  top:50px;
-  right:8%;
-}
-
-.w3{
-  top:98px;
-  left:5%;
-}
-
-.w4{
-  top:125px;
-  right:18%;
-}
-
-.w5{
-  top:65px;
-  left:40%;
-}
-
-.w6{
-  top:155px;
-  left:39%;
-}
-
-
-/* قلب مرکزی */
-
-.center-heart{
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.3);
-
-  opacity:0;
-
-  font-size:45px;
-
-  transition:
-    transform 1s ease,
-    opacity 1s ease;
-
-  filter:
-    drop-shadow(
-      0 0 18px
-      rgba(255,40,100,.35)
-    );
-}
-
-
-.center-heart.show{
-
-  opacity:1;
-
-  transform:
-    translate(-50%,-50%)
-    scale(1);
-}
-
-
-.mini-heart{
-
-  display:inline-block;
-
-  font-size:19px;
-
-  margin:0 5px;
-
-  animation:
-    beat
-    1.4s
-    infinite;
-}
-
-
-/* =========================================================
-   AUDIO TRIGGER
-========================================================= */
-
-.audio-trigger{margin:
-    24px auto 0;
-
-  width:78px;
-  height:78px;
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    rgba(255,255,255,.18);
-
-  background:
-    rgba(255,255,255,.025);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  cursor:pointer;
-
-  opacity:0;
-
-  transform:scale(.8);
-
-  transition:
-    opacity 1s ease,
-    transform .8s ease,
-    background .3s ease,
-    box-shadow .3s ease;
-}
-
-
-.audio-trigger.show{
-
-  opacity:1;
-
-  transform:scale(1);
-}
-
-
-.audio-trigger:hover{
-
-  background:
-    rgba(255,255,255,.07);
-
-  box-shadow:
-    0 0 28px
-    rgba(255,40,100,.13);
-}
-
-
-.audio-trigger span{
-
-  font-size:26px;
-}
-
-
-.audio-label{
-
-  margin-top:10px;
-
-  font-size:12px;
-
-  color:rgba(255,255,255,.38);
-
-  opacity:0;
-
-  transition:
-    opacity .7s ease;
-}
-
-
-.audio-trigger.show
-+ .audio-label{
-
-  opacity:1;
-}
-
-
-/* =========================================================
-   AUDIO PLAYER
-========================================================= */
-
-.player{
-
-  width:min(430px,88vw);
-
-  margin:
-    26px auto 0;
-
-  padding:22px 20px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.11);
-
-  border-radius:24px;
-
-  background:
-    rgba(255,255,255,.035);
-
-  box-shadow:
-    0 15px 45px
-    rgba(0,0,0,.28);
-
-  opacity:0;
-
-  transform:
-    translateY(18px)
-    scale(.98);
-
-  transition:
-    opacity .9s ease,
-    transform .9s ease;
-}
-
-
-.player.show{
-
-  opacity:1;
-
-  transform:
-    translateY(0)
-    scale(1);
-}
-
-
-.record-icon{
-
-  font-size:26px;
-
-  margin-bottom:9px;
-}
-
-
-.player-title{
-
-  font-size:16px;
-
-  margin-bottom:5px;
-}
-
-
-.player-sub{
-
-  font-size:12px;
-
-  color:rgba(255,255,255,.48);
-
-  margin-bottom:16px;
-}
-
-
-/* فایل صوتی واقعی مخفی */
-
-.audio-wrap{
-
-  display:none;
-}
-
-
-/* کنترل‌ها */
-
-.custom-controls{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  direction:ltr;
-}
-
-
-/* دکمه پخش */
-
-.play{
-
-  width:46px;
-  height:46px;
-
-  flex-shrink:0;
-
-  border-radius:50%;
-
-  border:0;
-
-  background:
-    rgba(255,255,255,.1);
-
-  color:#fff;
-
-  font-size:18px;
-
-  cursor:pointer;
-
-  transition:
-    background .25s ease,
-    transform .2s ease;
-}
-
-
-.play:active{
-
-  transform:scale(.9);
-}
-
-
-.play:hover{
-
-  background:
-    rgba(255,255,255,.16);
-}
-
-
-/* نوار پیشرفت */
-
-.progress{
-
-  height:5px;
-
-  background:
-    rgba(255,255,255,.13);
-
-  border-radius:5px;
-
-  flex:1;
-
-  overflow:hidden;
-
-  cursor:pointer;
-
-  position:relative;
-}
-
-
-/* قسمت پرشده */
-
-.progress-fill{
-
-  width:0;
-
-  height:100%;
-
-  background:
-    rgba(255,90,130,.8);
-
-  transition:
-    width .1s linear;
-
-  border-radius:5px;
-}
-
-
-/* زمان */
-
-.time{
-
-  font-size:10px;
-
-  color:rgba(255,255,255,.42);
-
-  min-width:60px;
-
-  text-align:center;
-}
-
-
-/* =========================================================
-   متن راهنما
-========================================================= */
-
-.s4hint{
-
-  margin-top:18px;
-}
-
-
-/* =========================================================
-   FINAL TEXT
-   ماشین تحریر
-========================================================= */
-
-.final-text{
-
-  width:min(620px,92vw);
-
-  max-height:90vh;
-
-  overflow:hidden;
-}
-
-
-/*
-  نکته:
-  متن‌ها در ابتدا مخفی‌اند.
-  JavaScript آنها را حرف‌به‌حرف نمایش می‌دهد.
-*/
-
-.final-text p{
-
-  opacity:1;
-
-  transform:none;
-
-  line-height:2.25;
-
-  margin:12px 0;
-
-  font-size:17px;
-
-  font-weight:300;
-
-  visibility:hidden;
-
-  min-height:1.2em;
-}
-
-
-/* پاراگراف در حال تایپ */
-
-.final-text p.typing{
-
-  visibility:visible;
-}
-
-
-/* جمله‌های مهم */
-
-.final-text .last{
-
-  margin-top:25px;
-
-  font-size:20px;
-
-  font-weight:400;
-}
-
-
-/* امضا */
-
-.signature{
-
-  font-size:13px!important;
-
-  color:rgba(255,255,255,.45);
-
-  margin-top:30px!important;
-}
-
-
-/* =========================================================
-   CURSOR ماشین تحریر
-========================================================= */
-
-.type-cursor{
-
-  display:inline-block;
-
-  width:2px;
-
-  height:1.15em;
-
-  margin-right:4px;
-
-  vertical-align:-.2em;
-
-  background:
-    rgba(255,255,255,.8);
-
-  animation:
-    cursorBlink
-    .7s
-    step-end
-    infinite;
-}
-
-
-@keyframes cursorBlink{
-
-  0%,45%{
     opacity:1;
-  }
 
-  46%,100%{
-    opacity:0;
-  }
+    visibility:visible;
 
-}/* =========================================================
-   PARTICLES
-========================================================= */
-
-.particle{
-
-  position:absolute;
-
-  width:3px;
-
-  height:3px;
-
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.18);
-
-  animation:
-    float
-    7s
-    linear
-    infinite;
-
-  opacity:0;
+    transform:
+        scale(1)
+        translateY(0);
 }
 
 
-@keyframes float{
+/* =========================================================
+   SCENE 1
+========================================================= */
 
-  0%{
+.intro-orbit{
+    position:relative;
 
-    transform:translateY(30px);
+    width:
+        min(380px,80vw);
 
-    opacity:0;
-  }
+    height:
+        min(380px,80vw);
 
-  15%{
+    margin:
+        0 auto 20px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.orbit{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    border:
+        1px solid
+        rgba(255,120,190,.12);
+
+    border-radius:50%;
+
+    animation:
+        orbitRotate
+        16s
+        linear
+        infinite;
+}
+
+.orbit::before,
+.orbit::after{
+    content:"";
+
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#ff82bc;
+
+    box-shadow:
+        0 0 15px
+        rgba(255,90,170,.9);
+}
+
+.orbit::before{
+    top:8%;
+    left:18%;
+}
+
+.orbit::after{
+    right:12%;
+    bottom:20%;
+
+    background:#8cbaff;
+
+    box-shadow:
+        0 0 15px
+        rgba(90,160,255,.8);
+}
+
+@keyframes orbitRotate{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.intro-heart{
+    position:relative;
+
+    width:105px;
+    height:105px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,100,175,.2),
+            rgba(255,100,175,.025) 65%,
+            transparent
+        );
+
+    border:
+        1px solid
+        rgba(255,130,190,.25);
+
+    box-shadow:
+        0 0 55px
+        rgba(255,70,160,.16);
+
+    font-size:43px;
+
+    animation:
+        introHeart
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes introHeart{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.07);
+    }
+}
+
+.intro-kicker{
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    color:
+        rgba(255,140,195,.6);
+
+    margin-bottom:22px;
+
+    animation:
+        fadeUp
+        1s
+        .1s
+        both;
+}
+
+.intro-title{
+    font-size:
+        clamp(
+            27px,
+            7vw,
+            56px
+        );
+
+    line-height:1.6;
+
+    font-weight:800;
+
+    text-align:center;
+
+    animation:
+        fadeUp
+        1s
+        .25s
+        both;
+}
+
+.intro-title span{
+    display:block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ff9dca,
+            #fff,
+            #d58bff,
+            #fff
+        );
+
+    background-size:300% auto;
+
+    color:transparent;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    animation:
+        gradientMove
+        5s
+        linear
+        infinite;
+}
+
+.intro-copy{
+    margin-top:22px;
+
+    color:
+        rgba(255,255,255,.5);
+
+    font-size:
+        clamp(
+            12px,
+            3.4vw,
+            16px
+        );
+
+    line-height:2;
+
+    animation:
+        fadeUp
+        1s
+        .45s
+        both;
+}
+
+
+/* =========================================================
+   SCENE 2
+========================================================= */
+
+#scene2{
+    align-items:flex-start;
+
+    overflow-y:auto;
+
+    padding-top:72px;
+    padding-bottom:20px;
+}
+
+.scene2-inner{
+    width:min(760px,100%);
+
+    text-align:center;
+}
+
+.reveal-small{
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    color:
+        rgba(255,155,205,.58);
+
+    margin-bottom:7px;
+}
+
+
+/* =========================================================
+   GLASS
+========================================================= */
+
+.glass-wrap{
+    position:relative;
+
+    width:175px;
+    height:235px;
+
+    margin:
+        0 auto 8px;
+
+    filter:
+        drop-shadow(
+            0 0 32px
+            rgba(255,70,160,.18)
+        );
+}
+
+.glass{
+    position:absolute;
+
+    left:50%;
+    bottom:0;
+
+    transform:
+        translateX(-50%);
+
+    width:138px;
+    height:190px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.24);
+
+    border-radius:
+        18px 18px 34px 34px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.018)
+        );
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    overflow:hidden;
+
+    box-shadow:
+        inset 8px 0 20px
+        rgba(255,255,255,.035),
+        inset -8px 0 20px
+        rgba(255,80,170,.04),
+        0 25px 55px
+        rgba(0,0,0,.38);
+
+    transition:
+        all 1.2s ease;
+}
+
+.glass.completed{
+    box-shadow:
+        inset 0 0 45px
+        rgba(255,100,180,.2),
+        0 0 65px
+        rgba(255,70,170,.35),
+        0 25px 70px
+        rgba(0,0,0,.4);
+}
+
+.glass::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            105deg,
+            transparent 18%,
+            rgba(255,255,255,.16) 27%,
+            transparent 35%
+        );
+
+    animation:
+        glassShine
+        4.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes glassShine{
+
+    0%,
+    55%{
+        transform:translateX(-120%);
+    }
+
+    100%{
+        transform:translateX(120%);
+    }
+}
+
+.glass-neck{
+    position:absolute;
+
+    left:50%;
+    top:-42px;
+
+    transform:
+        translateX(-50%);
+
+    width:68px;
+    height:54px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    border-bottom:none;
+
+    border-radius:
+        12px 12px 0 0;
+}
+
+.glass-label{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:92%;
+
+    color:
+        rgba(255,255,255,.45);
+
+    font-size:9px;
+
+    line-height:1.9;
+}
+
+.glass-label strong{
+    display:block;
+
+    font-size:16px;
+
+    color:#fff;
+
+    font-weight:800;
+}
+
+.glass-label span{
+    display:block;
+
+    font-size:7px;
+
+    color:
+        rgba(255,140,195,.6);
+}
+
+.glass-heart{
+    position:absolute;
+
+    color:#ff8dc3;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,70,160,.8);
+
+    animation:
+        glassHeartFloat
+        3.5s
+        ease-in-out
+        infinite;
+}
+
+.glass-heart:nth-of-type(1){
+    left:18px;
+    top:35px;
+    font-size:17px;
+}
+
+.glass-heart:nth-of-type(2){
+    right:18px;
+    top:68px;
+    font-size:13px;
+    animation-delay:.7s;
+}
+
+.glass-heart:nth-of-type(3){
+    left:27px;
+    bottom:35px;
+    font-size:12px;
+    animation-delay:1.4s;
+}
+
+.glass-heart:nth-of-type(4){
+    right:26px;
+    bottom:28px;
+    font-size:18px;
+    animation-delay:.3s;
+}
+
+@keyframes glassHeartFloat{
+
+    0%,
+    100%{
+        transform:
+            translateY(0)
+            rotate(-3deg);
+    }
+
+    50%{
+        transform:
+            translateY(-10px)
+            rotate(4deg);
+    }
+}
+
+
+/* =========================================================
+   SCENE 2 TEXT
+========================================================= */
+
+.scene2-title{
+    font-size:
+        clamp(
+            21px,
+            5.8vw,
+            35px
+        );
+
+    line-height:1.7;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+}
+
+.scene2-title span{
+    color:#ff94c6;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,75,160,.32);
+}
+
+.scene2-copy{
+    color:
+        rgba(255,255,255,.48);
+
+    font-size:
+        clamp(
+            10px,
+            3vw,
+            13px
+        );
+
+    line-height:1.9;
+
+    margin-bottom:13px;
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.heart-counter{
+    display:flex;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin:
+        3px
+        auto
+        15px;
+}
+
+.counter-heart{
+    width:18px;
+    height:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.11);
+
+    background:
+        rgba(255,255,255,.025);
+
+    color:
+        rgba(255,255,255,.22);
+
+    font-size:9px;
+
+    transition:
+        all .5s cubic-bezier(.2,.8,.2,1);
+}
+
+.counter-heart.filled{
+    color:#fff;
+
+    background:
+        rgba(255,80,165,.18);
+
+    border-color:
+        rgba(255,100,175,.5);
+
+    box-shadow:
+        0 0 16px
+        rgba(255,70,160,.45);
+
+    transform:scale(1.2);
+
+    animation:
+        counterPop
+        .55s
+        ease;
+}
+
+@keyframes counterPop{
+
+    0%{
+        transform:scale(.4);
+    }
+
+    70%{
+        transform:scale(1.35);
+    }
+
+    100%{
+        transform:scale(1.2);
+    }
+}
+
+
+/* =========================================================
+   REASON BUTTONS
+========================================================= */
+
+.reasons-grid{
+    width:min(620px,100%);
+
+    margin:0 auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:9px;
+}
+
+.reason-btn{
+    position:relative;
+
+    min-height:68px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius:19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.018)
+        );
+
+    color:#fff;
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(13px);
+    -webkit-backdrop-filter:blur(13px);
+
+    transition:
+        transform .35s ease,
+        opacity .4s ease,
+        border-color .35s ease;
+}
+
+.reason-btn::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            var(--glow),
+            transparent 65%
+        );
 
     opacity:.5;
-  }
+}
 
-  80%{
+.reason-btn:hover{
+    transform:translateY(-3px);
 
-    opacity:.2;
-  }
+    border-color:
+        rgba(255,255,255,.24);
+}
 
-  100%{
+.reason-btn:active{
+    transform:scale(.97);
+}
 
-    transform:translateY(-80px);
+.reason-btn.locked{
+    opacity:.34;
 
-    opacity:0;
-  }
+    cursor:default;
 
+    transform:none;
+}
+
+.reason-btn.locked::after{
+    content:"✓";
+
+    position:absolute;
+
+    top:6px;
+    left:7px;
+
+    width:18px;
+    height:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:#fff;
+
+    background:
+        rgba(255,90,170,.8);
+
+    font-size:9px;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,70,160,.45);
+}
+
+.reason-icon{
+    position:relative;
+
+    display:block;
+
+    font-size:19px;
+
+    margin-bottom:2px;
+
+    animation:
+        miniBeat
+        2.3s
+        ease-in-out
+        infinite;
+}
+
+.reason-name{
+    position:relative;
+
+    display:block;
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+.reason-sub{
+    position:relative;
+
+    display:block;
+
+    margin-top:2px;
+
+    font-size:7px;
+
+    color:
+        rgba(255,255,255,.35);
+}
+
+.pink{
+    --glow:
+        rgba(255,75,165,.48);
+}
+
+.blue{
+    --glow:
+        rgba(80,165,255,.43);
+}
+
+.yellow{
+    --glow:
+        rgba(255,210,65,.43);
+}
+
+.orange{
+    --glow:
+        rgba(255,125,60,.43);
+}
+
+.purple{
+    --glow:
+        rgba(180,95,255,.43);
+}
+
+.red{
+    --glow:
+        rgba(255,55,90,.43);
+}
+
+@keyframes miniBeat{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.07);
+    }
 }
 
 
 /* =========================================================
-   FADE
+   COMPLETION
 ========================================================= */
 
-.fade-out{
+.completion{
+    margin-top:15px;
 
-  opacity:0!important;
+    opacity:0;
 
-  visibility:hidden!important;
+    transform:
+        translateY(15px)
+        scale(.94);
+
+    pointer-events:none;
+
+    transition:
+        all .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.completion.show{
+    opacity:1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events:auto;
+}
+
+.completion-title{
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#ffacd0;
+}
+
+.completion-copy{
+    margin-top:4px;
+
+    margin-bottom:10px;
+
+    font-size:9px;
+
+    color:
+        rgba(255,255,255,.4);
+}
+
+.next-button{
+    padding:
+        10px
+        25px;
+
+    border:none;
+
+    border-radius:100px;
+
+    color:#fff;
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5ca7,
+            #a85cff
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,70,160,.25);
+
+    cursor:pointer;
+
+    animation:
+        buttonGlow
+        2s
+        ease-in-out
+        infinite;
+}
+
+@keyframes buttonGlow{
+
+    0%,
+    100%{
+        box-shadow:
+            0 10px 30px
+            rgba(255,70,160,.22);
+    }
+
+    50%{
+        box-shadow:
+            0 10px 45px
+            rgba(255,70,160,.5);
+    }
+}
+
+
+/* =========================================================
+   REASON MODAL
+========================================================= */
+
+.reason-modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(4,2,8,.76);
+
+    backdrop-filter:blur(19px);
+    -webkit-backdrop-filter:blur(19px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .45s ease,
+        visibility .45s ease;
+}
+
+.reason-modal.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.reason-card{
+    position:relative;
+
+    width:min(520px,100%);
+
+    min-height:310px;
+
+    padding:
+        40px
+        24px
+        32px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.17);
+
+    border-radius:34px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.1),
+            rgba(255,255,255,.022)
+        );
+
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    box-shadow:
+        0 35px 100px
+        rgba(0,0,0,.5),
+        inset 0 1px 0
+        rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    transform:
+        translateY(35px)
+        scale(.9);
+
+    transition:
+        transform .7s cubic-bezier(.2,.9,.2,1);
+}
+
+.reason-modal.open .reason-card{
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.reason-card::before{
+    content:"";
+
+    position:absolute;
+    inset:-30%;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            var(--modal-glow),
+            transparent 45%
+        );
+
+    opacity:.3;
+
+    pointer-events:none;
+}
+
+.modal-icon{
+    position:relative;
+
+    font-size:43px;
+
+    margin-bottom:12px;
+
+    animation:
+        modalPulse
+        1.8s
+        ease-in-out
+        infinite;
+}
+
+@keyframes modalPulse{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.1);
+    }
+}
+
+.modal-title{
+    position:relative;
+
+    font-size:
+        clamp(
+            20px,
+            5vw,
+            28px
+        );
+
+    font-weight:800;
+
+    margin-bottom:20px;
+}
+
+.modal-text{
+    position:relative;
+
+    max-width:430px;
+
+    font-size:
+        clamp(
+            14px,
+            4vw,
+            19px
+        );
+
+    line-height:2.35;
+
+    color:
+        rgba(255,255,255,.91);
+}
+
+.modal-emojis{
+    position:relative;
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:22px;
+
+    font-size:21px;
+}
+
+.modal-emojis span{
+    animation:
+        emojiFloat
+        2s
+        ease-in-out
+        infinite;
+}
+
+.modal-emojis span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.modal-emojis span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes emojiFloat{
+
+    0%,
+    100%{
+        transform:
+            translateY(0)
+            rotate(0);
+    }
+
+    50%{
+        transform:
+            translateY(-8px)
+            rotate(5deg);
+    }
+}
+
+.modal-hint{
+    position:absolute;
+
+    bottom:13px;
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:7px;
+
+    color:
+        rgba(255,255,255,.25);
+}
+
+
+/* =========================================================
+   EMOJI BURST
+========================================================= */
+
+.flying-emoji{
+    position:fixed;
+
+    z-index:250;
+
+    pointer-events:none;
+
+    font-size:20px;
+
+    animation:
+        emojiBurst
+        1.35s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+@keyframes emojiBurst{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.15)
+            rotate(0);
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate(
+                calc(-50% + var(--dx)),
+                calc(-50% + var(--dy))
+            )
+            scale(var(--scale))
+            rotate(var(--rotate));
+    }
+}
+
+
+/* =========================================================
+   SCENE 3
+========================================================= */
+
+.scene3-wrapper{
+    position:relative;
+
+    width:min(720px,100%);
+
+    text-align:center;
+}
+
+.memory-ring{
+    position:relative;
+
+    width:145px;
+    height:145px;
+
+    margin:
+        0 auto 30px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,120,190,.18);
+
+    box-shadow:
+        0 0 50px
+        rgba(255,80,170,.1);
+
+    animation:
+        ringPulse
+        3s
+        ease-in-out
+        infinite;
+}
+
+.memory-ring::before,
+.memory-ring::after{
+    content:"";
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:
+        1px dashed
+        rgba(255,255,255,.1);
+}
+
+.memory-ring::before{
+    inset:14px;
+}
+
+.memory-ring::after{
+    inset:31px;
+}
+
+.memory-core{
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+}
+
+@keyframes ringPulse{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.06);
+    }
+}
+
+.scene3-kicker{
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    color:
+        rgba(255,140,195,.6);
+
+    margin-bottom:18px;
+}
+
+.scene3-title{
+    font-size:
+        clamp(
+            24px,
+            6vw,
+            42px
+        );
+
+    line-height:1.7;
+
+    font-weight:800;
+}
+
+.scene3-title span{
+    color:#ff98c7;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,70,160,.25);
+}
+
+.scene3-copy{
+    margin:
+        20px auto 0;
+
+    max-width:540px;
+
+    font-size:
+        clamp(
+            12px,
+            3.5vw,
+            16px
+        );
+
+    line-height:2.3;
+
+    color:
+        rgba(255,255,255,.52);
+}
+
+.scene3-small-hearts{
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:23px;
+
+    font-size:13px;
+}
+
+.scene3-small-hearts span{
+    animation:
+        heartbeat
+        1.7s
+        ease-in-out
+        infinite;
+}
+
+.scene3-small-hearts span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.scene3-small-hearts span:nth-child(3){
+    animation-delay:.4s;
+}
+
+.scene3-tap{
+    margin-top:28px;
+
+    color:
+        rgba(255,255,255,.25);
+
+    font-size:8px;
+}
+
+
+/* =========================================================
+   SCENE 4
+========================================================= */
+
+.voice-stage{
+    position:relative;
+
+    width:min(620px,100%);
+
+    text-align:center;
+}
+
+.voice-aura{
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,75,165,.13),
+            transparent 65%
+        );
+
+    animation:
+        auraPulse
+        3s
+        ease-in-out
+        infinite;
+
+    pointer-events:none;
+}
+
+@keyframes auraPulse{
+
+    0%,
+    100%{
+        transform:
+            translate(-50%,-50%)
+            scale(.9);
+        opacity:.55;
+    }
+
+    50%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.12);
+        opacity:1;
+    }
+}
+
+.voice-card{
+    position:relative;
+
+    width:min(520px,100%);
+
+    margin:auto;
+
+    padding:
+        32px
+        22px
+        25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    border-radius:34px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.018)
+        );
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    box-shadow:
+        0 35px 100px
+        rgba(0,0,0,.32),
+        inset 0 1px 0
+        rgba(255,255,255,.07);
+}
+
+.voice-top-line{
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:7px;
+
+    margin-bottom:20px;
+
+    color:
+        rgba(255,255,255,.27);
+
+    font-size:7px;
+
+    letter-spacing:2px;
+}
+
+.voice-top-line::before,
+.voice-top-line::after{
+    content:"";
+
+    width:35px;
+    height:1px;
+
+    background:
+        rgba(255,255,255,.1);
+}
+
+.voice-icon{
+    position:relative;
+
+    width:68px;
+    height:68px;
+
+    margin:
+        0 auto 17px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,100,180,.2),
+            rgba(255,100,180,.05)
+        );
+
+    border:
+        1px solid
+        rgba(255,110,180,.32);
+
+    font-size:27px;
+
+    box-shadow:
+        0 0 35px
+        rgba(255,70,160,.18);
+
+    animation:
+        heartbeat
+        2s
+        ease-in-out
+        infinite;
+}
+
+.voice-icon::before,
+.voice-icon::after{
+    content:"";
+
+    position:absolute;
+
+    inset:-10px;
+
+    border:
+        1px solid
+        rgba(255,100,180,.08);
+
+    border-radius:50%;
+
+    animation:
+        voiceRing
+        2.5s
+        ease-out
+        infinite;
+}
+
+.voice-icon::after{
+    animation-delay:1.2s;
+}
+
+@keyframes voiceRing{
+
+    0%{
+        transform:scale(.7);
+        opacity:.8;
+    }
+
+    100%{
+        transform:scale(1.4);
+        opacity:0;
+    }
+}
+
+.voice-title{
+    font-size:22px;
+
+    font-weight:800;
+}
+
+.voice-sub{
+    margin-top:5px;
+
+    color:
+        rgba(255,255,255,.38);
+
+    font-size:9px;
+}
+
+
+/* =========================================================
+   WAVE
+========================================================= */
+
+.wave{
+    height:62px;
+
+    margin:
+        22px 0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:4px;
+}
+
+.wave span{
+    width:4px;
+
+    height:
+        calc(
+            8px + var(--h)
+        );
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            to top,
+            #ff5ca8,
+            #d58aff
+        );
+
+    opacity:.58;
+
+    animation:
+        waveAnimation
+        1s
+        ease-in-out
+        infinite;
+}
+
+.wave span:nth-child(2n){
+    animation-delay:.12s;
+}
+
+.wave span:nth-child(3n){
+    animation-delay:.24s;
+}
+
+.wave span:nth-child(4n){
+    animation-delay:.36s;
+}
+
+@keyframes waveAnimation{
+
+    0%,
+    100%{
+        transform:scaleY(.42);
+    }
+
+    50%{
+        transform:scaleY(1);
+    }
+}
+
+
+/* =========================================================
+   AUDIO CONTROLS
+========================================================= */
+
+.voice-controls{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.play-button{
+    width:48px;
+    height:48px;
+
+    flex:none;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5ca7,
+            #a85cff
+        );
+
+    color:#fff;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 25px
+        rgba(255,70,160,.25);
+}
+
+.progress-track{
+    flex:1;
+
+    height:5px;
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.09);
+
+    overflow:hidden;
+
+    cursor:pointer;
+}
+
+.audio-progress{
+    width:0%;
+
+    height:100%;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff5ca7,
+            #c06cff
+        );
+
+    transition:
+        width .08s linear;
+}
+
+.time{
+    min-width:35px;
+
+    font-size:8px;
+
+    color:
+        rgba(255,255,255,.32);
+}
+
+.voice-note{
+    margin-top:18px;
+
+    font-size:8px;
+
+    line-height:1.8;
+
+    color:
+        rgba(255,255,255,.24);
+}
+
+.voice-note strong{
+    color:
+        rgba(255,160,205,.55);
+}
+
+
+/* =========================================================
+   SCENE 5
+========================================================= */
+
+.final-stage{
+    width:min(760px,100%);
+
+    text-align:center;
+
+    position:relative;
+}
+
+.final-orbit{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:430px;
+    height:430px;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,100,180,.06);
+
+    animation:
+        finalOrbit
+        18s
+        linear
+        infinite;
+
+    pointer-events:none;
+}
+
+.final-orbit::before{
+    content:"";
+
+    position:absolute;
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#ff83bd;
+
+    top:12%;
+    left:17%;
+
+    box-shadow:
+        0 0 15px
+        rgba(255,80,170,.8);
+}
+
+@keyframes finalOrbit{
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg);
+    }
+}
+
+.final-kicker{
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    color:
+        rgba(255,145,198,.6);
+
+    margin-bottom:25px;
+}
+
+.final-title{
+    font-size:
+        clamp(
+            24px,
+            6vw,
+            42px
+        );
+
+    font-weight:800;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+}
+
+.final-title span{
+    color:#ff99c8;
+}
+
+.final-text{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:11px;
+
+    font-size:
+        clamp(
+            14px,
+            3.9vw,
+            21px
+        );
+
+    line-height:2.05;
+
+    color:
+        rgba(255,255,255,.8);
+}
+
+.final-text p{
+    min-height:1em;
+}
+
+.final-text strong{
+    color:#ff9bc9;
+}
+
+.final-sign{
+    margin-top:25px;
+
+    font-size:11px;
+
+    color:
+        rgba(255,255,255,.36);
+}
+
+.final-sign::before{
+    content:"♡";
+
+    margin-left:7px;
+
+    color:#ff8fc3;
+}
+
+.final-button{
+    margin-top:30px;
+
+    padding:
+        12px
+        29px;
+
+    border:none;
+
+    border-radius:100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5ca7,
+            #a75cff
+        );
+
+    color:#fff;
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    transform:
+        translateY(15px);
+
+    pointer-events:none;
+
+    transition:
+        all .8s ease;
+
+    box-shadow:
+        0 12px 35px
+        rgba(255,70,160,.25);
+}
+
+.final-button.show{
+    opacity:1;
+
+    transform:
+        translateY(0);
+
+    pointer-events:auto;
+
+    animation:
+        buttonGlow
+        2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================================
+   TAP HINT
+========================================================= */
+
+.tap-hint{
+    position:absolute;
+
+    bottom:15px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:3px;
+
+    color:
+        rgba(255,255,255,.25);
+
+    font-size:7px;
+
+    pointer-events:none;
+}
+
+.tap-icon{
+    font-size:15px;
+
+    animation:
+        tapArrow
+        1.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes tapArrow{
+
+    0%,
+    100%{
+        transform:translateY(0);
+
+        opacity:.35;
+    }
+
+    50%{
+        transform:translateY(6px);
+
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   UNIVERSAL ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes gradientMove{
+
+    to{
+        background-position:
+            300% center;
+    }
 }
 
 
@@ -811,89 +2481,100 @@ body{
 
 @media(max-width:500px){
 
-  .content{
+    #scene2{
+        padding-top:67px;
+    }
 
-    width:92vw;
-  }
+    .glass-wrap{
+        transform:
+            scale(.86);
 
+        transform-origin:
+            center bottom;
 
-  .line{
+        margin-bottom:-2px;
+    }
 
-    font-size:16px;
-  }
+    .scene2-title{
+        margin-top:-4px;
+    }
 
+    .scene2-copy{
+        margin-bottom:9px;
+    }
 
-  .soft{
+    .reason-btn{
+        min-height:64px;
 
-    font-size:13px;
-  }
+        border-radius:16px;
+    }
 
+    .reason-icon{
+        font-size:17px;
+    }
 
-  .final-text{
+    .reason-name{
+        font-size:10px;
+    }
 
-    width:92vw;
+    .reason-sub{
+        font-size:6.5px;
+    }
 
-    max-height:88vh;
-  }
+    .reason-card{
+        min-height:285px;
 
+        padding:
+            35px
+            19px
+            30px;
+    }
 
-  .final-text p{
+    .modal-text{
+        font-size:14px;
 
-    font-size:15.5px;
+        line-height:2.3;
+    }
 
-    line-height:2.25;
+    .modal-emojis{
+        margin-top:18px;
+    }
 
-    margin:9px 0;
-  }
+    .intro-orbit{
+        width:280px;
+        height:280px;
+    }
 
+    .intro-heart{
+        width:82px;
+        height:82px;
 
-  .final-text .last{
+        font-size:34px;
+    }
 
-    font-size:19px;
-  }
-
-
-  .signature{
-
-    font-size:12px!important;
-  }
-
-
-  .player{
-
-    width:92vw;
-
-    padding:
-      20px 16px;
-  }
+    .final-orbit{
+        width:320px;
+        height:320px;
+    }
 
 }
 
 
 /* =========================================================
-   HEIGHT SMALL
+   REDUCED MOTION
 ========================================================= */
 
-@media(max-height:650px){
+@media(prefers-reduced-motion:reduce){
 
-  .final-text{
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
 
-    max-height:91vh;
-  }
+        animation-iteration-count:1 !important;
 
-
-  .final-text p{
-
-    margin:6px 0;
-
-    line-height:2;
-  }
-
-
-  .final-text .last{
-
-    margin-top:15px;
-  }
+        transition-duration:.01ms !important;
+    }
 
 }
 
@@ -905,710 +2586,1658 @@ body{
 <body>
 
 
-<div class="page" id="page">
+<div
+    class="page"
+    id="page"
+>
 
 
-  <div class="glow"></div>
+    <div class="ambient"></div>
 
-  <div id="particles"></div>
+    <div id="particles"></div>
 
-
-  <!-- =====================================================
-       SCENE 1
-  ====================================================== -->
-
-  <section
-    class="scene active"
-    id="scene1">
-
-    <div class="content">
+    <div id="floatingHearts"></div>
 
 
-      <div class="heart">
-        ❤️
-      </div>
+    <!-- =====================================================
+         BRAND
+    ====================================================== -->
 
+    <div class="top-brand">
 
-      <div
-        class="line"
-        id="s1a">
+        <span class="brand-left">
+            JUST FOR YOU
+        </span>
 
-        خب... حالا که فهمیدی جواب چی بود،
+        <span class="brand-heart">
+            ❤️
+        </span>
 
-      </div>
-
-
-      <div
-        class="line"
-        id="s1b">
-
-        یه چیز دیگه مونده که باید بفهمی...
-
-      </div>
-
-
-      <div
-        class="line soft"
-        id="s1c">
-
-        این قسمت دیگه جواب درست و غلط نداره.
-
-      </div>
-
+        <span class="brand-name">
+            فاطمه
+        </span>
 
     </div>
 
-  </section>
 
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
 
-  <!-- =====================================================
-       SCENE 2
-  ====================================================== -->
+    <div class="progress">
 
-  <section
-    class="scene"
-    id="scene2">
+        <div class="progress-dot active"></div>
 
-    <div class="content">
+        <div class="progress-dot"></div>
 
+        <div class="progress-dot"></div>
 
-      <div class="word-cloud">
+        <div class="progress-dot"></div>
 
-
-        <span
-          class="word w1">
-
-          خنده‌هات
-
-        </span>
-
-
-        <span
-          class="word w2">
-
-          چشمات
-
-        </span>
-
-
-        <span
-          class="word w3">
-
-          آغوشت
-
-        </span>
-
-
-        <span
-          class="word w4">
-
-          صدات
-
-        </span>
-
-
-        <span
-          class="word w5">
-
-          شیطنتات
-
-        </span>
-
-
-        <span
-          class="word w6">
-
-          فاطمه بودنِ تو
-
-        </span>
-
-
-        <div
-          class="center-heart"
-          id="centerHeart">
-
-          ❤️
-
-        </div>
-
-
-      </div>
-
-
-      <div
-        class="line"
-        id="s2a">
-
-        این شیشه فقط یه مشت کاغذ و قلب و یادداشت نیست...
-
-      </div>
-
-
-      <div
-        class="line"
-        id="s2b">
-
-        یه تیکه از منه که گذاشتم پیشت.
-
-      </div>
-
+        <div class="progress-dot"></div>
 
     </div>
 
-  </section>
 
+    <!-- =====================================================
+         SCENE 1
+    ====================================================== -->
 
-  <!-- =====================================================
-       SCENE 3
-  ====================================================== -->
+    <section
+        class="scene active"
+        id="scene1"
+    >
 
-  <section
-    class="scene"
-    id="scene3">
+        <div class="content">
 
-    <div class="content">
+            <div class="intro-orbit">
 
+                <div class="orbit"></div>
 
-      <div class="heart">
-        ❤️
-      </div>
+                <div class="intro-heart">
+                    ❤️
+                </div>
 
-
-      <div
-        class="line"
-        id="s3a">
-
-        هر کدوم از این یادداشت‌ها یه دلیل کوچیک دارن.
-
-      </div>
-
-
-      <div
-        class="line"
-        id="s3b">
-
-        یه چیزی که شاید همون لحظه نتونسته باشم بهت بگم.
-
-      </div>
-
-
-      <div
-        class="line"
-        id="s3c">
-
-        ولی هنوز یه چیزی رو نشنیدی...
-</div>
-
-
-      <div
-        class="audio-trigger"
-        id="audioTrigger">
-
-        <span>
-          🎙
-        </span>
-
-      </div>
-
-
-      <div class="audio-label">
-
-        گاهی بعضی حرف‌ها باید شنیده بشن...
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       SCENE 4
-       AUDIO
-  ====================================================== -->
-
-  <section
-    class="scene"
-    id="scene4">
-
-    <div class="content">
-
-
-      <div
-        class="player"
-        id="player">
-
-
-        <div class="record-icon">
-          🎙
-        </div>
-
-
-        <div class="player-title">
-
-          یه چیزی برای تو
-
-        </div>
-
-
-        <div class="player-sub">
-
-          از طرف محمدحسین ❤️
-
-        </div>
-
-
-        <audio
-          id="audio"
-          preload="metadata">
-
-          <source
-            src="./voice.mp3"
-            type="audio/mpeg">
-
-        </audio>
-
-
-        <div class="custom-controls">
-
-
-          <button
-            class="play"
-            id="play"
-            type="button">
-
-            ▶️
-
-          </button>
-
-
-          <div
-            class="progress"
-            id="progress">
-
-            <div
-              class="progress-fill"
-              id="progressFill">
             </div>
 
-          </div>
+
+            <div class="intro-kicker">
+                A LITTLE SECRET FROM ME TO YOU
+            </div>
 
 
-          <div
-            class="time"
-            id="time">
+            <div class="intro-title">
 
-            00:00 / 00:00
+                حالا که معلوم شد
 
-          </div>
+                <span>
+                    تو فاطمه‌ی منی...
+                </span>
 
+            </div>
+
+
+            <div class="intro-copy">
+
+                باید بدونی چرا اصلاً اینجا وجود داره؛
+                <br>
+                چرا برای تو شیشه‌ی عشق درست کردم.
+
+            </div>
 
         </div>
 
 
-      </div>
+        <div class="tap-hint">
+
+            <div class="tap-icon">
+                ↓
+            </div>
+
+            لمس کن
+
+        </div>
+
+    </section>
 
 
-      <div
-        class="line soft"
-        id="s4hint">
+    <!-- =====================================================
+         SCENE 2
+    ====================================================== -->
 
-        آروم گوشش کن...
+    <section
+        class="scene"
+        id="scene2"
+    >
 
-      </div>
-
-
-    </div>
-
-  </section>
+        <div class="scene2-inner">
 
 
-  <!-- =====================================================
-       SCENE 5
-       FINAL
-  ====================================================== -->
+            <div class="reveal-small">
+                SOMETHING I MADE FOR YOU
+            </div>
 
-  <section
-    class="scene"
-    id="scene5">
 
+            <!-- GLASS -->
+
+            <div class="glass-wrap">
+
+                <div
+                    class="glass"
+                    id="loveGlass"
+                >
+
+                    <div class="glass-neck"></div>
+
+                    <span class="glass-heart">
+                        ♡
+                    </span>
+
+                    <span class="glass-heart">
+                        ♥
+                    </span>
+
+                    <span class="glass-heart">
+                        ♡
+                    </span>
+
+                    <span class="glass-heart">
+                        ♥
+                    </span>
+
+
+                    <div class="glass-label">
+
+                        برای تو
+
+                        <strong>
+                            شیشه‌ی عشق
+                        </strong>
+
+                        <span>
+                            از طرف محمدحسین
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="scene2-title">
+
+                چون نمی‌خواستم
+
+                <span>
+                    دوست داشتنم
+                </span>
+
+                فقط توی حرف بمونه.
+
+            </div>
+
+
+            <div class="scene2-copy">
+
+                برای ساختنش،
+                فقط چند تا دلیل داشتم...
+                <br>
+                ولی این بار می‌خوام خودت پیداشون کنی.
+
+            </div>
+
+
+            <!-- COUNTER -->
+
+            <div
+                class="heart-counter"
+                id="heartCounter"
+            >
+
+                <div class="counter-heart">
+                    ♡
+                </div>
+
+                <div class="counter-heart">
+                    ♡
+                </div>
+
+                <div class="counter-heart">
+                    ♡
+                </div>
+
+                <div class="counter-heart">
+                    ♡
+                </div>
+
+                <div class="counter-heart">
+                    ♡
+                </div>
+
+                <div class="counter-heart">
+                    ♡
+                </div>
+
+            </div>
+
+
+            <!-- REASONS -->
+
+            <div class="reasons-grid">
+
+
+                <button
+                    class="reason-btn pink"
+                    data-id="0"
+                >
+
+                    <span class="reason-icon">
+                        😂
+                    </span>
+
+                    <span class="reason-name">
+                        خنده‌هات
+                    </span>
+
+                    <span class="reason-sub">
+                        اون خنده‌ی خودِ خودت
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="reason-btn blue"
+                    data-id="1"
+                >
+
+                    <span class="reason-icon">
+                        👁️
+                    </span>
+
+                    <span class="reason-name">
+                        چشم‌هات
+                    </span>
+
+                    <span class="reason-sub">
+                        خطرناک‌ترین جای تو
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="reason-btn yellow"
+                    data-id="2"
+                >
+
+                    <span class="reason-icon">
+                        🎶
+                    </span>
+
+                    <span class="reason-name">
+                        صدات
+                    </span>
+
+                    <span class="reason-sub">
+                        صدایی که آرامم می‌کند
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="reason-btn orange"
+                    data-id="3"
+                >
+
+                    <span class="reason-icon">
+                        😈
+                    </span>
+
+                    <span class="reason-name">
+                        شیطنت‌هات
+                    </span>
+
+                    <span class="reason-sub">
+                        تقصیر توئه شیطون بلا
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="reason-btn purple"
+                    data-id="4"
+                >
+
+                    <span class="reason-icon">
+                        🫂
+                    </span>
+
+                    <span class="reason-name">
+                        آغوشت
+                    </span>
+
+                    <span class="reason-sub">
+                        حکم خونه برای من
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="reason-btn red"
+                    data-id="5"
+                >
+
+                    <span class="reason-icon">
+                        ❤️‍🔥
+                    </span>
+
+                    <span class="reason-name">
+                        فاطمه بودنت
+                    </span>
+
+                    <span class="reason-sub">
+                        همه‌ی اینا به کنار...
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- COMPLETION -->
+
+            <div
+                class="completion"
+                id="completion"
+            >
+
+                <div class="completion-title">
+                    همه‌ی شش تکه‌ی شیشه رو پیدا کردی... ❤️
+                </div>
+
+                <div class="completion-copy">
+                    حالا وقتشه یه قدم دیگه بری جلو.
+                </div>
+
+                <button
+                    class="next-button"
+                    id="goScene3"
+                >
+                    حالا بریم...
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCENE 3
+    ====================================================== -->
+
+    <section
+        class="scene"
+        id="scene3"
+    >
+
+        <div class="scene3-wrapper">
+
+
+            <div class="memory-ring">
+
+                <div class="memory-core">
+                    ❤️
+                </div>
+
+            </div>
+
+
+            <div class="scene3-kicker">
+                SIX REASONS WERE NEVER ENOUGH
+            </div>
+
+
+            <div class="scene3-title">
+
+                هر کدوم از اینا
+
+                <span>
+                    یه تکه از تو
+                </span>
+
+                بود...
+
+            </div>
+
+
+            <div class="scene3-copy">
+
+                خنده‌هات،
+                چشم‌هات،
+                صدات،
+                شیطنت‌هات،
+                آغوشت...
+                <br><br>
+
+                همه‌شون دلیلن؛
+                ولی هیچ‌کدوم به‌تنهایی
+                جواب سؤال اصلی نیستن.
+
+                <br><br>
+
+                چون چیزی که منو به ساختن این شیشه رسوند،
+                فقط «داشتنِ این ویژگی‌ها» نبود...
+
+                <br>
+
+                <strong style="color:#ff9ac8">
+                    خودِ تو بودی.
+                </strong>
+
+            </div>
+
+
+            <div class="scene3-small-hearts">
+
+                <span>♡</span>
+                <span>♥</span>
+                <span>♡</span>
+
+            </div>
+
+
+            <div class="scene3-tap">
+                برای شنیدن ادامه لمس کن
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCENE 4
+    ====================================================== -->
+
+    <section
+        class="scene"
+        id="scene4"
+    >
+
+        <div class="voice-stage">
+
+            <div class="voice-aura"></div>
+
+
+            <div class="voice-card">
+
+
+                <div class="voice-top-line">
+                    SOMETHING I COULDN'T WRITE
+                </div>
+
+
+                <div class="voice-icon">
+                    🎙️
+                </div>
+
+
+                <div class="voice-title">
+                    یه چیزی برای تو
+                </div>
+
+
+                <div class="voice-sub">
+                    از طرف محمدحسین ❤️
+                </div>
+
+
+                <div class="wave">
+
+                    <span style="--h:15px"></span>
+                    <span style="--h:25px"></span>
+                    <span style="--h:12px"></span>
+                    <span style="--h:30px"></span>
+                    <span style="--h:20px"></span>
+                    <span style="--h:34px"></span>
+                    <span style="--h:18px"></span>
+                    <span style="--h:27px"></span>
+                    <span style="--h:13px"></span>
+                    <span style="--h:31px"></span>
+                    <span style="--h:20px"></span>
+                    <span style="--h:28px"></span>
+                    <span style="--h:15px"></span>
+                    <span style="--h:25px"></span>
+                    <span style="--h:17px"></span>
+
+                </div>
+
+
+                <div class="voice-controls">
+
+
+                    <button
+                        class="play-button"
+                        id="playButton"
+                    >
+                        ▶
+                    </button>
+
+
+                    <div
+                        class="progress-track"
+                        id="progressTrack"
+                    >
+
+                        <div
+                            class="audio-progress"
+                            id="audioProgress"
+                        ></div>
+
+                    </div>
+
+
+                    <div
+                        class="time"
+                        id="audioTime"
+                    >
+                        0:00
+                    </div>
+
+
+                </div>
+
+
+                <div class="voice-note">
+
+                    بعضی حرف‌ها رو نمی‌شه نوشت...
+                    <br>
+
+                    <strong>
+                        باید شنیده بشن.
+                    </strong>
+
+                    <br>
+
+                    دوبار لمس صدا →
+                    پایان
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="tap-hint">
+
+            <div class="tap-icon">
+                ↓
+            </div>
+
+            ادامه
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCENE 5
+    ====================================================== -->
+
+    <section
+        class="scene"
+        id="scene5"
+    >
+
+        <div class="final-stage">
+
+
+            <div class="final-orbit"></div>
+
+
+            <div class="final-kicker">
+                JUST A LITTLE PIECE OF ME
+            </div>
+
+
+            <div class="final-title">
+
+                حالا فهمیدی...
+
+                <span>
+                    چرا این شیشه؟
+                </span>
+
+            </div>
+
+
+            <div
+                class="final-text"
+                id="finalText"
+            >
+
+                <p>
+                    حالا فهمیدی چرا این شیشه رو درست کردم؟
+                </p>
+
+                <p>
+                    چون می‌دونستم شاید یه روزایی نتونم کنارت باشم...
+                </p>
+
+                <p>
+                    ولی دلم می‌خواست هر وقت دلت برای من تنگ شد،
+                </p>
+
+                <p>
+                    یه گوشه از من هنوز پیشت باشه.
+                </p>
+
+                <p>
+                    هر وقت این شیشه رو باز کردی که یادداشت‌هامو بخونی؛
+                </p>
+
+                <p>
+                    یادت بیاد یه نفر دور از تو هست،
+                </p>
+
+                <p>
+                    که دوستت داره...
+                </p>
+
+                <p>
+                    و تو رو انتخاب کرده...
+                </p>
+
+                <p>
+                    و هنوزم انتخابت می‌کنه. ❤️
+                </p>
+
+                <p>
+                    و این تازه اولشه،
+                    <strong>
+                        فاطی‌ماهم...
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <div class="final-sign">
+                محمدحسینت
+            </div>
+
+
+            <button
+                class="final-button"
+                id="finalButton"
+            >
+                ادامه‌ی داستانمون ❤️
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         REASON MODAL
+    ====================================================== -->
 
     <div
-      class="content final-text">
+        class="reason-modal"
+        id="reasonModal"
+    >
+
+        <div
+            class="reason-card"
+            id="reasonCard"
+        >
+
+            <div
+                class="modal-icon"
+                id="modalIcon"
+            >
+                ❤️
+            </div>
 
 
-      <p id="f1">
-        حالا فهمیدی چرا این شیشه رو درست کردم؟
-      </p>
+            <div
+                class="modal-title"
+                id="modalTitle"
+            >
+                خنده‌هات
+            </div>
 
 
-      <p id="f2">
-        چون می‌دونستم شاید یه روزایی نتونم کنارت باشم...
-      </p>
+            <div
+                class="modal-text"
+                id="modalText"
+            ></div>
 
 
-      <p id="f3">
-        ولی دلم می‌خواست هر وقت دلت برای من تنگ شد،
-      </p>
+            <div
+                class="modal-emojis"
+                id="modalEmojis"
+            ></div>
 
 
-      <p id="f4">
-        یه گوشه از من هنوز پیشت باشه.
-      </p>
+            <div class="modal-hint">
+                برای برگشت به شیشه، دوباره لمس کن
+            </div>
 
-
-      <p id="f5">
-        هر وقت این شیشه رو باز کردی که یادداشت‌هامو بخونی؛
-      </p>
-
-
-      <p id="f6">
-         یادت بیاد یه نفر دور از تو هست،
-      </p>
-
-
-      <p id="f7">
-         که دوستت داره...
-      </p>
-
-
-      <p id="f8">
-        و تو رو انتخاب کرده...
-      </p>
-
-
-      <p
-        class="last"
-        id="f9">
-
-        و هنوزم انتخابت می‌کنه. ❤️
-
-      </p>
-
-
-      <p
-        class="last"
-        id="f10">
-
-        و این تازه اولشه، فاطی‌ماهم...
-
-      </p>
-
-
-      <p
-        class="signature"
-        id="f11">
-
-        — محمدحسینت
-
-      </p>
-
+        </div>
 
     </div>
 
-  </section>
 
+    <!-- =====================================================
+         AUDIO
+    ====================================================== -->
 
-</div>
+    <audio
+        id="voiceAudio"
+        src="./voice.mp3"
+        preload="metadata"
+    ></audio>
 
 
 <script>
 
 /* =========================================================
-   SCENES
+   CONFIG
 ========================================================= */
 
+const NEXT_PAGE = "stage6.html";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const page =
+    document.getElementById("page");
+
 const scenes =
-  [
-    ...document.querySelectorAll('.scene')
-  ];
+    document.querySelectorAll(".scene");
+
+const progressDots =
+    document.querySelectorAll(".progress-dot");
+
+const particles =
+    document.getElementById("particles");
+
+const floatingHearts =
+    document.getElementById("floatingHearts");
 
 
-let current = 0;
+/* =========================================================
+   SCENE STATE
+========================================================= */
 
-let audioUnlocked = false;
+let currentScene = 0;
 
-let finalShown = false;
+let sceneChanging = false;
 
 
-/* تغییر Scene */
+/* =========================================================
+   CREATE PARTICLES
+========================================================= */
+
+function createParticles(){
+
+    const count =
+        window.innerWidth < 600
+            ? 42
+            : 75;
+
+    for(let i=0;i<count;i++){
+
+        const p =
+            document.createElement("span");
+
+        p.className =
+            "particle";
+
+        p.style.left =
+            Math.random()*100 + "%";
+
+        p.style.top =
+            Math.random()*100 + "%";
+
+        p.style.setProperty(
+            "--x",
+            ((Math.random()-.5)*150) + "px"
+        );
+
+        p.style.setProperty(
+            "--y",
+            ((Math.random()-.5)*180) + "px"
+        );
+
+        p.style.setProperty(
+            "--duration",
+            (5 + Math.random()*8) + "s"
+        );
+
+        p.style.animationDelay =
+            (-Math.random()*9) + "s";
+
+        particles.appendChild(p);
+
+    }
+
+}
+
+createParticles();
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+function createFloatingHearts(){
+
+    const colors = [
+        "♡",
+        "♥",
+        "❤",
+        "♡",
+        "♥"
+    ];
+
+    const count =
+        window.innerWidth < 600
+            ? 13
+            : 20;
+
+    for(let i=0;i<count;i++){
+
+        const heart =
+            document.createElement("span");
+
+        heart.className =
+            "floating-heart";
+
+        heart.textContent =
+            colors[
+                Math.floor(
+                    Math.random()*colors.length
+                )
+            ];
+
+        heart.style.left =
+            Math.random()*100 + "%";
+
+        heart.style.setProperty(
+            "--size",
+            (8 + Math.random()*12) + "px"
+        );
+
+        heart.style.setProperty(
+            "--duration",
+            (10 + Math.random()*12) + "s"
+        );
+
+        heart.style.setProperty(
+            "--delay",
+            (-Math.random()*15) + "s"
+        );
+
+        heart.style.setProperty(
+            "--drift",
+            ((Math.random()-.5)*100) + "px"
+        );
+
+        heart.style.setProperty(
+            "--rotate",
+            ((Math.random()-.5)*50) + "deg"
+        );
+
+        floatingHearts.appendChild(heart);
+
+    }
+
+}
+
+createFloatingHearts();
+
+
+/* =========================================================
+   SCENE CHANGE
+========================================================= */
 
 function showScene(index){
 
-  scenes.forEach(
-    (s,i)=>{
-
-      s.classList.toggle(
-        'active',
-        i === index
-      );
-
+    if(
+        index < 0 ||
+        index >= scenes.length
+    ){
+        return;
     }
-  );
+
+    if(sceneChanging)
+        return;
+
+    sceneChanging = true;
 
 
-  current = index;
+    scenes[currentScene]
+        .classList.remove("active");
+
+    progressDots[currentScene]
+        .classList.remove("active");
+
+
+    currentScene =
+        index;
+
+
+    setTimeout(()=>{
+
+        scenes[currentScene]
+            .classList.add("active");
+
+        progressDots[currentScene]
+            .classList.add("active");
+
+
+        if(currentScene >= 1){
+
+            page.classList.add("romantic");
+
+        }
+
+
+        sceneChanging =
+            false;
+
+    },120);
+
 }
 
 
 /* =========================================================
-   GENERAL SHOW
-========================================================= */
-
-function show(id,delay){
-
-  setTimeout(
-    ()=>{
-
-      document
-        .getElementById(id)
-        ?.classList
-        .add('show');
-
-    },
-    delay
-  );
-
-}
-
-
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-const particles =
-  document.getElementById('particles');
-
-
-for(let i=0;i<18;i++){
-
-  const p =
-    document.createElement('span');
-
-
-  p.className =
-    'particle';
-
-
-  p.style.left =
-    Math.random()*100+'vw';
-
-
-  p.style.top =
-    (45+Math.random()*55)+'vh';
-
-
-  p.style.animationDelay =
-    Math.random()*6+'s';
-
-
-  p.style.animationDuration =
-    (6+Math.random()*5)+'s';
-
-
-  particles.appendChild(p);
-
-}/* =========================================================
    SCENE 1
 ========================================================= */
 
-show('s1a',700);
+document
+    .getElementById("scene1")
+    .addEventListener(
+        "click",
+        ()=>{
+            if(currentScene === 0){
 
-show('s1b',2200);
+                showScene(1);
 
-show('s1c',3900);
+            }
+        }
+    );
 
 
 /* =========================================================
-   SCENE 2
+   REASONS
 ========================================================= */
 
-setTimeout(()=>{
+const reasons = [
 
+    {
+        title:
+            "خنده‌هات",
 
-  showScene(1);
+        icon:
+            "😂",
 
+        text:
+            "خنده های تو فرشته‌ی مهربونم، " +
+            "تبسمِ زیباترین گل هایِ بوسه خواهِ بهاری ان",
 
-  [
-    'w1',
-    'w2',
-    'w3',
-    'w4',
-    'w5',
-    'w6'
-  ]
-  .forEach(
-    (x,i)=>
-      show(
-        x,
-        500+i*450
-      )
-  );
+        emojis:[
+            "🌸",
+            "😂",
+            "✨"
+        ],
 
-
-  setTimeout(
-    ()=>{
-
-      document
-        .getElementById('centerHeart')
-        .classList
-        .add('show');
-
+        glow:
+            "rgba(255,90,170,.5)"
     },
-    2600
-  );
 
 
-  show(
-    's2a',
-    3100
-  );
+    {
+        title:
+            "چشم‌هات",
+
+        icon:
+            "👁️",
+
+        text:
+            "چشم‌هات فاطمه،چشم‌هات " +
+            "شرط می بندم خودِ خدا بهشون بوسه زده",
+
+        emojis:[
+            "👁️",
+            "✨",
+            "🌙"
+        ],
+
+        glow:
+            "rgba(90,170,255,.5)"
+    },
 
 
-  show(
-    's2b',
-    4700
-  );
+    {
+        title:
+            "صدات",
+
+        icon:
+            "🎶",
+
+        text:
+            "از زمزمه‌ی دلنشین تو صدایی زیباتر " +
+            "به گوشم نخورده هیچوقت، روح بخش زندگیم",
+
+        emojis:[
+            "🎶",
+            "🫀",
+            "🌙"
+        ],
+
+        glow:
+            "rgba(255,210,70,.5)"
+    },
 
 
-},5700);
+    {
+        title:
+            "شیطنت‌هات",
+
+        icon:
+            "😈",
+
+        text:
+            "تو و کاری که با من می‌کنی، " +
+            "همه حالِ به هولی که دارم گردن توئه " +
+            "شیطون بلای من",
+
+        emojis:[
+            "😈",
+            "🔥",
+            "😏"
+        ],
+
+        glow:
+            "rgba(255,130,70,.5)"
+    },
+
+
+    {
+        title:
+            "آغوشت",
+
+        icon:
+            "🫂",
+
+        text:
+            "فتوی من، حکم خونه برای من داره آغوشت، " +
+            "و من هر لحظه مشتاقم آغوشت رو تن کنم",
+
+        emojis:[
+            "🏠",
+            "🤍",
+            "🫂"
+        ],
+
+        glow:
+            "rgba(180,100,255,.5)"
+    },
+
+
+    {
+        title:
+            "فاطمه بودنت",
+
+        icon:
+            "❤️‍🔥",
+
+        text:
+            "همه‌ی اینا به کنار، " +
+            "تو فاطمه‌ی منی،همسرم، روحم،عمرم،قلبم،جونم،" +
+            "خون توی رگهام و خرس کوچولوم",
+
+        emojis:[
+            "❤️‍🔥",
+            "🫀",
+            "🐻"
+        ],
+
+        glow:
+            "rgba(255,60,100,.5)"
+    }
+
+];
+
+
+const selectedReasons =
+    new Array(
+        reasons.length
+    ).fill(false);
+
+let activeReason =
+    null;
+
+
+/* =========================================================
+   MODAL ELEMENTS
+========================================================= */
+
+const reasonButtons =
+    document.querySelectorAll(
+        ".reason-btn"
+    );
+
+const reasonModal =
+    document.getElementById(
+        "reasonModal"
+    );
+
+const reasonCard =
+    document.getElementById(
+        "reasonCard"
+    );
+
+const modalIcon =
+    document.getElementById(
+        "modalIcon"
+    );
+
+const modalTitle =
+    document.getElementById(
+        "modalTitle"
+    );
+
+const modalText =
+    document.getElementById(
+        "modalText"
+    );
+
+const modalEmojis =
+    document.getElementById(
+        "modalEmojis"
+    );
+
+const counterHearts =
+    document.querySelectorAll(
+        ".counter-heart"
+    );
+
+const completion =
+    document.getElementById(
+        "completion"
+    );
+
+const loveGlass =
+    document.getElementById(
+        "loveGlass"
+    );
+
+
+/* =========================================================
+   EMOJI BURST
+========================================================= */
+
+function emojiBurst(emojis){
+
+    const x =
+        window.innerWidth / 2;
+
+    const y =
+        window.innerHeight / 2;
+
+    emojis.forEach(
+        (emoji,index)=>{
+
+            const element =
+                document.createElement(
+                    "span"
+                );
+
+            element.className =
+                "flying-emoji";
+
+            element.textContent =
+                emoji;
+
+            element.style.left =
+                x + "px";
+
+            element.style.top =
+                y + "px";
+
+
+            const angle =
+                (
+                    index /
+                    emojis.length
+                ) *
+                Math.PI *
+                2;
+
+
+            const distance =
+                100 +
+                Math.random()*120;
+
+
+            element.style.setProperty(
+                "--dx",
+                Math.cos(angle) *
+                distance +
+                "px"
+            );
+
+
+            element.style.setProperty(
+                "--dy",
+                Math.sin(angle) *
+                distance +
+                "px"
+            );
+
+
+            element.style.setProperty(
+                "--scale",
+                .7 +
+                Math.random()*.65
+            );
+
+
+            element.style.setProperty(
+                "--rotate",
+                ((Math.random()-.5)*90) +
+                "deg"
+            );
+
+
+            document.body.appendChild(
+                element
+            );
+
+
+            setTimeout(
+                ()=>{
+                    element.remove();
+                },
+                1500
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   OPEN REASON
+========================================================= */
+
+function openReason(index){
+
+    if(
+        selectedReasons[index]
+    ){
+        return;
+    }
+
+
+    const reason =
+        reasons[index];
+
+
+    activeReason =
+        index;
+
+
+    /*
+       قفل فوری
+    */
+
+    selectedReasons[index] =
+        true;
+
+    reasonButtons[index]
+        .classList.add(
+            "locked"
+        );
+
+
+    /*
+       قلب شمارنده
+    */
+
+    counterHearts[index]
+        .classList.add(
+            "filled"
+        );
+
+    counterHearts[index]
+        .textContent =
+        "♥";
+
+
+    /*
+       کارت
+    */
+
+    modalIcon.textContent =
+        reason.icon;
+
+    modalTitle.textContent =
+        reason.title;
+
+    modalText.textContent =
+        reason.text;
+
+
+    modalEmojis.innerHTML =
+        reason.emojis
+            .map(
+                emoji =>
+                    `<span>${emoji}</span>`
+            )
+            .join("");
+
+
+    reasonCard.style.setProperty(
+        "--modal-glow",
+        reason.glow
+    );
+
+
+    /*
+       نمایش
+    */
+
+    reasonModal
+        .classList.add(
+            "open"
+        );
+
+
+    /*
+       جشن کوچک
+    */
+
+    setTimeout(
+        ()=>{
+            emojiBurst(
+                reason.emojis
+            );
+        },
+        220
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE REASON
+========================================================= */
+
+function closeReason(){
+
+    if(activeReason === null)
+        return;
+
+
+    reasonModal
+        .classList.remove(
+            "open"
+        );
+
+
+    setTimeout(
+        ()=>{
+            activeReason = null;
+
+            checkCompletion();
+
+        },
+        350
+    );
+
+}
+
+
+/* =========================================================
+   BUTTON EVENTS
+========================================================= */
+
+reasonButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                const index =
+                    Number(
+                        button.dataset.id
+                    );
+
+                if(
+                    selectedReasons[index]
+                ){
+                    return;
+                }
+
+                openReason(index);
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CARD CLOSE
+========================================================= */
+
+reasonCard.addEventListener(
+    "click",
+    event => {
+
+        event.stopPropagation();
+
+        closeReason();
+
+    }
+);
+
+
+/* =========================================================
+   MODAL OUTSIDE
+========================================================= */
+
+reasonModal.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            reasonModal
+        ){
+
+            closeReason();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   COMPLETION
+========================================================= */
+
+function checkCompletion(){
+
+    const complete =
+        selectedReasons.every(
+            value =>
+                value === true
+        );
+
+
+    if(!complete)
+        return;
+
+
+    loveGlass
+        .classList.add(
+            "completed"
+        );
+
+
+    setTimeout(
+        ()=>{
+            emojiBurst([
+                "❤️",
+                "💗",
+                "💖",
+                "✨",
+                "💕",
+                "🌸"
+            ]);
+        },
+        150
+    );
+
+
+    setTimeout(
+        ()=>{
+            completion
+                .classList.add(
+                    "show"
+                );
+        },
+        600
+    );
+
+}
+
+
+/* =========================================================
+   GO SCENE 3
+========================================================= */
+
+document
+    .getElementById("goScene3")
+    .addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            showScene(2);
+
+        }
+    );
 
 
 /* =========================================================
    SCENE 3
 ========================================================= */
 
-setTimeout(()=>{
-
-
-  showScene(2);
-
-
-  show(
-    's3a',
-    500
-  );
-
-
-  show(
-    's3b',
-    1900
-  );
-
-
-  show(
-    's3c',
-    3400
-  );
-
-
-  setTimeout(
-    ()=>{
-
-      document
-        .getElementById('audioTrigger')
-        .classList
-        .add('show');
-
-    },
-    4700
-  );
-
-
-},7600);
-
-
-/* =========================================================
-   AUDIO TRIGGER
-========================================================= */
-
 document
-  .getElementById('audioTrigger')
-  .addEventListener(
-    'click',
-    ()=>{
-
-
-      if(audioUnlocked)
-        return;
-
-
-      audioUnlocked = true;
-
-
-      showScene(3);
-
-
-      setTimeout(
+    .getElementById("scene3")
+    .addEventListener(
+        "click",
         ()=>{
+            if(currentScene === 2){
 
-          document
-            .getElementById('player')
-            .classList
-            .add('show');
+                showScene(3);
 
-        },
-        250
-      );
-
-
-      show(
-        's4hint',
-        1300
-      );
-
-    }
-  );
+            }
+        }
+    );
 
 
 /* =========================================================
-   AUDIO ELEMENTS
+   AUDIO
 ========================================================= */
 
 const audio =
-  document.getElementById('audio');
+    document.getElementById(
+        "voiceAudio"
+    );
+
+const playButton =
+    document.getElementById(
+        "playButton"
+    );
+
+const audioProgress =
+    document.getElementById(
+        "audioProgress"
+    );
+
+const progressTrack =
+    document.getElementById(
+        "progressTrack"
+    );
+
+const audioTime =
+    document.getElementById(
+        "audioTime"
+    );
 
 
-const play =
-  document.getElementById('play');
+function formatTime(seconds){
+
+    if(
+        !isFinite(seconds)
+    ){
+        return "0:00";
+    }
 
 
-const progress =
-  document.getElementById('progress');
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
 
 
-const fill =
-  document.getElementById('progressFill');
+    const secs =
+        Math.floor(
+            seconds % 60
+        )
+        .toString()
+        .padStart(
+            2,
+            "0"
+        );
 
 
-const time =
-  document.getElementById('time');
-
-
-/* =========================================================
-   FORMAT TIME
-========================================================= */
-
-function fmt(sec){
-
-  if(!isFinite(sec))
-    return '00:00';
-
-
-  const m =
-    Math.floor(sec/60)
-      .toString()
-      .padStart(2,'0');
-
-
-  const s =
-    Math.floor(sec%60)
-      .toString()
-      .padStart(2,'0');
-
-
-  return m+':'+s;
+    return (
+        minutes +
+        ":" +
+        secs
+    );
 
 }
 
@@ -1617,48 +4246,55 @@ function fmt(sec){
    PLAY / PAUSE
 ========================================================= */
 
-play.addEventListener(
-  'click',
-  (e)=>{
+playButton.addEventListener(
+    "click",
+    event => {
+
+        event.stopPropagation();
 
 
-    e.stopPropagation();
+        if(audio.paused){
 
+            audio
+                .play()
+                .catch(
+                    ()=>{
+                    }
+                );
 
-    if(audio.paused){
+        }else{
 
-      audio
-        .play()
-        .catch(()=>{});
+            audio.pause();
+
+        }
 
     }
-
-    else{
-
-      audio.pause();
-
-    }
-
-  }
 );
 
 
 /* =========================================================
-   AUDIO METADATA
+   AUDIO PLAY
 ========================================================= */
 
 audio.addEventListener(
-  'loadedmetadata',
-  ()=>{
+    "play",
+    ()=>{
+        playButton.textContent =
+            "❚❚";
+    }
+);
 
-    time.textContent =
-      fmt(0)
-      +
-      ' / '
-      +
-      fmt(audio.duration);
 
-  }
+/* =========================================================
+   AUDIO PAUSE
+========================================================= */
+
+audio.addEventListener(
+    "pause",
+    ()=>{
+        playButton.textContent =
+            "▶";
+    }
 );
 
 
@@ -1667,573 +4303,297 @@ audio.addEventListener(
 ========================================================= */
 
 audio.addEventListener(
-  'timeupdate',
-  ()=>{
+    "timeupdate",
+    ()=>{
+
+        if(!audio.duration)
+            return;
 
 
-    const percent =
-      audio.duration
-      ?
-      (
-        audio.currentTime /
-        audio.duration
-      ) * 100
-      :
-      0;
+        const percent =
+            (
+                audio.currentTime /
+                audio.duration
+            ) *
+            100;
 
 
-    fill.style.width =
-      percent+'%';
+        audioProgress.style.width =
+            percent + "%";
 
 
-    time.textContent =
-      fmt(audio.currentTime)
-      +
-      ' / '
-      +
-      fmt(audio.duration);
+        audioTime.textContent =
+            formatTime(
+                audio.currentTime
+            );
 
-  }
+    }
 );
 
 
 /* =========================================================
    SEEK
-   هم کلیک و هم لمس موبایل
 ========================================================= */
 
-function seekAudio(clientX){
+progressTrack.addEventListener(
+    "click",
+    event => {
 
-  if(
-    !audio.duration ||
-    !isFinite(audio.duration)
-  )
-    return;
+        event.stopPropagation();
 
 
-  const rect =
-    progress.getBoundingClientRect();
+        if(!audio.duration)
+            return;
 
 
-  let percent =
-    (
-      clientX -
-      rect.left
-    )
-    /
-    rect.width;percent =
-    Math.max(
-      0,
-      Math.min(
-        1,
-        percent
-      )
-    );
+        const rect =
+            progressTrack
+                .getBoundingClientRect();
 
 
-  audio.currentTime =
-    percent *
-    audio.duration;
-
-}
-
-
-/* کلیک */
-
-progress.addEventListener(
-  'click',
-  e=>{
-
-    e.stopPropagation();
-
-    seekAudio(
-      e.clientX
-    );
-
-  }
-);
+        const ratio =
+            (
+                event.clientX -
+                rect.left
+            ) /
+            rect.width;
 
 
-/* لمس شروع */
-
-progress.addEventListener(
-  'touchstart',
-  e=>{
-
-    if(e.touches.length){
-
-      seekAudio(
-        e.touches[0].clientX
-      );
+        audio.currentTime =
+            Math.max(
+                0,
+                Math.min(
+                    1,
+                    ratio
+                )
+            ) *
+            audio.duration;
 
     }
-
-  },
-  {
-    passive:true
-  }
-);
-
-
-/* کشیدن روی موبایل */
-
-progress.addEventListener(
-  'touchmove',
-  e=>{
-
-    if(e.touches.length){
-
-      seekAudio(
-        e.touches[0].clientX
-      );
-
-    }
-
-  },
-  {
-    passive:true
-  }
 );
 
 
 /* =========================================================
-   PLAY EVENT
-========================================================= */
-
-audio.addEventListener(
-  'play',
-  ()=>{
-
-    play.textContent =
-      '❚❚';
-
-  }
-);
-
-
-/* =========================================================
-   PAUSE EVENT
-========================================================= */
-
-audio.addEventListener(
-  'pause',
-  ()=>{
-
-    play.textContent =
-      '▶️';
-
-  }
-);
-
-
-/* =========================================================
-   AUDIO ENDED
-========================================================= */
-
-audio.addEventListener(
-  'ended',
-  ()=>{
-
-
-    play.textContent =
-      '▶️';
-
-
-    /*
-      بعد از تمام شدن صدا
-      1.1 ثانیه مکث
-      سپس متن پایانی
-    */
-
-    setTimeout(
-      showFinal,
-      1100
-    );
-
-  }
-);
-
-
-/* =========================================================
-   AUDIO ERROR
-========================================================= */
-
-audio.addEventListener(
-  'error',
-  ()=>{
-
-    console.warn(
-      'voice.mp3 پیدا نشد یا قابل پخش نیست.'
-    );
-
-  }
-);
-
-
-/* =========================================================
-   DOUBLE TAP / DOUBLE CLICK
-   برای رد کردن صدا
+   AUDIO DOUBLE TAP
 ========================================================= */
 
 let lastPlayerTap = 0;
 
+document
+    .querySelector(".voice-card")
+    .addEventListener(
+        "click",
+        event => {
 
-const player =
-  document.getElementById('player');
-
-
-player.addEventListener(
-  'click',
-  e=>{
-
-    const now =
-      Date.now();
+            event.stopPropagation();
 
 
-    if(
-      now-lastPlayerTap
-      <
-      420
-    ){
+            const now =
+                Date.now();
 
-      showFinal();
+
+            if(
+                now -
+                lastPlayerTap
+                <
+                320
+            ){
+
+                audio.pause();
+
+                showScene(4);
+
+                startFinalTypewriter();
+
+            }
+
+
+            lastPlayerTap =
+                now;
+
+        }
+    );
+
+
+/* =========================================================
+   SCENE 4 TAP
+========================================================= */
+
+document
+    .getElementById("scene4")
+    .querySelector(".tap-hint")
+    .addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            audio.pause();
+
+            showScene(4);
+
+            startFinalTypewriter();
+
+        }
+    );
+
+
+/* =========================================================
+   FINAL TYPEWRITER
+========================================================= */
+
+let typewriterStarted =
+    false;
+
+
+function startFinalTypewriter(){
+
+    if(typewriterStarted)
+        return;
+
+
+    typewriterStarted =
+        true;
+
+
+    const paragraphs =
+        document.querySelectorAll(
+            "#finalText p"
+        );
+
+
+    paragraphs.forEach(
+        paragraph => {
+
+            paragraph.style.visibility =
+                "hidden";
+
+        }
+    );
+
+
+    let index = 0;
+
+
+    function typeParagraph(){
+
+        if(
+            index >=
+            paragraphs.length
+        ){
+
+            setTimeout(
+                ()=>{
+                    document
+                        .getElementById(
+                            "finalButton"
+                        )
+                        .classList.add(
+                            "show"
+                        );
+                },
+                500
+            );
+
+            return;
+        }
+
+
+        const paragraph =
+            paragraphs[index];
+
+
+        const text =
+            paragraph.textContent;
+
+
+        paragraph.textContent =
+            "";
+
+
+        paragraph.style.visibility =
+            "visible";
+
+
+        let charIndex = 0;
+
+
+        function write(){
+
+            if(
+                charIndex <
+                text.length
+            ){
+
+                paragraph.textContent +=
+                    text.charAt(
+                        charIndex
+                    );
+
+
+                charIndex++;
+
+
+                setTimeout(
+                    write,
+                    28
+                );
+
+
+            }else{
+
+                index++;
+
+
+                setTimeout(
+                    typeParagraph,
+                    230
+                );
+
+            }
+
+        }
+
+
+        write();
 
     }
 
 
-    lastPlayerTap =
-      now;
+    typeParagraph();
 
-  }
+}
+
+
+/* =========================================================
+   FINAL BUTTON
+========================================================= */
+
+document
+    .getElementById("finalButton")
+    .addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            window.location.href =
+                NEXT_PAGE;
+
+        }
+    );
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+page.classList.remove(
+    "romantic"
 );
-
-
-/* =========================================================
-   FINAL
-========================================================= */
-
-function showFinal(){
-
-  /*
-    جلوگیری از چند بار اجرا شدن
-  */
-
-  if(finalShown)
-    return;
-
-
-  finalShown = true;
-
-
-  showScene(4);
-
-
-  const ids = [
-
-    'f1',
-    'f2',
-    'f3',
-    'f4',
-    'f5',
-    'f6',
-    'f7',
-    'f8',
-    'f9',
-    'f10',
-    'f11'
-
-  ];
-
-
-  /*
-    همه متن‌ها را آماده می‌کنیم
-  */
-
-  ids.forEach(
-    id=>{
-
-      const el =
-        document.getElementById(id);
-
-
-      /*
-        متن اصلی را نگه می‌داریم
-      */
-
-      el.dataset.text =
-        el.textContent.trim();
-
-
-      /*
-        خالی می‌کنیم
-      */
-
-      el.textContent =
-        '';
-
-
-      el.classList.remove(
-        'typing'
-      );
-
-    }
-  );
-
-
-  /*
-    اجازه می‌دهیم Scene 5
-    کمی وارد شود
-  */
-
-  setTimeout(
-    ()=>{
-
-      typeFinalParagraph(
-        ids,
-        0
-      );
-
-    },
-    700
-  );
-
-}
-
-
-/* =========================================================
-   TYPEWRITER
-========================================================= */
-
-function typeFinalParagraph(
-  ids,
-  index
-){
-
-  /*
-    اگر تمام پاراگراف‌ها تمام شده‌اند
-  */
-
-  if(index >= ids.length)
-    return;
-
-
-  const el =
-    document.getElementById(
-      ids[index]
-    );
-
-
-  const original =
-    el.dataset.text || '';
-
-
-  /*
-    این پاراگراف قابل مشاهده می‌شود
-  */
-
-  el.classList.add(
-    'typing'
-  );
-
-
-  /*
-    متن خالی
-  */
-
-  el.textContent =
-    '';
-
-
-  /*
-    ساخت کرسر
-  */
-
-  const cursor =
-    document.createElement(
-      'span'
-    );
-
-
-  cursor.className =
-    'type-cursor';
-
-
-  el.appendChild(
-    cursor
-  );
-
-
-  let charIndex = 0;
-
-
-  /*
-    تایپ هر حرف
-  */
-
-  function typeCharacter(){
-
-    /*
-      پایان پاراگراف
-    */
-
-    if(
-      charIndex >=
-      original.length
-    ){
-
-      /*
-        کرسر کمی باقی بماند
-      */setTimeout(
-        ()=>{
-
-
-          cursor.remove();
-
-
-          /*
-            مکث بین پاراگراف‌ها
-          */
-
-          let pause = 650;
-
-
-          /*
-            مکث‌های احساسی‌تر
-          */
-
-          if(index === 2)
-            pause = 800;
-
-
-          if(index === 6)
-            pause = 1000;
-
-
-          if(index === 7)
-            pause = 1200;
-
-
-          if(index === 8)
-            pause = 1700;
-
-
-          if(index === 9)
-            pause = 2000;
-
-
-          if(index === 10)
-            pause = 1300;
-
-
-          setTimeout(
-            ()=>{
-
-              typeFinalParagraph(
-                ids,
-                index+1
-              );
-
-            },
-            pause
-          );
-
-
-        },
-        350
-      );
-
-
-      return;
-
-    }
-
-
-    /*
-      حرف فعلی
-    */
-
-    const char =
-      original.charAt(
-        charIndex
-      );
-
-
-    /*
-      قرار دادن حرف
-      قبل از کرسر
-    */
-
-    el.insertBefore(
-      document.createTextNode(
-        char
-      ),
-      cursor
-    );
-
-
-    charIndex++;
-
-
-    /*
-      سرعت پایه
-    */
-
-    let speed =
-      38 +
-      Math.random()*24;
-
-
-    /*
-      فاصله سریع‌تر
-    */
-
-    if(char === ' ')
-      speed = 16;
-
-
-    /*
-      علائم نگارشی
-      مکث ایجاد می‌کنند
-    */
-
-    if(
-      char === '،' ||
-      char === '؛' ||
-      char === '؟' ||
-      char === '!' ||
-      char === '.'
-    ){
-
-      speed = 260;
-
-    }
-
-
-    /*
-      سه نقطه
-    */
-
-    if(char === '…'){
-
-      speed = 420;
-
-    }
-
-
-    setTimeout(
-      typeCharacter,
-      speed
-    );
-
-  }
-
-
-  typeCharacter();
-
-}
 
 </script>
 
 </body>
 
-</html>
+   </html>
