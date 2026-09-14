@@ -6,598 +6,1372 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    name="viewport"
+    content="
+        width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        minimum-scale=1.0,
+        user-scalable=no,
+        viewport-fit=cover
+    "
+>
+
+<meta
+    name="theme-color"
+    content="#09070a"
+>
+
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+>
 
 <title>شیشه عشق</title>
 
+
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap');
+/* =========================================================
+   RESET
+========================================================= */
 
-*{
-    box-sizing:border-box
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html,
-body{
-    width:100%;
-    height:100%;
-    margin:0;
-    overflow:hidden;
-    background:#09070a;
-    color:#fff;
-    font-family:"Vazirmatn",Tahoma,Arial,sans-serif
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.page{
-    position:relative;
-    width:100%;
-    height:100%;
-    overflow:hidden;
+html {
+    background: #09070a;
+}
+
+body {
+    overflow: hidden;
+    background: #09070a;
+    color: #ffffff;
+
+    font-family:
+        Tahoma,
+        Arial,
+        "Segoe UI",
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    touch-action: manipulation;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.page {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 100dvh;
+
+    overflow: hidden;
+
     background:
         radial-gradient(
             circle at 50% 45%,
-            rgba(150,20,65,.18),
+            rgba(150, 20, 65, 0.18),
             transparent 55%
         ),
-        #09070a
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(90, 10, 45, 0.10),
+            transparent 50%
+        ),
+        #09070a;
+
+    isolation: isolate;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        filter 0.8s ease;
 }
 
-.page:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
+
+/* =========================================================
+   ATMOSPHERIC GLOW
+========================================================= */
+
+.page::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -20%;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255, 40, 100, 0.055),
+            transparent 45%
+        );
+
+    animation:
+        ambientGlow
+        6s
+        ease-in-out
+        infinite;
+
+}
+
+.page::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    pointer-events: none;
+
     background:
         radial-gradient(
             circle,
-            rgba(255,70,120,.07),
+            rgba(255, 70, 120, 0.065),
             transparent 58%
         );
-    animation:glow 5s ease-in-out infinite
+
+    animation:
+        glow
+        5s
+        ease-in-out
+        infinite;
+
 }
 
-.stage{
-    position:absolute;
-    inset:0
+
+/* =========================================================
+   MAIN STAGE
+========================================================= */
+
+.stage {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
 }
 
 
-/* قلبی که از مرحله قبل وارد می‌شود */
+/* =========================================================
+   FIRST HEART
+   قلبی که از مرحله قبل وارد می‌شود
+========================================================= */
 
-.first-heart{
-    position:absolute;
-    left:50%;
-    top:-45px;
-    z-index:20;
-    font-size:27px;
-    opacity:0;
+.first-heart {
+
+    position: absolute;
+
+    left: 50%;
+    top: -45px;
+
+    z-index: 20;
+
+    width: max-content;
+
+    font-size: 27px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
     filter:
         drop-shadow(
             0 0 10px
-            rgba(255,70,120,.65)
+            rgba(255, 70, 120, 0.65)
         );
+
     animation:
         fallIn
         2.1s
-        cubic-bezier(.2,.72,.25,1)
-        .35s
-        forwards
+        cubic-bezier(
+            .2,
+            .72,
+            .25,
+            1
+        )
+        0.35s
+        forwards;
+
+    will-change:
+        top,
+        transform,
+        opacity;
+
 }
 
 
-/* شیشه */
+/* =========================================================
+   BOTTLE
+========================================================= */
 
-.bottle{
-    position:absolute;
-    left:50%;
-    bottom:55px;
-    width:154px;
-    height:315px;
-    transform:translateX(-50%);
-    opacity:0;
-    z-index:10;
+.bottle {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 55px;
+
+    width: 154px;
+    height: 315px;
+
+    transform:
+        translateX(-50%);
+
+    opacity: 0;
+
+    z-index: 10;
+
+    cursor: default;
+
+    pointer-events: none;
+
     animation:
         bottleIn
         1s
         ease
         1.85s
         forwards;
-    cursor:default
+
+    will-change:
+        transform,
+        opacity;
+
 }
 
-.neck{
-    position:absolute;
-    left:50%;
-    top:0;
-    width:48px;
-    height:67px;
-    transform:translateX(-50%);
+
+/* =========================================================
+   BOTTLE NECK
+========================================================= */
+
+.neck {
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 48px;
+    height: 67px;
+
+    transform:
+        translateX(-50%);
+
     border:
         1px solid
-        rgba(255,255,255,.27);
-    border-bottom:0;
+        rgba(255,255,255,0.27);
+
+    border-bottom: 0;
+
     border-radius:
         14px
         14px
         3px
         3px;
+
     background:
         linear-gradient(
             90deg,
-            rgba(255,255,255,.03),
-            rgba(255,80,130,.045),
-            rgba(255,255,255,.015)
-        )
+            rgba(255,255,255,0.03),
+            rgba(255,80,130,0.045),
+            rgba(255,255,255,0.015)
+        );
+
 }
 
-.rim{
-    position:absolute;
-    left:50%;
-    top:-5px;
-    width:59px;
-    height:14px;
-    transform:translateX(-50%);
+
+/* =========================================================
+   BOTTLE RIM
+========================================================= */
+
+.rim {
+
+    position: absolute;
+
+    left: 50%;
+    top: -5px;
+
+    width: 59px;
+    height: 14px;
+
+    transform:
+        translateX(-50%);
+
     border:
         1px solid
-        rgba(255,255,255,.34);
-    border-radius:50%;
+        rgba(255,255,255,0.34);
+
+    border-radius: 50%;
+
     background:
-        rgba(255,255,255,.035);
-    z-index:2
+        rgba(255,255,255,0.035);
+
+    z-index: 2;
+
 }
 
-.body{
-    position:absolute;
-    left:50%;
-    top:48px;
-    width:154px;
-    height:267px;
-    transform:translateX(-50%);
+
+/* =========================================================
+   BOTTLE BODY
+========================================================= */
+
+.body {
+
+    position: absolute;
+
+    left: 50%;
+    top: 48px;
+
+    width: 154px;
+    height: 267px;
+
+    transform:
+        translateX(-50%);
+
     border:
         1px solid
-        rgba(255,255,255,.27);
+        rgba(255,255,255,0.27);
+
     border-radius:
         43px
         43px
         30px
         30px;
+
     background:
         linear-gradient(
             90deg,
-            rgba(255,255,255,.035),
-            rgba(255,80,130,.055),
-            rgba(255,255,255,.018)
+            rgba(255,255,255,0.035),
+            rgba(255,80,130,0.055),
+            rgba(255,255,255,0.018)
         );
+
     box-shadow:
-        inset 12px 0 25px
-        rgba(255,255,255,.025),
-        inset -14px 0 30px
-        rgba(255,40,100,.035),
-        0 0 35px
-        rgba(255,40,100,.08);
-    overflow:hidden
+
+        inset
+        12px
+        0
+        25px
+        rgba(255,255,255,0.025),
+
+        inset
+        -14px
+        0
+        30px
+        rgba(255,40,100,0.035),
+
+        0
+        0
+        35px
+        rgba(255,40,100,0.08);
+
+    overflow: hidden;
+
 }
 
-.shine{
-    position:absolute;
-    left:15px;
-    top:18px;
-    width:8px;
-    height:200px;
-    border-radius:50%;
+
+/* =========================================================
+   GLASS SHINE
+========================================================= */
+
+.shine {
+
+    position: absolute;
+
+    left: 15px;
+    top: 18px;
+
+    width: 8px;
+    height: 200px;
+
+    border-radius: 50%;
+
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,.24),
+            rgba(255,255,255,0.24),
             transparent
         );
-    filter:blur(2px);
-    opacity:.45
+
+    filter:
+        blur(2px);
+
+    opacity: 0.45;
+
+    pointer-events: none;
+
 }
 
-.inside{
-    position:absolute;
-    inset:0;
-    overflow:hidden
+
+/* =========================================================
+   INSIDE BOTTLE
+========================================================= */
+
+.inside {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
 }
 
-.inside .heart{
-    position:absolute;
-    color:#ff5b87;
-    font-size:var(--s);
-    left:var(--x);
-    bottom:var(--y);
+
+/* =========================================================
+   HEARTS INSIDE BOTTLE
+========================================================= */
+
+.inside .heart {
+
+    position: absolute;
+
+    color: #ff5b87;
+
+    font-size: var(--s);
+
+    left: var(--x);
+    bottom: var(--y);
+
+    opacity: 0.95;
+
     filter:
         drop-shadow(
             0 0 6px
-            rgba(255,60,110,.4)
+            rgba(255,60,110,0.4)
         );
+
     animation:
         tinyBeat
         1.5s
         ease-in-out
         infinite
-        var(--d)
+        var(--d);
+
 }
 
 
-/* بارش */
+/* =========================================================
+   FALLING HEARTS
+========================================================= */
 
-.rain-heart{
-    position:absolute;
-    left:var(--x);
-    top:-45px;
-    z-index:15;
-    font-size:var(--s);
-    opacity:0;
-    color:#ff668f;
+.rain-heart {
+
+    position: absolute;
+
+    left: var(--x);
+    top: -45px;
+
+    z-index: 15;
+
+    font-size: var(--s);
+
+    opacity: 0;
+
+    color: #ff668f;
+
+    pointer-events: none;
+
     filter:
         drop-shadow(
             0 0 7px
-            rgba(255,60,110,.45)
+            rgba(255,60,110,0.45)
         );
+
     animation:
         rain
         var(--t)
-        cubic-bezier(.2,.68,.25,1)
+        cubic-bezier(
+            .2,
+            .68,
+            .25,
+            1
+        )
         var(--delay)
-        forwards
+        forwards;
+
+    will-change:
+        top,
+        transform,
+        opacity;
+
 }
 
 
-/* گوشی */
+/* =========================================================
+   PHONE
+========================================================= */
 
-.phone{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:208px;
-    height:394px;
+.phone {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 208px;
+    height: 394px;
+
     transform:
-        translate(-50%,-50%)
-        scale(.12);
-    opacity:0;
-    z-index:30;
+        translate(-50%, -50%)
+        scale(0.12);
+
+    opacity: 0;
+
+    z-index: 30;
+
     border:
         5px solid
         #272229;
-    border-radius:33px;
-    background:#050406;
+
+    border-radius: 33px;
+
+    background: #050406;
+
     box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.7),
-        0 0 45px
-        rgba(255,40,100,.13);
-    overflow:hidden;
-    pointer-events:none
+
+        0
+        20px
+        70px
+        rgba(0,0,0,0.7),
+
+        0
+        0
+        45px
+        rgba(255,40,100,0.13);
+
+    overflow: hidden;
+
+    /*
+       در نسخه قبلی pointer-events:none بود.
+       همین باعث می‌شد در بعضی مرورگرها کلیک روی گوشی
+       عملاً غیرممکن شود.
+    */
+
+    pointer-events: none;
+
+    will-change:
+        transform,
+        opacity;
+
 }
 
-.phone:before{
-    content:"";
-    position:absolute;
-    top:8px;
-    left:50%;
-    width:72px;
-    height:16px;
-    transform:translateX(-50%);
+
+/* =========================================================
+   PHONE ACTIVE CLICK AREA
+========================================================= */
+
+.page.complete .phone {
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   PHONE NOTCH
+========================================================= */
+
+.phone::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    left: 50%;
+
+    width: 72px;
+    height: 16px;
+
+    transform:
+        translateX(-50%);
+
     border-radius:
         0
         0
         12px
         12px;
-    background:#111014;
-    z-index:3
+
+    background:
+        #111014;
+
+    z-index: 3;
+
 }
 
-.screen{
-    position:absolute;
-    inset:7px;
-    border-radius:25px;
+
+/* =========================================================
+   PHONE SCREEN
+========================================================= */
+
+.screen {
+
+    position: absolute;
+
+    inset: 7px;
+
+    border-radius: 25px;
+
     background:
+
         radial-gradient(
             circle at 50% 35%,
-            rgba(130,20,55,.28),
+            rgba(130,20,55,0.28),
             transparent 52%
         ),
+
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(100,10,45,0.12),
+            transparent 45%
+        ),
+
         #0b080c;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:32px 18px;
-    text-align:center
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        32px
+        18px;
+
+    text-align: center;
+
+    overflow: hidden;
+
 }
 
-.phone-text{
-    opacity:0;
-    transform:translateY(15px);
-    font-size:16px;
-    line-height:2.25;
-    font-weight:500;
+
+/* =========================================================
+   PHONE TEXT
+========================================================= */
+
+.phone-text {
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    font-size: 16px;
+
+    line-height: 2.25;
+
+    font-weight: 500;
+
     text-shadow:
-        0 0 16px
-        rgba(255,100,145,.15)
+        0
+        0
+        16px
+        rgba(255,100,145,0.15);
+
 }
 
-.phone-text .ph{
-    display:block;
-    margin-top:12px;
-    font-size:25px;
+
+/* =========================================================
+   PHONE HEART
+========================================================= */
+
+.phone-text .ph {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 25px;
+
     animation:
         tinyBeat
         1.3s
         ease-in-out
-        infinite
+        infinite;
+
 }
 
 
-/* وضعیت پایان */
+/* =========================================================
+   COMPLETE STATE
+========================================================= */
 
-.page.complete .bottle{
+.page.complete .bottle {
+
     animation:
         bottleIntoPhone
         1.45s
-        cubic-bezier(.2,.8,.2,1)
-        forwards
+        cubic-bezier(
+            .2,
+            .8,
+            .2,
+            1
+        )
+        forwards;
+
 }
 
-.page.complete .phone{
+
+.page.complete .phone {
+
     animation:
         phoneIn
         1.45s
-        cubic-bezier(.2,.8,.2,1)
-        forwards
+        cubic-bezier(
+            .2,
+            .8,
+            .2,
+            1
+        )
+        forwards;
+
 }
 
-.page.complete .phone-text{
+
+.page.complete .phone-text {
+
     animation:
         textIn
         1.1s
         ease
         1.45s
-        forwards
+        forwards;
+
 }
 
-.page.exit{
+
+/* =========================================================
+   EXIT
+========================================================= */
+
+.page.exit {
+
     animation:
         exit
-        .8s
+        0.8s
         ease
-        forwards
+        forwards;
+
+    pointer-events: none;
+
 }
 
 
-@keyframes fallIn{
+/* =========================================================
+   KEYFRAMES
+========================================================= */
 
-    0%{
-        opacity:0;
-        top:-45px;
+@keyframes fallIn {
+
+    0% {
+
+        opacity: 0;
+
+        top: -45px;
+
         transform:
             translateX(-50%)
-            scale(.4)
+            scale(0.4);
+
     }
 
-    12%{
-        opacity:1
+    12% {
+
+        opacity: 1;
+
     }
 
-    82%{
-        top:405px;
+    82% {
+
+        top: 405px;
+
         transform:
             translateX(-50%)
-            scale(1)
+            scale(1);
+
     }
 
-    100%{
-        opacity:0;
-        top:430px;
+    100% {
+
+        opacity: 0;
+
+        top: 430px;
+
         transform:
             translateX(-50%)
-            scale(.5)
+            scale(0.5);
+
     }
+
 }
 
 
-@keyframes bottleIn{
+@keyframes bottleIn {
 
-    from{
-        opacity:0;
+    from {
+
+        opacity: 0;
+
         transform:
             translateX(-50%)
             translateY(18px)
-            scale(.93)
+            scale(0.93);
+
     }
 
-    to{
-        opacity:1;
+    to {
+
+        opacity: 1;
+
         transform:
             translateX(-50%)
             translateY(0)
-            scale(1)
+            scale(1);
+
     }
+
 }
 
 
-@keyframes rain{
+@keyframes rain {
 
-    0%{
-        opacity:0;
-        top:-45px;
+    0% {
+
+        opacity: 0;
+
+        top: -45px;
+
         transform:
             translateX(0)
-            rotate(0)
-            scale(.65)
+            rotate(0deg)
+            scale(0.65);
+
     }
 
-    10%{
-        opacity:1
+    10% {
+
+        opacity: 1;
+
     }
 
-    78%{
-        opacity:1;
-        top:465px;
+    78% {
+
+        opacity: 1;
+
+        top: 465px;
+
         transform:
             translateX(var(--drift))
             rotate(260deg)
-            scale(1)
+            scale(1);
+
     }
 
-    100%{
-        opacity:0;
-        top:530px;
+    100% {
+
+        opacity: 0;
+
+        top: 530px;
+
         transform:
             translateX(var(--drift))
             rotate(330deg)
-            scale(.75)
+            scale(0.75);
+
     }
+
 }
 
 
-@keyframes bottleIntoPhone{
+@keyframes bottleIntoPhone {
 
-    0%{
-        opacity:1;
+    0% {
+
+        opacity: 1;
+
         transform:
             translateX(-50%)
             translateY(0)
-            scale(1)
+            scale(1);
+
     }
 
-    45%{
-        opacity:1;
+    45% {
+
+        opacity: 1;
+
         transform:
             translateX(-50%)
             translateY(-28px)
-            scale(.7)
+            scale(0.7);
+
     }
 
-    100%{
-        opacity:0;
+    100% {
+
+        opacity: 0;
+
         transform:
             translateX(-50%)
             translateY(0)
-            scale(.15)
+            scale(0.15);
+
     }
+
 }
 
 
-@keyframes phoneIn{
+@keyframes phoneIn {
 
-    0%{
-        opacity:0;
+    0% {
+
+        opacity: 0;
+
         transform:
-            translate(-50%,-50%)
-            scale(.12)
+            translate(-50%, -50%)
+            scale(0.12);
+
     }
 
-    45%{
-        opacity:1;
+    45% {
+
+        opacity: 1;
+
         transform:
-            translate(-50%,-50%)
-            scale(.34)
+            translate(-50%, -50%)
+            scale(0.34);
+
     }
 
-    100%{
-        opacity:1;
+    100% {
+
+        opacity: 1;
+
         transform:
-            translate(-50%,-50%)
-            scale(1)
+            translate(-50%, -50%)
+            scale(1);
+
     }
+
 }
 
 
-@keyframes textIn{
+@keyframes textIn {
 
-    to{
-        opacity:1;
-        transform:translateY(0)
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
     }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
 }
 
 
-@keyframes tinyBeat{
+@keyframes tinyBeat {
 
-    0%,100%{
-        transform:scale(1)
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
     }
 
-    15%{
-        transform:scale(1.16)
+    15% {
+
+        transform:
+            scale(1.16);
+
     }
 
-    30%{
-        transform:scale(1)
+    30% {
+
+        transform:
+            scale(1);
+
     }
+
 }
 
 
-@keyframes glow{
+@keyframes glow {
 
-    0%,100%{
-        opacity:.55;
-        transform:scale(1)
+    0%,
+    100% {
+
+        opacity: 0.55;
+
+        transform:
+            scale(1);
+
     }
 
-    50%{
-        opacity:1;
-        transform:scale(1.08)
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.08);
+
     }
+
 }
 
 
-@keyframes exit{
+@keyframes ambientGlow {
 
-    to{
-        opacity:0;
-        transform:scale(.97);
-        filter:blur(5px)
+    0%,
+    100% {
+
+        opacity: 0.45;
+
+        transform:
+            scale(0.98);
+
     }
+
+    50% {
+
+        opacity: 0.8;
+
+        transform:
+            scale(1.04);
+
+    }
+
 }
 
 
-@media(max-height:650px){
+@keyframes exit {
 
-    .bottle{
-        bottom:35px;
+    from {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            scale(0.97);
+
+        filter:
+            blur(5px);
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL HEIGHT DEVICES
+========================================================= */
+
+@media (max-height: 650px) {
+
+    .bottle {
+
+        bottom: 35px;
+
         transform:
             translateX(-50%)
-            scale(.82)
+            scale(0.82);
+
     }
 
-    .page.complete .bottle{
+
+    .page.complete .bottle {
+
         animation:
             bottleIntoPhoneSmall
             1.45s
-            cubic-bezier(.2,.8,.2,1)
-            forwards
+            cubic-bezier(
+                .2,
+                .8,
+                .2,
+                1
+            )
+            forwards;
+
     }
+
+
+    .phone {
+
+        width: 195px;
+        height: 370px;
+
+    }
+
+
+    .phone-text {
+
+        font-size: 14px;
+
+    }
+
 }
 
 
-@keyframes bottleIntoPhoneSmall{
+@keyframes bottleIntoPhoneSmall {
 
-    0%{
-        opacity:1;
+    0% {
+
+        opacity: 1;
+
         transform:
             translateX(-50%)
-            scale(.82)
+            scale(0.82);
+
     }
 
-    45%{
-        opacity:1;
+    45% {
+
+        opacity: 1;
+
         transform:
             translateX(-50%)
             translateY(-25px)
-            scale(.57)
+            scale(0.57);
+
     }
 
-    100%{
-        opacity:0;
+    100% {
+
+        opacity: 0;
+
         transform:
             translateX(-50%)
-            scale(.12)
+            scale(0.12);
+
     }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 330px) {
+
+    .bottle {
+
+        transform:
+            translateX(-50%)
+            scale(0.88);
+
+    }
+
+    .phone {
+
+        width: 190px;
+        height: 360px;
+
+    }
+
+    .phone-text {
+
+        font-size: 14px;
+
+        line-height: 2.1;
+
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE
+========================================================= */
+
+@media (
+    orientation: landscape
+) and (
+    max-height: 500px
+) {
+
+    .bottle {
+
+        bottom: 18px;
+
+        transform:
+            translateX(-50%)
+            scale(0.62);
+
+    }
+
+
+    .page.complete .bottle {
+
+        animation:
+            bottleIntoPhoneLandscape
+            1.45s
+            cubic-bezier(
+                .2,
+                .8,
+                .2,
+                1
+            )
+            forwards;
+
+    }
+
+
+    .phone {
+
+        width: 190px;
+        height: 350px;
+
+    }
+
+}
+
+
+@keyframes bottleIntoPhoneLandscape {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            scale(0.62);
+
+    }
+
+    45% {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(-20px)
+            scale(0.46);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            scale(0.1);
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .page::before,
+    .page::after,
+    .first-heart,
+    .inside .heart,
+    .rain-heart,
+    .phone-text .ph {
+
+        animation-duration:
+            0.001ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   SAFETY FOR OLD BROWSERS
+========================================================= */
+
+@supports not (
+    height: 100dvh
+) {
+
+    .page {
+
+        min-height: 100vh;
+
+    }
+
 }
 
 </style>
@@ -607,49 +1381,110 @@ body{
 
 <body>
 
-<div class="page" id="page">
 
-    <div class="stage">
+<!-- =========================================================
+     MAIN PAGE
+========================================================= -->
 
-        <div class="first-heart">
+<div
+    class="page"
+    id="page"
+>
+
+
+    <!-- =====================================================
+         ANIMATION STAGE
+    ====================================================== -->
+
+    <div
+        class="stage"
+        id="stage"
+    >
+
+
+        <!-- =================================================
+             FIRST HEART
+        ================================================== -->
+
+        <div
+            class="first-heart"
+            id="firstHeart"
+            aria-hidden="true"
+        >
             ❤️
         </div>
 
 
-        <div class="bottle" id="bottle">
+        <!-- =================================================
+             BOTTLE
+        ================================================== -->
 
-            <div class="neck"></div>
+        <div
+            class="bottle"
+            id="bottle"
+            aria-hidden="true"
+        >
 
-            <div class="rim"></div>
+            <div
+                class="neck"
+            ></div>
 
-            <div class="body">
 
-                <div class="shine"></div>
+            <div
+                class="rim"
+            ></div>
+
+
+            <div
+                class="body"
+            >
+
+                <div
+                    class="shine"
+                ></div>
+
 
                 <div
                     class="inside"
-                    id="inside">
-                </div>
+                    id="inside"
+                ></div>
 
             </div>
 
         </div>
 
 
-        <div class="phone" id="phone">
+        <!-- =================================================
+             PHONE
+        ================================================== -->
 
-            <div class="screen">
+        <div
+            class="phone"
+            id="phone"
+            role="button"
+            tabindex="0"
+            aria-label="ادامه"
+            aria-disabled="true"
+        >
+
+            <div
+                class="screen"
+            >
 
                 <div
                     class="phone-text"
-                    id="phoneText">
+                    id="phoneText"
+                >
 
                     کله پوک اینقدر فکر کردن نداشت،
+
                     <br>
 
                     معلومه که محمدحسین تو رو از کل دنیا بیشتر دوست داره
 
-                    <span class="ph">
+                    <span
+                        class="ph"
+                    >
                         ❤️
                     </span>
 
@@ -666,155 +1501,1434 @@ body{
 
 <script>
 
+/* =========================================================
+   STRICT MODE
+========================================================= */
+
+"use strict";
+
+
+/* =========================================================
+   DOM REFERENCES
+========================================================= */
+
 const page =
-    document.getElementById('page');
+    document.getElementById(
+        "page"
+    );
+
+
+const stage =
+    document.getElementById(
+        "stage"
+    );
+
+
+const firstHeart =
+    document.getElementById(
+        "firstHeart"
+    );
+
+
+const bottle =
+    document.getElementById(
+        "bottle"
+    );
+
 
 const inside =
-    document.getElementById('inside');
+    document.getElementById(
+        "inside"
+    );
+
 
 const phone =
-    document.getElementById('phone');
-
-let active=false,
-    done=false;
-
-
-function addInsideHeart(first=false){
-
-    const h =
-        document.createElement('span');
-
-    h.className='heart';
-
-    h.textContent='❤️';
-
-    h.style.setProperty(
-        '--s',
-        first
-            ? '24px'
-            : (13+Math.random()*15)+'px'
+    document.getElementById(
+        "phone"
     );
 
-    h.style.setProperty(
-        '--x',
-        (5+Math.random()*88)+'%'
+
+const phoneText =
+    document.getElementById(
+        "phoneText"
     );
 
-    h.style.setProperty(
-        '--y',
-        (2+Math.random()*88)+'%'
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const CONFIG = {
+
+    /*
+     * بعد از این زمان قلب‌ها شروع می‌کنند
+     */
+    rainStart:
+        2250,
+
+    /*
+     * تعداد قلب‌های بارشی
+     */
+    rainCount:
+        34,
+
+    /*
+     * بعد از کامل شدن بارش،
+     * شیشه وارد گوشی می‌شود.
+     */
+    completeAt:
+        7900,
+
+    /*
+     * مدت خروج صفحه
+     */
+    exitDuration:
+        800,
+
+    /*
+     * مقصد مرحله بعد
+     */
+    nextStage:
+        "stage4.5.html"
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const state = {
+
+    active:
+        false,
+
+    done:
+        false,
+
+    completing:
+        false,
+
+    navigating:
+        false,
+
+    destroyed:
+        false,
+
+    rainStarted:
+        false,
+
+    completeStarted:
+        false,
+
+    phoneClicked:
+        false,
+
+    timers:
+        [],
+
+    rainElements:
+        [],
+
+    bottleHearts:
+        []
+
+};
+
+
+/* =========================================================
+   SAFE TIMER
+========================================================= */
+
+function safeTimeout(
+    callback,
+    delay
+) {
+
+    if (
+        state.destroyed
+    ) {
+
+        return null;
+
+    }
+
+
+    const timer =
+        window.setTimeout(
+            function () {
+
+                state.timers =
+                    state.timers.filter(
+                        function (item) {
+
+                            return item !== timer;
+
+                        }
+                    );
+
+
+                if (
+                    state.destroyed
+                ) {
+
+                    return;
+
+                }
+
+
+                try {
+
+                    callback();
+
+                } catch (
+                    error
+                ) {
+
+                    console.error(
+                        "Stage 4 timer error:",
+                        error
+                    );
+
+                }
+
+            },
+            delay
+        );
+
+
+    state.timers.push(
+        timer
     );
 
-    h.style.setProperty(
-        '--d',
-        (Math.random()*1.5)+'s'
-    );
 
-    inside.appendChild(h);
+    return timer;
+
 }
 
 
-function rain(i){
+/* =========================================================
+   CLEAR TIMERS
+========================================================= */
 
-    const h =
-        document.createElement('div');
+function clearTimers() {
 
-    h.className='rain-heart';
+    state.timers.forEach(
+        function (timer) {
 
-    h.textContent =
-        Math.random()>.18
-            ? '❤️'
-            : '🩷';
+            window.clearTimeout(
+                timer
+            );
+
+        }
+    );
+
+
+    state.timers.length =
+        0;
+
+}
+
+
+/* =========================================================
+   RANDOM
+========================================================= */
+
+function random(
+    min,
+    max
+) {
+
+    return (
+        Math.random() *
+        (
+            max - min
+        )
+        +
+        min
+    );
+
+}
+
+
+/* =========================================================
+   RANDOM INTEGER
+========================================================= */
+
+function randomInt(
+    min,
+    max
+) {
+
+    return Math.floor(
+        random(
+            min,
+            max + 1
+        )
+    );
+
+}
+
+
+/* =========================================================
+   ADD HEART INSIDE BOTTLE
+========================================================= */
+
+function addInsideHeart(
+    first
+) {
+
+    if (
+        !inside
+    ) {
+
+        return null;
+
+    }
+
+
+    const heart =
+        document.createElement(
+            "span"
+        );
+
+
+    heart.className =
+        "heart";
+
+
+    heart.textContent =
+        "❤️";
+
+
+    const size =
+        first
+            ? 24
+            : random(
+                13,
+                28
+            );
+
+
+    const x =
+        first
+            ? 42
+            : random(
+                5,
+                93
+            );
+
+
+    const y =
+        first
+            ? 45
+            : random(
+                2,
+                90
+            );
+
 
     const delay =
-        i*.13+
-        Math.random()*.35;
+        first
+            ? 0
+            : random(
+                0,
+                1.5
+            );
 
-    const duration =
-        2.45+
-        Math.random()*1.55;
 
-    h.style.setProperty(
-        '--x',
-        (7+Math.random()*86)+'%'
+    heart.style.setProperty(
+        "--s",
+        size + "px"
     );
 
-    h.style.setProperty(
-        '--s',
-        (13+Math.random()*15)+'px'
+
+    heart.style.setProperty(
+        "--x",
+        x + "%"
     );
 
-    h.style.setProperty(
-        '--t',
-        duration+'s'
+
+    heart.style.setProperty(
+        "--y",
+        y + "%"
     );
 
-    h.style.setProperty(
-        '--delay',
-        delay+'s'
+
+    heart.style.setProperty(
+        "--d",
+        delay + "s"
     );
 
-    h.style.setProperty(
-        '--drift',
-        (Math.random()*55-27)+'px'
+
+    inside.appendChild(
+        heart
     );
 
-    document.body.appendChild(h);
 
-    setTimeout(
-        ()=>{
-            addInsideHeart();
-            h.remove();
-        },
-        (delay+duration)*1000-70
+    state.bottleHearts.push(
+        heart
     );
+
+
+    return heart;
+
 }
 
 
-/* قلب مرحله قبل */
+/* =========================================================
+   CREATE RAIN HEART
+========================================================= */
 
-setTimeout(()=>{
+function createRainHeart(
+    index
+) {
 
-    addInsideHeart(true);
+    if (
+        state.destroyed
+    ) {
 
-    for(let i=0;i<34;i++)
-        rain(i);
+        return null;
 
-},2250);
-
-
-/* بعد از بارش، شیشه پر می‌شود و وارد گوشی می‌شود */
-
-setTimeout(()=>{
-
-    page.classList.add('complete');
-
-    active=true;
-
-},7900);
+    }
 
 
-/* فقط مقصد تغییر کرده: stage5 → stage4.5 */
+    const heart =
+        document.createElement(
+            "div"
+        );
 
-phone.addEventListener('click',()=>{
 
-    if(!active||done)
-        return;
+    heart.className =
+        "rain-heart";
 
-    done=true;
 
-    page.classList.add('exit');
+    /*
+     * گاهی قلب صورتی برای تنوع
+     */
+    heart.textContent =
+        Math.random() > 0.18
+            ? "❤️"
+            : "🩷";
 
-    setTimeout(
-        ()=>{
-            window.location.href='stage4.5.html';
-        },
-        800
+
+    const delay =
+        index *
+        0.13
+        +
+        Math.random() *
+        0.35;
+
+
+    const duration =
+        2.45
+        +
+        Math.random() *
+        1.55;
+
+
+    const x =
+        7
+        +
+        Math.random() *
+        86;
+
+
+    const size =
+        13
+        +
+        Math.random() *
+        15;
+
+
+    const drift =
+        Math.random() *
+        55
+        -
+        27;
+
+
+    heart.style.setProperty(
+        "--x",
+        x + "%"
     );
 
-});
+
+    heart.style.setProperty(
+        "--s",
+        size + "px"
+    );
+
+
+    heart.style.setProperty(
+        "--t",
+        duration + "s"
+    );
+
+
+    heart.style.setProperty(
+        "--delay",
+        delay + "s"
+    );
+
+
+    heart.style.setProperty(
+        "--drift",
+        drift + "px"
+    );
+
+
+    /*
+     * به body اضافه می‌کنیم تا بارش از محدوده
+     * شیشه بیرون باشد.
+     */
+    document.body.appendChild(
+        heart
+    );
+
+
+    state.rainElements.push(
+        heart
+    );
+
+
+    /*
+     * وقتی قلب به پایین رسید،
+     * یک قلب داخل شیشه می‌گذاریم.
+     */
+    safeTimeout(
+        function () {
+
+            addInsideHeart(
+                false
+            );
+
+
+            if (
+                heart &&
+                heart.parentNode
+            ) {
+
+                heart.parentNode.removeChild(
+                    heart
+                );
+
+            }
+
+
+            state.rainElements =
+                state.rainElements.filter(
+                    function (item) {
+
+                        return item !== heart;
+
+                    }
+                );
+
+        },
+        Math.max(
+            0,
+            (
+                delay +
+                duration
+            ) *
+            1000
+            -
+            70
+        )
+    );
+
+
+    return heart;
+
+}
+
+
+/* =========================================================
+   START RAIN
+========================================================= */
+
+function startRain() {
+
+    if (
+        state.rainStarted
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        state.destroyed
+    ) {
+
+        return;
+
+    }
+
+
+    state.rainStarted =
+        true;
+
+
+    /*
+     * قلب اصلی وارد شیشه می‌شود.
+     */
+    addInsideHeart(
+        true
+    );
+
+
+    /*
+     * بارش قلب‌ها
+     */
+    for (
+        let i = 0;
+        i < CONFIG.rainCount;
+        i++
+    ) {
+
+        createRainHeart(
+            i
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   COMPLETE ANIMATION
+========================================================= */
+
+function completeAnimation() {
+
+    if (
+        state.completeStarted
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        state.destroyed
+    ) {
+
+        return;
+
+    }
+
+
+    state.completeStarted =
+        true;
+
+
+    /*
+     * این کلاس همان نقطه‌ای است که
+     * شیشه وارد گوشی می‌شود.
+     */
+    page.classList.add(
+        "complete"
+    );
+
+
+    state.active =
+        true;
+
+
+    /*
+     * گوشی حالا قابل کلیک است.
+     */
+    phone.setAttribute(
+        "aria-disabled",
+        "false"
+    );
+
+
+    /*
+     * اطمینان از اینکه اگر CSS transition
+     * یا animation در مرورگر خاصی کمی دیرتر
+     * اعمال شد، وضعیت منطقی همچنان صحیح باشد.
+     */
+    safeTimeout(
+        function () {
+
+            if (
+                !state.active
+            ) {
+
+                state.active =
+                    true;
+
+            }
+
+        },
+        50
+    );
+
+}
+
+
+/* =========================================================
+   PHONE ACTIVATION
+========================================================= */
+
+function activatePhone() {
+
+    if (
+        state.destroyed
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        state.done
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        state.navigating
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !state.active
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        state.phoneClicked
+    ) {
+
+        return;
+
+    }
+
+
+    state.phoneClicked =
+        true;
+
+
+    state.done =
+        true;
+
+
+    state.navigating =
+        true;
+
+
+    /*
+     * جلوگیری از کلیک‌های بعدی
+     */
+    phone.setAttribute(
+        "aria-disabled",
+        "true"
+    );
+
+
+    phone.style.pointerEvents =
+        "none";
+
+
+    /*
+     * شروع خروج
+     */
+    page.classList.add(
+        "exit"
+    );
+
+
+    /*
+     * انتقال به 4.5
+     */
+    safeTimeout(
+        function () {
+
+            navigateToNextStage();
+
+        },
+        CONFIG.exitDuration
+    );
+
+}
+
+
+/* =========================================================
+   NAVIGATE
+========================================================= */
+
+function navigateToNextStage() {
+
+    if (
+        state.destroyed
+    ) {
+
+        return;
+
+    }
+
+
+    const target =
+        CONFIG.nextStage;
+
+
+    if (
+        !target
+    ) {
+
+        console.error(
+            "Stage 4: next stage is empty."
+        );
+
+
+        state.navigating =
+            false;
+
+
+        state.done =
+            false;
+
+
+        phone.style.pointerEvents =
+            "auto";
+
+
+        return;
+
+    }
+
+
+    try {
+
+        window.location.assign(
+            target
+        );
+
+    } catch (
+        navigationError
+    ) {
+
+        console.error(
+            "Stage 4 navigation failed:",
+            navigationError
+        );
+
+
+        /*
+         * fallback
+         */
+        try {
+
+            window.location.href =
+                target;
+
+        } catch (
+            fallbackError
+        ) {
+
+            console.error(
+                "Stage 4 navigation fallback failed:",
+                fallbackError
+            );
+
+
+            state.navigating =
+                false;
+
+
+            state.done =
+                false;
+
+
+            phone.style.pointerEvents =
+                "auto";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   PHONE KEYBOARD SUPPORT
+========================================================= */
+
+function handlePhoneKeydown(
+    event
+) {
+
+    if (
+        !event
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        event.key ===
+        "Enter"
+    ) {
+
+        event.preventDefault();
+
+        activatePhone();
+
+        return;
+
+    }
+
+
+    if (
+        event.key ===
+        " "
+    ) {
+
+        event.preventDefault();
+
+        activatePhone();
+
+    }
+
+}
+
+
+/* =========================================================
+   PHONE CLICK
+========================================================= */
+
+function handlePhoneClick(
+    event
+) {
+
+    if (
+        event
+    ) {
+
+        event.preventDefault();
+
+    }
+
+
+    event &&
+    event.stopPropagation();
+
+
+    activatePhone();
+
+}
+
+
+/* =========================================================
+   CLEAN RAIN ELEMENTS
+========================================================= */
+
+function cleanRainElements() {
+
+    state.rainElements.forEach(
+        function (element) {
+
+            if (
+                element &&
+                element.parentNode
+            ) {
+
+                element.parentNode.removeChild(
+                    element
+                );
+
+            }
+
+        }
+    );
+
+
+    state.rainElements.length =
+        0;
+
+}
+
+
+/* =========================================================
+   CLEAN BOTTLE HEARTS
+========================================================= */
+
+function cleanBottleHearts() {
+
+    state.bottleHearts.forEach(
+        function (element) {
+
+            if (
+                element &&
+                element.parentNode
+            ) {
+
+                element.parentNode.removeChild(
+                    element
+                );
+
+            }
+
+        }
+    );
+
+
+    state.bottleHearts.length =
+        0;
+
+}
+
+
+/* =========================================================
+   DESTROY
+========================================================= */
+
+function destroyStage() {
+
+    if (
+        state.destroyed
+    ) {
+
+        return;
+
+    }
+
+
+    state.destroyed =
+        true;
+
+
+    clearTimers();
+
+    cleanRainElements();
+
+    cleanBottleHearts();
+
+}
+
+
+/* =========================================================
+   PAGE VISIBILITY
+========================================================= */
+
+function handleVisibilityChange() {
+
+    /*
+     * مرحله نباید با برگشتن از پس‌زمینه
+     * دوباره از ابتدا ساخته شود.
+     */
+
+    if (
+        document.hidden
+    ) {
+
+        return;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+function handleResize() {
+
+    /*
+     * فقط برای اطمینان از محاسبه صحیح
+     * ارتفاع صفحه در موبایل.
+     */
+
+    const height =
+        window.innerHeight;
+
+
+    if (
+        height > 0
+    ) {
+
+        document.documentElement.style.setProperty(
+            "--screen-height",
+            height + "px"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   GLOBAL ERROR HANDLER
+========================================================= */
+
+function handleGlobalError(
+    event
+) {
+
+    console.error(
+        "Stage 4 JavaScript error:",
+        event.error ||
+        event.message ||
+        event
+    );
+
+}
+
+
+/* =========================================================
+   UNHANDLED PROMISE
+========================================================= */
+
+function handleUnhandledRejection(
+    event
+) {
+
+    console.error(
+        "Stage 4 unhandled promise:",
+        event.reason
+    );
+
+}
+
+
+/* =========================================================
+   ADD EVENTS
+========================================================= */
+
+function registerEvents() {
+
+    phone.addEventListener(
+        "click",
+        handlePhoneClick,
+        {
+            passive: false
+        }
+    );
+
+
+    phone.addEventListener(
+        "keydown",
+        handlePhoneKeydown,
+        {
+            passive: false
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        handleResize,
+        {
+            passive: true
+        }
+    );
+
+
+    window.addEventListener(
+        "orientationchange",
+        handleResize,
+        {
+            passive: true
+        }
+    );
+
+
+    document.addEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+    );
+
+
+    window.addEventListener(
+        "error",
+        handleGlobalError
+    );
+
+
+    window.addEventListener(
+        "unhandledrejection",
+        handleUnhandledRejection
+    );
+
+
+    window.addEventListener(
+        "pagehide",
+        destroyStage,
+        {
+            once: true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   START STAGE
+========================================================= */
+
+function initializeStage() {
+
+    /*
+     * اگر یکی از عناصر اصلی وجود نداشته باشد،
+     * اجرای انیمیشن متوقف نمی‌شود ولی خطا ثبت می‌شود.
+     */
+
+    if (
+        !page
+    ) {
+
+        console.error(
+            "Stage 4: page element not found."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !bottle
+    ) {
+
+        console.error(
+            "Stage 4: bottle element not found."
+        );
+
+    }
+
+
+    if (
+        !inside
+    ) {
+
+        console.error(
+            "Stage 4: inside element not found."
+        );
+
+    }
+
+
+    if (
+        !phone
+    ) {
+
+        console.error(
+            "Stage 4: phone element not found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * وضعیت اولیه
+     */
+    state.active =
+        false;
+
+
+    state.done =
+        false;
+
+
+    state.completing =
+        false;
+
+
+    state.navigating =
+        false;
+
+
+    state.destroyed =
+        false;
+
+
+    state.rainStarted =
+        false;
+
+
+    state.completeStarted =
+        false;
+
+
+    state.phoneClicked =
+        false;
+
+
+    /*
+     * گوشی تا پایان انیمیشن غیرقابل کلیک است.
+     */
+    phone.setAttribute(
+        "aria-disabled",
+        "true"
+    );
+
+
+    phone.style.pointerEvents =
+        "none";
+
+
+    /*
+     * ثبت رویدادها
+     */
+    registerEvents();
+
+
+    /*
+     * محاسبه اولیه اندازه صفحه
+     */
+    handleResize();
+
+
+    /*
+     * قلب‌ها بعد از ورود اولیه شیشه
+     */
+    safeTimeout(
+        function () {
+
+            startRain();
+
+        },
+        CONFIG.rainStart
+    );
+
+
+    /*
+     * کامل شدن مرحله
+     */
+    safeTimeout(
+        function () {
+
+            completeAnimation();
+
+        },
+        CONFIG.completeAt
+    );
+
+}
+
+
+/* =========================================================
+   DOM READY
+========================================================= */
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeStage,
+        {
+            once: true
+        }
+    );
+
+} else {
+
+    initializeStage();
+
+}
+
+
+/* =========================================================
+   DEBUG API
+   فقط برای تست؛ روی ظاهر صفحه اثری ندارد.
+========================================================= */
+
+window.Stage4 =
+{
+
+    version:
+        "4.5-transition-ready",
+
+    getState:
+        function () {
+
+            return {
+
+                active:
+                    state.active,
+
+                done:
+                    state.done,
+
+                completeStarted:
+                    state.completeStarted,
+
+                navigating:
+                    state.navigating,
+
+                rainStarted:
+                    state.rainStarted
+
+            };
+
+        },
+
+
+    forceComplete:
+        function () {
+
+            if (
+                state.destroyed
+            ) {
+
+                return;
+
+            }
+
+
+            completeAnimation();
+
+        },
+
+
+    continue:
+        function () {
+
+            if (
+                state.active
+            ) {
+
+                activatePhone();
+
+            }
+
+        }
+
+};
+
+
+/* =========================================================
+   END
+========================================================= */
 
 </script>
 
 </body>
-</html>
+
+    </html>
