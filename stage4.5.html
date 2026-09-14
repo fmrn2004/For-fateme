@@ -7,16 +7,22 @@
 
 <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    content="width=device-width,
+             initial-scale=1,
+             maximum-scale=1,
+             user-scalable=no,
+             viewport-fit=cover"
 >
 
-<title>شیشه عشق</title>
+<meta name="theme-color" content="#08050a">
+
+<title>رمز ما ❤️</title>
 
 <style>
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -33,30 +39,65 @@ body {
 
 body {
     overflow: hidden;
-
+    background: #08050a;
+    color: #ffffff;
     font-family:
         Tahoma,
+        "Segoe UI",
         Arial,
         sans-serif;
+}
 
-    color: #fff;
+button,
+input {
+    font: inherit;
+}
 
-    background:
-        radial-gradient(
-            circle at 50% 30%,
-            #32152f 0%,
-            #180d1d 42%,
-            #09070d 100%
-        );
+button {
+    color: inherit;
 }
 
 
-/* =====================================================
-   BACKGROUND
-===================================================== */
+/* =========================================================
+   MAIN BACKGROUND
+========================================================= */
 
-.background {
+.app {
     position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(255, 55, 115, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(150, 30, 90, 0.14),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 75%,
+            rgba(90, 30, 100, 0.10),
+            transparent 30%
+        ),
+        #08050a;
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.stars {
+    position: absolute;
     inset: 0;
 
     overflow: hidden;
@@ -64,255 +105,197 @@ body {
     pointer-events: none;
 }
 
-.glow {
+.star {
     position: absolute;
 
-    width: 280px;
-    height: 280px;
+    width: 2px;
+    height: 2px;
 
     border-radius: 50%;
 
-    background: rgba(255, 76, 159, 0.13);
-
-    filter: blur(70px);
+    background: rgba(255,255,255,0.45);
 
     animation:
-        glowMove 7s ease-in-out infinite alternate;
+        starTwinkle
+        var(--duration)
+        ease-in-out
+        infinite;
+
+    animation-delay: var(--delay);
 }
 
-.glow.one {
-    top: 5%;
-    right: -80px;
-}
+@keyframes starTwinkle {
 
-.glow.two {
-    bottom: -100px;
-    left: -80px;
-
-    animation-delay: 2s;
-}
-
-@keyframes glowMove {
-
-    from {
-        transform: translate(0, 0) scale(1);
+    0% {
+        opacity: 0.15;
+        transform: scale(0.7);
     }
 
-    to {
-        transform: translate(40px, -30px) scale(1.2);
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+
+    100% {
+        opacity: 0.15;
+        transform: scale(0.7);
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    FLOATING HEARTS
-===================================================== */
+========================================================= */
 
-.heart {
+.hearts {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.floating-heart {
     position: absolute;
 
-    color: rgba(255, 120, 190, 0.65);
+    bottom: -50px;
 
-    font-size: 15px;
+    font-size: var(--size);
+
+    opacity: 0;
 
     animation:
-        floatHeart linear infinite,
-        heartFade 3s ease-in-out infinite alternate;
+        floatHeart
+        var(--duration)
+        linear
+        forwards;
+
+    animation-delay: var(--delay);
 }
 
 @keyframes floatHeart {
 
-    from {
+    0% {
+        opacity: 0;
         transform:
-            translateY(110vh)
-            rotate(0deg);
+            translate3d(0, 0, 0)
+            rotate(0deg)
+            scale(0.7);
     }
 
-    to {
+    10% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    90% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 0;
         transform:
-            translateY(-15vh)
-            rotate(360deg);
-    }
-
-}
-
-@keyframes heartFade {
-
-    from {
-        opacity: .15;
-    }
-
-    to {
-        opacity: .8;
+            translate3d(var(--move), -110vh, 0)
+            rotate(var(--rotate))
+            scale(1.1);
     }
 
 }
 
 
-/* =====================================================
-   PAGE
-===================================================== */
-
-.page {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
-}
-
-.page.exit {
-    opacity: 0;
-
-    transform:
-        scale(1.08);
-}
-
-
-/* =====================================================
+/* =========================================================
    PHONE
-===================================================== */
+========================================================= */
 
 .phone {
     position: relative;
 
-    width: 208px;
-    height: 394px;
+    width: min(390px, 92vw);
+    height: min(760px, 92dvh);
 
-    padding: 9px;
+    border: 7px solid #211b21;
+    border-radius: 42px;
 
-    border-radius: 31px;
+    background: #050407;
 
-    background:
-        linear-gradient(
-            145deg,
-            #34343b,
-            #111116
-        );
+    overflow: hidden;
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,.65),
-        0 0 45px rgba(255,75,155,.13),
-        inset 0 0 0 1px rgba(255,255,255,.08);
+        0 25px 90px rgba(0,0,0,0.85),
+        0 0 60px rgba(255,60,120,0.13);
 
     transition:
-        transform .35s ease,
-        box-shadow .35s ease;
+        transform 0.65s ease,
+        opacity 0.65s ease,
+        filter 0.65s ease;
 }
+
+
+/* =========================================================
+   PHONE NOTCH
+========================================================= */
 
 .phone::before {
     content: "";
 
     position: absolute;
 
-    top: 5px;
+    z-index: 100;
+
+    top: 7px;
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    width: 98px;
+    height: 24px;
 
-    width: 72px;
-    height: 18px;
+    transform: translateX(-50%);
 
-    border-radius: 20px;
+    border-radius:
+        0 0 16px 16px;
 
-    background: #050507;
-
-    z-index: 20;
-}
-
-.phone::after {
-    content: "";
-
-    position: absolute;
-
-    left: -3px;
-    top: 95px;
-
-    width: 3px;
-    height: 55px;
-
-    border-radius: 5px;
-
-    background: #25252b;
-
-    box-shadow:
-        0 70px 0 #25252b;
+    background: #09070b;
 }
 
 
-/* =====================================================
+/* =========================================================
    SCREEN
-===================================================== */
+========================================================= */
 
 .screen {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: 6px;
 
     overflow: hidden;
 
-    border-radius: 24px;
-
-    padding:
-        27px
-        14px
-        18px;
+    border-radius: 34px;
 
     background:
         radial-gradient(
-            circle at 50% 20%,
-            #37182f,
-            #160d1b 48%,
-            #09070d 100%
-        );
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-}
-
-.screen::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
+            circle at 50% 8%,
+            rgba(255,70,125,0.13),
+            transparent 34%
+        ),
         linear-gradient(
-            115deg,
-            rgba(255,255,255,.08),
-            transparent 20%,
-            transparent 80%,
-            rgba(255,255,255,.025)
+            160deg,
+            #100a11,
+            #070509 65%,
+            #0b070c
         );
 }
 
 
-/* =====================================================
-   CONTENT
-===================================================== */
+/* =========================================================
+   VIEW
+========================================================= */
 
-.content {
-    position: relative;
-
-    z-index: 5;
-
-    width: 100%;
+.view {
+    position: absolute;
+    inset: 0;
 
     display: flex;
 
@@ -320,259 +303,280 @@ body {
 
     align-items: center;
 
+    justify-content: center;
+
+    padding:
+        58px
+        24px
+        28px;
+
     text-align: center;
 
     transition:
-        opacity .4s ease,
-        transform .4s ease;
+        opacity 0.45s ease,
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+.view.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.96);
 }
 
 
-/* =====================================================
-   HEART
-===================================================== */
+/* =========================================================
+   HEADER
+========================================================= */
 
-.big-heart {
-    font-size: 28px;
+.badge {
+    margin-bottom: 14px;
 
-    margin-bottom: 10px;
+    font-size: 11px;
 
-    filter:
-        drop-shadow(
-            0 0 12px rgba(255,70,150,.7)
-        );
+    color:
+        rgba(255,255,255,0.42);
 
-    animation:
-        heartBeat 1.7s ease-in-out infinite;
+    letter-spacing: 0.3px;
 }
 
-@keyframes heartBeat {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    15% {
-        transform: scale(1.12);
-    }
-
-    30% {
-        transform: scale(1);
-    }
-
-    45% {
-        transform: scale(1.08);
-    }
-
-}
-
-
-/* =====================================================
-   QUESTION
-===================================================== */
-
-.question {
-    width: 100%;
-
-    min-height: 62px;
+.lock {
+    width: 44px;
+    height: 44px;
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     margin-bottom: 12px;
 
-    color: #fff;
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    font-size: 20px;
+
+    box-shadow:
+        0 0 25px
+        rgba(255,80,130,0.08);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.title {
+    margin: 0 0 7px;
+
+    font-size: 23px;
+
+    line-height: 1.8;
+
+    font-weight: 700;
+}
+
+.sub {
+    min-height: 48px;
+
+    margin: 0;
 
     font-size: 13px;
 
     line-height: 2;
 
-    text-shadow:
-        0 0 10px rgba(255,100,180,.2);
+    color:
+        rgba(255,255,255,0.60);
 }
 
 
-/* =====================================================
-   INPUTS
-===================================================== */
+/* =========================================================
+   CODE AREA
+========================================================= */
 
-.inputs {
-    min-height: 45px;
+.code {
+    direction: ltr;
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    direction: ltr;
+    gap: 7px;
 
-    gap: 5px;
+    min-height: 60px;
 
-    margin-bottom: 9px;
+    margin:
+        22px
+        0
+        8px;
+
+    transition:
+        transform 0.2s ease;
 }
 
-.answer-input {
-    width: 35px;
-    height: 42px;
+.code.shake {
+    animation:
+        shakeCode
+        0.38s
+        ease;
+}
+
+@keyframes shakeCode {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(7px);
+    }
+
+    40% {
+        transform: translateX(-7px);
+    }
+
+    60% {
+        transform: translateX(5px);
+    }
+
+    80% {
+        transform: translateX(-4px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.box {
+    width: 48px;
+    height: 58px;
 
     padding: 0;
 
     border:
-        1px solid rgba(255,130,190,.45);
+        1px solid
+        rgba(255,255,255,0.14);
 
-    border-radius: 10px;
+    border-radius: 14px;
 
     outline: none;
 
     background:
-        rgba(255,255,255,.075);
+        rgba(255,255,255,0.045);
 
-    color: #fff;
+    color: #ffffff;
 
     text-align: center;
 
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
+    font-size: 25px;
 
-    font-size: 17px;
+    caret-color: #ff82a5;
 
     transition:
-        border-color .25s ease,
-        box-shadow .25s ease,
-        background .25s ease;
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-.inputs.single .answer-input {
-    width: 43px;
+.box::selection {
+    background:
+        rgba(255,80,130,0.35);
 }
 
-.answer-input:focus {
-    border-color: #ff75b7;
+.box:focus {
+    border-color:
+        rgba(255,100,145,0.9);
 
     background:
-        rgba(255,100,175,.12);
+        rgba(255,80,130,0.07);
 
     box-shadow:
-        0 0 15px rgba(255,80,160,.25);
+        0 0 0 3px
+        rgba(255,80,130,0.08),
+        0 0 25px
+        rgba(255,60,120,0.13);
+
+    transform:
+        translateY(-1px);
 }
 
-.separator {
+.box.filled {
+    border-color:
+        rgba(255,120,155,0.35);
+}
+
+.box.invalid {
+    border-color:
+        rgba(255,80,100,0.9);
+
+    background:
+        rgba(255,50,80,0.08);
+}
+
+.box.valid {
+    border-color:
+        rgba(130,255,190,0.7);
+
+    background:
+        rgba(80,255,150,0.06);
+}
+
+
+/* =========================================================
+   SLASH
+========================================================= */
+
+.slash {
     color:
-        rgba(255,255,255,.65);
+        rgba(255,255,255,0.38);
 
-    font-size: 18px;
+    font-size: 22px;
 
-    font-weight: bold;
+    user-select: none;
 }
 
 
-/* =====================================================
-   BUTTON
-===================================================== */
-
-.check-btn {
-    border: none;
-
-    outline: none;
-
-    padding:
-        8px
-        20px;
-
-    border-radius: 30px;
-
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
-    font-size: 11px;
-
-    color: #fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #d82f83,
-            #8e2d70
-        );
-
-    box-shadow:
-        0 7px 18px rgba(150,30,100,.3);
-
-    cursor: pointer;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-}
-
-.check-btn:active {
-    transform: scale(.94);
-}
-
-
-/* =====================================================
-   ERROR
-===================================================== */
-
-.error {
-    width: 100%;
-
-    min-height: 25px;
-
-    margin-top: 6px;
-
-    color: #ff9bc9;
-
-    font-size: 9px;
-
-    line-height: 1.8;
-
-    opacity: 0;
-
-    transition:
-        opacity .25s ease;
-}
-
-.error.show {
-    opacity: 1;
-}
-
-
-/* =====================================================
+/* =========================================================
    HINT
-===================================================== */
+========================================================= */
 
 .hint {
-    width: 100%;
+    width: min(310px, 92%);
 
-    min-height: 40px;
+    min-height: 58px;
 
-    margin-top: 2px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 4px;
 
     padding:
-        6px
-        8px;
+        7px
+        10px;
 
-    border:
-        1px solid rgba(255,100,175,.13);
+    font-size: 12.5px;
 
-    border-radius: 11px;
+    line-height: 1.9;
 
-    background:
-        rgba(255,90,165,.08);
-
-    color: #ffc5df;
-
-    font-size: 9px;
-
-    line-height: 1.8;
+    color:
+        rgba(255,195,213,0.95);
 
     opacity: 0;
 
@@ -580,8 +584,8 @@ body {
         translateY(7px);
 
     transition:
-        opacity .4s ease,
-        transform .4s ease;
+        opacity 0.35s ease,
+        transform 0.35s ease;
 }
 
 .hint.show {
@@ -592,96 +596,239 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error {
+    min-height: 25px;
+
+    margin-top: 0;
+
+    font-size: 11.5px;
+
+    color:
+        #ff9ab7;
+
+    opacity: 0;
+
+    transform:
+        translateY(-3px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.error.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn {
+    min-width: 115px;
+
+    margin-top: 2px;
+
+    padding:
+        10px
+        21px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.13);
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,0.055);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    background:
+        rgba(255,255,255,0.08);
+
+    border-color:
+        rgba(255,120,155,0.30);
+}
+
+.btn:active {
+    transform:
+        scale(0.96);
+}
+
+.btn:disabled {
+    opacity: 0.4;
+
+    cursor: default;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SMALL FOOTER
+========================================================= */
+
+.tiny {
+    margin-top: 13px;
+
+    font-size: 10px;
+
+    color:
+        rgba(255,255,255,0.28);
+}
+
+
+/* =========================================================
    SUCCESS
-===================================================== */
+========================================================= */
 
 .success {
     position: absolute;
-
     inset: 0;
 
-    z-index: 15;
-
-    padding:
-        45px
-        18px
-        25px;
+    z-index: 50;
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
+    padding: 35px;
 
     text-align: center;
 
-    color: #fff;
-
-    font-size: 12px;
-
-    line-height: 2.3;
+    background:
+        rgba(6,3,8,0.96);
 
     opacity: 0;
 
     visibility: hidden;
 
-    transform:
-        scale(.92);
+    pointer-events: none;
 
     transition:
-        opacity .45s ease,
-        transform .45s ease,
-        visibility .45s ease;
+        opacity 0.45s ease,
+        visibility 0.45s ease;
 }
 
 .success.show {
     opacity: 1;
 
     visibility: visible;
+}
+
+.success-card {
+    max-width: 305px;
+
+    font-size: 15px;
+
+    line-height: 2.2;
 
     transform:
+        translateY(15px)
+        scale(0.96);
+
+    transition:
+        transform 0.45s ease;
+}
+
+.success.show .success-card {
+    transform:
+        translateY(0)
         scale(1);
 }
 
+.success-heart {
+    display: block;
 
-/* =====================================================
+    margin-bottom: 13px;
+
+    font-size: 44px;
+
+    animation:
+        heartBeat
+        1.05s
+        ease-in-out
+        infinite;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.17);
+    }
+
+}
+
+
+/* =========================================================
    FINAL
-===================================================== */
+========================================================= */
 
 .final {
     position: absolute;
-
     inset: 0;
 
-    z-index: 18;
-
-    padding:
-        42px
-        18px
-        20px;
+    z-index: 70;
 
     display: flex;
 
-    flex-direction: column;
-
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
+    padding: 35px;
 
     text-align: center;
+
+    cursor: pointer;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,55,115,0.19),
+            transparent 48%
+        ),
+        #08050a;
 
     opacity: 0;
 
     visibility: hidden;
 
+    pointer-events: none;
+
     transform:
-        scale(.94);
+        scale(1.04);
 
     transition:
-        opacity .6s ease,
-        transform .6s ease,
-        visibility .6s ease;
-
-    cursor: pointer;
+        opacity 0.65s ease,
+        visibility 0.65s ease,
+        transform 0.65s ease;
 }
 
 .final.show {
@@ -689,123 +836,210 @@ body {
 
     visibility: visible;
 
+    pointer-events: auto;
+
     transform:
         scale(1);
 }
 
-.final-heart {
-    font-size: 32px;
-
-    margin-bottom: 15px;
-
-    filter:
-        drop-shadow(
-            0 0 15px rgba(255,70,150,.7)
-        );
-
-    animation:
-        heartBeat 1.7s ease-in-out infinite;
-}
-
 .final-text {
-    font-size: 13px;
+    max-width: 305px;
 
-    line-height: 2.4;
+    font-size: 18px;
 
-    color: #fff;
+    line-height: 2.45;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,80,130,0.25);
 }
 
-.final-small {
+.final-pulse {
+    display: block;
+
     margin-top: 18px;
 
-    font-size: 8px;
+    font-size: 10px;
 
     color:
-        rgba(255,255,255,.38);
+        rgba(255,255,255,0.35);
 
     animation:
-        finalHint 2s ease-in-out infinite;
+        finalPulse
+        1.7s
+        ease-in-out
+        infinite;
 }
 
-@keyframes finalHint {
+@keyframes finalPulse {
 
     0%,
     100% {
-        opacity: .3;
+        opacity: 0.35;
     }
 
     50% {
-        opacity: .8;
+        opacity: 0.85;
     }
 
 }
 
 
-/* =====================================================
-   PHONE SHAKE
-===================================================== */
+/* =========================================================
+   SCREEN TRANSITION
+========================================================= */
 
-.phone.shake {
-    animation:
-        phoneShake .45s ease;
+.phone.exit {
+    opacity: 0;
+
+    transform:
+        scale(0.88)
+        translateY(20px);
+
+    filter:
+        blur(8px);
 }
 
-@keyframes phoneShake {
 
-    0% {
-        transform: translateX(0);
-    }
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
 
-    20% {
-        transform:
-            translateX(-7px)
-            rotate(-1deg);
-    }
+@media (prefers-reduced-motion: reduce) {
 
-    40% {
-        transform:
-            translateX(6px)
-            rotate(1deg);
-    }
-
-    60% {
-        transform:
-            translateX(-5px)
-            rotate(-1deg);
-    }
-
-    80% {
-        transform:
-            translateX(4px)
-            rotate(1deg);
-    }
-
-    100% {
-        transform:
-            translateX(0);
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
     }
 
 }
 
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+/* =========================================================
+   SMALL SCREENS
+========================================================= */
 
 @media (max-height: 650px) {
 
     .phone {
-        transform: scale(.88);
+        height: 94dvh;
+    }
+
+    .view {
+        padding-top: 45px;
+        padding-bottom: 20px;
+    }
+
+    .lock {
+        width: 37px;
+        height: 37px;
+        margin-bottom: 7px;
+        font-size: 17px;
+    }
+
+    .badge {
+        margin-bottom: 7px;
+    }
+
+    .title {
+        font-size: 19px;
+    }
+
+    .sub {
+        min-height: 38px;
+        font-size: 11px;
+    }
+
+    .code {
+        margin-top: 13px;
+    }
+
+    .box {
+        width: 43px;
+        height: 50px;
+        font-size: 22px;
     }
 
 }
 
-@media (max-height: 540px) {
+
+/* =========================================================
+   VERY SMALL WIDTH
+========================================================= */
+
+@media (max-width: 340px) {
 
     .phone {
-        transform: scale(.76);
+        width: 95vw;
     }
 
+    .view {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .box {
+        width: 42px;
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE
+========================================================= */
+
+@media (orientation: landscape) and (max-height: 500px) {
+
+    .phone {
+        width: min(620px, 90vw);
+        height: 92dvh;
+        border-radius: 32px;
+    }
+
+    .screen {
+        border-radius: 26px;
+    }
+
+    .view {
+        padding:
+            25px
+            45px;
+    }
+
+    .lock {
+        display: none;
+    }
+
+    .code {
+        margin:
+            12px
+            0
+            3px;
+    }
+
+    .hint {
+        min-height: 35px;
+    }
+
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+    outline:
+        2px solid
+        rgba(255,120,155,0.65);
+
+    outline-offset:
+        3px;
 }
 
 </style>
@@ -815,190 +1049,238 @@ body {
 
 <body>
 
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
-<div class="background">
-
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-
-    <div
-        class="heart"
-        style="left:8%; animation-duration:12s; animation-delay:0s;"
-    >♡</div>
-
-    <div
-        class="heart"
-        style="left:18%; animation-duration:15s; animation-delay:3s;"
-    >♥</div>
-
-    <div
-        class="heart"
-        style="left:31%; animation-duration:11s; animation-delay:5s;"
-    >♡</div>
-
-    <div
-        class="heart"
-        style="left:47%; animation-duration:14s; animation-delay:1s;"
-    >♥</div>
-
-    <div
-        class="heart"
-        style="left:63%; animation-duration:12s; animation-delay:4s;"
-    >♡</div>
-
-    <div
-        class="heart"
-        style="left:76%; animation-duration:16s; animation-delay:2s;"
-    >♥</div>
-
-    <div
-        class="heart"
-        style="left:89%; animation-duration:13s; animation-delay:6s;"
-    >♡</div>
-
-</div>
-
-
-<!-- =====================================================
-     PAGE
-===================================================== -->
-
 <div
-    class="page"
-    id="page"
+    class="app"
+    id="app"
 >
 
-
-    <!-- =================================================
-         PHONE
-    ================================================= -->
+    <div
+        class="stars"
+        id="stars"
+    ></div>
 
     <div
+        class="hearts"
+        id="hearts"
+    ></div>
+
+
+    <main
         class="phone"
         id="phone"
     >
 
-        <div class="screen">
+        <div
+            class="screen"
+            id="screen"
+        >
 
 
-            <!-- =============================================
-                 QUESTION CONTENT
-            ============================================= -->
+            <!-- =================================================
+                 QUESTION VIEW
+            ================================================== -->
 
-            <div
-                class="content"
-                id="content"
+            <section
+                class="view"
+                id="questionView"
             >
 
-                <div class="big-heart">
-                    ❤️
+                <div
+                    class="lock"
+                    aria-hidden="true"
+                >
+                    🔐
                 </div>
 
 
                 <div
-                    class="question"
-                    id="question"
-                ></div>
-
-
-                <div
-                    class="inputs"
-                    id="inputs"
-                ></div>
-
-
-                <button
-                    class="check-btn"
-                    id="checkBtn"
-                    type="button"
+                    class="badge"
+                    id="counter"
                 >
-                    جوابم اینه 😏
-                </button>
+                    مرحله ۱ از ۳
+                </div>
+
+
+                <h1
+                    class="title"
+                    id="title"
+                >
+                    رمز رو پیدا کن.
+                </h1>
+
+
+                <p
+                    class="sub"
+                    id="sub"
+                >
+                    با هر اشتباه راهنماییت می‌کنم.
+                </p>
 
 
                 <div
-                    class="error"
-                    id="error"
+                    class="code"
+                    id="code"
+                    aria-label="ورودی رمز"
                 ></div>
 
 
                 <div
                     class="hint"
                     id="hint"
+                    aria-live="polite"
                 ></div>
-
-            </div>
-
-
-            <!-- =============================================
-                 SUCCESS MESSAGE
-            ============================================= -->
-
-            <div
-                class="success"
-                id="success"
-            ></div>
-
-
-            <!-- =============================================
-                 FINAL MESSAGE
-            ============================================= -->
-
-            <div
-                class="final"
-                id="final"
-            >
-
-                <div class="final-heart">
-                    ❤️
-                </div>
 
 
                 <div
-                    class="final-text"
-                    id="finalText"
+                    class="error"
+                    id="error"
+                    aria-live="assertive"
+                ></div>
+
+
+                <button
+                    class="btn"
+                    id="check"
+                    type="button"
                 >
+                    بررسی
+                </button>
+
+
+                <div
+                    class="tiny"
+                    id="tiny"
+                >
+                    فقط عددها رو وارد کن ❤️
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SUCCESS
+            ================================================== -->
+
+            <section
+                class="success"
+                id="success"
+                aria-hidden="true"
+            >
+
+                <div
+                    class="success-card"
+                >
+
+                    <span
+                        class="success-heart"
+                    >
+                        ❤️
+                    </span>
+
+                    <div
+                        id="successText"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FINAL
+            ================================================== -->
+
+            <section
+                class="final"
+                id="final"
+                role="button"
+                tabindex="0"
+                aria-label="ادامه"
+            >
+
+                <div
+                    class="final-text"
+                >
+
                     خببببب... پس تو شخص درستی هستی 😏❤️
                     <br>
                     بزار محمدحسین رو صدا کنم...
+
+                    <span
+                        class="final-pulse"
+                    >
+                        برای ادامه لمس کن ❤️
+                    </span>
+
                 </div>
 
+            </section>
 
-                <div class="final-small">
-                    برای ادامه، روی گوشی بزن...
-                </div>
-
-            </div>
 
         </div>
 
-    </div>
+    </main>
 
 </div>
 
 
 <script>
 
-/* =====================================================
+"use strict";
+
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const CONFIG = {
+
+    nextPage:
+        "stage4.6.html",
+
+    animationDuration:
+        650,
+
+    successDuration:
+        3200,
+
+    stars:
+        70,
+
+    hearts:
+        14,
+
+    inputDelay:
+        55,
+
+    autoFocus:
+        true,
+
+    maxWrongAttempts:
+        3
+
+};
+
+
+/* =========================================================
    QUESTIONS
-===================================================== */
+========================================================= */
 
-const questions = [
-
-    /* -------------------------------------------------
-       QUESTION 1
-    ------------------------------------------------- */
+const QUESTIONS = [
 
     {
-        question:
-            "فکر می‌کنی چند تا بچه قراره داشته باشیم؟ 👶🏻",
 
-        answers:
+        id:
+            "children",
+
+        parts:
             ["4"],
+
+        question:
+            "رمز رو پیدا کن.",
+
+        subtitle:
+            "با هر اشتباه راهنماییت می‌کنم.",
 
         hints: [
 
@@ -1010,27 +1292,37 @@ const questions = [
 
         ],
 
+        errors: [
+
+            "نههه... یه کم فکر کن 😏",
+
+            "هنوز نه... یه سرنخ کوچولو دیگه لازم داری؟ 👀",
+
+            "آروم آروم داریم به جواب نزدیک می‌شیم 😂❤️"
+
+        ],
+
         success:
-            `
-            اوه اوه 😍
-            <br>
-            ۴ تا بچه گوگول‌مگولی شبیه مامانشون خوشگل؟!
-            <br>
-            محمدحسین از همین الان کم آورده 😂❤️
-            `
+
+            "اوه اوه 😍<br>" +
+            "۴ تا بچه گوگول‌مگولی شبیه مامانشون خوشگل؟!<br>" +
+            "محمدحسین از همین الان کم آورده 😂❤️"
+
     },
 
-
-    /* -------------------------------------------------
-       QUESTION 2
-    ------------------------------------------------- */
-
     {
-        question:
-            "شب خواستگاریمون چه تاریخی بود؟ 🌙",
 
-        answers:
+        id:
+            "proposal",
+
+        parts:
             ["10", "01"],
+
+        question:
+            "رمز رو پیدا کن.",
+
+        subtitle:
+            "با هر اشتباه راهنماییت می‌کنم.",
 
         hints: [
 
@@ -1042,25 +1334,36 @@ const questions = [
 
         ],
 
+        errors: [
+
+            "نههه... یه کم به اون شب فکر کن 😏",
+
+            "هنوز نه... یه خاطره‌ی خیلی مهم بینمونه 👀",
+
+            "آروم... داریم می‌رسیم به همون شب ❤️"
+
+        ],
+
         success:
-            `
-            آهاااا... پس اون شب یادت مونده 😏🌙
-            <br>
-            خوبه... داشتم به حافظه‌ت شک می‌کردم 😂❤️
-            `
+
+            "آهاااا... پس اون شب یادت مونده 😏🌙<br>" +
+            "خوبه... داشتم به حافظه‌ت شک می‌کردم 😂❤️"
+
     },
 
-
-    /* -------------------------------------------------
-       QUESTION 3
-    ------------------------------------------------- */
-
     {
-        question:
-            "و اما... تاریخ عروسی رؤیاهامون؟ 👰🏻‍♀️🤵🏻‍♂️",
 
-        answers:
+        id:
+            "wedding",
+
+        parts:
             ["06", "06", "06"],
+
+        question:
+            "رمز رو پیدا کن.",
+
+        subtitle:
+            "با هر اشتباه راهنماییت می‌کنم.",
 
         hints: [
 
@@ -1072,867 +1375,1875 @@ const questions = [
 
         ],
 
+        errors: [
+
+            "نههه... این یکی دیگه خیلی مهمه 😏",
+
+            "هنوز نه... به «ما شدنمون» فکر کن ❤️",
+
+            "آروم... یه تاریخ رُند و خاصه 👀"
+
+        ],
+
         success:
-            `
-            اینجاش دیگه خیلی مشکوکه... 😏
-            <br>
-            ظاهراً واقعاً خودِ فاطمه‌ای! 😂❤️
-            `
+
+            "اینجاش دیگه خیلی مشکوکه... 😏<br>" +
+            "ظاهراً واقعاً خودِ فاطمه‌ای! 😂❤️"
+
     }
 
 ];
 
 
-/* =====================================================
-   ELEMENT REFERENCES
-===================================================== */
-
-const page =
-    document.getElementById("page");
-
-const phone =
-    document.getElementById("phone");
-
-const content =
-    document.getElementById("content");
-
-const question =
-    document.getElementById("question");
-
-const inputs =
-    document.getElementById("inputs");
-
-const checkBtn =
-    document.getElementById("checkBtn");
-
-const error =
-    document.getElementById("error");
-
-const hint =
-    document.getElementById("hint");
-
-const success =
-    document.getElementById("success");
-
-const final =
-    document.getElementById("final");
-
-
-/* =====================================================
+/* =========================================================
    STATE
-===================================================== */
+========================================================= */
 
-let currentQuestion = 0;
+const state = {
 
-let wrongAttempts = 0;
+    questionIndex:
+        0,
 
-let locked = false;
+    wrongAttempts:
+        0,
+
+    locked:
+        false,
+
+    finished:
+        false,
+
+    transitioning:
+        false,
+
+    inputs:
+        [],
+
+    timers:
+        [],
+
+    listeners:
+        [],
+
+    initialized:
+        false
+
+};
 
 
-/* =====================================================
-   NORMALIZE DIGITS
-   Persian + Arabic + English
-===================================================== */
+/* =========================================================
+   DOM
+========================================================= */
+
+const DOM = {
+
+    app:
+        document.getElementById("app"),
+
+    phone:
+        document.getElementById("phone"),
+
+    screen:
+        document.getElementById("screen"),
+
+    stars:
+        document.getElementById("stars"),
+
+    hearts:
+        document.getElementById("hearts"),
+
+    questionView:
+        document.getElementById("questionView"),
+
+    counter:
+        document.getElementById("counter"),
+
+    title:
+        document.getElementById("title"),
+
+    sub:
+        document.getElementById("sub"),
+
+    code:
+        document.getElementById("code"),
+
+    hint:
+        document.getElementById("hint"),
+
+    error:
+        document.getElementById("error"),
+
+    check:
+        document.getElementById("check"),
+
+    tiny:
+        document.getElementById("tiny"),
+
+    success:
+        document.getElementById("success"),
+
+    successText:
+        document.getElementById("successText"),
+
+    final:
+        document.getElementById("final")
+
+};
+
+
+/* =========================================================
+   DIGIT NORMALIZATION
+========================================================= */
+
+const PERSIAN_DIGITS = {
+
+    "۰": "0",
+    "۱": "1",
+    "۲": "2",
+    "۳": "3",
+    "۴": "4",
+    "۵": "5",
+    "۶": "6",
+    "۷": "7",
+    "۸": "8",
+    "۹": "9"
+
+};
+
+
+const ARABIC_DIGITS = {
+
+    "٠": "0",
+    "١": "1",
+    "٢": "2",
+    "٣": "3",
+    "٤": "4",
+    "٥": "5",
+    "٦": "6",
+    "٧": "7",
+    "٨": "8",
+    "٩": "9"
+
+};
+
 
 function normalizeDigits(value) {
 
-    return String(value)
+    if (
+        typeof value !== "string"
+    ) {
+        return "";
+    }
 
-        .replace(
+    let result =
+        value;
+
+    result =
+        result.replace(
             /[۰-۹]/g,
-            function(char) {
-
-                return String(
-                    "۰۱۲۳۴۵۶۷۸۹".indexOf(char)
-                );
-
-            }
-        )
-
-        .replace(
-            /[٠-٩]/g,
-            function(char) {
-
-                return String(
-                    "٠١٢٣٤٥٦٧٨٩".indexOf(char)
-                );
-
-            }
+            character =>
+                PERSIAN_DIGITS[character]
         );
+
+    result =
+        result.replace(
+            /[٠-٩]/g,
+            character =>
+                ARABIC_DIGITS[character]
+        );
+
+    return result;
 
 }
 
 
-/* =====================================================
-   CREATE INPUTS
-===================================================== */
+/* =========================================================
+   ONLY DIGITS
+========================================================= */
 
-function createInputs(answerParts) {
+function digitsOnly(value) {
 
-    inputs.innerHTML = "";
+    return normalizeDigits(value)
+        .replace(/[^0-9]/g, "");
 
-    inputs.className =
-        "inputs";
+}
 
 
-    /*
-     سؤال تک‌رقمی
-    */
+/* =========================================================
+   TIMER MANAGER
+========================================================= */
 
-    if (answerParts.length === 1) {
+function addTimer(callback, delay) {
 
-        inputs.classList.add(
-            "single"
-        );
+    const timer =
+        window.setTimeout(
+            () => {
 
-    }
-
-
-    answerParts.forEach(
-        function(part, index) {
-
-            const input =
-                document.createElement("input");
-
-
-            input.type =
-                "text";
-
-
-            input.inputMode =
-                "numeric";
-
-
-            input.autocomplete =
-                "off";
-
-
-            input.className =
-                "answer-input";
-
-
-            /*
-             دقیقاً به تعداد ارقام
-            */
-
-            input.maxLength =
-                part.length;
-
-
-            input.setAttribute(
-                "aria-label",
-                "بخش " + (index + 1)
-            );
-
-
-            /* -----------------------------------------
-               INPUT
-            ----------------------------------------- */
-
-            input.addEventListener(
-                "input",
-                function() {
-
-                    /*
-                     فقط اعداد
-                    */
-
-                    this.value =
-                        this.value.replace(
-                            /[^0-9۰-۹٠-٩]/g,
-                            ""
-                        );
-
-
-                    /*
-                     وقتی بخش پر شد،
-                     برو سراغ بخش بعدی.
-                    */
-
-                    if (
-                        this.value.length >=
-                        this.maxLength
-                    ) {
-
-                        const allInputs =
-                            inputs.querySelectorAll(
-                                ".answer-input"
-                            );
-
-
-                        const next =
-                            allInputs[index + 1];
-
-
-                        if (next) {
-
-                            next.focus();
-
-                        }
-
-                    }
-
-                }
-            );
-
-
-            /* -----------------------------------------
-               BACKSPACE
-            ----------------------------------------- */
-
-            input.addEventListener(
-                "keydown",
-                function(event) {
-
-                    if (
-                        event.key ===
-                        "Backspace"
-                        &&
-                        this.value === ""
-                        &&
-                        index > 0
-                    ) {
-
-                        const allInputs =
-                            inputs.querySelectorAll(
-                                ".answer-input"
-                            );
-
-
-                        allInputs[
-                            index - 1
-                        ].focus();
-
-                    }
-
-                }
-            );
-
-
-            /* -----------------------------------------
-               ENTER
-            ----------------------------------------- */
-
-            input.addEventListener(
-                "keydown",
-                function(event) {
-
-                    if (
-                        event.key ===
-                        "Enter"
-                    ) {
-
-                        event.preventDefault();
-
-                        checkAnswer();
-
-                    }
-
-                }
-            );
-
-
-            inputs.appendChild(
-                input
-            );
-
-
-            /* -----------------------------------------
-               DATE SEPARATOR
-            ----------------------------------------- */
-
-            if (
-                index <
-                answerParts.length - 1
-            ) {
-
-                const separator =
-                    document.createElement(
-                        "span"
+                state.timers =
+                    state.timers.filter(
+                        item =>
+                            item !== timer
                     );
 
-
-                separator.className =
-                    "separator";
-
-
-                separator.textContent =
-                    "/";
-
-
-                inputs.appendChild(
-                    separator
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   LOAD QUESTION
-===================================================== */
-
-function loadQuestion() {
-
-    locked = false;
-
-    wrongAttempts = 0;
-
-
-    const current =
-        questions[currentQuestion];
-
-
-    /*
-     سؤال جدید
-    */
-
-    question.innerHTML =
-        current.question;
-
-
-    /*
-     ساخت ورودی‌ها
-    */
-
-    createInputs(
-        current.answers
-    );
-
-
-    /*
-     بسیار مهم:
-     هیچ راهنمایی در شروع سؤال
-     نمایش داده نمی‌شود.
-    */
-
-    hint.innerHTML =
-        "";
-
-    hint.classList.remove(
-        "show"
-    );
-
-
-    /*
-     خطای قبلی پاک شود.
-    */
-
-    error.innerHTML =
-        "";
-
-    error.classList.remove(
-        "show"
-    );
-
-
-    /*
-     دکمه فعال باشد.
-    */
-
-    checkBtn.disabled =
-        false;
-
-    checkBtn.style.display =
-        "inline-block";
-
-
-    /*
-     بازگرداندن حالت محتوا
-    */
-
-    content.style.opacity =
-        "1";
-
-    content.style.transform =
-        "scale(1)";
-
-
-    /*
-     فوکوس روی اولین ورودی
-    */
-
-    setTimeout(
-        function() {
-
-            const firstInput =
-                inputs.querySelector(
-                    ".answer-input"
-                );
-
-
-            if (firstInput) {
-
-                firstInput.focus();
-
-            }
-
-        },
-        180
-    );
-
-}
-
-
-/* =====================================================
-   SHOW ERROR
-===================================================== */
-
-function showError() {
-
-    error.classList.add(
-        "show"
-    );
-
-
-    if (
-        wrongAttempts === 1
-    ) {
-
-        error.innerHTML =
-            "نههه... یه کم فکر کن 😏";
-
-    }
-
-    else if (
-        wrongAttempts === 2
-    ) {
-
-        error.innerHTML =
-            "هنوز نه... یه سرنخ کوچولو دیگه لازم داری؟ 👀";
-
-    }
-
-    else {
-
-        error.innerHTML =
-            "آروم آروم داریم به جواب نزدیک می‌شیم 😂❤️";
-
-    }
-
-}
-
-
-/* =====================================================
-   SHOW NEXT HINT
-===================================================== */
-
-function showNextHint() {
-
-    /*
-     اگر تعداد تلاش معتبر نباشد
-     هیچ کاری نکن.
-    */
-
-    if (
-        wrongAttempts < 1 ||
-        wrongAttempts > 3
-    ) {
-
-        return;
-
-    }
-
-
-    const current =
-        questions[currentQuestion];
-
-
-    const hintText =
-        current.hints[
-            wrongAttempts - 1
-        ];
-
-
-    /*
-     راهنمای فعلی جایگزین قبلی می‌شود.
-    */
-
-    hint.innerHTML =
-        hintText;
-
-
-    hint.classList.remove(
-        "show"
-    );
-
-
-    /*
-     اطمینان از اجرای مجدد animation
-    */
-
-    void hint.offsetWidth;
-
-
-    hint.classList.add(
-        "show"
-    );
-
-}
-
-
-/* =====================================================
-   SHAKE
-===================================================== */
-
-function shakePhone() {
-
-    phone.classList.remove(
-        "shake"
-    );
-
-
-    void phone.offsetWidth;
-
-
-    phone.classList.add(
-        "shake"
-    );
-
-}
-
-
-/* =====================================================
-   CHECK ANSWER
-===================================================== */
-
-function checkAnswer() {
-
-    /*
-     اگر در حال انتقال یا نمایش موفقیت
-     هستیم، کلیک جدید قبول نشود.
-    */
-
-    if (locked) {
-
-        return;
-
-    }
-
-
-    const current =
-        questions[currentQuestion];
-
-
-    const inputElements =
-        Array.from(
-            inputs.querySelectorAll(
-                ".answer-input"
-            )
-        );
-
-
-    /*
-     دریافت پاسخ‌ها
-    */
-
-    const userAnswers =
-        inputElements.map(
-            function(input) {
-
-                return normalizeDigits(
-                    input.value.trim()
-                );
-
-            }
-        );
-
-
-    /*
-     بررسی تعداد بخش‌ها
-    */
-
-    const sameLength =
-        userAnswers.length ===
-        current.answers.length;
-
-
-    /*
-     بررسی تک‌تک بخش‌ها
-    */
-
-    const allCorrect =
-        sameLength
-        &&
-        userAnswers.every(
-            function(value, index) {
-
-                return (
-                    value ===
-                    current.answers[index]
-                );
-
-            }
-        );
-
-
-    /* =================================================
-       CORRECT
-    ================================================= */
-
-    if (allCorrect) {
-
-        showSuccess();
-
-        return;
-
-    }
-
-
-    /* =================================================
-       WRONG
-    ================================================= */
-
-    wrongAttempts++;
-
-
-    shakePhone();
-
-
-    showError();
-
-
-    /*
-     راهنما فقط بعد از جواب اشتباه
-     ظاهر می‌شود.
-    */
-
-    showNextHint();
-
-}
-
-
-/* =====================================================
-   SHOW SUCCESS
-===================================================== */
-
-function showSuccess() {
-
-    /*
-     جلوگیری از چند کلیک
-    */
-
-    locked = true;
-
-
-    const current =
-        questions[currentQuestion];
-
-
-    /*
-     پیام موفقیت
-    */
-
-    success.innerHTML =
-        current.success;
-
-
-    /*
-     محو کردن محتوای سؤال
-    */
-
-    content.style.opacity =
-        "0";
-
-    content.style.transform =
-        "scale(.94)";
-
-
-    /*
-     نمایش پیام موفقیت
-    */
-
-    setTimeout(
-        function() {
-
-            success.classList.add(
-                "show"
-            );
-
-        },
-        120
-    );
-
-
-    /*
-     بعد از ۳.۲ ثانیه
-    */
-
-    setTimeout(
-        function() {
-
-            success.classList.remove(
-                "show"
-            );
-
-
-            /*
-             سؤال اول یا دوم
-            */
-
-            if (
-                currentQuestion <
-                questions.length - 1
-            ) {
-
-                currentQuestion++;
-
-
-                /*
-                 کمی مکث برای
-                 خروج پیام قبلی
-                */
-
-                setTimeout(
-                    function() {
-
-                        loadQuestion();
-
-                    },
-                    350
-                );
-
-            }
-
-
-            /*
-             سؤال سوم تمام شده
-            */
-
-            else {
-
-                setTimeout(
-                    function() {
-
-                        showFinal();
-
-                    },
-                    350
-                );
-
-            }
-
-        },
-        3200
-    );
-
-}
-
-
-/* =====================================================
-   SHOW FINAL
-===================================================== */
-
-function showFinal() {
-
-    /*
-     محتوای سؤال کاملاً حذف شود.
-    */
-
-    content.style.display =
-        "none";
-
-
-    /*
-     پیام نهایی
-    */
-
-    final.classList.add(
-        "show"
-    );
-
-}
-
-
-/* =====================================================
-   FINAL CLICK
-===================================================== */
-
-final.addEventListener(
-    "click",
-    function() {
-
-        /*
-         فقط وقتی پیام نهایی دیده می‌شود.
-        */
-
-        if (
-            !final.classList.contains(
-                "show"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        /*
-         جلوگیری از چند بار لمس
-        */
-
-        final.style.pointerEvents =
-            "none";
-
-
-        /*
-         خروج نرم
-        */
-
-        page.classList.add(
-            "exit"
-        );
-
-
-        /*
-         مرحله بعد
-        */
-
-        setTimeout(
-            function() {
-
-                window.location.href =
-                    "stage4.6.html";
+                callback();
 
             },
-            800
+            delay
+        );
+
+    state.timers.push(timer);
+
+    return timer;
+
+}
+
+
+function clearAllTimers() {
+
+    state.timers.forEach(
+        timer =>
+            window.clearTimeout(timer)
+    );
+
+    state.timers.length =
+        0;
+
+}
+
+
+/* =========================================================
+   EVENT MANAGER
+========================================================= */
+
+function listen(
+    element,
+    event,
+    handler,
+    options
+) {
+
+    if (!element) {
+        return;
+    }
+
+    element.addEventListener(
+        event,
+        handler,
+        options
+    );
+
+    state.listeners.push({
+
+        element,
+        event,
+        handler,
+        options
+
+    });
+
+}
+
+
+/* =========================================================
+   RANDOM NUMBER
+========================================================= */
+
+function random(min, max) {
+
+    return Math.floor(
+        Math.random() *
+        (max - min + 1)
+    ) + min;
+
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+function createStars() {
+
+    if (!DOM.stars) {
+        return;
+    }
+
+    DOM.stars.innerHTML =
+        "";
+
+    const fragment =
+        document.createDocumentFragment();
+
+    for (
+        let i = 0;
+        i < CONFIG.stars;
+        i++
+    ) {
+
+        const star =
+            document.createElement("span");
+
+        star.className =
+            "star";
+
+        star.style.left =
+            random(1, 99) + "%";
+
+        star.style.top =
+            random(1, 99) + "%";
+
+        star.style.setProperty(
+            "--duration",
+            random(2, 5) + "s"
+        );
+
+        star.style.setProperty(
+            "--delay",
+            "-" + random(0, 5) + "s"
+        );
+
+        star.style.opacity =
+            (Math.random() * 0.55 + 0.15)
+            .toFixed(2);
+
+        fragment.appendChild(
+            star
         );
 
     }
-);
+
+    DOM.stars.appendChild(
+        fragment
+    );
+
+}
 
 
-/* =====================================================
-   CHECK BUTTON
-===================================================== */
+/* =========================================================
+   HEARTS
+========================================================= */
 
-checkBtn.addEventListener(
-    "click",
-    function(event) {
+function createHearts() {
+
+    if (!DOM.hearts) {
+        return;
+    }
+
+    DOM.hearts.innerHTML =
+        "";
+
+    const fragment =
+        document.createDocumentFragment();
+
+    for (
+        let i = 0;
+        i < CONFIG.hearts;
+        i++
+    ) {
+
+        const heart =
+            document.createElement("span");
+
+        heart.className =
+            "floating-heart";
+
+        heart.textContent =
+            Math.random() > 0.5
+                ? "♥"
+                : "♡";
+
+        heart.style.left =
+            random(0, 100) + "%";
+
+        heart.style.setProperty(
+            "--size",
+            random(10, 20) + "px"
+        );
+
+        heart.style.setProperty(
+            "--duration",
+            random(8, 16) + "s"
+        );
+
+        heart.style.setProperty(
+            "--delay",
+            random(0, 12) + "s"
+        );
+
+        heart.style.setProperty(
+            "--move",
+            random(-80, 80) + "px"
+        );
+
+        heart.style.setProperty(
+            "--rotate",
+            random(-35, 35) + "deg"
+        );
+
+        fragment.appendChild(
+            heart
+        );
+
+    }
+
+    DOM.hearts.appendChild(
+        fragment
+    );
+
+}
+
+
+/* =========================================================
+   CLEAR INPUTS
+========================================================= */
+
+function clearInputs() {
+
+    state.inputs
+        .forEach(
+            input => {
+
+                input.value =
+                    "";
+
+                input.classList.remove(
+                    "filled"
+                );
+
+                input.classList.remove(
+                    "invalid"
+                );
+
+                input.classList.remove(
+                    "valid"
+                );
+
+            }
+        );
+
+    state.inputs =
+        [];
+
+}
+
+
+/* =========================================================
+   CREATE ONE INPUT
+========================================================= */
+
+function createInput(
+    maxLength,
+    index,
+    groupIndex
+) {
+
+    const input =
+        document.createElement("input");
+
+    input.className =
+        "box";
+
+    input.type =
+        "text";
+
+    input.inputMode =
+        "numeric";
+
+    input.autocomplete =
+        "off";
+
+    input.spellcheck =
+        false;
+
+    input.maxLength =
+        maxLength;
+
+    input.pattern =
+        "[0-9۰-۹٠-٩]*";
+
+    input.setAttribute(
+        "aria-label",
+        "رقم " + (index + 1)
+    );
+
+    input.dataset.index =
+        String(index);
+
+    input.dataset.group =
+        String(groupIndex);
+
+    listen(
+        input,
+        "input",
+        event =>
+            handleInput(
+                event,
+                index
+            )
+    );
+
+    listen(
+        input,
+        "keydown",
+        event =>
+            handleKeydown(
+                event,
+                index
+            )
+    );
+
+    listen(
+        input,
+        "paste",
+        event =>
+            handlePaste(
+                event,
+                index
+            )
+    );
+
+    listen(
+        input,
+        "focus",
+        () =>
+            handleFocus(
+                input
+            )
+    );
+
+    listen(
+        input,
+        "blur",
+        () =>
+            handleBlur(
+                input
+            )
+    );
+
+    return input;
+
+}
+
+
+/* =========================================================
+   CREATE CODE
+========================================================= */
+
+function createCodeInputs(parts) {
+
+    clearInputs();
+
+    DOM.code.innerHTML =
+        "";
+
+    let globalIndex =
+        0;
+
+    parts.forEach(
+        (
+            part,
+            groupIndex
+        ) => {
+
+            const length =
+                part.length;
+
+            for (
+                let digitIndex = 0;
+                digitIndex < length;
+                digitIndex++
+            ) {
+
+                const input =
+                    createInput(
+                        1,
+                        globalIndex,
+                        groupIndex
+                    );
+
+                DOM.code.appendChild(
+                    input
+                );
+
+                state.inputs.push(
+                    input
+                );
+
+                globalIndex++;
+
+            }
+
+            if (
+                groupIndex <
+                parts.length - 1
+            ) {
+
+                const slash =
+                    document.createElement("span");
+
+                slash.className =
+                    "slash";
+
+                slash.textContent =
+                    "/";
+
+                slash.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                DOM.code.appendChild(
+                    slash
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INPUT HANDLER
+========================================================= */
+
+function handleInput(
+    event,
+    index
+) {
+
+    if (state.locked) {
+        return;
+    }
+
+    const input =
+        event.currentTarget;
+
+    let value =
+        digitsOnly(
+            input.value
+        );
+
+    if (value.length > 1) {
+
+        distributeDigits(
+            value,
+            index
+        );
+
+        return;
+
+    }
+
+    input.value =
+        value;
+
+    updateInputState(
+        input
+    );
+
+    if (
+        value.length === 1
+    ) {
+
+        focusNext(
+            index
+        );
+
+    }
+
+    hideError();
+
+}
+
+
+/* =========================================================
+   DISTRIBUTE PASTED DIGITS
+========================================================= */
+
+function distributeDigits(
+    value,
+    startIndex
+) {
+
+    const clean =
+        digitsOnly(value);
+
+    let position =
+        startIndex;
+
+    for (
+        const digit of clean
+    ) {
+
+        if (
+            position >=
+            state.inputs.length
+        ) {
+            break;
+        }
+
+        state.inputs[position].value =
+            digit;
+
+        updateInputState(
+            state.inputs[position]
+        );
+
+        position++;
+
+    }
+
+    if (
+        position <
+        state.inputs.length
+    ) {
+
+        state.inputs[position].focus();
+
+    } else {
+
+        const last =
+            state.inputs[
+                state.inputs.length - 1
+            ];
+
+        if (last) {
+            last.focus();
+        }
+
+    }
+
+    hideError();
+
+}
+
+
+/* =========================================================
+   PASTE HANDLER
+========================================================= */
+
+function handlePaste(
+    event,
+    index
+) {
+
+    if (state.locked) {
+        return;
+    }
+
+    event.preventDefault();
+
+    const clipboard =
+        event.clipboardData ||
+        window.clipboardData;
+
+    if (!clipboard) {
+        return;
+    }
+
+    const text =
+        clipboard.getData("text");
+
+    const clean =
+        digitsOnly(text);
+
+    if (!clean) {
+        return;
+    }
+
+    distributeDigits(
+        clean,
+        index
+    );
+
+}
+
+
+/* =========================================================
+   KEYBOARD HANDLER
+========================================================= */
+
+function handleKeydown(
+    event,
+    index
+) {
+
+    if (state.locked) {
+        event.preventDefault();
+        return;
+    }
+
+    const key =
+        event.key;
+
+    if (
+        key === "Enter"
+    ) {
 
         event.preventDefault();
 
-        event.stopPropagation();
-
-
         checkAnswer();
 
+        return;
+
     }
-);
+
+    if (
+        key === "Backspace"
+    ) {
+
+        const input =
+            state.inputs[index];
+
+        if (
+            input &&
+            input.value === ""
+        ) {
+
+            focusPrevious(
+                index
+            );
+
+        }
+
+        return;
+
+    }
+
+    if (
+        key === "ArrowLeft"
+    ) {
+
+        event.preventDefault();
+
+        focusPrevious(
+            index
+        );
+
+        return;
+
+    }
+
+    if (
+        key === "ArrowRight"
+    ) {
+
+        event.preventDefault();
+
+        focusNext(
+            index
+        );
+
+        return;
+
+    }
+
+    if (
+        key.length === 1
+    ) {
+
+        const normalized =
+            digitsOnly(key);
+
+        if (
+            normalized === ""
+        ) {
+
+            event.preventDefault();
+
+        }
+
+    }
+
+}
 
 
-/* =====================================================
-   START
-===================================================== */
+/* =========================================================
+   FOCUS
+========================================================= */
 
-loadQuestion();
+function handleFocus(input) {
+
+    input.select();
+
+}
+
+
+function handleBlur(input) {
+
+    updateInputState(
+        input
+    );
+
+}
+
+
+/* =========================================================
+   INPUT STATE
+========================================================= */
+
+function updateInputState(input) {
+
+    input.classList.remove(
+        "invalid"
+    );
+
+    input.classList.remove(
+        "valid"
+    );
+
+    if (
+        input.value
+    ) {
+
+        input.classList.add(
+            "filled"
+        );
+
+    } else {
+
+        input.classList.remove(
+            "filled"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FOCUS NEXT
+========================================================= */
+
+function focusNext(index) {
+
+    const next =
+        state.inputs[
+            index + 1
+        ];
+
+    if (next) {
+
+        addTimer(
+            () => {
+                next.focus();
+            },
+            CONFIG.inputDelay
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FOCUS PREVIOUS
+========================================================= */
+
+function focusPrevious(index) {
+
+    const previous =
+        state.inputs[
+            index - 1
+        ];
+
+    if (previous) {
+
+        previous.value =
+            "";
+
+        updateInputState(
+            previous
+        );
+
+        previous.focus();
+
+    }
+
+}
+
+
+/* =========================================================
+   GET CURRENT QUESTION
+========================================================= */
+
+function getQuestion() {
+
+    return QUESTIONS[
+        state.questionIndex
+    ];
+
+}
+
+
+/* =========================================================
+   LOAD QUESTION
+========================================================= */
+
+function loadQuestion() {
+
+    const question =
+        getQuestion();
+
+    if (!question) {
+        return;
+    }
+
+    state.locked =
+        false;
+
+    state.wrongAttempts =
+        0;
+
+    DOM.counter.textContent =
+        "مرحله " +
+        (state.questionIndex + 1) +
+        " از " +
+        QUESTIONS.length;
+
+    DOM.title.textContent =
+        question.question;
+
+    DOM.sub.textContent =
+        question.subtitle;
+
+    DOM.hint.textContent =
+        "";
+
+    DOM.hint.classList.remove(
+        "show"
+    );
+
+    DOM.error.textContent =
+        "";
+
+    DOM.error.classList.remove(
+        "show"
+    );
+
+    DOM.success.classList.remove(
+        "show"
+    );
+
+    DOM.questionView.classList.remove(
+        "hidden"
+    );
+
+    DOM.check.disabled =
+        false;
+
+    DOM.check.textContent =
+        "بررسی";
+
+    createCodeInputs(
+        question.parts
+    );
+
+    addTimer(
+        focusFirstInput,
+        100
+    );
+
+}
+
+
+/* =========================================================
+   FIRST INPUT
+========================================================= */
+
+function focusFirstInput() {
+
+    if (
+        !CONFIG.autoFocus
+    ) {
+        return;
+    }
+
+    const first =
+        state.inputs[0];
+
+    if (first) {
+        first.focus();
+    }
+
+}
+
+
+/* =========================================================
+   READ ANSWER
+========================================================= */
+
+function readAnswer() {
+
+    return state.inputs
+        .map(
+            input =>
+                digitsOnly(
+                    input.value
+                )
+        );
+
+}
+
+
+/* =========================================================
+   ANSWER COMPLETE
+========================================================= */
+
+function answerComplete() {
+
+    const question =
+        getQuestion();
+
+    if (!question) {
+        return false;
+    }
+
+    if (
+        state.inputs.length !==
+        question.parts.join("").length
+    ) {
+
+        return false;
+
+    }
+
+    return state.inputs.every(
+        input =>
+            digitsOnly(
+                input.value
+            ).length === 1
+    );
+
+}
+
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkAnswer() {
+
+    if (
+        state.locked ||
+        state.finished ||
+        state.transitioning
+    ) {
+        return;
+    }
+
+    if (
+        !answerComplete()
+    ) {
+
+        showError(
+            "اول همه‌ی عددها رو وارد کن 😏"
+        );
+
+        shakeCode();
+
+        return;
+
+    }
+
+    const question =
+        getQuestion();
+
+    const answer =
+        readAnswer();
+
+    const expected =
+        question.parts
+            .join("")
+            .split("");
+
+    const actual =
+        answer.join("");
+
+    const correct =
+        actual ===
+        expected.join("");
+
+    if (correct) {
+
+        handleCorrectAnswer();
+
+    } else {
+
+        handleWrongAnswer();
+
+    }
+
+}
+
+
+/* =========================================================
+   WRONG ANSWER
+========================================================= */
+
+function handleWrongAnswer() {
+
+    state.wrongAttempts++;
+
+    const question =
+        getQuestion();
+
+    markInputsInvalid();
+
+    shakeCode();
+
+    const hintIndex =
+        Math.min(
+            state.wrongAttempts - 1,
+            question.hints.length - 1
+        );
+
+    const errorIndex =
+        Math.min(
+            state.wrongAttempts - 1,
+            question.errors.length - 1
+        );
+
+    showHint(
+        question.hints[
+            hintIndex
+        ]
+    );
+
+    showError(
+        question.errors[
+            errorIndex
+        ]
+    );
+
+    clearInputs();
+
+    addTimer(
+        focusFirstInput,
+        250
+    );
+
+}
+
+
+/* =========================================================
+   CORRECT ANSWER
+========================================================= */
+
+function handleCorrectAnswer() {
+
+    state.locked =
+        true;
+
+    markInputsValid();
+
+    DOM.check.disabled =
+        true;
+
+    const question =
+        getQuestion();
+
+    showSuccess(
+        question.success
+    );
+
+    addTimer(
+        () => {
+
+            if (
+                state.questionIndex <
+                QUESTIONS.length - 1
+            ) {
+
+                nextQuestion();
+
+            } else {
+
+                showFinal();
+
+            }
+
+        },
+        CONFIG.successDuration
+    );
+
+}
+
+
+/* =========================================================
+   MARK INVALID
+========================================================= */
+
+function markInputsInvalid() {
+
+    state.inputs.forEach(
+        input => {
+
+            input.classList.remove(
+                "valid"
+            );
+
+            input.classList.add(
+                "invalid"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MARK VALID
+========================================================= */
+
+function markInputsValid() {
+
+    state.inputs.forEach(
+        input => {
+
+            input.classList.remove(
+                "invalid"
+            );
+
+            input.classList.add(
+                "valid"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SHAKE
+========================================================= */
+
+function shakeCode() {
+
+    DOM.code.classList.remove(
+        "shake"
+    );
+
+    void DOM.code.offsetWidth;
+
+    DOM.code.classList.add(
+        "shake"
+    );
+
+    addTimer(
+        () => {
+
+            DOM.code.classList.remove(
+                "shake"
+            );
+
+        },
+        450
+    );
+
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+function showHint(text) {
+
+    DOM.hint.textContent =
+        text;
+
+    DOM.hint.classList.remove(
+        "show"
+    );
+
+    void DOM.hint.offsetWidth;
+
+    DOM.hint.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(text) {
+
+    DOM.error.textContent =
+        text;
+
+    DOM.error.classList.remove(
+        "show"
+    );
+
+    void DOM.error.offsetWidth;
+
+    DOM.error.classList.add(
+        "show"
+    );
+
+}
+
+
+function hideError() {
+
+    DOM.error.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+function showSuccess(text) {
+
+    DOM.successText.innerHTML =
+        text;
+
+    DOM.success.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    DOM.success.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuestion() {
+
+    DOM.success.classList.remove(
+        "show"
+    );
+
+    DOM.success.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    state.questionIndex++;
+
+    if (
+        state.questionIndex >=
+        QUESTIONS.length
+    ) {
+
+        showFinal();
+
+        return;
+
+    }
+
+    loadQuestion();
+
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+function showFinal() {
+
+    state.locked =
+        true;
+
+    state.finished =
+        true;
+
+    clearAllTimers();
+
+    DOM.questionView.classList.add(
+        "hidden"
+    );
+
+    DOM.success.classList.remove(
+        "show"
+    );
+
+    DOM.final.classList.add(
+        "show"
+    );
+
+    DOM.final.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goNextPage() {
+
+    if (
+        state.transitioning
+    ) {
+        return;
+    }
+
+    if (
+        !state.finished
+    ) {
+        return;
+    }
+
+    state.transitioning =
+        true;
+
+    clearAllTimers();
+
+    DOM.final.style.pointerEvents =
+        "none";
+
+    DOM.phone.classList.add(
+        "exit"
+    );
+
+    addTimer(
+        () => {
+
+            try {
+
+                window.location.href =
+                    CONFIG.nextPage;
+
+            } catch (
+                navigationError
+            ) {
+
+                console.error(
+                    "Stage 4.5 navigation error:",
+                    navigationError
+                );
+
+                state.transitioning =
+                    false;
+
+                DOM.phone.classList.remove(
+                    "exit"
+                );
+
+                DOM.final.style.pointerEvents =
+                    "auto";
+
+            }
+
+        },
+        CONFIG.animationDuration
+    );
+
+}
+
+
+/* =========================================================
+   FINAL CLICK
+========================================================= */
+
+function handleFinalClick() {
+
+    goNextPage();
+
+}
+
+
+/* =========================================================
+   FINAL KEYBOARD
+========================================================= */
+
+function handleFinalKeydown(event) {
+
+    if (
+        event.key === "Enter" ||
+        event.key === " "
+    ) {
+
+        event.preventDefault();
+
+        goNextPage();
+
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH PROTECTION
+========================================================= */
+
+function handleTouchStart(event) {
+
+    if (
+        state.locked &&
+        !state.finished
+    ) {
+
+        event.preventDefault();
+
+    }
+
+}
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+function handleResize() {
+
+    document.documentElement.style.setProperty(
+        "--viewport-height",
+        window.innerHeight + "px"
+    );
+
+}
+
+
+/* =========================================================
+   VISIBILITY
+========================================================= */
+
+function handleVisibilityChange() {
+
+    if (
+        document.hidden
+    ) {
+
+        return;
+
+    }
+
+    if (
+        state.finished
+    ) {
+
+        return;
+
+    }
+
+}
+
+
+/* =========================================================
+   GLOBAL ERROR HANDLER
+========================================================= */
+
+function handleGlobalError(
+    event
+) {
+
+    console.error(
+        "Stage 4.5 error:",
+        event.error || event.message
+    );
+
+}
+
+
+/* =========================================================
+   UNHANDLED PROMISE
+========================================================= */
+
+function handleUnhandledRejection(
+    event
+) {
+
+    console.error(
+        "Stage 4.5 promise rejection:",
+        event.reason
+    );
+
+}
+
+
+/* =========================================================
+   REGISTER EVENTS
+========================================================= */
+
+function registerEvents() {
+
+    listen(
+        DOM.check,
+        "click",
+        checkAnswer
+    );
+
+    listen(
+        DOM.final,
+        "click",
+        handleFinalClick
+    );
+
+    listen(
+        DOM.final,
+        "keydown",
+        handleFinalKeydown
+    );
+
+    listen(
+        window,
+        "resize",
+        handleResize
+    );
+
+    listen(
+        window,
+        "orientationchange",
+        handleResize
+    );
+
+    listen(
+        document,
+        "visibilitychange",
+        handleVisibilityChange
+    );
+
+    listen(
+        DOM.screen,
+        "touchstart",
+        handleTouchStart,
+        {
+            passive: false
+        }
+    );
+
+    window.addEventListener(
+        "error",
+        handleGlobalError
+    );
+
+    window.addEventListener(
+        "unhandledrejection",
+        handleUnhandledRejection
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initialize() {
+
+    if (
+        state.initialized
+    ) {
+        return;
+    }
+
+    state.initialized =
+        true;
+
+    handleResize();
+
+    createStars();
+
+    createHearts();
+
+    registerEvents();
+
+    loadQuestion();
+
+}
+
+
+/* =========================================================
+   SAFE INITIALIZATION
+========================================================= */
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initialize,
+        {
+            once: true
+        }
+    );
+
+} else {
+
+    initialize();
+
+}
+
+
+/* =========================================================
+   DEBUG INFORMATION
+========================================================= */
+
+window.Stage45 = {
+
+    version:
+        "4.5.0",
+
+    getQuestion:
+        () =>
+            state.questionIndex + 1,
+
+    isFinished:
+        () =>
+            state.finished,
+
+    reset:
+        () => {
+
+            clearAllTimers();
+
+            state.questionIndex =
+                0;
+
+            state.wrongAttempts =
+                0;
+
+            state.locked =
+                false;
+
+            state.finished =
+                false;
+
+            state.transitioning =
+                false;
+
+            DOM.final.classList.remove(
+                "show"
+            );
+
+            DOM.questionView.classList.remove(
+                "hidden"
+            );
+
+            loadQuestion();
+
+        }
+
+};
 
 </script>
 
 </body>
 
-  </html>
+    </html>
