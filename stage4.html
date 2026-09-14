@@ -2,697 +2,610 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
 <title>شیشه عشق</title>
 
 <style>
 
-/* =========================================================
+/* =========================
    RESET
-========================================================= */
+========================= */
 
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 html,
 body{
-  width:100%;
-  height:100%;
-  margin:0;
-  padding:0;
-  overflow:hidden;
-  background:#09070a;
-  color:#fff;
-  font-family:
-    "Vazirmatn",
-    Tahoma,
-    Arial,
-    sans-serif;
+    width:100%;
+    height:100%;
+    margin:0;
+    overflow:hidden;
+    background:#09070a;
+    color:#fff;
+    font-family:"Vazirmatn",Tahoma,Arial,sans-serif;
 }
 
 
-/* =========================================================
+/* =========================
    PAGE
-========================================================= */
+========================= */
 
 .page{
-  position:relative;
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
 
-  width:100%;
-  height:100%;
-
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(150,20,65,.18),
-      transparent 55%
-    ),
-    #09070a;
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(150,20,65,.18),
+            transparent 55%
+        ),
+        #09070a;
 }
 
+.page::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
 
-/* نور بسیار نرم پس‌زمینه */
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,70,120,.07),
+            transparent 58%
+        );
 
-.page:after{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  pointer-events:none;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,70,120,.07),
-      transparent 58%
-    );
-
-  animation:
-    glow 5s ease-in-out infinite;
+    animation:glow 5s ease-in-out infinite;
 }
-
-
-/* =========================================================
-   STAGE
-========================================================= */
 
 .stage{
-  position:absolute;
-
-  inset:0;
-
-  width:100%;
-  height:100%;
+    position:absolute;
+    inset:0;
 }
 
 
-/* =========================================================
-   FIRST HEART
-   قلبی که از مرحله قبل وارد می‌شود
-========================================================= */
+/* =========================
+   HEART FROM PREVIOUS STAGE
+========================= */
 
 .first-heart{
+    position:absolute;
 
-  position:absolute;
+    left:50%;
+    top:-45px;
 
-  left:50%;
-  top:-45px;
+    z-index:20;
 
-  z-index:20;
+    font-size:27px;
 
-  font-size:27px;
+    opacity:0;
 
-  opacity:0;
+    filter:
+        drop-shadow(
+            0 0 10px rgba(255,70,120,.65)
+        );
 
-  filter:
-    drop-shadow(
-      0 0 10px
-      rgba(255,70,120,.65)
-    );
-
-  animation:
-    fallIn
-    2.1s
-    cubic-bezier(.2,.72,.25,1)
-    .35s
-    forwards;
+    animation:
+        fallIn
+        2.1s
+        cubic-bezier(.2,.72,.25,1)
+        .35s
+        forwards;
 }
 
 
-/* =========================================================
+/* =========================
    BOTTLE
-========================================================= */
-
-.bottle{
-
-  position:absolute;
-
-  left:50%;
-  bottom:55px;
-
-  width:154px;
-  height:315px;
-
-  transform:
-    translateX(-50%);
-
-  opacity:0;
-
-  z-index:10;
-
-  animation:
-    bottleIn
-    1s
-    ease
-    1.85s
-    forwards;
-
-  cursor:default;
-
-  /* جلوگیری از هرگونه تداخل لمس */
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   BOTTLE NECK
-========================================================= */
-
-.neck{
-
-  position:absolute;
-
-  left:50%;
-  top:0;
-
-  width:48px;
-  height:67px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    1px solid
-    rgba(255,255,255,.27);
-
-  border-bottom:0;
-
-  border-radius:
-    14px 14px 3px 3px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.03),
-      rgba(255,80,130,.045),
-      rgba(255,255,255,.015)
-    );
-}
-
-
-/* =========================================================
-   BOTTLE RIM
-========================================================= */
-
-.rim{
-
-  position:absolute;
-
-  left:50%;
-  top:-5px;
-
-  width:59px;
-  height:14px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    1px solid
-    rgba(255,255,255,.34);
-
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.035);
-
-  z-index:2;
-}
-
-
-/* =========================================================
-   BOTTLE BODY
-========================================================= */
-
-.body{
-
-  position:absolute;
-
-  left:50%;
-  top:48px;
-
-  width:154px;
-  height:267px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    1px solid
-    rgba(255,255,255,.27);
-
-  border-radius:
-    43px 43px 30px 30px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.035),
-      rgba(255,80,130,.055),
-      rgba(255,255,255,.018)
-    );
-
-  box-shadow:
-
-    inset
-    12px 0 25px
-    rgba(255,255,255,.025),
-
-    inset
-    -14px 0 30px
-    rgba(255,40,100,.035),
-
-    0 0 35px
-    rgba(255,40,100,.08);
-
-  overflow:hidden;
-}
-
-
-/* =========================================================
-   BOTTLE SHINE
-========================================================= */
-
-.shine{
-
-  position:absolute;
-
-  left:15px;
-  top:18px;
-
-  width:8px;
-  height:200px;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,.24),
-      transparent
-    );
-
-  filter:blur(2px);
-
-  opacity:.45;
-}
-
-
-/* =========================================================
-   INSIDE BOTTLE
-========================================================= */
-
-.inside{
-
-  position:absolute;
-
-  inset:0;
-
-  overflow:hidden;
-
-  pointer-events:none;
-}
-
-
-/* قلب‌های داخل شیشه */
-
-.inside .heart{
-
-  position:absolute;
-
-  color:#ff5b87;
-
-  font-size:var(--s);
-
-  left:var(--x);
-  bottom:var(--y);
-
-  filter:
-    drop-shadow(
-      0 0 6px
-      rgba(255,60,110,.4)
-    );
-
-  animation:
-    tinyBeat
-    1.5s
-    ease-in-out
-    infinite
-    var(--d);
-}
-
-
-/* =========================================================
-   RAIN HEARTS
-========================================================= */
-
-.rain-heart{
-
-  position:absolute;
-
-  left:var(--x);
-  top:-45px;
-
-  z-index:15;
-
-  font-size:var(--s);
-
-  opacity:0;
-
-  color:#ff668f;
-
-  filter:
-    drop-shadow(
-      0 0 7px
-      rgba(255,60,110,.45)
-    );
-
-  animation:
-    rain
-    var(--t)
-    cubic-bezier(.2,.68,.25,1)
-    var(--delay)
-    forwards;
-
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   PHONE
-========================================================= */
-
-.phone{
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:208px;
-  height:394px;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.12);
-
-  opacity:0;
-
-  z-index:30;
-
-  border:
-    5px solid
-    #272229;
-
-  border-radius:33px;
-
-  background:#050406;
-
-  box-shadow:
-
-    0 20px 70px
-    rgba(0,0,0,.7),
-
-    0 0 45px
-    rgba(255,40,100,.13);
-
-  overflow:hidden;
-
-  /*
-    مهم‌ترین اصلاح:
-    قبلاً pointer-events:none بود.
-    بنابراین حتی بعد از ظاهر شدن گوشی،
-    لمس/کلیک به آن نمی‌رسید.
-  */
-  pointer-events:auto;
-
-  cursor:pointer;
-
-  -webkit-tap-highlight-color:transparent;
-
-  touch-action:manipulation;
-
-  user-select:none;
-}
-
-
-/* =========================================================
-   PHONE NOTCH
-========================================================= */
-
-.phone:before{
-
-  content:"";
-
-  position:absolute;
-
-  top:8px;
-  left:50%;
-
-  width:72px;
-  height:16px;
-
-  transform:
-    translateX(-50%);
-
-  border-radius:
-    0 0 12px 12px;
-
-  background:#111014;
-
-  z-index:3;
-
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   PHONE SCREEN
-========================================================= */
-
-.screen{
-
-  position:absolute;
-
-  inset:7px;
-
-  border-radius:25px;
-
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(130,20,55,.28),
-      transparent 52%
-    ),
-    #0b080c;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:
-    32px 18px;
-
-  text-align:center;
-
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   PHONE TEXT
-========================================================= */
-
-.phone-text{
-
-  opacity:0;
-
-  transform:
-    translateY(15px);
-
-  font-size:16px;
-
-  line-height:2.25;
-
-  font-weight:500;
-
-  text-shadow:
-    0 0 16px
-    rgba(255,100,145,.15);
-
-  pointer-events:none;
-}
-
-
-/* قلب پایین متن */
-
-.phone-text .ph{
-
-  display:block;
-
-  margin-top:12px;
-
-  font-size:25px;
-
-  animation:
-    tinyBeat
-    1.3s
-    ease-in-out
-    infinite;
-}
-
-
-/* =========================================================
-   COMPLETE STATE
-========================================================= */
+========================= */
 
 /*
-  بعد از پایان بارش:
+    نکته:
+    این بار شیشه کاملاً استوانه‌ای است.
+    گردن باریک حذف شده.
+*/
 
-  شیشه → داخل گوشی
-  گوشی → بزرگ می‌شود
-  متن → ظاهر می‌شود
+.bottle{
+    position:absolute;
+
+    left:50%;
+
+    /*
+        به جای bottom از top استفاده شده
+        تا بتوانیم شیشه را دقیقاً به مرکز
+        گوشی منتقل کنیم.
+    */
+
+    top:calc(100% - 370px);
+
+    width:154px;
+    height:315px;
+
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scale(1);
+
+    opacity:0;
+
+    z-index:10;
+
+    cursor:default;
+
+    animation:
+        bottleIn
+        1s
+        ease
+        1.85s
+        forwards;
+}
+
+
+/* بدنه استوانه‌ای شیشه */
+
+.body{
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    width:154px;
+    height:315px;
+
+    transform:translateX(-50%);
+
+    border:
+        1px solid
+        rgba(255,255,255,.28);
+
+    border-radius:38px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.045),
+            rgba(255,80,130,.065),
+            rgba(255,255,255,.02)
+        );
+
+    box-shadow:
+
+        inset 12px 0 25px
+        rgba(255,255,255,.025),
+
+        inset -14px 0 30px
+        rgba(255,40,100,.035),
+
+        0 0 35px
+        rgba(255,40,100,.08),
+
+        0 15px 40px
+        rgba(0,0,0,.22);
+
+    overflow:hidden;
+}
+
+
+/* درخشش اصلی شیشه */
+
+.body::before{
+    content:"";
+
+    position:absolute;
+
+    left:12px;
+    top:22px;
+
+    width:9px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08),
+            transparent
+        );
+
+    filter:blur(2px);
+
+    opacity:.55;
+
+    pointer-events:none;
+}
+
+
+/* انعکاس سمت راست */
+
+.body::after{
+    content:"";
+
+    position:absolute;
+
+    right:13px;
+    top:35px;
+
+    width:5px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255,255,255,.12),
+            transparent
+        );
+
+    filter:blur(2px);
+
+    opacity:.35;
+
+    pointer-events:none;
+}
+
+
+/* قلب‌ها داخل شیشه */
+
+.inside{
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:2;
+}
+
+.inside .heart{
+    position:absolute;
+
+    color:#ff5b87;
+
+    font-size:var(--s);
+
+    left:var(--x);
+    bottom:var(--y);
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255,60,110,.4)
+        );
+
+    animation:
+        tinyBeat
+        1.5s
+        ease-in-out
+        infinite
+        var(--d);
+}
+
+
+/* =========================
+   FALLING HEARTS
+========================= */
+
+.rain-heart{
+    position:absolute;
+
+    left:var(--x);
+    top:-45px;
+
+    z-index:15;
+
+    font-size:var(--s);
+
+    opacity:0;
+
+    color:#ff668f;
+
+    filter:
+        drop-shadow(
+            0 0 7px
+            rgba(255,60,110,.45)
+        );
+
+    animation:
+        rain
+        var(--t)
+        cubic-bezier(.2,.68,.25,1)
+        var(--delay)
+        forwards;
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+/*
+    ابعاد گوشی بزرگ و شیشه‌ای
+    مطابق ساختاری که برای مرحله 4.5 در نظر گرفتیم.
+*/
+
+.phone{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:min(390px,92vw);
+    height:min(760px,92dvh);
+
+    transform:
+        translate(-50%,-50%)
+        scale(.12);
+
+    opacity:0;
+
+    z-index:30;
+
+    border:
+        7px solid
+        #211b21;
+
+    border-radius:42px;
+
+    background:#050406;
+
+    box-shadow:
+
+        0 25px 80px
+        rgba(0,0,0,.72),
+
+        0 0 55px
+        rgba(255,40,100,.16);
+
+    overflow:hidden;
+
+    /*
+        ابتدا گوشی قابل لمس نیست.
+        وقتی complete شود پایین‌تر
+        pointer-events را فعال می‌کنیم.
+    */
+
+    pointer-events:none;
+}
+
+
+/* قسمت Dynamic Island / Notch */
+
+.phone::before{
+    content:"";
+
+    position:absolute;
+
+    top:7px;
+    left:50%;
+
+    width:96px;
+    height:24px;
+
+    transform:translateX(-50%);
+
+    border-radius:
+        0 0 16px 16px;
+
+    background:#111014;
+
+    z-index:5;
+}
+
+
+/* صفحه گوشی */
+
+.screen{
+    position:absolute;
+
+    inset:6px;
+
+    border-radius:34px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(130,20,55,.30),
+            transparent 52%
+        ),
+
+        #0b080c;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:
+        50px
+        28px
+        40px;
+
+    text-align:center;
+
+    overflow:hidden;
+}
+
+
+/* متن گوشی */
+
+.phone-text{
+    opacity:0;
+
+    transform:
+        translateY(18px);
+
+    font-size:23px;
+
+    line-height:2.05;
+
+    font-weight:600;
+
+    text-shadow:
+        0 0 16px
+        rgba(255,100,145,.15);
+}
+
+.phone-text .ph{
+    display:block;
+
+    margin-top:15px;
+
+    font-size:34px;
+
+    animation:
+        tinyBeat
+        1.3s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================
+   COMPLETE STATE
+========================= */
+
+/*
+    این قسمت یکی از مهم‌ترین اصلاحات است:
+
+    وقتی شیشه تمام می‌شود،
+    گوشی واقعاً قابل لمس می‌شود.
+*/
+
+.page.complete .phone{
+    pointer-events:auto;
+
+    cursor:pointer;
+
+    animation:
+        phoneIn
+        2.4s
+        cubic-bezier(.16,.8,.18,1)
+        forwards;
+}
+
+
+/*
+    شیشه به مرکز گوشی می‌رود.
 */
 
 .page.complete .bottle{
 
-  animation:
-    bottleIntoPhone
-    1.45s
-    cubic-bezier(.2,.8,.2,1)
-    forwards;
+    animation:
+        bottleIntoPhone
+        2.4s
+        cubic-bezier(.16,.8,.18,1)
+        forwards;
 }
 
 
-.page.complete .phone{
-
-  animation:
-    phoneIn
-    1.45s
-    cubic-bezier(.2,.8,.2,1)
-    forwards;
-
-  /*
-    تضمین می‌کنیم در حالت نهایی
-    گوشی قابل لمس باشد.
-  */
-
-  pointer-events:auto;
-
-  cursor:pointer;
-}
-
+/*
+    متن کمی بعد از ظاهر شدن گوشی
+    نمایان می‌شود.
+*/
 
 .page.complete .phone-text{
 
-  animation:
-    textIn
-    1.1s
-    ease
-    1.45s
-    forwards;
+    animation:
+        textIn
+        1.1s
+        ease
+        2.15s
+        forwards;
 }
 
 
-/* =========================================================
+/* =========================
    EXIT
-========================================================= */
+========================= */
 
 .page.exit{
-
-  animation:
-    exit
-    .8s
-    ease
-    forwards;
-
-  pointer-events:none;
+    animation:
+        exit
+        .8s
+        ease
+        forwards;
 }
 
 
-/* =========================================================
+/* =========================
    ANIMATIONS
-========================================================= */
+========================= */
 
 
 /* قلب اول */
 
 @keyframes fallIn{
 
-  0%{
+    0%{
+        opacity:0;
 
-    opacity:0;
+        top:-45px;
 
-    top:-45px;
+        transform:
+            translateX(-50%)
+            scale(.4);
+    }
 
-    transform:
-      translateX(-50%)
-      scale(.4);
-  }
+    12%{
+        opacity:1;
+    }
 
-  12%{
+    82%{
+        top:405px;
 
-    opacity:1;
-  }
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
 
-  82%{
+    100%{
+        opacity:0;
 
-    top:405px;
+        top:430px;
 
-    transform:
-      translateX(-50%)
-      scale(1);
-  }
-
-  100%{
-
-    opacity:0;
-
-    top:430px;
-
-    transform:
-      translateX(-50%)
-      scale(.5);
-  }
+        transform:
+            translateX(-50%)
+            scale(.5);
+    }
 }
 
 
-/* ورود اولیه شیشه */
+/* ظاهر شدن شیشه */
 
 @keyframes bottleIn{
 
-  from{
+    from{
+        opacity:0;
 
-    opacity:0;
+        transform:
+            translateX(-50%)
+            translateY(18px)
+            scale(.93);
+    }
 
-    transform:
-      translateX(-50%)
-      translateY(18px)
-      scale(.93);
-  }
+    to{
+        opacity:1;
 
-  to{
-
-    opacity:1;
-
-    transform:
-      translateX(-50%)
-      translateY(0)
-      scale(1);
-  }
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
 }
 
 
@@ -700,129 +613,246 @@ body{
 
 @keyframes rain{
 
-  0%{
+    0%{
+        opacity:0;
 
-    opacity:0;
+        top:-45px;
 
-    top:-45px;
+        transform:
+            translateX(0)
+            rotate(0)
+            scale(.65);
+    }
 
-    transform:
-      translateX(0)
-      rotate(0)
-      scale(.65);
-  }
+    10%{
+        opacity:1;
+    }
 
-  10%{
+    78%{
+        opacity:1;
 
-    opacity:1;
-  }
+        top:465px;
 
-  78%{
+        transform:
+            translateX(var(--drift))
+            rotate(260deg)
+            scale(1);
+    }
 
-    opacity:1;
+    100%{
+        opacity:0;
 
-    top:465px;
+        top:530px;
 
-    transform:
-      translateX(var(--drift))
-      rotate(260deg)
-      scale(1);
-  }
-
-  100%{
-
-    opacity:0;
-
-    top:530px;
-
-    transform:
-      translateX(var(--drift))
-      rotate(330deg)
-      scale(.75);
-  }
+        transform:
+            translateX(var(--drift))
+            rotate(330deg)
+            scale(.75);
+    }
 }
 
 
-/* شیشه وارد گوشی می‌شود */
+/*
+    =========================================
+    حرکت واقعی شیشه به سمت گوشی
+    =========================================
+
+    نقطه شروع:
+    پایین صفحه
+
+    مرحله اول:
+    کمی بالا می‌آید
+
+    مرحله دوم:
+    کوچک می‌شود
+
+    مرحله سوم:
+    دقیقاً به مرکز صفحه می‌رسد
+
+    مرحله آخر:
+    داخل گوشی محو می‌شود
+*/
 
 @keyframes bottleIntoPhone{
 
-  0%{
+    0%{
 
-    opacity:1;
+        opacity:1;
 
-    transform:
-      translateX(-50%)
-      translateY(0)
-      scale(1);
-  }
+        top:calc(100% - 370px);
 
-  45%{
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
 
-    opacity:1;
 
-    transform:
-      translateX(-50%)
-      translateY(-28px)
-      scale(.7);
-  }
+    22%{
 
-  100%{
+        opacity:1;
 
-    opacity:0;
+        top:calc(100% - 420px);
 
-    transform:
-      translateX(-50%)
-      translateY(0)
-      scale(.15);
-  }
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(.96);
+    }
+
+
+    45%{
+
+        opacity:1;
+
+        top:65%;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(.70);
+    }
+
+
+    68%{
+
+        opacity:.95;
+
+        top:54%;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(.42);
+    }
+
+
+    84%{
+
+        opacity:.72;
+
+        top:50%;
+
+        transform:
+            translateX(-50%)
+            translateY(-50%)
+            scale(.25);
+    }
+
+
+    94%{
+
+        opacity:.35;
+
+        top:50%;
+
+        transform:
+            translateX(-50%)
+            translateY(-50%)
+            scale(.12);
+    }
+
+
+    100%{
+
+        opacity:0;
+
+        top:50%;
+
+        transform:
+            translateX(-50%)
+            translateY(-50%)
+            scale(.02);
+    }
 }
 
 
-/* ظاهر شدن گوشی */
+/*
+    ورود گوشی
+*/
 
 @keyframes phoneIn{
 
-  0%{
+    0%{
 
-    opacity:0;
+        opacity:0;
 
-    transform:
-      translate(-50%,-50%)
-      scale(.12);
-  }
+        transform:
+            translate(-50%,-50%)
+            scale(.12);
+    }
 
-  45%{
 
-    opacity:1;
+    30%{
 
-    transform:
-      translate(-50%,-50%)
-      scale(.34);
-  }
+        opacity:.55;
 
-  100%{
+        transform:
+            translate(-50%,-50%)
+            scale(.28);
+    }
 
-    opacity:1;
 
-    transform:
-      translate(-50%,-50%)
-      scale(1);
-  }
+    60%{
+
+        opacity:.9;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.72);
+    }
+
+
+    82%{
+
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.035);
+    }
+
+
+    92%{
+
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.985);
+    }
+
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
 }
 
 
-/* ظاهر شدن متن */
+/* متن */
 
 @keyframes textIn{
 
-  to{
+    from{
 
-    opacity:1;
+        opacity:0;
 
-    transform:
-      translateY(0);
-  }
+        transform:
+            translateY(18px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
 }
 
 
@@ -830,47 +860,39 @@ body{
 
 @keyframes tinyBeat{
 
-  0%,
-  100%{
+    0%,
+    100%{
+        transform:scale(1);
+    }
 
-    transform:
-      scale(1);
-  }
+    15%{
+        transform:scale(1.16);
+    }
 
-  15%{
-
-    transform:
-      scale(1.16);
-  }
-
-  30%{
-
-    transform:
-      scale(1);
-  }
+    30%{
+        transform:scale(1);
+    }
 }
 
 
-/* نور پس‌زمینه */
+/* نور */
 
 @keyframes glow{
 
-  0%,
-  100%{
+    0%,
+    100%{
+        opacity:.55;
 
-    opacity:.55;
+        transform:
+            scale(1);
+    }
 
-    transform:
-      scale(1);
-  }
+    50%{
+        opacity:1;
 
-  50%{
-
-    opacity:1;
-
-    transform:
-      scale(1.08);
-  }
+        transform:
+            scale(1.08);
+    }
 }
 
 
@@ -878,779 +900,443 @@ body{
 
 @keyframes exit{
 
-  to{
+    to{
 
-    opacity:0;
+        opacity:0;
 
-    transform:
-      scale(.97);
+        transform:
+            scale(.97);
 
-    filter:
-      blur(5px);
-  }
+        filter:
+            blur(5px);
+    }
 }
 
 
-/* =========================================================
-   SMALL HEIGHT DEVICES
-========================================================= */
+/* =========================
+   SHORT SCREENS
+========================= */
 
 @media(max-height:650px){
 
-  .bottle{
+    .bottle{
 
-    bottom:35px;
+        top:calc(100% - 330px);
 
-    transform:
-      translateX(-50%)
-      scale(.82);
-  }
+        transform:
+            translateX(-50%)
+            scale(.82);
+    }
 
+    .page.complete .bottle{
 
-  .page.complete .bottle{
+        animation:
+            bottleIntoPhoneSmall
+            2.2s
+            cubic-bezier(.16,.8,.18,1)
+            forwards;
+    }
 
-    animation:
-      bottleIntoPhoneSmall
-      1.45s
-      cubic-bezier(.2,.8,.2,1)
-      forwards;
-  }
+    .phone{
+
+        width:min(350px,92vw);
+        height:min(620px,88dvh);
+
+        border-radius:38px;
+    }
+
+    .phone::before{
+
+        width:86px;
+        height:21px;
+    }
+
+    .screen{
+
+        border-radius:30px;
+
+        padding:
+            40px
+            22px
+            30px;
+    }
+
+    .phone-text{
+
+        font-size:19px;
+
+        line-height:2;
+    }
+
+    .phone-text .ph{
+
+        font-size:29px;
+    }
 }
 
 
-/* شیشه برای صفحه‌های کوتاه */
+/* انیمیشن مخصوص صفحه کوتاه */
 
 @keyframes bottleIntoPhoneSmall{
 
-  0%{
+    0%{
 
-    opacity:1;
+        opacity:1;
 
-    transform:
-      translateX(-50%)
-      scale(.82);
-  }
+        top:calc(100% - 330px);
 
-  45%{
+        transform:
+            translateX(-50%)
+            scale(.82);
+    }
 
-    opacity:1;
+    25%{
 
-    transform:
-      translateX(-50%)
-      translateY(-25px)
-      scale(.57);
-  }
+        opacity:1;
 
-  100%{
+        top:calc(100% - 370px);
 
-    opacity:0;
+        transform:
+            translateX(-50%)
+            scale(.75);
+    }
 
-    transform:
-      translateX(-50%)
-      scale(.12);
-  }
-}
+    50%{
 
+        opacity:1;
 
-/* =========================================================
-   ACCESSIBILITY / TOUCH
-========================================================= */
+        top:65%;
 
-@media(prefers-reduced-motion:reduce){
+        transform:
+            translateX(-50%)
+            scale(.52);
+    }
 
-  *,
-  *::before,
-  *::after{
+    72%{
 
-    animation-duration:.01ms !important;
+        opacity:.85;
 
-    animation-iteration-count:1 !important;
+        top:53%;
 
-    scroll-behavior:auto !important;
-  }
-}
+        transform:
+            translateX(-50%)
+            scale(.30);
+    }
 
+    88%{
 
-/* =========================================================
-   VERY SMALL WIDTH
-========================================================= */
+        opacity:.45;
 
-@media(max-width:360px){
+        top:50%;
 
-  .phone{
+        transform:
+            translateX(-50%)
+            translateY(-50%)
+            scale(.13);
+    }
 
-    width:196px;
-    height:372px;
+    100%{
 
-    border-radius:30px;
-  }
+        opacity:0;
 
-  .screen{
+        top:50%;
 
-    border-radius:23px;
-
-    padding:
-      28px 15px;
-  }
-
-  .phone-text{
-
-    font-size:15px;
-
-    line-height:2.15;
-  }
+        transform:
+            translateX(-50%)
+            translateY(-50%)
+            scale(.02);
+    }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
+<div class="page" id="page">
 
-<!-- =======================================================
-     MAIN PAGE
-======================================================= -->
-
-<div
-  class="page"
-  id="page"
->
-
-  <div class="stage">
+    <div class="stage">
 
 
-    <!-- ===================================================
-         FIRST HEART
-    ==================================================== -->
+        <!-- قلب مرحله قبل -->
 
-    <div
-      class="first-heart"
-      aria-hidden="true"
-    >
-      ❤️
-    </div>
+        <div class="first-heart">
+            ❤️
+        </div>
 
 
-    <!-- ===================================================
-         BOTTLE
-    ==================================================== -->
-
-    <div
-      class="bottle"
-      id="bottle"
-      aria-hidden="true"
-    >
-
-      <div class="neck"></div>
-
-      <div class="rim"></div>
-
-      <div class="body">
-
-        <div class="shine"></div>
+        <!-- شیشه -->
 
         <div
-          class="inside"
-          id="inside"
-        ></div>
-
-      </div>
-
-    </div>
-
-
-    <!-- ===================================================
-         PHONE
-    ==================================================== -->
-
-    <div
-      class="phone"
-      id="phone"
-      role="button"
-      tabindex="0"
-      aria-label="ادامه"
-      aria-disabled="true"
-    >
-
-      <div class="screen">
-
-        <div
-          class="phone-text"
-          id="phoneText"
+            class="bottle"
+            id="bottle"
         >
 
-          کله پوک اینقدر فکر کردن نداشت،
+            <div class="body">
 
-          <br>
+                <div
+                    class="inside"
+                    id="inside"
+                ></div>
 
-          معلومه که محمدحسین تو رو از کل دنیا بیشتر دوست داره
-
-          <span class="ph">
-            ❤️
-          </span>
+            </div>
 
         </div>
 
-      </div>
+
+        <!-- گوشی -->
+
+        <div
+            class="phone"
+            id="phone"
+        >
+
+            <div class="screen">
+
+                <div
+                    class="phone-text"
+                    id="phoneText"
+                >
+                    کله پوک اینقدر فکر کردن نداشت،
+                    <br>
+                    معلومه که محمدحسین تو رو از کل دنیا بیشتر دوست داره
+
+                    <span class="ph">
+                        ❤️
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
     </div>
-
-
-  </div>
 
 </div>
 
 
 <script>
 
-/* =========================================================
+/* =========================
    ELEMENTS
-========================================================= */
+========================= */
 
 const page =
-  document.getElementById("page");
+    document.getElementById("page");
 
 const inside =
-  document.getElementById("inside");
+    document.getElementById("inside");
 
 const phone =
-  document.getElementById("phone");
+    document.getElementById("phone");
 
-
-/* =========================================================
-   STATE
-========================================================= */
 
 let active = false;
-
 let done = false;
 
-let navigationStarted = false;
+
+/* =========================
+   HEART INSIDE BOTTLE
+========================= */
+
+function addInsideHeart(first = false){
+
+    const h =
+        document.createElement("span");
+
+    h.className = "heart";
+
+    h.textContent = "❤️";
 
 
-/* =========================================================
-   CONFIG
-========================================================= */
-
-const CONFIG = {
-
-  /*
-    زمان شروع اضافه شدن قلب‌ها
-  */
-
-  rainStart:2250,
+    h.style.setProperty(
+        "--s",
+        first
+            ? "24px"
+            : (13 + Math.random() * 15) + "px"
+    );
 
 
-  /*
-    تعداد قلب‌های بارشی
-  */
-
-  rainCount:34,
-
-
-  /*
-    زمان شروع انیمیشن نهایی
-  */
-
-  completeAt:7900,
+    h.style.setProperty(
+        "--x",
+        (5 + Math.random() * 88) + "%"
+    );
 
 
-  /*
-    مدت خروج
-  */
-
-  exitDuration:800,
-
-
-  /*
-    مقصد مرحله بعد
-  */
-
-  nextStage:"stage4.5.html"
-
-};
+    h.style.setProperty(
+        "--y",
+        (2 + Math.random() * 88) + "%"
+    );
 
 
-/* =========================================================
-   ADD HEART INSIDE BOTTLE
-========================================================= */
-
-function addInsideHeart(first=false){
-
-  const h =
-    document.createElement("span");
-
-  h.className =
-    "heart";
-
-  h.textContent =
-    "❤️";
+    h.style.setProperty(
+        "--d",
+        (Math.random() * 1.5) + "s"
+    );
 
 
-  h.style.setProperty(
-    "--s",
-    first
-      ? "24px"
-      : (13 + Math.random()*15) + "px"
-  );
-
-
-  h.style.setProperty(
-    "--x",
-    (5 + Math.random()*88) + "%"
-  );
-
-
-  h.style.setProperty(
-    "--y",
-    (2 + Math.random()*88) + "%"
-  );
-
-
-  h.style.setProperty(
-    "--d",
-    (Math.random()*1.5) + "s"
-  );
-
-
-  inside.appendChild(h);
-
+    inside.appendChild(h);
 }
 
 
-/* =========================================================
-   CREATE RAIN HEART
-========================================================= */
+/* =========================
+   FALLING HEART
+========================= */
 
 function rain(i){
 
-  const h =
-    document.createElement("div");
+    const h =
+        document.createElement("div");
+
+    h.className =
+        "rain-heart";
 
 
-  h.className =
-    "rain-heart";
+    h.textContent =
+        Math.random() > .18
+            ? "❤️"
+            : "🩷";
 
 
-  h.textContent =
-    Math.random() > .18
-      ? "❤️"
-      : "🩷";
+    const delay =
+        i * .13 +
+        Math.random() * .35;
 
 
-  const delay =
-    i * .13 +
-    Math.random() * .35;
+    const duration =
+        2.45 +
+        Math.random() * 1.55;
 
 
-  const duration =
-    2.45 +
-    Math.random() * 1.55;
+    h.style.setProperty(
+        "--x",
+        (7 + Math.random() * 86) + "%"
+    );
 
 
-  h.style.setProperty(
-    "--x",
-    (7 + Math.random()*86) + "%"
-  );
+    h.style.setProperty(
+        "--s",
+        (13 + Math.random() * 15) + "px"
+    );
 
 
-  h.style.setProperty(
-    "--s",
-    (13 + Math.random()*15) + "px"
-  );
+    h.style.setProperty(
+        "--t",
+        duration + "s"
+    );
 
 
-  h.style.setProperty(
-    "--t",
-    duration + "s"
-  );
+    h.style.setProperty(
+        "--delay",
+        delay + "s"
+    );
 
 
-  h.style.setProperty(
-    "--delay",
-    delay + "s"
-  );
+    h.style.setProperty(
+        "--drift",
+        (Math.random() * 55 - 27) + "px"
+    );
 
 
-  h.style.setProperty(
-    "--drift",
-    (Math.random()*55 - 27) + "px"
-  );
+    document.body.appendChild(h);
 
 
-  document.body.appendChild(h);
-
-
-  /*
-    وقتی قلب بارشی تمام شد،
-    آن را داخل شیشه قرار می‌دهیم.
-  */
-
-  setTimeout(
-
-    () => {
-
-      /*
-        اگر صفحه در حال خروج نیست،
-        قلب را داخل شیشه قرار بده.
-      */
-
-      if(!done){
+    setTimeout(() => {
 
         addInsideHeart();
 
-      }
+        h.remove();
 
-
-      h.remove();
-
-    },
-
-    Math.max(
-      0,
-      (delay + duration)*1000 - 70
-    )
-
-  );
-
+    }, (delay + duration) * 1000 - 70);
 }
 
 
-/* =========================================================
-   START HEART RAIN
-========================================================= */
+/* =========================
+   START
+========================= */
 
-setTimeout(
+/*
+    قلب مرحله قبل
+    و سپس بارش قلب‌ها
+*/
 
-  () => {
-
-    /*
-      قلب اصلی
-    */
+setTimeout(() => {
 
     addInsideHeart(true);
 
+    for(let i = 0; i < 34; i++){
 
-    /*
-      قلب‌های بارشی
-    */
-
-    for(
-      let i=0;
-      i<CONFIG.rainCount;
-      i++
-    ){
-
-      rain(i);
-
+        rain(i);
     }
 
-  },
+}, 2250);
 
-  CONFIG.rainStart
-
-);
-
-
-/* =========================================================
-   COMPLETE ANIMATION
-========================================================= */
-
-function completeAnimation(){
-
-  /*
-    اگر قبلاً فعال شده،
-    دوباره اجرا نشود.
-  */
-
-  if(active || done){
-
-    return;
-
-  }
-
-
-  page.classList.add(
-    "complete"
-  );
-
-
-  active = true;
-
-
-  /*
-    گوشی از این لحظه واقعاً
-    قابل لمس است.
-  */
-
-  phone.style.pointerEvents =
-    "auto";
-
-
-  phone.style.cursor =
-    "pointer";
-
-
-  phone.setAttribute(
-    "aria-disabled",
-    "false"
-  );
-
-}
-
-
-/* =========================================================
-   START FINAL ANIMATION
-========================================================= */
-
-setTimeout(
-
-  completeAnimation,
-
-  CONFIG.completeAt
-
-);
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function navigateToNextStage(){
-
-  /*
-    جلوگیری از چندبار انتقال
-  */
-
-  if(navigationStarted){
-
-    return;
-
-  }
-
-
-  navigationStarted = true;
-
-
-  /*
-    مقصد اصلی:
-    stage4.5.html
-  */
-
-  window.location.assign(
-    CONFIG.nextStage
-  );
-
-}
-
-
-/* =========================================================
-   PHONE ACTIVATION
-========================================================= */
-
-function activatePhone(){
-
-  /*
-    قبل از ظاهر شدن کامل گوشی،
-    لمس هیچ اثری ندارد.
-  */
-
-  if(!active){
-
-    return;
-
-  }
-
-
-  /*
-    جلوگیری از چند کلیک
-  */
-
-  if(done){
-
-    return;
-
-  }
-
-
-  done = true;
-
-
-  /*
-    از اینجا به بعد گوشی دیگر
-    قابل کلیک نیست.
-  */
-
-  phone.style.pointerEvents =
-    "none";
-
-
-  phone.setAttribute(
-    "aria-disabled",
-    "true"
-  );
-
-
-  /*
-    شروع خروج
-  */
-
-  page.classList.add(
-    "exit"
-  );
-
-
-  /*
-    بعد از پایان انیمیشن خروج،
-    وارد مرحله 4.5 می‌شویم.
-  */
-
-  setTimeout(
-
-    navigateToNextStage,
-
-    CONFIG.exitDuration
-
-  );
-
-}
-
-
-/* =========================================================
-   MOUSE CLICK
-========================================================= */
-
-phone.addEventListener(
-
-  "click",
-
-  function(){
-
-    activatePhone();
-
-  }
-
-);
-
-
-/* =========================================================
-   KEYBOARD SUPPORT
-========================================================= */
-
-phone.addEventListener(
-
-  "keydown",
-
-  function(event){
-
-    /*
-      Enter یا Space
-      همان رفتار لمس گوشی را انجام می‌دهد.
-    */
-
-    if(
-      event.key === "Enter" ||
-      event.key === " "
-    ){
-
-      event.preventDefault();
-
-      activatePhone();
-
-    }
-
-  }
-
-);
-
-
-/* =========================================================
-   PREVENT ACCIDENTAL DOUBLE TOUCH
-========================================================= */
-
-phone.addEventListener(
-
-  "touchend",
-
-  function(event){
-
-    /*
-      جلوگیری از رفتارهای عجیب مرورگر
-      در بعضی گوشی‌ها
-    */
-
-    event.preventDefault();
-
-    activatePhone();
-
-  },
-
-  {
-    passive:false
-  }
-
-);
-
-
-/* =========================================================
-   DEBUG-SAFE FALLBACK
-========================================================= */
 
 /*
-  اگر به هر دلیلی animationend یا CSS animation
-  رفتار غیرعادی داشت، زمان‌بندی اصلی JS همچنان
-  مرحله را فعال می‌کند.
+    زمان شروع ورود شیشه به گوشی.
+
+    آخرین قلب‌ها حدوداً تا
+    این حوالی تمام شده‌اند.
 */
 
+setTimeout(() => {
 
-window.addEventListener(
+    page.classList.add("complete");
 
-  "pageshow",
+    active = true;
 
-  function(){
-
-    /*
-      وقتی صفحه دوباره از cache باز می‌شود،
-      وضعیت اولیه را حفظ می‌کنیم.
-    */
-
-    if(
-      !page.classList.contains("exit")
-    ){
-
-      phone.style.pointerEvents =
-        active
-          ? "auto"
-          : "none";
-
-    }
-
-  }
-
-);
+}, 7900);
 
 
-/* =========================================================
-   PREVENT CONTEXT MENU ON PHONE
-========================================================= */
+/* =========================
+   PHONE CLICK
+========================= */
 
 phone.addEventListener(
+    "click",
+    () => {
 
-  "contextmenu",
+        /*
+            تا قبل از کامل شدن
+            اجازه ورود نداریم.
+        */
 
-  function(event){
+        if(!active || done){
 
-    event.preventDefault();
+            return;
+        }
 
-  }
 
+        done = true;
+
+
+        /*
+            خروج نرم
+        */
+
+        page.classList.add("exit");
+
+
+        /*
+            اصلاح مهم:
+            مرحله بعد 4.5 است
+            نه stage5
+        */
+
+        setTimeout(() => {
+
+            window.location.href =
+                "stage4.5.html";
+
+        }, 800);
+
+    }
 );
 
 </script>
 
-
 </body>
-
 </html>
