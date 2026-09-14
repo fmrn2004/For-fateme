@@ -179,6 +179,7 @@ button {
 
     0% {
         opacity: 0;
+
         transform:
             translate3d(0, 0, 0)
             rotate(0deg)
@@ -199,6 +200,7 @@ button {
 
     100% {
         opacity: 0;
+
         transform:
             translate3d(var(--move), -110vh, 0)
             rotate(var(--rotate))
@@ -320,8 +322,11 @@ button {
 
 .view.hidden {
     opacity: 0;
+
     pointer-events: none;
-    transform: scale(0.96);
+
+    transform:
+        scale(0.96);
 }
 
 
@@ -911,8 +916,12 @@ button {
     *::before,
     *::after {
         animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.001ms !important;
     }
 
 }
@@ -958,7 +967,7 @@ button {
     }
 
     .box {
-        width: 43px;
+        width: 55px;
         height: 50px;
         font-size: 22px;
     }
@@ -982,7 +991,7 @@ button {
     }
 
     .box {
-        width: 42px;
+        width: 50px;
     }
 
 }
@@ -1075,11 +1084,6 @@ input:focus-visible {
             id="screen"
         >
 
-
-            <!-- =================================================
-                 QUESTION VIEW
-            ================================================== -->
-
             <section
                 class="view"
                 id="questionView"
@@ -1157,10 +1161,6 @@ input:focus-visible {
             </section>
 
 
-            <!-- =================================================
-                 SUCCESS
-            ================================================== -->
-
             <section
                 class="success"
                 id="success"
@@ -1185,10 +1185,6 @@ input:focus-visible {
 
             </section>
 
-
-            <!-- =================================================
-                 FINAL
-            ================================================== -->
 
             <section
                 class="final"
@@ -1215,7 +1211,6 @@ input:focus-visible {
                 </div>
 
             </section>
-
 
         </div>
 
@@ -1254,10 +1249,7 @@ const CONFIG = {
         55,
 
     autoFocus:
-        true,
-
-    maxWrongAttempts:
-        3
+        true
 
 };
 
@@ -1269,7 +1261,6 @@ const CONFIG = {
 const QUESTIONS = [
 
     {
-
         id:
             "children",
 
@@ -1307,13 +1298,19 @@ const QUESTIONS = [
             "اوه اوه 😍<br>" +
             "۴ تا بچه گوگول‌مگولی شبیه مامانشون خوشگل؟!<br>" +
             "محمدحسین از همین الان کم آورده 😂❤️"
-
     },
 
-    {
 
+    {
         id:
             "proposal",
+
+        /*
+           10 / 01
+
+           به‌خاطر direction:ltr داخل کد،
+           این همان ساختاری است که قبلاً تعیین کردیم.
+        */
 
         parts:
             ["10", "01"],
@@ -1348,11 +1345,10 @@ const QUESTIONS = [
 
             "آهاااا... پس اون شب یادت مونده 😏🌙<br>" +
             "خوبه... داشتم به حافظه‌ت شک می‌کردم 😂❤️"
-
     },
 
-    {
 
+    {
         id:
             "wedding",
 
@@ -1389,7 +1385,6 @@ const QUESTIONS = [
 
             "اینجاش دیگه خیلی مشکوکه... 😏<br>" +
             "ظاهراً واقعاً خودِ فاطمه‌ای! 😂❤️"
-
     }
 
 ];
@@ -1535,36 +1530,28 @@ function normalizeDigits(value) {
         return "";
     }
 
-    let result =
-        value;
-
-    result =
-        result.replace(
+    return value
+        .replace(
             /[۰-۹]/g,
             character =>
                 PERSIAN_DIGITS[character]
-        );
-
-    result =
-        result.replace(
+        )
+        .replace(
             /[٠-٩]/g,
             character =>
                 ARABIC_DIGITS[character]
         );
 
-    return result;
-
 }
 
-
-/* =========================================================
-   ONLY DIGITS
-========================================================= */
 
 function digitsOnly(value) {
 
     return normalizeDigits(value)
-        .replace(/[^0-9]/g, "");
+        .replace(
+            /[^0-9]/g,
+            ""
+        );
 
 }
 
@@ -1573,7 +1560,10 @@ function digitsOnly(value) {
    TIMER MANAGER
 ========================================================= */
 
-function addTimer(callback, delay) {
+function addTimer(
+    callback,
+    delay
+) {
 
     const timer =
         window.setTimeout(
@@ -1591,7 +1581,9 @@ function addTimer(callback, delay) {
             delay
         );
 
-    state.timers.push(timer);
+    state.timers.push(
+        timer
+    );
 
     return timer;
 
@@ -1602,7 +1594,9 @@ function clearAllTimers() {
 
     state.timers.forEach(
         timer =>
-            window.clearTimeout(timer)
+            window.clearTimeout(
+                timer
+            )
     );
 
     state.timers.length =
@@ -1634,10 +1628,17 @@ function listen(
 
     state.listeners.push({
 
-        element,
-        event,
-        handler,
-        options
+        element:
+            element,
+
+        event:
+            event,
+
+        handler:
+            handler,
+
+        options:
+            options
 
     });
 
@@ -1645,10 +1646,13 @@ function listen(
 
 
 /* =========================================================
-   RANDOM NUMBER
+   RANDOM
 ========================================================= */
 
-function random(min, max) {
+function random(
+    min,
+    max
+) {
 
     return Math.floor(
         Math.random() *
@@ -1681,7 +1685,9 @@ function createStars() {
     ) {
 
         const star =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
         star.className =
             "star";
@@ -1703,8 +1709,11 @@ function createStars() {
         );
 
         star.style.opacity =
-            (Math.random() * 0.55 + 0.15)
-            .toFixed(2);
+            (
+                Math.random() *
+                0.55 +
+                0.15
+            ).toFixed(2);
 
         fragment.appendChild(
             star
@@ -1742,7 +1751,9 @@ function createHearts() {
     ) {
 
         const heart =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
         heart.className =
             "floating-heart";
@@ -1794,35 +1805,31 @@ function createHearts() {
 
 
 /* =========================================================
-   CLEAR INPUTS
+   RESET INPUT VALUES
 ========================================================= */
 
-function clearInputs() {
+function resetInputValues() {
 
-    state.inputs
-        .forEach(
-            input => {
+    state.inputs.forEach(
+        input => {
 
-                input.value =
-                    "";
+            input.value =
+                "";
 
-                input.classList.remove(
-                    "filled"
-                );
+            input.classList.remove(
+                "filled"
+            );
 
-                input.classList.remove(
-                    "invalid"
-                );
+            input.classList.remove(
+                "invalid"
+            );
 
-                input.classList.remove(
-                    "valid"
-                );
+            input.classList.remove(
+                "valid"
+            );
 
-            }
-        );
-
-    state.inputs =
-        [];
+        }
+    );
 
 }
 
@@ -1833,12 +1840,13 @@ function clearInputs() {
 
 function createInput(
     maxLength,
-    index,
-    groupIndex
+    index
 ) {
 
     const input =
-        document.createElement("input");
+        document.createElement(
+            "input"
+        );
 
     input.className =
         "box";
@@ -1863,14 +1871,11 @@ function createInput(
 
     input.setAttribute(
         "aria-label",
-        "رقم " + (index + 1)
+        "بخش " + (index + 1) + " از رمز"
     );
 
     input.dataset.index =
         String(index);
-
-    input.dataset.group =
-        String(groupIndex);
 
     listen(
         input,
@@ -1926,60 +1931,48 @@ function createInput(
 
 
 /* =========================================================
-   CREATE CODE
+   CREATE CODE INPUTS
 ========================================================= */
 
-function createCodeInputs(parts) {
+function createCodeInputs(
+    parts
+) {
 
-    clearInputs();
+    state.inputs =
+        [];
 
     DOM.code.innerHTML =
         "";
 
-    let globalIndex =
-        0;
-
     parts.forEach(
         (
             part,
-            groupIndex
+            index
         ) => {
 
-            const length =
-                part.length;
-
-            for (
-                let digitIndex = 0;
-                digitIndex < length;
-                digitIndex++
-            ) {
-
-                const input =
-                    createInput(
-                        1,
-                        globalIndex,
-                        groupIndex
-                    );
-
-                DOM.code.appendChild(
-                    input
+            const input =
+                createInput(
+                    part.length,
+                    index
                 );
 
-                state.inputs.push(
-                    input
-                );
+            DOM.code.appendChild(
+                input
+            );
 
-                globalIndex++;
-
-            }
+            state.inputs.push(
+                input
+            );
 
             if (
-                groupIndex <
+                index <
                 parts.length - 1
             ) {
 
                 const slash =
-                    document.createElement("span");
+                    document.createElement(
+                        "span"
+                    );
 
                 slash.className =
                     "slash";
@@ -2013,28 +2006,38 @@ function handleInput(
     index
 ) {
 
-    if (state.locked) {
+    if (
+        state.locked ||
+        state.finished
+    ) {
         return;
     }
 
     const input =
         event.currentTarget;
 
-    let value =
+    const currentIndex =
+        index;
+
+    const question =
+        getQuestion();
+
+    if (!question) {
+        return;
+    }
+
+    const maxLength =
+        question.parts[
+            currentIndex
+        ].length;
+
+    const value =
         digitsOnly(
             input.value
+        ).slice(
+            0,
+            maxLength
         );
-
-    if (value.length > 1) {
-
-        distributeDigits(
-            value,
-            index
-        );
-
-        return;
-
-    }
 
     input.value =
         value;
@@ -2043,23 +2046,24 @@ function handleInput(
         input
     );
 
+    hideError();
+
     if (
-        value.length === 1
+        value.length ===
+        maxLength
     ) {
 
         focusNext(
-            index
+            currentIndex
         );
 
     }
-
-    hideError();
 
 }
 
 
 /* =========================================================
-   DISTRIBUTE PASTED DIGITS
+   DISTRIBUTE DIGITS
 ========================================================= */
 
 function distributeDigits(
@@ -2067,31 +2071,89 @@ function distributeDigits(
     startIndex
 ) {
 
-    const clean =
+    const question =
+        getQuestion();
+
+    if (!question) {
+        return;
+    }
+
+    let clean =
         digitsOnly(value);
 
     let position =
         startIndex;
 
-    for (
-        const digit of clean
+    while (
+        clean.length > 0 &&
+        position < state.inputs.length
     ) {
 
+        const input =
+            state.inputs[
+                position
+            ];
+
+        const capacity =
+            question.parts[
+                position
+            ].length;
+
+        const current =
+            digitsOnly(
+                input.value
+            );
+
+        const available =
+            capacity -
+            current.length;
+
         if (
-            position >=
-            state.inputs.length
+            available <= 0
         ) {
-            break;
+
+            position++;
+
+            continue;
+
         }
 
-        state.inputs[position].value =
-            digit;
+        const chunk =
+            clean.slice(
+                0,
+                available
+            );
+
+        input.value =
+            (
+                current +
+                chunk
+            ).slice(
+                0,
+                capacity
+            );
+
+        clean =
+            clean.slice(
+                chunk.length
+            );
 
         updateInputState(
-            state.inputs[position]
+            input
         );
 
-        position++;
+        if (
+            input.value.length ===
+            capacity
+        ) {
+
+            position++;
+
+        } else {
+
+            break;
+
+        }
 
     }
 
@@ -2100,7 +2162,9 @@ function distributeDigits(
         state.inputs.length
     ) {
 
-        state.inputs[position].focus();
+        state.inputs[
+            position
+        ].focus();
 
     } else {
 
@@ -2129,7 +2193,10 @@ function handlePaste(
     index
 ) {
 
-    if (state.locked) {
+    if (
+        state.locked ||
+        state.finished
+    ) {
         return;
     }
 
@@ -2144,10 +2211,14 @@ function handlePaste(
     }
 
     const text =
-        clipboard.getData("text");
+        clipboard.getData(
+            "text"
+        );
 
     const clean =
-        digitsOnly(text);
+        digitsOnly(
+            text
+        );
 
     if (!clean) {
         return;
@@ -2162,7 +2233,7 @@ function handlePaste(
 
 
 /* =========================================================
-   KEYBOARD HANDLER
+   KEYBOARD
 ========================================================= */
 
 function handleKeydown(
@@ -2170,9 +2241,15 @@ function handleKeydown(
     index
 ) {
 
-    if (state.locked) {
+    if (
+        state.locked ||
+        state.finished
+    ) {
+
         event.preventDefault();
+
         return;
+
     }
 
     const key =
@@ -2195,7 +2272,9 @@ function handleKeydown(
     ) {
 
         const input =
-            state.inputs[index];
+            state.inputs[
+                index
+            ];
 
         if (
             input &&
@@ -2245,7 +2324,9 @@ function handleKeydown(
     ) {
 
         const normalized =
-            digitsOnly(key);
+            digitsOnly(
+                key
+            );
 
         if (
             normalized === ""
@@ -2264,14 +2345,32 @@ function handleKeydown(
    FOCUS
 ========================================================= */
 
-function handleFocus(input) {
+function handleFocus(
+    input
+) {
 
-    input.select();
+    addTimer(
+        () => {
+
+            if (
+                document.activeElement ===
+                input
+            ) {
+
+                input.select();
+
+            }
+
+        },
+        0
+    );
 
 }
 
 
-function handleBlur(input) {
+function handleBlur(
+    input
+) {
 
     updateInputState(
         input
@@ -2284,7 +2383,9 @@ function handleBlur(input) {
    INPUT STATE
 ========================================================= */
 
-function updateInputState(input) {
+function updateInputState(
+    input
+) {
 
     input.classList.remove(
         "invalid"
@@ -2314,10 +2415,12 @@ function updateInputState(input) {
 
 
 /* =========================================================
-   FOCUS NEXT
+   NEXT INPUT
 ========================================================= */
 
-function focusNext(index) {
+function focusNext(
+    index
+) {
 
     const next =
         state.inputs[
@@ -2328,7 +2431,15 @@ function focusNext(index) {
 
         addTimer(
             () => {
-                next.focus();
+
+                if (
+                    !state.locked
+                ) {
+
+                    next.focus();
+
+                }
+
             },
             CONFIG.inputDelay
         );
@@ -2339,34 +2450,36 @@ function focusNext(index) {
 
 
 /* =========================================================
-   FOCUS PREVIOUS
+   PREVIOUS INPUT
 ========================================================= */
 
-function focusPrevious(index) {
+function focusPrevious(
+    index
+) {
 
     const previous =
         state.inputs[
             index - 1
         ];
 
-    if (previous) {
-
-        previous.value =
-            "";
-
-        updateInputState(
-            previous
-        );
-
-        previous.focus();
-
+    if (!previous) {
+        return;
     }
+
+    previous.value =
+        "";
+
+    updateInputState(
+        previous
+    );
+
+    previous.focus();
 
 }
 
 
 /* =========================================================
-   GET CURRENT QUESTION
+   CURRENT QUESTION
 ========================================================= */
 
 function getQuestion() {
@@ -2427,6 +2540,11 @@ function loadQuestion() {
         "show"
     );
 
+    DOM.success.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
     DOM.questionView.classList.remove(
         "hidden"
     );
@@ -2477,13 +2595,12 @@ function focusFirstInput() {
 
 function readAnswer() {
 
-    return state.inputs
-        .map(
-            input =>
-                digitsOnly(
-                    input.value
-                )
-        );
+    return state.inputs.map(
+        input =>
+            digitsOnly(
+                input.value
+            )
+    );
 
 }
 
@@ -2503,18 +2620,32 @@ function answerComplete() {
 
     if (
         state.inputs.length !==
-        question.parts.join("").length
+        question.parts.length
     ) {
 
         return false;
 
     }
 
-    return state.inputs.every(
-        input =>
-            digitsOnly(
-                input.value
-            ).length === 1
+    return question.parts.every(
+        (
+            part,
+            index
+        ) => {
+
+            const value =
+                digitsOnly(
+                    state.inputs[
+                        index
+                    ].value
+                );
+
+            return (
+                value.length ===
+                part.length
+            );
+
+        }
     );
 
 }
@@ -2531,7 +2662,9 @@ function checkAnswer() {
         state.finished ||
         state.transitioning
     ) {
+
         return;
+
     }
 
     if (
@@ -2539,7 +2672,7 @@ function checkAnswer() {
     ) {
 
         showError(
-            "اول همه‌ی عددها رو وارد کن 😏"
+            "اول همه‌ی کادرها رو کامل کن 😏"
         );
 
         shakeCode();
@@ -2554,17 +2687,17 @@ function checkAnswer() {
     const answer =
         readAnswer();
 
-    const expected =
-        question.parts
-            .join("")
-            .split("");
-
-    const actual =
-        answer.join("");
-
     const correct =
-        actual ===
-        expected.join("");
+        answer.every(
+            (
+                value,
+                index
+            ) =>
+                value ===
+                question.parts[
+                    index
+                ]
+        );
 
     if (correct) {
 
@@ -2585,14 +2718,14 @@ function checkAnswer() {
 
 function handleWrongAnswer() {
 
-    state.wrongAttempts++;
-
     const question =
         getQuestion();
 
-    markInputsInvalid();
+    if (!question) {
+        return;
+    }
 
-    shakeCode();
+    state.wrongAttempts++;
 
     const hintIndex =
         Math.min(
@@ -2606,6 +2739,10 @@ function handleWrongAnswer() {
             question.errors.length - 1
         );
 
+    markInputsInvalid();
+
+    shakeCode();
+
     showHint(
         question.hints[
             hintIndex
@@ -2618,10 +2755,21 @@ function handleWrongAnswer() {
         ]
     );
 
-    clearInputs();
+    /*
+       مهم:
+       اینجا دیگر state.inputs را خالی نمی‌کنیم.
+       فقط مقدار کادرها پاک می‌شود تا reference
+       ورودی‌ها باقی بماند.
+    */
 
     addTimer(
-        focusFirstInput,
+        () => {
+
+            resetInputValues();
+
+            focusFirstInput();
+
+        },
         250
     );
 
@@ -2644,6 +2792,10 @@ function handleCorrectAnswer() {
 
     const question =
         getQuestion();
+
+    if (!question) {
+        return;
+    }
 
     showSuccess(
         question.success
@@ -2673,7 +2825,7 @@ function handleCorrectAnswer() {
 
 
 /* =========================================================
-   MARK INVALID
+   INVALID
 ========================================================= */
 
 function markInputsInvalid() {
@@ -2696,7 +2848,7 @@ function markInputsInvalid() {
 
 
 /* =========================================================
-   MARK VALID
+   VALID
 ========================================================= */
 
 function markInputsValid() {
@@ -2752,7 +2904,9 @@ function shakeCode() {
    HINT
 ========================================================= */
 
-function showHint(text) {
+function showHint(
+    text
+) {
 
     DOM.hint.textContent =
         text;
@@ -2774,7 +2928,9 @@ function showHint(text) {
    ERROR
 ========================================================= */
 
-function showError(text) {
+function showError(
+    text
+) {
 
     DOM.error.textContent =
         text;
@@ -2805,7 +2961,9 @@ function hideError() {
    SUCCESS
 ========================================================= */
 
-function showSuccess(text) {
+function showSuccess(
+    text
+) {
 
     DOM.successText.innerHTML =
         text;
@@ -2877,6 +3035,11 @@ function showFinal() {
         "show"
     );
 
+    DOM.success.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
     DOM.final.classList.add(
         "show"
     );
@@ -2898,13 +3061,17 @@ function goNextPage() {
     if (
         state.transitioning
     ) {
+
         return;
+
     }
 
     if (
         !state.finished
     ) {
+
         return;
+
     }
 
     state.transitioning =
@@ -2922,31 +3089,8 @@ function goNextPage() {
     addTimer(
         () => {
 
-            try {
-
-                window.location.href =
-                    CONFIG.nextPage;
-
-            } catch (
-                navigationError
-            ) {
-
-                console.error(
-                    "Stage 4.5 navigation error:",
-                    navigationError
-                );
-
-                state.transitioning =
-                    false;
-
-                DOM.phone.classList.remove(
-                    "exit"
-                );
-
-                DOM.final.style.pointerEvents =
-                    "auto";
-
-            }
+            window.location.href =
+                CONFIG.nextPage;
 
         },
         CONFIG.animationDuration
@@ -2970,7 +3114,9 @@ function handleFinalClick() {
    FINAL KEYBOARD
 ========================================================= */
 
-function handleFinalKeydown(event) {
+function handleFinalKeydown(
+    event
+) {
 
     if (
         event.key === "Enter" ||
@@ -2987,10 +3133,12 @@ function handleFinalKeydown(event) {
 
 
 /* =========================================================
-   TOUCH PROTECTION
+   TOUCH
 ========================================================= */
 
-function handleTouchStart(event) {
+function handleTouchStart(
+    event
+) {
 
     if (
         state.locked &&
@@ -3044,7 +3192,7 @@ function handleVisibilityChange() {
 
 
 /* =========================================================
-   GLOBAL ERROR HANDLER
+   GLOBAL ERROR
 ========================================================= */
 
 function handleGlobalError(
@@ -3053,7 +3201,8 @@ function handleGlobalError(
 
     console.error(
         "Stage 4.5 error:",
-        event.error || event.message
+        event.error ||
+        event.message
     );
 
 }
@@ -3148,7 +3297,9 @@ function initialize() {
     if (
         state.initialized
     ) {
+
         return;
+
     }
 
     state.initialized =
@@ -3192,13 +3343,13 @@ if (
 
 
 /* =========================================================
-   DEBUG INFORMATION
+   DEBUG
 ========================================================= */
 
 window.Stage45 = {
 
     version:
-        "4.5.0",
+        "4.5.1",
 
     getQuestion:
         () =>
@@ -3230,6 +3381,15 @@ window.Stage45 = {
 
             DOM.final.classList.remove(
                 "show"
+            );
+
+            DOM.final.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            DOM.phone.classList.remove(
+                "exit"
             );
 
             DOM.questionView.classList.remove(
