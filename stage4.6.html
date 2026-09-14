@@ -1,0 +1,2867 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta name="theme-color" content="#080714">
+
+<title>فاطمه من ❤️</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:#080714;
+    color:#fff;
+}
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+#app{
+    position:relative;
+
+    width:100%;
+    height:100vh;
+    height:100dvh;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(92,72,150,.25),
+            transparent 42%
+        ),
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(40,120,255,.08),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255,70,160,.08),
+            transparent 35%
+        ),
+        #080714;
+
+    isolation:isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+.bg-glow{
+    position:absolute;
+    inset:-30%;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,255,255,.07),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(0,140,255,.09),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 70% 65%,
+            rgba(255,80,180,.09),
+            transparent 25%
+        );
+
+    filter:blur(35px);
+
+    animation:
+        glowBreath 5s ease-in-out infinite;
+}
+
+@keyframes glowBreath{
+
+    0%,
+    100%{
+        transform:scale(1);
+        opacity:.65;
+    }
+
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+#particleCanvas{
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+
+    z-index:5;
+}
+
+
+/* =========================================================
+   HEART FIELD
+========================================================= */
+
+#heartField{
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:4;
+}
+
+.floating-heart{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:var(--size);
+    height:var(--size);
+
+    opacity:0;
+
+    transform:
+        translate3d(
+            var(--x),
+            110vh,
+            0
+        )
+        rotate(var(--rotation))
+        scale(var(--scale));
+
+    animation:
+        heartFloat
+        var(--duration)
+        linear
+        infinite;
+
+    animation-delay:var(--delay);
+
+    will-change:transform,opacity;
+
+    filter:
+        drop-shadow(
+            0 0 8px var(--heartColor)
+        );
+}
+
+.floating-heart::before{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:70%;
+    height:70%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(45deg);
+
+    background:var(--heartColor);
+
+    border-radius:
+        18%
+        0
+        18%
+        0;
+}
+
+.floating-heart::after{
+    content:"";
+
+    position:absolute;
+
+    left:19%;
+    top:9%;
+
+    width:42%;
+    height:42%;
+
+    border-radius:50%;
+
+    background:var(--heartColor);
+
+    box-shadow:
+        22px 0 0 var(--heartColor);
+}
+
+.floating-heart.outline::before{
+    background:transparent;
+
+    border:
+        2px solid var(--heartColor);
+}
+
+.floating-heart.outline::after{
+    background:transparent;
+
+    border:
+        2px solid var(--heartColor);
+
+    box-shadow:
+        22px 0 0 -1px transparent;
+}
+
+@keyframes heartFloat{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translate3d(
+                var(--x),
+                110vh,
+                0
+            )
+            rotate(var(--rotation))
+            scale(var(--scale));
+    }
+
+    8%{
+        opacity:var(--opacity);
+    }
+
+    45%{
+        transform:
+            translate3d(
+                calc(var(--x) + var(--drift)),
+                48vh,
+                0
+            )
+            rotate(
+                calc(var(--rotation) + 90deg)
+            )
+            scale(var(--scale));
+    }
+
+    80%{
+        opacity:var(--opacity);
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate3d(
+                calc(var(--x) - var(--drift)),
+                -18vh,
+                0
+            )
+            rotate(
+                calc(var(--rotation) + 180deg)
+            )
+            scale(
+                calc(var(--scale) * .8)
+            );
+    }
+}
+
+
+/* =========================================================
+   PHONE EXIT
+========================================================= */
+
+#phoneIntro{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:min(310px,78vw);
+    height:min(590px,76vh);
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:100;
+
+    pointer-events:none;
+}
+
+.phone-body{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:38px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1e1e2a,
+            #090910
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+
+        0 30px 90px
+        rgba(0,0,0,.65),
+
+        0 0 40px
+        rgba(120,100,255,.22);
+
+    overflow:hidden;
+
+    animation:
+        phoneExit
+        1.35s
+        cubic-bezier(.2,.9,.2,1)
+        forwards;
+
+    animation-delay:.65s;
+}
+
+.phone-screen{
+
+    position:absolute;
+
+    inset:8px;
+
+    border-radius:31px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(130,100,255,.25),
+            transparent 30%
+        ),
+
+        #080811;
+
+    overflow:hidden;
+}
+
+.phone-notch{
+
+    position:absolute;
+
+    left:50%;
+    top:9px;
+
+    width:105px;
+    height:25px;
+
+    transform:translateX(-50%);
+
+    border-radius:20px;
+
+    background:#000;
+
+    z-index:2;
+}
+
+.phone-symbol{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    font-size:58px;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(255,255,255,.5)
+        );
+
+    animation:
+        phoneSymbolPulse
+        1s
+        ease-in-out
+        infinite;
+}
+
+@keyframes phoneSymbolPulse{
+
+    0%,
+    100%{
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.12);
+    }
+}
+
+@keyframes phoneExit{
+
+    0%{
+        transform:
+            translate3d(0,0,0)
+            rotate(0)
+            scale(1);
+
+        opacity:1;
+    }
+
+    38%{
+        transform:
+            translate3d(0,-18px,0)
+            rotate(-2deg)
+            scale(1.025);
+    }
+
+    52%{
+        transform:
+            translate3d(0,-5px,0)
+            rotate(2deg)
+            scale(1.01);
+    }
+
+    100%{
+        transform:
+            translate3d(
+                0,
+                115vh,
+                0
+            )
+            rotate(11deg)
+            scale(.72);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   INITIAL FLASH
+========================================================= */
+
+#introFlash{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#fff;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:90;
+
+    animation:
+        introFlash
+        .9s
+        ease-out
+        forwards;
+
+    animation-delay:1.32s;
+}
+
+@keyframes introFlash{
+
+    0%{
+        opacity:0;
+    }
+
+    15%{
+        opacity:.85;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   CELEBRATION BURST
+========================================================= */
+
+#celebration{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:10px;
+    height:10px;
+
+    transform:translate(-50%,-50%);
+
+    z-index:50;
+
+    pointer-events:none;
+}
+
+.burst-ring{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:20px;
+    height:20px;
+
+    border:
+        2px solid
+        rgba(255,255,255,.8);
+
+    border-radius:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.1);
+
+    opacity:0;
+
+    animation:
+        ringBurst
+        1.8s
+        cubic-bezier(.15,.75,.2,1)
+        forwards;
+}
+
+.burst-ring:nth-child(2){
+    border-color:#ff7fc7;
+    animation-delay:.08s;
+}
+
+.burst-ring:nth-child(3){
+    border-color:#55c9ff;
+    animation-delay:.16s;
+}
+
+.burst-ring:nth-child(4){
+    border-color:#ffe36e;
+    animation-delay:.24s;
+}
+
+@keyframes ringBurst{
+
+    0%{
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            scale(.1);
+    }
+
+    12%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(25);
+    }
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+#content{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:30;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   MESSAGE CARD
+========================================================= */
+
+.message-card{
+
+    position:relative;
+
+    width:min(720px,92vw);
+
+    min-height:250px;
+
+    padding:
+        55px
+        30px
+        45px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:
+        translate3d(
+            0,
+            -125vh,
+            0
+        )
+        rotate(-3deg)
+        scale(.92);
+
+    pointer-events:none;
+
+    border-radius:42px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.045)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.22);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(140%);
+
+    box-shadow:
+
+        0 35px 100px
+        rgba(0,0,0,.45),
+
+        0 0 70px
+        rgba(255,100,190,.12);
+
+    transition:
+        opacity .3s ease;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+/* top shine */
+
+.message-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:8%;
+    right:8%;
+    top:0;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8bdcff,
+            #ffe67a,
+            #ff8acb,
+            transparent
+        );
+
+    opacity:.9;
+
+    filter:
+        blur(.5px);
+}
+
+
+/* side glow */
+
+.message-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:42px;
+
+    pointer-events:none;
+
+    box-shadow:
+        inset 0 0 35px
+        rgba(255,255,255,.04);
+
+}
+
+
+/* =========================================================
+   FALLING MESSAGE
+========================================================= */
+
+.message-card.drop{
+
+    opacity:1;
+
+    animation:
+        messageDrop
+        1.45s
+        cubic-bezier(.12,.92,.16,1)
+        forwards;
+}
+
+@keyframes messageDrop{
+
+    0%{
+
+        transform:
+            translate3d(
+                0,
+                -125vh,
+                0
+            )
+            rotate(-4deg)
+            scale(.88);
+
+        opacity:0;
+    }
+
+    55%{
+
+        transform:
+            translate3d(
+                0,
+                18px,
+                0
+            )
+            rotate(2deg)
+            scale(1.03);
+
+        opacity:1;
+    }
+
+    68%{
+
+        transform:
+            translate3d(
+                0,
+                -9px,
+                0
+            )
+            rotate(-1.2deg)
+            scale(.985);
+    }
+
+    80%{
+
+        transform:
+            translate3d(
+                0,
+                4px,
+                0
+            )
+            rotate(.5deg)
+            scale(1.008);
+    }
+
+    90%{
+
+        transform:
+            translate3d(
+                0,
+                -2px,
+                0
+            )
+            rotate(0)
+            scale(.998);
+    }
+
+    100%{
+
+        transform:
+            translate3d(0,0,0)
+            rotate(0)
+            scale(1);
+
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   MESSAGE TEXT
+========================================================= */
+
+.message-main{
+
+    position:relative;
+
+    display:inline-block;
+
+    font-size:
+        clamp(
+            31px,
+            7vw,
+            68px
+        );
+
+    line-height:1.4;
+
+    font-weight:900;
+
+    letter-spacing:-1px;
+
+    color:#fff;
+
+    text-shadow:
+
+        0 0 8px
+        rgba(255,255,255,.75),
+
+        0 0 25px
+        rgba(255,130,210,.55),
+
+        0 0 60px
+        rgba(90,170,255,.28);
+
+    transform-origin:center;
+
+    animation:
+        textHeartbeat
+        1.65s
+        ease-in-out
+        infinite;
+
+    animation-delay:5.2s;
+}
+
+
+/* gradient text */
+
+.message-main span{
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #ffb8df 35%,
+            #a9e5ff 70%,
+            #ffffff 100%
+        );
+
+    background-size:200% 100%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:
+        textShimmer
+        4s
+        linear
+        infinite;
+}
+
+@keyframes textShimmer{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+
+/* =========================================================
+   HEARTBEAT
+========================================================= */
+
+@keyframes textHeartbeat{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    8%{
+        transform:scale(1.035);
+    }
+
+    15%{
+        transform:scale(.992);
+    }
+
+    22%{
+        transform:scale(1.02);
+    }
+
+    32%{
+        transform:scale(1);
+    }
+}
+
+
+/* =========================================================
+   SUBTEXT
+========================================================= */
+
+.message-sub{
+
+    margin-top:22px;
+
+    font-size:
+        clamp(
+            18px,
+            3.8vw,
+            29px
+        );
+
+    line-height:1.8;
+
+    color:
+        rgba(255,255,255,.9);
+
+    opacity:0;
+
+    transform:
+        translateY(18px)
+        scale(.96);
+
+    text-shadow:
+        0 0 15px
+        rgba(255,255,255,.22);
+
+    animation:
+        subReveal
+        1s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+
+    animation-delay:6.65s;
+}
+
+@keyframes subReveal{
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   HEART AROUND NAME
+========================================================= */
+
+.name-heart{
+
+    position:absolute;
+
+    font-size:
+        clamp(
+            20px,
+            4vw,
+            34px
+        );
+
+    opacity:0;
+
+    pointer-events:none;
+
+    animation:
+        nameHeartOrbit
+        2.4s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
+}
+
+.name-heart.h1{
+    top:17%;
+    right:13%;
+    color:#ff82c5;
+    animation-delay:5.1s;
+}
+
+.name-heart.h2{
+    top:22%;
+    left:14%;
+    color:#72d8ff;
+    animation-delay:5.22s;
+}
+
+.name-heart.h3{
+    bottom:18%;
+    right:17%;
+    color:#ffe46e;
+    animation-delay:5.35s;
+}
+
+.name-heart.h4{
+    bottom:20%;
+    left:17%;
+    color:#ff8fcf;
+    animation-delay:5.45s;
+}
+
+@keyframes nameHeartOrbit{
+
+    0%{
+        opacity:0;
+
+        transform:
+            scale(.2)
+            translate(0,0)
+            rotate(-30deg);
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    65%{
+        opacity:1;
+
+        transform:
+            scale(1)
+            translate(
+                var(--ox, 0),
+                var(--oy, -20px)
+            )
+            rotate(10deg);
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            scale(.45)
+            translate(
+                var(--ox2, 0),
+                var(--oy2, -55px)
+            )
+            rotate(30deg);
+    }
+}
+
+
+/* =========================================================
+   SECOND CELEBRATION LABEL
+========================================================= */
+
+#celebrationText{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.5);
+
+    opacity:0;
+
+    z-index:60;
+
+    pointer-events:none;
+
+    font-size:
+        clamp(
+            22px,
+            5vw,
+            42px
+        );
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #ff8acb,
+        0 0 55px #62cfff;
+
+    animation:
+        celebrationText
+        1.4s
+        ease-out
+        forwards;
+
+    animation-delay:5.05s;
+}
+
+@keyframes celebrationText{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.3);
+    }
+
+    15%{
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.15);
+    }
+
+    28%{
+        transform:
+            translate(-50%,-50%)
+            scale(.95);
+    }
+
+    45%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.02);
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.4);
+    }
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+#continueButton{
+
+    position:absolute;
+
+    left:50%;
+    bottom:7.5%;
+
+    transform:
+        translateX(-50%)
+        translateY(30px)
+        scale(.85);
+
+    min-width:
+        min(270px,72vw);
+
+    min-height:62px;
+
+    padding:
+        12px
+        30px;
+
+    border:0;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    font-family:inherit;
+
+    font-size:
+        clamp(
+            18px,
+            4vw,
+            24px
+        );
+
+    font-weight:900;
+
+    color:#fff;
+
+    background:
+
+        linear-gradient(
+            100deg,
+            #ff5fae,
+            #9b72ff,
+            #49c9ff
+        );
+
+    background-size:200% 100%;
+
+    box-shadow:
+
+        0 12px 35px
+        rgba(140,90,255,.32),
+
+        0 0 35px
+        rgba(255,100,190,.18);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background-position .5s ease;
+
+    animation:
+        buttonGradient
+        3s
+        linear
+        infinite;
+}
+
+#continueButton.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    animation:
+        buttonAppear
+        .8s
+        cubic-bezier(.2,.9,.2,1)
+        forwards,
+        buttonGradient
+        3s
+        linear
+        infinite;
+}
+
+@keyframes buttonAppear{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translateX(-50%)
+            translateY(35px)
+            scale(.72);
+    }
+
+    65%{
+        opacity:1;
+
+        transform:
+            translateX(-50%)
+            translateY(-4px)
+            scale(1.05);
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes buttonGradient{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+#continueButton:hover{
+
+    transform:
+        translateX(-50%)
+        translateY(-3px)
+        scale(1.045);
+
+    box-shadow:
+
+        0 16px 45px
+        rgba(140,90,255,.45),
+
+        0 0 50px
+        rgba(255,100,190,.28);
+}
+
+#continueButton:active{
+
+    transform:
+        translateX(-50%)
+        translateY(2px)
+        scale(.97);
+}
+
+
+/* =========================================================
+   BUTTON HEARTBEAT
+========================================================= */
+
+#continueButton::after{
+
+    content:"❤️";
+
+    position:absolute;
+
+    right:-13px;
+    top:-12px;
+
+    font-size:23px;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,80,150,.8)
+        );
+
+    animation:
+        tinyHeartbeat
+        1.4s
+        ease-in-out
+        infinite;
+}
+
+@keyframes tinyHeartbeat{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    10%{
+        transform:scale(1.28);
+    }
+
+    20%{
+        transform:scale(.92);
+    }
+
+    30%{
+        transform:scale(1.18);
+    }
+
+    40%{
+        transform:scale(1);
+    }
+}
+
+
+/* =========================================================
+   SUCCESS TRANSITION
+========================================================= */
+
+#transitionOverlay{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:500;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.95),
+            rgba(255,130,210,.7),
+            rgba(90,150,255,.35),
+            #080714
+        );
+
+    opacity:0;
+
+    transform:scale(.3);
+
+}
+
+#transitionOverlay.go{
+
+    animation:
+        finalTransition
+        1.15s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+@keyframes finalTransition{
+
+    0%{
+        opacity:0;
+        transform:scale(.3);
+    }
+
+    35%{
+        opacity:.85;
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(4);
+    }
+}
+
+
+/* =========================================================
+   MICRO SPARKS
+========================================================= */
+
+.micro-spark{
+
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:var(--spark);
+
+    box-shadow:
+        0 0 8px var(--spark),
+        0 0 18px var(--spark);
+
+    pointer-events:none;
+
+    z-index:45;
+
+    animation:
+        microSpark
+        var(--sparkDuration)
+        ease-out
+        forwards;
+}
+
+@keyframes microSpark{
+
+    0%{
+        opacity:1;
+
+        transform:
+            translate3d(
+                0,
+                0,
+                0
+            )
+            scale(.5);
+    }
+
+    65%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate3d(
+                var(--sx),
+                var(--sy),
+                0
+            )
+            scale(0);
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .message-card{
+
+        width:91vw;
+
+        min-height:225px;
+
+        padding:
+            45px
+            20px
+            38px;
+
+        border-radius:32px;
+    }
+
+    .message-card::after{
+        border-radius:32px;
+    }
+
+    .phone-body{
+        border-radius:34px;
+    }
+
+    .phone-screen{
+        border-radius:27px;
+    }
+
+    #continueButton{
+        bottom:6%;
+        min-height:58px;
+    }
+}
+
+
+/* =========================================================
+   SMALL HEIGHT
+========================================================= */
+
+@media(max-height:650px){
+
+    .message-card{
+        min-height:190px;
+
+        padding:
+            32px
+            18px
+            28px;
+    }
+
+    #continueButton{
+        bottom:4%;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div id="app">
+
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+
+    <div class="bg-glow"></div>
+
+    <canvas id="particleCanvas"></canvas>
+
+    <div id="heartField"></div>
+
+
+    <!-- =====================================================
+         PHONE
+    ====================================================== -->
+
+    <div id="phoneIntro">
+
+        <div class="phone-body">
+
+            <div class="phone-screen">
+
+                <div class="phone-notch"></div>
+
+                <div class="phone-symbol">
+                    ❤️
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FIRST FLASH
+    ====================================================== -->
+
+    <div id="introFlash"></div>
+
+
+    <!-- =====================================================
+         FIRST CELEBRATION
+    ====================================================== -->
+
+    <div id="celebration">
+
+        <div class="burst-ring"></div>
+        <div class="burst-ring"></div>
+        <div class="burst-ring"></div>
+        <div class="burst-ring"></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN MESSAGE
+    ====================================================== -->
+
+    <main id="content">
+
+        <section
+            class="message-card"
+            id="messageCard"
+            aria-live="polite"
+        >
+
+            <div class="name-heart h1">💗</div>
+            <div class="name-heart h2">💙</div>
+            <div class="name-heart h3">💛</div>
+            <div class="name-heart h4">💗</div>
+
+            <div class="message-main">
+                <span>فاطممممممه من 😍</span>
+            </div>
+
+            <div class="message-sub">
+                واقعاً خودتی؟! ❤️
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         SECOND CELEBRATION
+    ====================================================== -->
+
+    <div id="celebrationText">
+        پیدات کردم! 😍❤️
+    </div>
+
+
+    <!-- =====================================================
+         FINAL BUTTON
+    ====================================================== -->
+
+    <button
+        id="continueButton"
+        type="button"
+        aria-label="آره خودمم"
+    >
+        آره خودمم ❤️
+    </button>
+
+
+    <!-- =====================================================
+         FINAL TRANSITION
+    ====================================================== -->
+
+    <div id="transitionOverlay"></div>
+
+</div>
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+
+<audio
+    id="music"
+    src="music.mp3"
+    preload="auto"
+    loop
+    playsinline
+></audio>
+
+
+<script>
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const CONFIG = {
+
+    nextPage:
+        "stage5.html",
+
+    musicVolume:
+        0.28,
+
+    musicFadeDuration:
+        2600,
+
+    heartCount:
+        34,
+
+    particleCount:
+        145,
+
+    celebrationDelay:
+        250,
+
+    messageDelay:
+        4450,
+
+    buttonDelay:
+        8200,
+
+    transitionDelay:
+        180
+};
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const app =
+    document.getElementById("app");
+
+const heartField =
+    document.getElementById("heartField");
+
+const canvas =
+    document.getElementById("particleCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+const messageCard =
+    document.getElementById("messageCard");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+const transitionOverlay =
+    document.getElementById("transitionOverlay");
+
+const music =
+    document.getElementById("music");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const state = {
+
+    started:false,
+
+    musicStarted:false,
+
+    finished:false,
+
+    transitioning:false,
+
+    particles:[],
+
+    hearts:[],
+
+    timers:[]
+};
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function random(min,max){
+
+    return Math.random() *
+        (max - min) +
+        min;
+}
+
+function randomInt(min,max){
+
+    return Math.floor(
+        random(min,max + 1)
+    );
+}
+
+function pick(array){
+
+    return array[
+        Math.floor(
+            Math.random() *
+            array.length
+        )
+    ];
+}
+
+function clamp(value,min,max){
+
+    return Math.max(
+        min,
+        Math.min(max,value)
+    );
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function later(callback,delay){
+
+    const timer =
+        setTimeout(
+            callback,
+            delay
+        );
+
+    state.timers.push(timer);
+
+    return timer;
+}
+
+
+/* =========================================================
+   CANVAS RESIZE
+========================================================= */
+
+function resizeCanvas(){
+
+    const dpr =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+    canvas.width =
+        Math.floor(
+            window.innerWidth * dpr
+        );
+
+    canvas.height =
+        Math.floor(
+            window.innerHeight * dpr
+        );
+
+    canvas.style.width =
+        window.innerWidth + "px";
+
+    canvas.style.height =
+        window.innerHeight + "px";
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+}
+
+window.addEventListener(
+    "resize",
+    resizeCanvas,
+    {passive:true}
+);
+
+resizeCanvas();
+
+
+/* =========================================================
+   HEART FIELD
+========================================================= */
+
+function createFloatingHearts(){
+
+    const colors = [
+        "#68d7ff",
+        "#ffe36e",
+        "#ff83c6"
+    ];
+
+    for(
+        let i=0;
+        i<CONFIG.heartCount;
+        i++
+    ){
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+        heart.className =
+            "floating-heart";
+
+        if(
+            Math.random() < .46
+        ){
+            heart.classList.add(
+                "outline"
+            );
+        }
+
+        const color =
+            pick(colors);
+
+        const size =
+            random(13,42);
+
+        const x =
+            random(
+                -5,
+                window.innerWidth
+            );
+
+        const duration =
+            random(7,15);
+
+        const delay =
+            random(-15,0);
+
+        const drift =
+            random(-100,100);
+
+        const rotation =
+            random(-35,35);
+
+        const scale =
+            random(.65,1.25);
+
+        const opacity =
+            random(.22,.7);
+
+        heart.style.setProperty(
+            "--heartColor",
+            color
+        );
+
+        heart.style.setProperty(
+            "--size",
+            size + "px"
+        );
+
+        heart.style.setProperty(
+            "--x",
+            x + "px"
+        );
+
+        heart.style.setProperty(
+            "--duration",
+            duration + "s"
+        );
+
+        heart.style.setProperty(
+            "--delay",
+            delay + "s"
+        );
+
+        heart.style.setProperty(
+            "--drift",
+            drift + "px"
+        );
+
+        heart.style.setProperty(
+            "--rotation",
+            rotation + "deg"
+        );
+
+        heart.style.setProperty(
+            "--scale",
+            scale
+        );
+
+        heart.style.setProperty(
+            "--opacity",
+            opacity
+        );
+
+        heartField.appendChild(
+            heart
+        );
+
+        state.hearts.push(
+            heart
+        );
+    }
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+function createParticle(){
+
+    const colors = [
+        "#ffffff",
+        "#ff83c6",
+        "#6ed8ff",
+        "#ffe36e"
+    ];
+
+    return {
+
+        x:
+            random(
+                0,
+                window.innerWidth
+            ),
+
+        y:
+            random(
+                0,
+                window.innerHeight
+            ),
+
+        size:
+            random(.7,2.8),
+
+        speed:
+            random(.08,.42),
+
+        opacity:
+            random(.2,.75),
+
+        phase:
+            random(0,Math.PI * 2),
+
+        color:
+            pick(colors)
+    };
+}
+
+function initializeParticles(){
+
+    state.particles.length = 0;
+
+    for(
+        let i=0;
+        i<CONFIG.particleCount;
+        i++
+    ){
+
+        state.particles.push(
+            createParticle()
+        );
+    }
+}
+
+
+/* =========================================================
+   PARTICLE LOOP
+========================================================= */
+
+let lastFrame = 0;
+
+function particleLoop(time){
+
+    const delta =
+        Math.min(
+            32,
+            time - lastFrame
+        );
+
+    lastFrame = time;
+
+    ctx.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
+
+    for(
+        const particle
+        of state.particles
+    ){
+
+        particle.y -=
+            particle.speed *
+            delta;
+
+        particle.phase +=
+            delta * .001;
+
+        if(
+            particle.y < -10
+        ){
+
+            particle.y =
+                window.innerHeight + 10;
+
+            particle.x =
+                random(
+                    0,
+                    window.innerWidth
+                );
+        }
+
+        const pulse =
+            .7 +
+            Math.sin(
+                particle.phase
+            ) * .3;
+
+        ctx.globalAlpha =
+            particle.opacity *
+            pulse;
+
+        ctx.fillStyle =
+            particle.color;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            particle.x,
+            particle.y,
+            particle.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+
+    requestAnimationFrame(
+        particleLoop
+    );
+}
+
+
+/* =========================================================
+   BURST PARTICLES
+========================================================= */
+
+function burstParticles(
+    x,
+    y,
+    amount = 75
+){
+
+    const colors = [
+        "#fff",
+        "#ff83c6",
+        "#68d7ff",
+        "#ffe36e"
+    ];
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const particle =
+            document.createElement(
+                "span"
+            );
+
+        particle.className =
+            "micro-spark";
+
+        particle.style.left =
+            x + "px";
+
+        particle.style.top =
+            y + "px";
+
+        particle.style.setProperty(
+            "--spark",
+            pick(colors)
+        );
+
+        particle.style.setProperty(
+            "--sx",
+            random(-180,180) + "px"
+        );
+
+        particle.style.setProperty(
+            "--sy",
+            random(-180,180) + "px"
+        );
+
+        particle.style.setProperty(
+            "--sparkDuration",
+            random(.65,1.5) + "s"
+        );
+
+        app.appendChild(
+            particle
+        );
+
+        particle.addEventListener(
+            "animationend",
+            () => particle.remove(),
+            {once:true}
+        );
+    }
+}
+
+
+/* =========================================================
+   SPECIAL HEART BURST
+========================================================= */
+
+function createHeartBurst(
+    x,
+    y,
+    amount = 24
+){
+
+    const colors = [
+        "#ff83c6",
+        "#68d7ff",
+        "#ffe36e"
+    ];
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+        heart.className =
+            "floating-heart";
+
+        heart.style.position =
+            "absolute";
+
+        heart.style.left =
+            x + "px";
+
+        heart.style.top =
+            y + "px";
+
+        heart.style.setProperty(
+            "--heartColor",
+            pick(colors)
+        );
+
+        heart.style.setProperty(
+            "--size",
+            random(14,28) + "px"
+        );
+
+        heart.style.setProperty(
+            "--x",
+            "0px"
+        );
+
+        heart.style.setProperty(
+            "--scale",
+            random(.7,1.15)
+        );
+
+        heart.style.setProperty(
+            "--rotation",
+            random(-30,30) + "deg"
+        );
+
+        heart.style.opacity =
+            "1";
+
+        heart.style.animation =
+            "none";
+
+        const angle =
+            random(
+                0,
+                Math.PI * 2
+            );
+
+        const distance =
+            random(
+                90,
+                240
+            );
+
+        const tx =
+            Math.cos(angle) *
+            distance;
+
+        const ty =
+            Math.sin(angle) *
+            distance;
+
+        const duration =
+            random(
+                800,
+                1500
+            );
+
+        heart.animate(
+
+            [
+                {
+                    opacity:1,
+
+                    transform:
+                        "translate(-50%,-50%) scale(.3)"
+                },
+
+                {
+                    opacity:1,
+
+                    transform:
+                        `translate(
+                            calc(-50% + ${tx * .55}px),
+                            calc(-50% + ${ty * .55}px)
+                        )
+                        scale(1.15)`
+                },
+
+                {
+                    opacity:0,
+
+                    transform:
+                        `translate(
+                            calc(-50% + ${tx}px),
+                            calc(-50% + ${ty}px)
+                        )
+                        scale(.35)`
+                }
+            ],
+
+            {
+                duration,
+                easing:
+                    "cubic-bezier(.12,.75,.18,1)",
+                fill:"forwards"
+            }
+        );
+
+        app.appendChild(
+            heart
+        );
+
+        setTimeout(
+            () => heart.remove(),
+            duration + 50
+        );
+    }
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+function fadeMusicIn(){
+
+    if(
+        state.musicStarted
+    ){
+        return;
+    }
+
+    state.musicStarted = true;
+
+    music.volume = 0;
+
+    const promise =
+        music.play();
+
+    if(
+        promise &&
+        typeof promise.catch === "function"
+    ){
+
+        promise.catch(
+            () => {
+
+                state.musicStarted =
+                    false;
+            }
+        );
+    }
+
+    const start =
+        performance.now();
+
+    function fade(now){
+
+        const progress =
+            clamp(
+                (
+                    now - start
+                ) /
+                CONFIG.musicFadeDuration,
+                0,
+                1
+            );
+
+        music.volume =
+            CONFIG.musicVolume *
+            progress;
+
+        if(
+            progress < 1
+        ){
+
+            requestAnimationFrame(
+                fade
+            );
+        }
+    }
+
+    requestAnimationFrame(
+        fade
+    );
+}
+
+
+/* =========================================================
+   USER INTERACTION MUSIC FALLBACK
+========================================================= */
+
+function unlockMusic(){
+
+    fadeMusicIn();
+
+    window.removeEventListener(
+        "pointerdown",
+        unlockMusic
+    );
+
+    window.removeEventListener(
+        "touchstart",
+        unlockMusic
+    );
+
+    window.removeEventListener(
+        "keydown",
+        unlockMusic
+    );
+}
+
+window.addEventListener(
+    "pointerdown",
+    unlockMusic,
+    {passive:true}
+);
+
+window.addEventListener(
+    "touchstart",
+    unlockMusic,
+    {passive:true}
+);
+
+window.addEventListener(
+    "keydown",
+    unlockMusic,
+    {passive:true}
+);
+
+
+/* =========================================================
+   NAME BURST
+========================================================= */
+
+function triggerNameBurst(){
+
+    const rect =
+        messageCard.getBoundingClientRect();
+
+    const x =
+        rect.left +
+        rect.width / 2;
+
+    const y =
+        rect.top +
+        rect.height * .46;
+
+    burstParticles(
+        x,
+        y,
+        95
+    );
+
+    createHeartBurst(
+        x,
+        y,
+        30
+    );
+
+    /* second wave */
+
+    later(
+        () => {
+
+            burstParticles(
+                x,
+                y,
+                55
+            );
+
+            createHeartBurst(
+                x,
+                y,
+                18
+            );
+
+        },
+        380
+    );
+}
+
+
+/* =========================================================
+   PHONE EXIT CELEBRATION
+========================================================= */
+
+function firstCelebration(){
+
+    later(
+        () => {
+
+            burstParticles(
+                window.innerWidth / 2,
+                window.innerHeight / 2,
+                115
+            );
+
+            createHeartBurst(
+                window.innerWidth / 2,
+                window.innerHeight / 2,
+                22
+            );
+
+        },
+        CONFIG.celebrationDelay
+    );
+}
+
+
+/* =========================================================
+   SHOW MESSAGE
+========================================================= */
+
+function showMessage(){
+
+    messageCard.classList.add(
+        "drop"
+    );
+
+    later(
+        () => {
+
+            triggerNameBurst();
+
+        },
+        1450
+    );
+}
+
+
+/* =========================================================
+   SHOW BUTTON
+========================================================= */
+
+function showButton(){
+
+    if(
+        state.finished
+    ){
+        return;
+    }
+
+    continueButton.classList.add(
+        "show"
+    );
+}
+
+
+/* =========================================================
+   FINAL ACTION
+========================================================= */
+
+function continueToStage5(){
+
+    if(
+        state.transitioning
+    ){
+        return;
+    }
+
+    state.transitioning = true;
+
+    continueButton.disabled =
+        true;
+
+    transitionOverlay.classList.add(
+        "go"
+    );
+
+    music.volume =
+        Math.min(
+            music.volume,
+            .12
+        );
+
+    later(
+        () => {
+
+            window.location.href =
+                CONFIG.nextPage;
+
+        },
+        700
+    );
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+continueButton.addEventListener(
+    "click",
+    continueToStage5
+);
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+function initialize(){
+
+    if(
+        state.started
+    ){
+        return;
+    }
+
+    state.started = true;
+
+    createFloatingHearts();
+
+    initializeParticles();
+
+    requestAnimationFrame(
+        particleLoop
+    );
+
+    /*
+       تلاش اول برای پخش موسیقی
+       اگر مرورگر اجازه ندهد،
+       unlockMusic با اولین تعامل کاربر
+       دوباره آن را فعال می‌کند.
+    */
+
+    later(
+        () => {
+
+            fadeMusicIn();
+
+        },
+        1100
+    );
+
+    /*
+       جشن اول
+    */
+
+    firstCelebration();
+
+    /*
+       ورود پیام
+    */
+
+    later(
+        () => {
+
+            showMessage();
+
+        },
+        CONFIG.messageDelay
+    );
+
+    /*
+       دکمه نهایی
+    */
+
+    later(
+        () => {
+
+            showButton();
+
+        },
+        CONFIG.buttonDelay
+    );
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+if(
+    document.readyState ===
+    "loading"
+){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initialize,
+        {once:true}
+    );
+
+}else{
+
+    initialize();
+}
+
+
+/* =========================================================
+   DEBUG API
+========================================================= */
+
+window.Stage46 = {
+
+    burst(){
+
+        burstParticles(
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+            150
+        );
+
+        createHeartBurst(
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+            45
+        );
+    },
+
+    nameBurst(){
+
+        triggerNameBurst();
+    },
+
+    music(){
+
+        fadeMusicIn();
+    },
+
+    button(){
+
+        showButton();
+    },
+
+    go(){
+
+        continueToStage5();
+    }
+
+};
+
+</script>
+
+</body>
+</html>
