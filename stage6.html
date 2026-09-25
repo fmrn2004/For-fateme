@@ -1,22 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1,
-               maximum-scale=1,
-               user-scalable=no,
-               viewport-fit=cover">
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+user-scalable=no,
+viewport-fit=cover">
 
-<meta name="theme-color" content="#050207">
-
-<title>برای تو</title>
+<title>Stage 6</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -29,153 +29,259 @@ body{
     height:100%;
     margin:0;
     overflow:hidden;
-    background:#050207;
 }
 
 body{
-    touch-action:none;
-    user-select:none;
     font-family:
         Tahoma,
         Arial,
         sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            #ffc9dc 0%,
+            #fa9fc1 24%,
+            #ee739f 52%,
+            #d94c7f 78%,
+            #b92f65 100%
+        );
+
+    touch-action:none;
 }
 
+
 /* =========================================================
-   BACKGROUND
+   WORLD
 ========================================================= */
 
 #world{
     position:fixed;
     inset:0;
     overflow:hidden;
-
-    background:
-        radial-gradient(
-            ellipse at 50% 45%,
-            rgba(112,20,68,.40),
-            rgba(36,6,27,.48) 32%,
-            rgba(9,3,10,.94) 75%,
-            #030204 100%
-        );
-}
-
-/* نور نفس‌کشنده‌ی پشت تابلو */
-
-#world::before{
-    content:"";
-    position:absolute;
-
-    width:90vmax;
-    height:90vmax;
-
-    left:50%;
-    top:48%;
-
-    transform:
-        translate(-50%,-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,47,139,.14),
-            rgba(255,47,139,.045) 32%,
-            transparent 70%
-        );
-
-    filter:blur(25px);
-
-    animation:
-        atmosphere 8s
-        ease-in-out
-        infinite;
-}
-
-@keyframes atmosphere{
-
-    0%,100%{
-        transform:
-            translate(-50%,-50%)
-            scale(.94);
-        opacity:.65;
-    }
-
-    50%{
-        transform:
-            translate(-50%,-50%)
-            scale(1.08);
-        opacity:1;
-    }
-}
-
-
-/* لکه‌های رنگی */
-
-.aurora{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(80px);
-    opacity:.13;
-    pointer-events:none;
-}
-
-.aurora.a{
-    width:40vmax;
-    height:24vmax;
-    right:-12vmax;
-    top:5vmax;
-    background:#ff2588;
-    transform:rotate(-25deg);
-}
-
-.aurora.b{
-    width:35vmax;
-    height:28vmax;
-    left:-15vmax;
-    bottom:-8vmax;
-    background:#8c286c;
 }
 
 
 /* =========================================================
-   STARS
+   ATMOSPHERIC LIGHT
 ========================================================= */
 
-#stars{
+.ambient{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(70px);
+    opacity:.3;
+}
+
+.ambient.a{
+    width:70vw;
+    height:70vw;
+    left:-25vw;
+    top:-30vw;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff 0%,
+            rgba(255,255,255,.45) 30%,
+            transparent 70%
+        );
+}
+
+.ambient.b{
+    width:65vw;
+    height:65vw;
+    right:-25vw;
+    bottom:-30vw;
+
+    background:
+        radial-gradient(
+            circle,
+            #ff3f89,
+            transparent 68%
+        );
+}
+
+.ambient.c{
+    width:40vw;
+    height:40vw;
+    left:35%;
+    top:35%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.28),
+            transparent 70%
+        );
+
+    filter:blur(90px);
+}
+
+
+/* =========================================================
+   TINY BACKGROUND PARTICLES
+========================================================= */
+
+#backgroundParticles{
     position:absolute;
     inset:0;
     pointer-events:none;
 }
 
-.star{
+.bg-particle{
     position:absolute;
+
+    width:var(--s);
+    height:var(--s);
+
+    left:var(--x);
+    top:var(--y);
+
     border-radius:50%;
-    background:#ffe4ef;
+
+    background:
+        rgba(255,255,255,.7);
+
+    box-shadow:
+        0 0 7px rgba(255,255,255,.55);
+
+    opacity:0;
 
     animation:
-        twinkle var(--time)
+        particleFloat
+        var(--duration)
         ease-in-out
-        infinite var(--delay);
+        infinite;
+
+    animation-delay:var(--delay);
 }
 
-@keyframes twinkle{
+@keyframes particleFloat{
 
-    0%,100%{
-        opacity:.08;
-        transform:scale(.6);
+    0%{
+        transform:
+            translate3d(0,20px,0)
+            scale(.5);
+
+        opacity:0;
     }
 
-    50%{
-        opacity:.75;
-        transform:scale(1.5);
+    30%{
+        opacity:.45;
+    }
+
+    60%{
+        transform:
+            translate3d(
+                var(--mx),
+                -35px,
+                0
+            )
+            scale(1);
+    }
+
+    100%{
+        transform:
+            translate3d(
+                calc(var(--mx) * -1),
+                -80px,
+                0
+            )
+            scale(.4);
+
+        opacity:0;
     }
 }
 
 
 /* =========================================================
-   ART
+   FLOATING HEARTS
+========================================================= */
+
+#floatingHearts{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.bg-heart{
+    position:absolute;
+
+    left:var(--x);
+    bottom:-60px;
+
+    color:rgba(255,255,255,.68);
+
+    font-size:var(--size);
+
+    opacity:0;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(255,255,255,.45)
+        );
+
+    animation:
+        floatHeart
+        var(--duration)
+        linear
+        infinite;
+
+    animation-delay:var(--delay);
+}
+
+@keyframes floatHeart{
+
+    0%{
+        transform:
+            translate3d(0,0,0)
+            scale(.55)
+            rotate(0deg);
+
+        opacity:0;
+    }
+
+    12%{
+        opacity:.5;
+    }
+
+    48%{
+        transform:
+            translate3d(
+                var(--move),
+                -48vh,
+                0
+            )
+            scale(1)
+            rotate(9deg);
+
+        opacity:.7;
+    }
+
+    78%{
+        opacity:.35;
+    }
+
+    100%{
+        transform:
+            translate3d(
+                calc(var(--move) * -1),
+                -112vh,
+                0
+            )
+            scale(.7)
+            rotate(-12deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   STAGE
 ========================================================= */
 
 #stage{
@@ -183,46 +289,204 @@ body{
     inset:0;
 
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
     padding:
+        70px
         18px
-        18px
-        max(18px,env(safe-area-inset-bottom));
+        110px;
 }
 
-.art{
-    width:min(87vw,600px);
 
+/* =========================================================
+   ART GROUP
+========================================================= */
+
+#artGroup{
     position:relative;
+
+    width:min(92vw,720px);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+   کاملاً جدا از متن نهایی
+========================================================= */
+
+#progressArea{
+
+    position:absolute;
+
+    left:50%;
+    bottom:calc(100% + 27px);
+
+    transform:translateX(-50%);
+
+    width:min(70vw,360px);
 
     display:flex;
     flex-direction:column;
     align-items:center;
 
+    opacity:0;
+
     animation:
-        artEnter
-        1.55s
-        cubic-bezier(.18,.82,.18,1)
-        both;
+        progressAppear
+        1s
+        ease
+        1.35s
+        forwards;
+
+    pointer-events:none;
 }
 
-@keyframes artEnter{
+#progressShell{
+
+    position:relative;
+
+    width:100%;
+    height:8px;
+
+    padding:2px;
+
+    border-radius:30px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    box-shadow:
+        0 4px 18px
+        rgba(95,0,40,.15),
+
+        inset
+        0 1px 2px
+        rgba(255,255,255,.35);
+
+    backdrop-filter:blur(8px);
+}
+
+#progress{
+
+    width:0%;
+    height:100%;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffd7e7,
+            #fff,
+            #ffbdd8
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(255,255,255,.9),
+
+        0 0 18px
+        rgba(255,190,218,.75);
+
+    transition:
+        width .1s linear;
+}
+
+#percent{
+
+    margin-top:6px;
+
+    color:
+        rgba(255,255,255,.82);
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    text-shadow:
+        0 0 8px
+        rgba(255,255,255,.55);
+}
+
+@keyframes progressAppear{
+    to{
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   FRAME
+========================================================= */
+
+#art{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:16 / 10;
+
+    opacity:0;
+
+    transform:
+        translateY(60px)
+        scale(.65)
+        rotateX(15deg);
+
+    filter:
+        drop-shadow(
+            0 28px 45px
+            rgba(91,0,42,.34)
+        );
+
+    animation:
+        frameEntrance
+        1.65s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+@keyframes frameEntrance{
 
     0%{
         opacity:0;
 
         transform:
-            translateY(65px)
-            scale(.86)
-            rotateX(8deg);
-
-        filter:blur(12px);
+            translateY(70px)
+            scale(.55)
+            rotateX(25deg);
     }
 
-    55%{
+    35%{
         opacity:1;
+
+        transform:
+            translateY(-10px)
+            scale(1.045)
+            rotateX(0);
+    }
+
+    58%{
+        transform:
+            translateY(4px)
+            scale(.985);
+    }
+
+    78%{
+        transform:
+            translateY(-2px)
+            scale(1.01);
     }
 
     100%{
@@ -232,96 +496,178 @@ body{
             translateY(0)
             scale(1)
             rotateX(0);
-
-        filter:none;
     }
 }
 
 
 /* =========================================================
-   PAINTING FRAME
+   ENTERING HEARTS
+========================================================= */
+
+.enterHeart{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    z-index:30;
+
+    color:#fff;
+
+    font-size:var(--size);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    text-shadow:
+        0 0 8px #fff,
+        0 0 16px #ffb0d0;
+
+    animation:
+        enterHeart
+        1.55s
+        cubic-bezier(.16,1,.3,1)
+        var(--delay)
+        forwards;
+}
+
+@keyframes enterHeart{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.1)
+            rotate(0);
+    }
+
+    18%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate(
+                calc(-50% + var(--tx)),
+                calc(-50% + var(--ty))
+            )
+            scale(var(--scale))
+            rotate(var(--rot));
+    }
+}
+
+
+/* =========================================================
+   FRAME BORDER
 ========================================================= */
 
 .frame{
-    position:relative;
 
-    width:100%;
+    position:absolute;
+    inset:0;
 
-    aspect-ratio:3 / 4;
-
-    padding:10px;
+    padding:9px;
 
     border-radius:24px;
 
     background:
         linear-gradient(
             135deg,
-
-            #fff4fa 0%,
-            #e895b9 10%,
-            #7b194b 25%,
-            #f8c5da 42%,
-            #801b4c 61%,
-            #fbd8e7 79%,
-            #a92d6b 100%
+            #fff,
+            #ffdce9 12%,
+            #f59abb 27%,
+            #ce3e73 50%,
+            #f7a6c3 73%,
+            #fff 91%
         );
 
     box-shadow:
 
-        0 35px 90px
-        rgba(0,0,0,.78),
-
         0 0 0 1px
-        rgba(255,230,241,.28),
+        rgba(255,255,255,.45),
 
-        0 0 50px
-        rgba(255,45,139,.16);
+        inset
+        0 0 0 2px
+        rgba(255,255,255,.62),
+
+        inset
+        0 0 25px
+        rgba(117,0,48,.28),
+
+        0 18px 45px
+        rgba(92,0,40,.34);
 }
 
 
-/* قاب داخلی */
+/* second inner border */
 
 .frame::before{
+
     content:"";
 
     position:absolute;
-    inset:5px;
+
+    inset:4px;
+
+    border-radius:20px;
 
     border:
         1px solid
-        rgba(255,255,255,.48);
-
-    border-radius:19px;
+        rgba(255,255,255,.72);
 
     pointer-events:none;
-
-    z-index:30;
 }
 
 
-/* درخشش اطراف قاب */
+/* tiny frame shine */
 
 .frame::after{
+
     content:"";
 
     position:absolute;
 
-    inset:-20px;
+    top:0;
+    left:-35%;
 
-    border-radius:38px;
+    width:30%;
+    height:100%;
+
+    transform:skewX(-18deg);
 
     background:
-        radial-gradient(
-            ellipse,
-            rgba(255,48,142,.16),
-            transparent 67%
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.28),
+            transparent
         );
 
-    filter:blur(20px);
-
-    z-index:-1;
+    animation:
+        frameShine
+        4.5s
+        ease-in-out
+        infinite;
 
     pointer-events:none;
+}
+
+@keyframes frameShine{
+
+    0%,
+    55%{
+        left:-35%;
+    }
+
+    80%,
+    100%{
+        left:125%;
+    }
 }
 
 
@@ -329,19 +675,26 @@ body{
    PHOTO
 ========================================================= */
 
-.photo{
-    position:absolute;
+.photoWrap{
 
-    inset:10px;
+    position:relative;
+
+    width:100%;
+    height:100%;
 
     overflow:hidden;
 
-    border-radius:15px;
+    border-radius:16px;
 
-    background:#160811;
+    background:
+        #a52b5a;
 }
 
-.photo img{
+
+/* actual image */
+
+#photo{
+
     position:absolute;
 
     inset:0;
@@ -352,240 +705,67 @@ body{
     display:block;
 
     object-fit:cover;
-
-    transform:
-        scale(1.002);
+    object-position:center;
 
     user-select:none;
     -webkit-user-drag:none;
 }
 
 
-/* cinematic image grade */
+/* =========================================================
+   SCRATCH CANVAS
+========================================================= */
 
-.photo::after{
-    content:"";
+#scratch{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    z-index:5;
+
+    touch-action:none;
+
+    cursor:crosshair;
+}
+
+
+/* subtle glass shine */
+
+#surfaceShine{
 
     position:absolute;
     inset:0;
 
+    z-index:6;
+
     pointer-events:none;
+
+    border-radius:16px;
 
     background:
 
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.07),
-            transparent 18%,
-            transparent 76%,
-            rgba(20,0,12,.18)
+        radial-gradient(
+            circle at 25% 20%,
+            rgba(255,255,255,.2),
+            transparent 23%
         ),
 
-        radial-gradient(
-            ellipse at center,
-            transparent 48%,
-            rgba(25,0,15,.20)
-        );
-}
-
-
-/* =========================================================
-   SCRATCH
-========================================================= */
-
-#scratch{
-    position:absolute;
-
-    inset:10px;
-
-    width:calc(100% - 20px);
-    height:calc(100% - 20px);
-
-    border-radius:15px;
-
-    z-index:12;
-
-    touch-action:none;
-}
-
-
-/* =========================================================
-   PAINT GRAIN
-========================================================= */
-
-#grain{
-    position:absolute;
-
-    inset:10px;
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-    pointer-events:none;
-
-    z-index:13;
-
-    opacity:.30;
-
-    background-image:
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.38)
-            0 1px,
-            transparent 1.2px
-        );
-
-    background-size:
-        11px 11px;
-
-    mix-blend-mode:
-        screen;
-}
-
-
-/* =========================================================
-   SCRATCH GLOW
-========================================================= */
-
-#scratchGlow{
-    position:absolute;
-
-    inset:10px;
-
-    border-radius:15px;
-
-    pointer-events:none;
-
-    z-index:14;
-
-    opacity:0;
-
-    box-shadow:
-        inset 0 0 25px
-        rgba(255,108,170,.18);
-}
-
-#scratchGlow.active{
-    opacity:1;
-}
-
-
-/* =========================================================
-   SHINE
-========================================================= */
-
-#shine{
-    position:absolute;
-
-    inset:10px;
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-    pointer-events:none;
-
-    z-index:20;
-}
-
-#shine::before{
-    content:"";
-
-    position:absolute;
-
-    top:-40%;
-    left:-50%;
-
-    width:22%;
-    height:180%;
-
-    transform:
-        rotate(22deg);
-
-    background:
         linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.75),
-            transparent
+            115deg,
+            transparent 25%,
+            rgba(255,255,255,.10) 46%,
+            transparent 60%
         );
 
-    filter:blur(7px);
+    mix-blend-mode:screen;
 
-    opacity:0;
-}
-
-#shine.play::before{
-    animation:
-        shineMove
-        1.45s
-        cubic-bezier(.2,.7,.2,1);
-}
-
-@keyframes shineMove{
-
-    0%{
-        left:-50%;
-        opacity:0;
-    }
-
-    18%{
-        opacity:.9;
-    }
-
-    100%{
-        left:125%;
-        opacity:0;
-    }
-}
-
-
-/* =========================================================
-   SUBTLE PROGRESS
-========================================================= */
-
-.progress{
-    position:absolute;
-
-    bottom:-14px;
-
-    left:50%;
-
-    transform:
-        translateX(-50%);
-
-    width:58px;
-    height:2px;
-
-    overflow:hidden;
-
-    border-radius:20px;
-
-    background:
-        rgba(255,255,255,.08);
-
-    opacity:.45;
-}
-
-.progress span{
-    display:block;
-
-    width:0;
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff438f,
-            #ffe2ed,
-            #ff438f
-        );
-
-    box-shadow:
-        0 0 8px
-        rgba(255,68,145,.8);
+    opacity:.8;
 }
 
 
@@ -593,46 +773,79 @@ body{
    FINAL MESSAGE
 ========================================================= */
 
-#message{
+#finalMessage{
+
     position:relative;
 
-    width:100%;
+    margin-top:34px;
 
-    margin-top:30px;
+    width:100%;
 
     text-align:center;
 
     opacity:0;
 
     transform:
-        translateY(20px)
-        scale(.94);
+        translateY(25px)
+        scale(.82);
 
     pointer-events:none;
+
+    color:#fff;
+
+    font-size:
+        clamp(25px,6vw,46px);
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+    text-shadow:
+
+        0 0 6px #fff,
+
+        0 0 14px #ffb0d0,
+
+        0 0 28px #ff4c92,
+
+        0 0 48px #ff4c92;
 }
 
-#message.show{
+#finalMessage.show{
+
     animation:
-        messageIn
-        1.35s
-        cubic-bezier(.18,.82,.18,1)
+        finalMessageIn
+        1.45s
+        cubic-bezier(.16,1,.3,1)
         forwards;
 }
 
-@keyframes messageIn{
+@keyframes finalMessageIn{
 
     0%{
         opacity:0;
 
         transform:
-            translateY(20px)
-            scale(.92);
+            translateY(35px)
+            scale(.65);
 
-        filter:blur(8px);
+        filter:blur(9px);
     }
 
-    60%{
+    45%{
         opacity:1;
+
+        transform:
+            translateY(-5px)
+            scale(1.08);
+
+        filter:blur(0);
+    }
+
+    70%{
+        transform:
+            translateY(2px)
+            scale(.98);
     }
 
     100%{
@@ -641,128 +854,69 @@ body{
         transform:
             translateY(0)
             scale(1);
-
-        filter:none;
     }
 }
 
-.messageText{
-    position:relative;
 
-    display:inline-block;
+/* message decorative line */
 
-    padding:
-        0 26px;
+#finalMessage::after{
 
-    font-size:
-        clamp(
-            23px,
-            6vw,
-            40px
-        );
+    content:"";
 
-    font-weight:700;
+    display:block;
 
-    line-height:1.55;
+    width:115px;
+    height:2px;
 
-    background:
-        linear-gradient(
-            90deg,
-            #fff,
-            #ff72a9,
-            #ffe1ec,
-            #ff3c91,
-            #fff,
-            #ff6ea6
-        );
+    margin:
+        13px
+        auto
+        0;
 
-    background-size:320% 100%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-
-    animation:
-        messageGradient
-        4s
-        ease-in-out
-        infinite,
-
-        messageGlow
-        2.6s
-        ease-in-out
-        infinite;
-}
-
-@keyframes messageGradient{
-
-    0%,100%{
-        background-position:0% 50%;
-    }
-
-    50%{
-        background-position:100% 50%;
-    }
-}
-
-@keyframes messageGlow{
-
-    0%,100%{
-        filter:
-            drop-shadow(
-                0 0 5px
-                rgba(255,65,145,.28)
-            );
-    }
-
-    50%{
-        filter:
-            drop-shadow(
-                0 0 9px
-                rgba(255,100,169,.72)
-            )
-
-            drop-shadow(
-                0 0 25px
-                rgba(255,45,140,.32)
-            );
-    }
-}
-
-.messageLine{
-    position:absolute;
-
-    top:50%;
-
-    width:34px;
-    height:1px;
+    border-radius:10px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,142,184,.8)
+            #fff,
+            #ffb9d4,
+            #fff,
+            transparent
         );
+
+    box-shadow:
+        0 0 10px
+        rgba(255,255,255,.75);
+
+    animation:
+        messageLine
+        2s
+        ease-in-out
+        infinite alternate;
 }
 
-.messageLine.left{
-    right:-10px;
-}
+@keyframes messageLine{
 
-.messageLine.right{
-    left:-10px;
+    from{
+        opacity:.4;
+        transform:scaleX(.55);
+    }
 
-    transform:
-        rotate(180deg);
+    to{
+        opacity:1;
+        transform:scaleX(1);
+    }
 }
 
 
 /* =========================================================
-   FX
+   FX CANVAS
 ========================================================= */
 
 #fx{
+
     position:fixed;
 
     inset:0;
@@ -777,79 +931,52 @@ body{
 
 
 /* =========================================================
-   FINAL FLASH
-========================================================= */
-
-#flash{
-    position:fixed;
-
-    inset:0;
-
-    z-index:90;
-
-    pointer-events:none;
-
-    opacity:0;
-
-    background:
-        radial-gradient(
-            circle at center,
-
-            rgba(255,245,250,.96),
-
-            rgba(255,90,160,.27) 23%,
-
-            transparent 60%
-        );
-}
-
-#flash.play{
-    animation:
-        flash
-        .95s
-        ease-out;
-}
-
-@keyframes flash{
-
-    0%{
-        opacity:0;
-    }
-
-    10%{
-        opacity:.88;
-    }
-
-    100%{
-        opacity:0;
-    }
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
-@media(max-height:700px){
+@media(max-width:600px){
 
     #stage{
-        padding-top:10px;
+
+        padding:
+            75px
+            12px
+            95px;
     }
 
-    .art{
-        width:min(77vw,470px);
+    #artGroup{
+
+        width:94vw;
     }
 
-    #message{
-        margin-top:20px;
+    .frame{
+
+        padding:7px;
+
+        border-radius:19px;
     }
 
-    .messageText{
+    .photoWrap{
+
+        border-radius:13px;
+    }
+
+    #progressArea{
+
+        bottom:calc(100% + 23px);
+
+        width:68vw;
+    }
+
+    #finalMessage{
+
+        margin-top:30px;
+
         font-size:
             clamp(
-                20px,
-                5.3vw,
-                30px
+                24px,
+                6.7vw,
+                40px
             );
     }
 }
@@ -862,242 +989,335 @@ body{
 
 <div id="world">
 
-    <div class="aurora a"></div>
-    <div class="aurora b"></div>
+    <div class="ambient a"></div>
+    <div class="ambient b"></div>
+    <div class="ambient c"></div>
 
-    <div id="stars"></div>
+    <div id="backgroundParticles"></div>
+    <div id="floatingHearts"></div>
 
 
     <main id="stage">
 
-        <section class="art">
+        <div id="artGroup">
 
-            <div
-                class="frame"
-                id="frame"
-            >
 
-                <div class="photo">
+            <!-- =================================================
+                 PROGRESS
+            ================================================= -->
 
-                    <img
-                        id="photo"
-                        src="final.jpg"
-                        alt=""
-                        draggable="false"
-                    >
+            <div id="progressArea">
+
+                <div id="progressShell">
+
+                    <div id="progress"></div>
 
                 </div>
 
-
-                <canvas
-                    id="scratch">
-                </canvas>
-
-
-                <div id="grain"></div>
-
-                <div id="scratchGlow"></div>
-
-                <div id="shine"></div>
-
-
-                <div class="progress">
-                    <span id="progress"></span>
+                <div id="percent">
+                    ۰٪
                 </div>
 
             </div>
 
 
-            <div id="message">
+            <!-- =================================================
+                 ART
+            ================================================= -->
 
-                <span class="messageText">
+            <div id="art">
 
-                    <span
-                        class="messageLine left">
-                    </span>
 
-                    و آینده‌ی کنار تو بهشته
+                <!-- entrance hearts -->
 
-                    <span
-                        class="messageLine right">
-                    </span>
+                <div
+                    class="enterHeart"
+                    style="
+                    --tx:-170px;
+                    --ty:-95px;
+                    --scale:1.15;
+                    --rot:-24deg;
+                    --size:20px;
+                    --delay:.05s">
+                    ♥
+                </div>
 
-                </span>
+                <div
+                    class="enterHeart"
+                    style="
+                    --tx:165px;
+                    --ty:-85px;
+                    --scale:.9;
+                    --rot:22deg;
+                    --size:16px;
+                    --delay:.13s">
+                    ♥
+                </div>
+
+                <div
+                    class="enterHeart"
+                    style="
+                    --tx:-210px;
+                    --ty:25px;
+                    --scale:.72;
+                    --rot:-12deg;
+                    --size:13px;
+                    --delay:.21s">
+                    ♥
+                </div>
+
+                <div
+                    class="enterHeart"
+                    style="
+                    --tx:205px;
+                    --ty:38px;
+                    --scale:1.05;
+                    --rot:17deg;
+                    --size:19px;
+                    --delay:.28s">
+                    ♥
+                </div>
+
+                <div
+                    class="enterHeart"
+                    style="
+                    --tx:-95px;
+                    --ty:125px;
+                    --scale:.7;
+                    --rot:-10deg;
+                    --size:14px;
+                    --delay:.36s">
+                    ♥
+                </div>
+
+                <div
+                    class="enterHeart"
+                    style="
+                    --tx:100px;
+                    --ty:125px;
+                    --scale:.82;
+                    --rot:13deg;
+                    --size:15px;
+                    --delay:.43s">
+                    ♥
+                </div>
+
+
+                <!-- FRAME -->
+
+                <div class="frame">
+
+                    <div class="photoWrap">
+
+                        <img
+                            id="photo"
+                            src="final.jpg"
+                            alt=""
+                            draggable="false"
+                        >
+
+                        <canvas id="scratch"></canvas>
+
+                        <div id="surfaceShine"></div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </section>
+
+            <!-- =================================================
+                 FINAL MESSAGE
+            ================================================= -->
+
+            <div id="finalMessage">
+                بعدنا با تو بهشته
+            </div>
+
+        </div>
 
     </main>
+
+
+    <canvas id="fx"></canvas>
 
 </div>
 
 
-<canvas id="fx"></canvas>
-
-<div id="flash"></div>
-
-
 <script>
 
-(() => {
+/* =========================================================
+   BACKGROUND HEARTS
+========================================================= */
 
-"use strict";
+const floatingHearts =
+    document.getElementById(
+        "floatingHearts"
+    );
+
+for(let i=0;i<28;i++){
+
+    const h=
+        document.createElement("div");
+
+    h.className="bg-heart";
+
+    h.textContent="♥";
+
+    h.style.setProperty(
+        "--x",
+        Math.random()*100+"%"
+    );
+
+    h.style.setProperty(
+        "--size",
+        (6+Math.random()*14)+"px"
+    );
+
+    h.style.setProperty(
+        "--duration",
+        (8+Math.random()*10)+"s"
+    );
+
+    h.style.setProperty(
+        "--delay",
+        (-Math.random()*17)+"s"
+    );
+
+    h.style.setProperty(
+        "--move",
+        (-45+Math.random()*90)+"px"
+    );
+
+    floatingHearts.appendChild(h);
+}
+
+
+/* =========================================================
+   BACKGROUND PARTICLES
+========================================================= */
+
+const backgroundParticles=
+    document.getElementById(
+        "backgroundParticles"
+    );
+
+for(let i=0;i<45;i++){
+
+    const p=
+        document.createElement("div");
+
+    p.className="bg-particle";
+
+    p.style.setProperty(
+        "--x",
+        Math.random()*100+"%"
+    );
+
+    p.style.setProperty(
+        "--y",
+        Math.random()*100+"%"
+    );
+
+    p.style.setProperty(
+        "--s",
+        (1+Math.random()*2.2)+"px"
+    );
+
+    p.style.setProperty(
+        "--mx",
+        (-25+Math.random()*50)+"px"
+    );
+
+    p.style.setProperty(
+        "--duration",
+        (4+Math.random()*7)+"s"
+    );
+
+    p.style.setProperty(
+        "--delay",
+        (-Math.random()*8)+"s"
+    );
+
+    backgroundParticles.appendChild(p);
+}
 
 
 /* =========================================================
    ELEMENTS
 ========================================================= */
 
-const frame =
+const photo=
+    document.getElementById("photo");
+
+const scratch=
+    document.getElementById("scratch");
+
+const progress=
+    document.getElementById("progress");
+
+const percent=
+    document.getElementById("percent");
+
+const progressArea=
     document.getElementById(
-        "frame"
+        "progressArea"
     );
 
-const photo =
+const finalMessage=
     document.getElementById(
-        "photo"
+        "finalMessage"
     );
 
-const scratch =
-    document.getElementById(
-        "scratch"
-    );
+const art=
+    document.getElementById("art");
 
-const fx =
-    document.getElementById(
-        "fx"
-    );
-
-const progress =
-    document.getElementById(
-        "progress"
-    );
-
-const message =
-    document.getElementById(
-        "message"
-    );
-
-const shine =
-    document.getElementById(
-        "shine"
-    );
-
-const flash =
-    document.getElementById(
-        "flash"
-    );
-
-const scratchGlow =
-    document.getElementById(
-        "scratchGlow"
-    );
-
-const stars =
-    document.getElementById(
-        "stars"
-    );
-
-
-/* =========================================================
-   CONTEXTS
-========================================================= */
-
-const sc =
+const ctx=
     scratch.getContext(
         "2d",
         {
-            alpha:true
+            alpha:true,
+            desynchronized:true
         }
     );
 
-const fc =
+const fx=
+    document.getElementById("fx");
+
+const fctx=
     fx.getContext(
         "2d",
         {
-            alpha:true
+            alpha:true,
+            desynchronized:true
         }
     );
 
 
 /* =========================================================
-   STATE
+   CANVAS
 ========================================================= */
 
+let dpr=1;
 let W=1;
 let H=1;
 
-let DPR=1;
 
-let drawing=false;
+/* =========================================================
+   SCRATCH
+========================================================= */
+
+let scratching=false;
+
+let lastX=0;
+let lastY=0;
 
 let completed=false;
 
-let lastPoint=null;
-
-let reveal=0;
-
 let lastMeasure=0;
 
-let previousTime=
-    performance.now();
-
-let particles=[];
-
-const MAX_PARTICLES=850;
-
-
-/* =========================================================
-   STARS
-========================================================= */
-
-for(let i=0;i<82;i++){
-
-    const star =
-        document.createElement(
-            "i"
-        );
-
-    star.className="star";
-
-    const size =
-        .7+
-        Math.random()*1.8;
-
-    star.style.width=
-        size+"px";
-
-    star.style.height=
-        size+"px";
-
-    star.style.left=
-        Math.random()*100+
-        "%";
-
-    star.style.top=
-        Math.random()*100+
-        "%";
-
-    star.style.setProperty(
-        "--time",
-        (
-            2.5+
-            Math.random()*5
-        )+"s"
-    );
-
-    star.style.setProperty(
-        "--delay",
-        (
-            -Math.random()*6
-        )+"s"
-    );
-
-    stars.appendChild(
-        star
-    );
-}
+const brushSize=40;
 
 
 /* =========================================================
@@ -1106,192 +1326,66 @@ for(let i=0;i<82;i++){
 
 function resize(){
 
-    const r =
-        photo.getBoundingClientRect();
-
-    let old=null;
+    const rect=
+        scratch.getBoundingClientRect();
 
     if(
-        scratch.width &&
-        scratch.height
+        rect.width<10 ||
+        rect.height<10
     ){
-
-        old =
-            document.createElement(
-                "canvas"
-            );
-
-        old.width=
-            scratch.width;
-
-        old.height=
-            scratch.height;
-
-        old
-            .getContext("2d")
-            .drawImage(
-                scratch,
-                0,
-                0
-            );
+        return;
     }
 
-
-    DPR =
+    dpr=
         Math.min(
             window.devicePixelRatio || 1,
             2
         );
 
-    W =
-        Math.max(
-            1,
-            Math.round(r.width)
-        );
-
-    H =
-        Math.max(
-            1,
-            Math.round(r.height)
-        );
-
+    W=rect.width;
+    H=rect.height;
 
     scratch.width=
-        Math.round(
-            W*DPR
-        );
+        Math.round(W*dpr);
 
     scratch.height=
-        Math.round(
-            H*DPR
-        );
+        Math.round(H*dpr);
 
-    scratch.style.width=
-        W+"px";
-
-    scratch.style.height=
-        H+"px";
-
-
-    sc.setTransform(
-        DPR,
+    ctx.setTransform(
+        dpr,
         0,
         0,
-        DPR,
+        dpr,
         0,
         0
     );
 
-
-    if(old){
-
-        sc.drawImage(
-            old,
-            0,
-            0,
-            old.width,
-            old.height,
-            0,
-            0,
-            W,
-            H
-        );
-
-    }else{
-
-        createSurface();
-    }
-
+    createScratchSurface();
 
     fx.width=
-        Math.round(
-            window.innerWidth*DPR
-        );
+        Math.round(innerWidth*dpr);
 
     fx.height=
-        Math.round(
-            window.innerHeight*DPR
-        );
+        Math.round(innerHeight*dpr);
 
-    fx.style.width=
-        window.innerWidth+
-        "px";
-
-    fx.style.height=
-        window.innerHeight+
-        "px";
-
-    fc.setTransform(
-        DPR,
+    fctx.setTransform(
+        dpr,
         0,
         0,
-        DPR,
+        dpr,
         0,
         0
     );
-
-    lastPoint=null;
 }
 
 
 /* =========================================================
-   ARTISTIC SCRATCH SURFACE
+   ARTISTIC PINK SURFACE
 ========================================================= */
 
-function createSurface(){
+function createScratchSurface(){
 
-    sc.save();
-
-    sc.globalCompositeOperation=
-        "source-over";
-
-
-    /*
-       پایه‌ی مخملی صورتی
-    */
-
-    const base =
-        sc.createLinearGradient(
-            0,
-            0,
-            W,
-            H
-        );
-
-    base.addColorStop(
-        0,
-        "#f7c0d7"
-    );
-
-    base.addColorStop(
-        .18,
-        "#b84a7e"
-    );
-
-    base.addColorStop(
-        .42,
-        "#68133b"
-    );
-
-    base.addColorStop(
-        .62,
-        "#c95087"
-    );
-
-    base.addColorStop(
-        .82,
-        "#78163f"
-    );
-
-    base.addColorStop(
-        1,
-        "#d46b9a"
-    );
-
-
-    sc.fillStyle=base;
-
-    sc.fillRect(
+    ctx.clearRect(
         0,
         0,
         W,
@@ -1299,15 +1393,54 @@ function createSurface(){
     );
 
 
-    /*
-       لکه‌های نور مثل رنگ روغن
-    */
+    /* base */
 
-    for(
-        let i=0;
-        i<22;
-        i++
-    ){
+    const base=
+        ctx.createLinearGradient(
+            0,
+            0,
+            W,
+            H
+        );
+
+    base.addColorStop(
+        0,
+        "#ffc4dc"
+    );
+
+    base.addColorStop(
+        .2,
+        "#f98eb7"
+    );
+
+    base.addColorStop(
+        .48,
+        "#df4e85"
+    );
+
+    base.addColorStop(
+        .73,
+        "#ef6d9d"
+    );
+
+    base.addColorStop(
+        1,
+        "#c63870"
+    );
+
+    ctx.fillStyle=base;
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    /* large soft powder clouds */
+
+    for(let i=0;i<45;i++){
 
         const x=
             Math.random()*W;
@@ -1315,183 +1448,171 @@ function createSurface(){
         const y=
             Math.random()*H;
 
-        const radius=
-            25+
+        const r=
+            15+
             Math.random()*90;
 
-        const glow =
-            sc.createRadialGradient(
+        const g=
+            ctx.createRadialGradient(
                 x,
                 y,
                 0,
                 x,
                 y,
-                radius
+                r
             );
 
-        glow.addColorStop(
+        g.addColorStop(
             0,
-            "rgba(255,235,245,.18)"
+            "rgba(255,240,248,.20)"
         );
 
-        glow.addColorStop(
-            .5,
-            "rgba(255,115,174,.07)"
+        g.addColorStop(
+            .35,
+            "rgba(255,180,211,.10)"
         );
 
-        glow.addColorStop(
+        g.addColorStop(
             1,
-            "rgba(255,115,174,0)"
+            "rgba(255,255,255,0)"
         );
 
-        sc.fillStyle=glow;
+        ctx.fillStyle=g;
 
-        sc.beginPath();
+        ctx.beginPath();
 
-        sc.arc(
+        ctx.arc(
             x,
             y,
-            radius,
+            r,
             0,
             Math.PI*2
         );
 
-        sc.fill();
+        ctx.fill();
     }
 
 
-    /*
-       ذرات بافت
-    */
+    /* tiny powder grains */
 
-    for(
-        let i=0;
-        i<900;
-        i++
-    ){
+    for(let i=0;i<1900;i++){
 
-        const alpha=
-            .025+
-            Math.random()*.035;
-
-        sc.fillStyle=
-            `rgba(
-                255,
-                255,
-                255,
-                ${alpha}
-            )`;
-
-        sc.fillRect(
-            Math.random()*W,
-            Math.random()*H,
-            .6+
-            Math.random()*.8,
-            .6+
-            Math.random()*.8
-        );
-    }
-
-
-    /*
-       چند خط بسیار محو، شبیه قلم‌مو
-    */
-
-    sc.globalAlpha=.035;
-
-    sc.strokeStyle="#fff";
-
-    sc.lineWidth=1;
-
-    for(
-        let i=0;
-        i<18;
-        i++
-    ){
+        const x=
+            Math.random()*W;
 
         const y=
             Math.random()*H;
 
-        sc.beginPath();
+        const r=
+            .25+
+            Math.random()*1.15;
 
-        sc.moveTo(
-            -30,
+        ctx.fillStyle=
+            Math.random()>.48
+            ?
+            "rgba(255,246,250,.20)"
+            :
+            "rgba(90,0,35,.08)";
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            r,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+    }
+
+
+    /* artistic powder strokes */
+
+    for(let i=0;i<28;i++){
+
+        const y=
+            Math.random()*H;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            -20,
             y
         );
 
-        sc.bezierCurveTo(
-            W*.3,
-            y-30,
-            W*.65,
-            y+25,
-            W+30,
-            y-10
+        ctx.bezierCurveTo(
+            W*.25,
+            y+
+            Math.random()*35-
+            17,
+
+            W*.7,
+            y+
+            Math.random()*35-
+            17,
+
+            W+20,
+            y
         );
 
-        sc.stroke();
+        ctx.strokeStyle=
+            "rgba(255,255,255,.045)";
+
+        ctx.lineWidth=
+            1+
+            Math.random()*2;
+
+        ctx.stroke();
     }
 
-    sc.restore();
+
+    /* subtle edge darkness */
+
+    const edge=
+        ctx.createRadialGradient(
+            W/2,
+            H/2,
+            Math.min(W,H)*.2,
+            W/2,
+            H/2,
+            Math.max(W,H)*.75
+        );
+
+    edge.addColorStop(
+        0,
+        "rgba(255,255,255,0)"
+    );
+
+    edge.addColorStop(
+        1,
+        "rgba(95,0,40,.18)"
+    );
+
+    ctx.fillStyle=edge;
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
 }
 
 
 /* =========================================================
-   INIT
+   POINTER POSITION
 ========================================================= */
 
-photo.addEventListener(
-    "load",
-    resize
-);
-
-window.addEventListener(
-    "resize",
-    resize,
-    {passive:true}
-);
-
-window.addEventListener(
-    "orientationchange",
-    () => {
-        setTimeout(
-            resize,
-            120
-        );
-    },
-    {passive:true}
-);
-
-resize();
-
-
-/* =========================================================
-   COORDINATES
-========================================================= */
-
-function getPoint(e){
+function pointerPosition(e){
 
     const r=
         scratch.getBoundingClientRect();
 
     return {
-
-        x:
-            Math.max(
-                0,
-                Math.min(
-                    W,
-                    e.clientX-r.left
-                )
-            ),
-
-        y:
-            Math.max(
-                0,
-                Math.min(
-                    H,
-                    e.clientY-r.top
-                )
-            )
+        x:e.clientX-r.left,
+        y:e.clientY-r.top
     };
 }
 
@@ -1500,24 +1621,25 @@ function getPoint(e){
    ERASE
 ========================================================= */
 
-function erase(x,y){
+function eraseAt(x,y){
 
-    const radius=34;
+    if(completed)
+        return;
 
-    sc.save();
+    ctx.save();
 
-    sc.globalCompositeOperation=
+    ctx.globalCompositeOperation=
         "destination-out";
 
 
-    const g =
-        sc.createRadialGradient(
+    const g=
+        ctx.createRadialGradient(
             x,
             y,
-            radius*.08,
+            0,
             x,
             y,
-            radius
+            brushSize
         );
 
     g.addColorStop(
@@ -1526,13 +1648,18 @@ function erase(x,y){
     );
 
     g.addColorStop(
-        .55,
+        .48,
         "rgba(0,0,0,.98)"
     );
 
     g.addColorStop(
-        .80,
-        "rgba(0,0,0,.70)"
+        .72,
+        "rgba(0,0,0,.72)"
+    );
+
+    g.addColorStop(
+        .9,
+        "rgba(0,0,0,.22)"
     );
 
     g.addColorStop(
@@ -1540,43 +1667,51 @@ function erase(x,y){
         "rgba(0,0,0,0)"
     );
 
+    ctx.fillStyle=g;
 
-    sc.fillStyle=g;
+    ctx.beginPath();
 
-    sc.beginPath();
-
-    sc.arc(
+    ctx.arc(
         x,
         y,
-        radius,
+        brushSize,
         0,
         Math.PI*2
     );
 
-    sc.fill();
+    ctx.fill();
 
-    sc.restore();
+    ctx.restore();
+
+
+    scratchDust(x,y);
 }
 
 
 /* =========================================================
-   SMOOTH LINE
+   SCRATCH LINE
 ========================================================= */
 
-function eraseLine(a,b){
+function eraseLine(
+    x1,
+    y1,
+    x2,
+    y2
+){
 
-    const distance=
-        Math.hypot(
-            b.x-a.x,
-            b.y-a.y
+    const dx=x2-x1;
+    const dy=y2-y1;
+
+    const dist=
+        Math.sqrt(
+            dx*dx+
+            dy*dy
         );
 
     const steps=
         Math.max(
             1,
-            Math.ceil(
-                distance/9
-            )
+            Math.ceil(dist/10)
         );
 
     for(
@@ -1585,51 +1720,201 @@ function eraseLine(a,b){
         i++
     ){
 
-        const t=
-            i/steps;
+        const t=i/steps;
 
-        erase(
-            a.x+
-            (b.x-a.x)*t,
-
-            a.y+
-            (b.y-a.y)*t
+        eraseAt(
+            x1+dx*t,
+            y1+dy*t
         );
     }
 }
 
 
 /* =========================================================
-   REVEAL CHECK
+   POINTER EVENTS
 ========================================================= */
 
-const sample=
-    document.createElement(
-        "canvas"
-    );
+scratch.addEventListener(
+    "pointerdown",
+    e=>{
 
-sample.width=72;
-sample.height=48;
+        if(completed)
+            return;
 
-const sm=
-    sample.getContext(
-        "2d",
-        {
-            willReadFrequently:true
+        e.preventDefault();
+
+        scratching=true;
+
+        scratch.setPointerCapture(
+            e.pointerId
+        );
+
+        const p=
+            pointerPosition(e);
+
+        lastX=p.x;
+        lastY=p.y;
+
+        eraseAt(
+            p.x,
+            p.y
+        );
+
+        checkReveal(true);
+    },
+    {passive:false}
+);
+
+
+scratch.addEventListener(
+    "pointermove",
+    e=>{
+
+        if(
+            !scratching ||
+            completed
+        )
+            return;
+
+        e.preventDefault();
+
+        const p=
+            pointerPosition(e);
+
+        eraseLine(
+            lastX,
+            lastY,
+            p.x,
+            p.y
+        );
+
+        lastX=p.x;
+        lastY=p.y;
+
+        if(
+            performance.now()-
+            lastMeasure
+            >
+            80
+        ){
+
+            checkReveal(false);
+
+            lastMeasure=
+                performance.now();
         }
-    );
+    },
+    {passive:false}
+);
 
 
-function measureReveal(){
+scratch.addEventListener(
+    "pointerup",
+    ()=>{
+        scratching=false;
+        checkReveal(true);
+    },
+    {passive:true}
+);
 
-    sm.clearRect(
-        0,
-        0,
-        72,
-        48
-    );
+scratch.addEventListener(
+    "pointercancel",
+    ()=>{
+        scratching=false;
+    },
+    {passive:true}
+);
 
-    sm.drawImage(
+
+/* =========================================================
+   SCRATCH DUST
+========================================================= */
+
+function scratchDust(x,y){
+
+    if(Math.random()>.42)
+        return;
+
+    const r=
+        scratch.getBoundingClientRect();
+
+    const screenX=
+        r.left+x;
+
+    const screenY=
+        r.top+y;
+
+    for(let i=0;i<2;i++){
+
+        particles.push({
+
+            type:"powder",
+
+            x:screenX,
+            y:screenY,
+
+            vx:
+                (Math.random()-.5)*
+                30,
+
+            vy:
+                -10-
+                Math.random()*35,
+
+            gravity:
+                30+
+                Math.random()*30,
+
+            life:
+                .3+
+                Math.random()*.3,
+
+            max:.6,
+
+            size:
+                1+
+                Math.random()*2.3,
+
+            alpha:.5
+        });
+    }
+}
+
+
+/* =========================================================
+   REVEAL MEASUREMENT
+========================================================= */
+
+function checkReveal(force){
+
+    if(completed)
+        return;
+
+    if(
+        !force &&
+        performance.now()-
+        lastMeasure
+        <
+        70
+    ){
+        return;
+    }
+
+    const sw=54;
+    const sh=34;
+
+    const temp=
+        document.createElement(
+            "canvas"
+        );
+
+    temp.width=sw;
+    temp.height=sh;
+
+    const tctx=
+        temp.getContext("2d");
+
+    tctx.drawImage(
         scratch,
         0,
         0,
@@ -1637,16 +1922,16 @@ function measureReveal(){
         scratch.height,
         0,
         0,
-        72,
-        48
+        sw,
+        sh
     );
 
     const pixels=
-        sm.getImageData(
+        tctx.getImageData(
             0,
             0,
-            72,
-            48
+            sw,
+            sh
         ).data;
 
     let transparent=0;
@@ -1657,843 +1942,40 @@ function measureReveal(){
         i+=4
     ){
 
-        if(
-            pixels[i]<50
-        ){
+        if(pixels[i]<70)
             transparent++;
-        }
     }
 
-    reveal=
+    let value=
         transparent/
-        (72*48)*
+        (sw*sh)*
         100;
 
+    value=
+        Math.max(
+            0,
+            Math.min(
+                100,
+                value
+            )
+        );
+
     progress.style.width=
-        Math.min(
-            100,
-            reveal
-        )+"%";
+        value.toFixed(1)+"%";
+
+    percent.textContent=
+        Math.round(value)+"٪";
 
 
     /*
-       فقط بعد از 97 درصد
-       بررسی دقیق‌تر انجام می‌دهیم.
+      پایان فقط وقتی رخ می‌دهد که
+      تقریباً تمام سطح واقعاً پاک شده باشد.
     */
 
-    if(reveal<97){
-        return false;
+    if(value>=97){
+
+        finish();
     }
-
-
-    let coveredCells=0;
-
-    for(
-        let gy=0;
-        gy<48;
-        gy+=6
-    ){
-
-        for(
-            let gx=0;
-            gx<72;
-            gx+=6
-        ){
-
-            let opaque=0;
-            let total=0;
-
-            for(
-                let y=gy;
-                y<Math.min(
-                    gy+6,
-                    48
-                );
-                y++
-            ){
-
-                for(
-                    let x=gx;
-                    x<Math.min(
-                        gx+6,
-                        72
-                    );
-                    x++
-                ){
-
-                    const alpha=
-                        pixels[
-                            (
-                                y*72+x
-                            )*4+3
-                        ];
-
-                    total++;
-
-                    if(alpha>75){
-                        opaque++;
-                    }
-                }
-            }
-
-            if(
-                opaque/total>.28
-            ){
-                coveredCells++;
-            }
-        }
-    }
-
-
-    return coveredCells<8;
-}
-
-
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-function addParticle(p){
-
-    if(
-        particles.length>=
-        MAX_PARTICLES
-    ){
-        particles.shift();
-    }
-
-    particles.push(p);
-}
-
-
-function rand(a,b){
-
-    return a+
-        Math.random()*
-        (b-a);
-}
-
-
-/* =========================================================
-   DUST
-========================================================= */
-
-function makeDust(
-    x,
-    y,
-    vx,
-    vy,
-    size,
-    life
-){
-
-    addParticle({
-
-        type:"dust",
-
-        x:x,
-        y:y,
-
-        vx:vx,
-        vy:vy,
-
-        gravity:rand(25,55),
-
-        drag:.985,
-
-        size:size,
-
-        life:life,
-
-        maxLife:life
-    });
-}
-
-
-/* =========================================================
-   HEART
-========================================================= */
-
-function makeHeart(
-    x,
-    y,
-    vx,
-    vy,
-    size,
-    life,
-    rotation
-){
-
-    addParticle({
-
-        type:"heart",
-
-        x:x,
-        y:y,
-
-        vx:vx,
-        vy:vy,
-
-        gravity:rand(10,30),
-
-        drag:.987,
-
-        size:size,
-
-        rotation:
-            rotation||
-            rand(0,Math.PI*2),
-
-        spin:
-            rand(-2.5,2.5),
-
-        life:life,
-
-        maxLife:life
-    });
-}
-
-
-/* =========================================================
-   SPARK
-========================================================= */
-
-function makeSpark(
-    x,
-    y,
-    vx,
-    vy,
-    size,
-    life
-){
-
-    addParticle({
-
-        type:"spark",
-
-        x:x,
-        y:y,
-
-        vx:vx,
-        vy:vy,
-
-        gravity:10,
-
-        drag:.97,
-
-        size:size,
-
-        life:life,
-
-        maxLife:life,
-
-        rotation:
-            rand(0,Math.PI),
-
-        spin:
-            rand(-8,8)
-    });
-}
-
-
-/* =========================================================
-   REAL SHOCKWAVE
-========================================================= */
-
-function makeRing(
-    x,
-    y,
-    scale=1
-){
-
-    addParticle({
-
-        type:"ring",
-
-        x:x,
-        y:y,
-
-        radius:2,
-
-        speed:
-            260*scale,
-
-        life:.8,
-
-        maxLife:.8
-    });
-}
-
-
-/* =========================================================
-   SCRATCH PARTICLES
-========================================================= */
-
-function scratchEffects(p){
-
-    const r=
-        scratch.getBoundingClientRect();
-
-    const x=
-        r.left+p.x;
-
-    const y=
-        r.top+p.y;
-
-
-    /*
-       ذره‌ی خیلی ظریف کنار خراش
-    */
-
-    if(
-        Math.random()<.55
-    ){
-
-        makeDust(
-            x+rand(-7,7),
-            y+rand(-7,7),
-            rand(-12,12),
-            rand(-15,12),
-            rand(.5,1.5),
-            rand(.25,.55)
-        );
-    }
-
-
-    /*
-       جرقه‌های کوچک
-    */
-
-    if(
-        Math.random()<.18
-    ){
-
-        makeSpark(
-            x,
-            y,
-            rand(-22,22),
-            rand(-30,0),
-            rand(1.5,3),
-            .28
-        );
-    }
-}
-
-
-/* =========================================================
-   DUST FROM ACTUAL FRAME EDGES
-========================================================= */
-
-function edgeDust(p){
-
-    const fr=
-        frame.getBoundingClientRect();
-
-    const sr=
-        scratch.getBoundingClientRect();
-
-
-    const x=
-        sr.left+p.x;
-
-    const y=
-        sr.top+p.y;
-
-
-    const distances=[
-
-        {
-            side:"left",
-            value:
-                Math.abs(
-                    x-fr.left
-                )
-        },
-
-        {
-            side:"right",
-            value:
-                Math.abs(
-                    x-fr.right
-                )
-        },
-
-        {
-            side:"top",
-            value:
-                Math.abs(
-                    y-fr.top
-                )
-        },
-
-        {
-            side:"bottom",
-            value:
-                Math.abs(
-                    y-fr.bottom
-                )
-        }
-
-    ];
-
-
-    distances.sort(
-        (a,b)=>
-            a.value-b.value
-    );
-
-
-    const side=
-        distances[0].side;
-
-
-    for(
-        let i=0;
-        i<2;
-        i++
-    ){
-
-        let px;
-        let py;
-        let vx;
-        let vy;
-
-
-        if(side==="left"){
-
-            px=
-                fr.left+
-                rand(-2,6);
-
-            py=
-                y+
-                rand(-20,20);
-
-            vx=
-                rand(3,18);
-
-            vy=
-                rand(28,78);
-
-        }
-
-        else if(side==="right"){
-
-            px=
-                fr.right+
-                rand(-6,2);
-
-            py=
-                y+
-                rand(-20,20);
-
-            vx=
-                rand(-18,-3);
-
-            vy=
-                rand(28,78);
-
-        }
-
-        else if(side==="top"){
-
-            px=
-                x+
-                rand(-20,20);
-
-            py=
-                fr.top+
-                rand(-2,5);
-
-            vx=
-                rand(-10,10);
-
-            vy=
-                rand(30,80);
-
-        }
-
-        else{
-
-            px=
-                x+
-                rand(-20,20);
-
-            py=
-                fr.bottom+
-                rand(-2,4);
-
-            vx=
-                rand(-8,8);
-
-            vy=
-                rand(15,45);
-        }
-
-
-        makeDust(
-            px,
-            py,
-            vx,
-            vy,
-            rand(.8,2.6),
-            rand(.7,1.5)
-        );
-    }
-}
-
-
-/* =========================================================
-   BIG EXPLOSION
-========================================================= */
-
-function dustExplosion(
-    x,
-    y,
-    count=100
-){
-
-    for(
-        let i=0;
-        i<count;
-        i++
-    ){
-
-        const angle=
-            Math.random()*
-            Math.PI*2;
-
-        const speed=
-            rand(35,220);
-
-
-        makeDust(
-            x,
-            y,
-
-            Math.cos(angle)*
-            speed,
-
-            Math.sin(angle)*
-            speed,
-
-            rand(.8,2.8),
-
-            rand(.5,1.4)
-        );
-    }
-}
-
-
-/* =========================================================
-   HEART EXPLOSION
-========================================================= */
-
-function heartExplosion(
-    x,
-    y,
-    count=55,
-    force=1
-){
-
-    for(
-        let i=0;
-        i<count;
-        i++
-    ){
-
-        const angle=
-            Math.random()*
-            Math.PI*2;
-
-        const speed=
-            rand(40,155)*
-            force;
-
-
-        makeHeart(
-
-            x+
-            rand(-5,5),
-
-            y+
-            rand(-5,5),
-
-            Math.cos(angle)*
-            speed,
-
-            Math.sin(angle)*
-            speed-
-            rand(15,55),
-
-            rand(4,10)*
-            force,
-
-            rand(1,2),
-
-            rand(-.6,.6)
-        );
-    }
-}
-
-
-/* =========================================================
-   SIDE WATERFALL AT COMPLETION
-========================================================= */
-
-function celebrationDust(){
-
-    const r=
-        frame.getBoundingClientRect();
-
-
-    for(
-        const side of [-1,1]
-    ){
-
-        for(
-            let i=0;
-            i<100;
-            i++
-        ){
-
-            const x=
-                side<0
-                ? r.left+rand(-2,7)
-                : r.right+rand(-7,2);
-
-            const y=
-                r.top+
-                Math.random()*
-                r.height;
-
-
-            makeDust(
-                x,
-                y,
-
-                side<0
-                ? rand(5,28)
-                : rand(-28,-5),
-
-                rand(25,105),
-
-                rand(.7,2.5),
-
-                rand(.8,2)
-            );
-        }
-    }
-}
-
-
-/* =========================================================
-   AUDIO
-========================================================= */
-
-let audioContext=null;
-let master=null;
-
-
-function initAudio(){
-
-    if(audioContext){
-
-        if(
-            audioContext.state===
-            "suspended"
-        ){
-
-            audioContext.resume()
-                .catch(()=>{});
-        }
-
-        return;
-    }
-
-
-    try{
-
-        audioContext=
-            new(
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-
-        master=
-            audioContext.createGain();
-
-        master.gain.value=.07;
-
-        master.connect(
-            audioContext.destination
-        );
-
-    }catch(e){}
-}
-
-
-function scratchAudio(){
-
-    initAudio();
-
-    if(!audioContext){
-        return;
-    }
-
-
-    const now=
-        audioContext.currentTime;
-
-
-    const length=
-        Math.floor(
-            audioContext.sampleRate*
-            .045
-        );
-
-
-    const buffer=
-        audioContext.createBuffer(
-            1,
-            length,
-            audioContext.sampleRate
-        );
-
-
-    const data=
-        buffer.getChannelData(0);
-
-
-    for(
-        let i=0;
-        i<length;
-        i++
-    ){
-
-        data[i]=
-            (
-                Math.random()*2-1
-            )*
-            (
-                1-i/length
-            );
-    }
-
-
-    const source=
-        audioContext.createBufferSource();
-
-    source.buffer=
-        buffer;
-
-
-    const filter=
-        audioContext.createBiquadFilter();
-
-    filter.type=
-        "bandpass";
-
-    filter.frequency.value=
-        rand(1800,3200);
-
-    filter.Q.value=.8;
-
-
-    const gain=
-        audioContext.createGain();
-
-    gain.gain.setValueAtTime(
-        .0001,
-        now
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-        .045,
-        now+.006
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-        .0001,
-        now+.043
-    );
-
-
-    source.connect(filter);
-
-    filter.connect(gain);
-
-    gain.connect(master);
-
-    source.start(now);
-
-    source.stop(
-        now+.05
-    );
-}
-
-
-function musicalNote(
-    frequency,
-    delay,
-    volume=.07,
-    duration=.8
-){
-
-    initAudio();
-
-    if(!audioContext){
-        return;
-    }
-
-
-    const now=
-        audioContext.currentTime+
-        delay;
-
-
-    const osc=
-        audioContext.createOscillator();
-
-    const gain=
-        audioContext.createGain();
-
-
-    osc.type=
-        "sine";
-
-    osc.frequency.value=
-        frequency;
-
-
-    gain.gain.setValueAtTime(
-        .0001,
-        now
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-        volume,
-        now+.025
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-        .0001,
-        now+duration
-    );
-
-
-    osc.connect(gain);
-
-    gain.connect(master);
-
-
-    osc.start(now);
-
-    osc.stop(
-        now+
-        duration+
-        .03
-    );
 }
 
 
@@ -2503,22 +1985,17 @@ function musicalNote(
 
 function finish(){
 
-    if(completed){
+    if(completed)
         return;
-    }
 
     completed=true;
 
-    drawing=false;
-
-    lastPoint=null;
+    scratching=false;
 
 
-    /*
-       عکس کاملاً آزاد
-    */
+    /* completely reveal photo */
 
-    sc.clearRect(
+    ctx.clearRect(
         0,
         0,
         W,
@@ -2526,629 +2003,536 @@ function finish(){
     );
 
 
-    scratch.style.pointerEvents=
-        "none";
-
-
-    scratchGlow.classList.remove(
-        "active"
-    );
-
-
-    shine.classList.add(
-        "play"
-    );
-
-
-    flash.classList.add(
-        "play"
-    );
+    progress.style.width="100%";
+    percent.textContent="۱۰۰٪";
 
 
     /*
-       موسیقی پایان
+      نوار به آرامی کنار می‌رود
+      تا متن نهایی فضای خودش را داشته باشد.
     */
 
-    musicalNote(
-        392,
-        0,
-        .055,
-        .9
-    );
+    setTimeout(()=>{
 
-    musicalNote(
-        523.25,
-        .12,
-        .065,
-        .95
-    );
+        progressArea.animate(
+            [
+                {
+                    opacity:1,
+                    transform:
+                        "translateX(-50%) translateY(0)"
+                },
+                {
+                    opacity:0,
+                    transform:
+                        "translateX(-50%) translateY(-12px)"
+                }
+            ],
+            {
+                duration:650,
+                easing:"ease-out",
+                fill:"forwards"
+            }
+        );
 
-    musicalNote(
-        659.25,
-        .25,
-        .075,
-        1
-    );
-
-    musicalNote(
-        783.99,
-        .39,
-        .08,
-        1.1
-    );
+    },450);
 
 
-    const r=
-        photo.getBoundingClientRect();
+    const rect=
+        art.getBoundingClientRect();
 
     const cx=
-        r.left+r.width/2;
+        rect.left+
+        rect.width/2;
 
     const cy=
-        r.top+r.height/2;
+        rect.top+
+        rect.height/2;
 
 
-    /*
-       انفجار اول
-    */
+    /* central light */
 
-    setTimeout(
-        ()=>{
-
-            dustExplosion(
-                cx,
-                cy,
-                115
-            );
-
-            makeRing(
-                cx,
-                cy,
-                1
-            );
-
-        },
-        80
-    );
+    flash(cx,cy);
 
 
-    /*
-       قلب‌ها
-    */
+    /* first heartbeat */
 
-    setTimeout(
-        ()=>{
-
-            heartExplosion(
-                cx,
-                cy,
-                65,
-                1
-            );
-
-            makeRing(
-                cx,
-                cy,
-                1.55
-            );
-
-        },
-        320
-    );
-
-
-    /*
-       موج دوم قلب‌ها
-    */
-
-    setTimeout(
-        ()=>{
-
-            heartExplosion(
-                cx,
-                cy,
-                42,
-                .72
-            );
-
-            celebrationDust();
-
-        },
-        600
-    );
-
-
-    /*
-       قلب‌های ریز شناور
-    */
-
-    setTimeout(
-        ()=>{
-
-            for(
-                let i=0;
-                i<28;
-                i++
-            ){
-
-                makeHeart(
-
-                    cx+
-                    rand(
-                        -r.width*.45,
-                        r.width*.45
-                    ),
-
-                    r.bottom+
-                    rand(
-                        -20,
-                        30
-                    ),
-
-                    rand(-30,30),
-
-                    rand(-120,-55),
-
-                    rand(3,7),
-
-                    rand(1.2,2.4)
-                );
-            }
-
-        },
-        850
-    );
-
-
-    /*
-       و بعد...
-       جمله.
-    */
-
-    setTimeout(
-        ()=>{
-
-            message.classList.add(
-                "show"
-            );
-
-        },
-        1150
-    );
-}
-
-
-/* =========================================================
-   SCRATCH START
-========================================================= */
-
-function startScratch(e){
-
-    if(completed){
-        return;
-    }
-
-
-    drawing=true;
-
-    initAudio();
-
-
-    const p=
-        getPoint(e);
-
-
-    lastPoint=p;
-
-
-    erase(
-        p.x,
-        p.y
-    );
-
-
-    edgeDust(p);
-
-    scratchEffects(p);
-
-    scratchAudio();
-
-
-    e.preventDefault();
-}
-
-
-/* =========================================================
-   SCRATCH MOVE
-========================================================= */
-
-function moveScratch(e){
-
-    if(
-        !drawing ||
-        completed
-    ){
-        return;
-    }
-
-
-    const p=
-        getPoint(e);
-
-
-    if(lastPoint){
-
-        eraseLine(
-            lastPoint,
-            p
+    setTimeout(()=>{
+        heartBurst(
+            cx,
+            cy,
+            24,
+            .8
         );
-    }
+    },100);
 
 
-    lastPoint=p;
+    /* second heartbeat */
+
+    setTimeout(()=>{
+        heartBurst(
+            cx,
+            cy,
+            34,
+            1.15
+        );
+    },300);
 
 
-    edgeDust(p);
+    /* corners */
 
-    scratchEffects(p);
+    setTimeout(()=>{
+        cornerCelebration(rect);
+    },470);
 
 
-    const now=
-        performance.now();
+    /* final message */
 
+    setTimeout(()=>{
+
+        finalMessage.classList.add(
+            "show"
+        );
+
+    },780);
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+let particles=[];
+
+const MAX_PARTICLES=500;
+
+
+/* =========================================================
+   ADD PARTICLE
+========================================================= */
+
+function addParticle(p){
 
     if(
-        now-lastMeasure>
-        180
+        particles.length>=
+        MAX_PARTICLES
     ){
 
-        lastMeasure=now;
-
-
-        if(
-            measureReveal()
-        ){
-
-            finish();
-        }
+        particles.shift();
     }
 
-
-    e.preventDefault();
+    particles.push(p);
 }
 
 
 /* =========================================================
-   SCRATCH END
+   HEART BURST
 ========================================================= */
 
-function endScratch(){
-
-    drawing=false;
-
-    lastPoint=null;
-}
-
-
-/* =========================================================
-   EVENTS
-========================================================= */
-
-scratch.addEventListener(
-    "pointerdown",
-    startScratch,
-    {passive:false}
-);
-
-scratch.addEventListener(
-    "pointermove",
-    moveScratch,
-    {passive:false}
-);
-
-scratch.addEventListener(
-    "pointerup",
-    endScratch
-);
-
-scratch.addEventListener(
-    "pointercancel",
-    endScratch
-);
-
-scratch.addEventListener(
-    "pointerleave",
-    endScratch
-);
-
-
-/* =========================================================
-   POST-COMPLETION INTERACTION
-========================================================= */
-
-let pressTimer=null;
-let longPress=false;
-let lastTap=0;
-let tapTimer=null;
-
-
-function smallInteraction(
+function heartBurst(
     x,
-    y
+    y,
+    count,
+    power
 ){
-
-    musicalNote(
-        440,
-        0,
-        .035,
-        .3
-    );
-
-
-    dustExplosion(
-        x,
-        y,
-        16
-    );
-
-
-    heartExplosion(
-        x,
-        y,
-        8,
-        .55
-    );
-}
-
-
-function doubleInteraction(
-    x,
-    y
-){
-
-    musicalNote(
-        660,
-        0,
-        .05,
-        .4
-    );
-
-
-    musicalNote(
-        880,
-        .08,
-        .055,
-        .5
-    );
-
-
-    makeRing(
-        x,
-        y,
-        1.3
-    );
-
-    makeRing(
-        x,
-        y,
-        .75
-    );
-
-
-    dustExplosion(
-        x,
-        y,
-        60
-    );
-
-
-    heartExplosion(
-        x,
-        y,
-        35,
-        1.15
-    );
-}
-
-
-function longInteraction(
-    x,
-    y
-){
-
-    musicalNote(
-        523.25,
-        0,
-        .055,
-        .5
-    );
-
-    musicalNote(
-        783.99,
-        .10,
-        .065,
-        .7
-    );
-
-
-    makeRing(
-        x,
-        y,
-        .8
-    );
-
-
-    setTimeout(
-        ()=>{
-            makeRing(
-                x,
-                y,
-                1.2
-            );
-        },
-        130
-    );
-
-
-    setTimeout(
-        ()=>{
-            makeRing(
-                x,
-                y,
-                1.65
-            );
-        },
-        260
-    );
-
 
     for(
         let i=0;
-        i<42;
+        i<count;
         i++
     ){
 
-        makeHeart(
+        const angle=
+            Math.random()*
+            Math.PI*2;
 
-            x+
-            rand(-45,45),
+        const speed=
+            (
+                30+
+                Math.random()*105
+            )*
+            power;
 
-            y+
-            rand(-20,20),
+        addParticle({
 
-            rand(-35,35),
+            type:"heart",
 
-            rand(-130,-55),
+            x,
+            y,
 
-            rand(4,10),
+            vx:
+                Math.cos(angle)*
+                speed,
 
-            rand(1.4,2.5)
-        );
+            vy:
+                Math.sin(angle)*
+                speed,
+
+            gravity:
+                8+
+                Math.random()*16,
+
+            life:
+                .75+
+                Math.random()*.8,
+
+            max:1.55,
+
+            size:
+                4+
+                Math.random()*8,
+
+            rotation:
+                Math.random()*
+                Math.PI*2,
+
+            vr:
+                (Math.random()-.5)*
+                3.5
+        });
     }
 }
 
 
-frame.addEventListener(
+/* =========================================================
+   CORNER CELEBRATION
+========================================================= */
+
+function cornerCelebration(rect){
+
+    const points=[
+
+        [
+            rect.left,
+            rect.top
+        ],
+
+        [
+            rect.right,
+            rect.top
+        ],
+
+        [
+            rect.left,
+            rect.bottom
+        ],
+
+        [
+            rect.right,
+            rect.bottom
+        ]
+    ];
+
+    points.forEach(
+        (p,index)=>{
+
+            setTimeout(()=>{
+
+                heartBurst(
+                    p[0],
+                    p[1],
+                    12,
+                    .65
+                );
+
+            },index*100);
+        }
+    );
+}
+
+
+/* =========================================================
+   FLASH
+========================================================= */
+
+function flash(x,y){
+
+    const el=
+        document.createElement(
+            "div"
+        );
+
+    el.style.position="fixed";
+    el.style.left=x+"px";
+    el.style.top=y+"px";
+
+    el.style.width="8px";
+    el.style.height="8px";
+
+    el.style.borderRadius="50%";
+
+    el.style.background="#fff";
+
+    el.style.boxShadow=
+        "0 0 25px 18px rgba(255,255,255,.65)";
+
+    el.style.pointerEvents="none";
+
+    el.style.zIndex="200";
+
+    document.body.appendChild(el);
+
+
+    el.animate(
+        [
+            {
+                transform:
+                    "translate(-50%,-50%) scale(.3)",
+                opacity:0
+            },
+
+            {
+                transform:
+                    "translate(-50%,-50%) scale(5)",
+                opacity:.8
+            },
+
+            {
+                transform:
+                    "translate(-50%,-50%) scale(14)",
+                opacity:0
+            }
+        ],
+        {
+            duration:650,
+            easing:"ease-out"
+        }
+    );
+
+
+    setTimeout(
+        ()=>el.remove(),
+        700
+    );
+}
+
+
+/* =========================================================
+   FINAL PAGE TOUCH
+========================================================= */
+
+document.addEventListener(
     "pointerdown",
     e=>{
 
-        if(!completed){
+        if(!completed)
             return;
+
+
+        /*
+          از این لحظه هر لمس
+          دقیقاً در همان نقطه
+          یک انفجار کوچک ایجاد می‌کند.
+        */
+
+        heartBurst(
+            e.clientX,
+            e.clientY,
+            7+
+            Math.floor(
+                Math.random()*4
+            ),
+            .48+
+            Math.random()*.18
+        );
+
+
+        for(let i=0;i<4;i++){
+
+            addParticle({
+
+                type:"spark",
+
+                x:e.clientX,
+                y:e.clientY,
+
+                vx:
+                    (Math.random()-.5)*
+                    80,
+
+                vy:
+                    (Math.random()-.5)*
+                    80,
+
+                life:
+                    .25+
+                    Math.random()*.3,
+
+                max:.55,
+
+                size:
+                    1+
+                    Math.random()*2
+            });
         }
 
-
-        longPress=false;
-
-
-        const x=
-            e.clientX;
-
-        const y=
-            e.clientY;
-
-
-        pressTimer=
-            setTimeout(
-                ()=>{
-
-                    longPress=true;
-
-                    longInteraction(
-                        x,
-                        y
-                    );
-
-                },
-                650
-            );
-    },
-    {passive:true}
-);
-
-
-frame.addEventListener(
-    "pointerup",
-    e=>{
-
-        if(!completed){
-            return;
-        }
-
-
-        if(pressTimer){
-
-            clearTimeout(
-                pressTimer
-            );
-
-            pressTimer=null;
-        }
-
-
-        if(longPress){
-            return;
-        }
-
-
-        const now=
-            performance.now();
-
-
-        const x=
-            e.clientX;
-
-        const y=
-            e.clientY;
-
-
-        if(
-            now-lastTap<
-            300
-        ){
-
-            if(tapTimer){
-                clearTimeout(
-                    tapTimer
-                );
-            }
-
-
-            lastTap=0;
-
-
-            doubleInteraction(
-                x,
-                y
-            );
-
-        }else{
-
-            lastTap=now;
-
-
-            tapTimer=
-                setTimeout(
-                    ()=>{
-
-                        smallInteraction(
-                            x,
-                            y
-                        );
-
-                    },
-                    300
-                );
-        }
     },
     {passive:true}
 );
 
 
 /* =========================================================
-   PARTICLE LOOP
+   DRAW HEART
 ========================================================= */
 
-function updateParticles(dt){
+function drawHeart(
+    x,
+    y,
+    size,
+    alpha,
+    rotation
+){
+
+    fctx.save();
+
+    fctx.translate(x,y);
+
+    fctx.rotate(rotation);
+
+    fctx.globalAlpha=
+        alpha;
+
+    fctx.fillStyle=
+        "#fff";
+
+    fctx.shadowBlur=
+        10;
+
+    fctx.shadowColor=
+        "rgba(255,255,255,.9)";
+
+
+    fctx.beginPath();
+
+    fctx.moveTo(
+        0,
+        size*.35
+    );
+
+    fctx.bezierCurveTo(
+        -size*1.2,
+        -size*.25,
+        -size*.65,
+        -size,
+        0,
+        -size*.45
+    );
+
+    fctx.bezierCurveTo(
+        size*.65,
+        -size,
+        size*1.2,
+        -size*.25,
+        0,
+        size*.35
+    );
+
+    fctx.fill();
+
+    fctx.restore();
+}
+
+
+/* =========================================================
+   DRAW POWDER
+========================================================= */
+
+function drawPowder(
+    x,
+    y,
+    size,
+    alpha
+){
+
+    fctx.save();
+
+    fctx.globalAlpha=
+        alpha;
+
+    fctx.fillStyle=
+        "#ffd9e8";
+
+    fctx.beginPath();
+
+    fctx.arc(
+        x,
+        y,
+        size,
+        0,
+        Math.PI*2
+    );
+
+    fctx.fill();
+
+    fctx.restore();
+}
+
+
+/* =========================================================
+   DRAW SPARK
+========================================================= */
+
+function drawSpark(
+    x,
+    y,
+    size,
+    alpha
+){
+
+    fctx.save();
+
+    fctx.globalAlpha=
+        alpha;
+
+    fctx.fillStyle="#fff";
+
+    fctx.shadowBlur=10;
+    fctx.shadowColor="#fff";
+
+    fctx.beginPath();
+
+    fctx.arc(
+        x,
+        y,
+        size,
+        0,
+        Math.PI*2
+    );
+
+    fctx.fill();
+
+    fctx.restore();
+}
+
+
+/* =========================================================
+   ANIMATION ENGINE
+========================================================= */
+
+let previousTime=
+    performance.now();
+
+function animate(now){
+
+    let dt=
+        (now-previousTime)/
+        1000;
+
+    previousTime=now;
+
+    dt=
+        Math.min(
+            dt,
+            .033
+        );
+
+
+    fctx.clearRect(
+        0,
+        0,
+        innerWidth,
+        innerHeight
+    );
+
 
     for(
         let i=
@@ -3160,13 +2544,10 @@ function updateParticles(dt){
         const p=
             particles[i];
 
-
         p.life-=dt;
 
 
-        if(
-            p.life<=0
-        ){
+        if(p.life<=0){
 
             particles.splice(
                 i,
@@ -3177,10 +2558,6 @@ function updateParticles(dt){
         }
 
 
-        p.vy+=
-            p.gravity*dt;
-
-
         p.x+=
             p.vx*dt;
 
@@ -3188,377 +2565,149 @@ function updateParticles(dt){
             p.vy*dt;
 
 
-        const damping=
-            Math.pow(
-                p.drag,
-                dt*60
-            );
+        if(p.gravity){
+
+            p.vy+=
+                p.gravity*dt;
+        }
 
 
-        p.vx*=damping;
-
-        p.vy*=damping;
-
-
-        if(
-            p.rotation!==undefined
-        ){
+        if(p.vr){
 
             p.rotation+=
-                p.spin*dt;
+                p.vr*dt;
         }
 
-
-        if(
-            p.type==="ring"
-        ){
-
-            p.radius+=
-                p.speed*dt;
-        }
-    }
-}
-
-
-/* =========================================================
-   DRAW
-========================================================= */
-
-function drawHeart(
-    ctx,
-    x,
-    y,
-    size,
-    alpha,
-    rotation
-){
-
-    ctx.save();
-
-    ctx.translate(
-        x,
-        y
-    );
-
-    ctx.rotate(
-        rotation||0
-    );
-
-    ctx.scale(
-        size,
-        size
-    );
-
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-        0,
-        .38
-    );
-
-
-    ctx.bezierCurveTo(
-        -.85,
-        -.2,
-        -1.05,
-        -.88,
-        -.43,
-        -1
-    );
-
-
-    ctx.bezierCurveTo(
-        -.08,
-        -1.1,
-        .05,
-        -.72,
-        0,
-        -.46
-    );
-
-
-    ctx.bezierCurveTo(
-        .05,
-        -.72,
-        .18,
-        -1.1,
-        .43,
-        -1
-    );
-
-
-    ctx.bezierCurveTo(
-        1.05,
-        -.88,
-        .85,
-        -.2,
-        0,
-        .38
-    );
-
-
-    ctx.closePath();
-
-
-    ctx.fillStyle=
-        `rgba(
-            255,
-            88,
-            155,
-            ${alpha}
-        )`;
-
-
-    ctx.shadowBlur=
-        7;
-
-    ctx.shadowColor=
-        "rgba(255,50,140,.55)";
-
-
-    ctx.fill();
-
-
-    ctx.restore();
-}
-
-
-function drawParticles(){
-
-    fc.clearRect(
-        0,
-        0,
-        window.innerWidth,
-        window.innerHeight
-    );
-
-
-    for(
-        const p of particles
-    ){
 
         const alpha=
             Math.max(
                 0,
-                Math.min(
-                    1,
-                    p.life/p.maxLife
-                )
+                p.life/p.max
             );
 
 
         if(
-            p.type==="dust"
-        ){
-
-            fc.beginPath();
-
-            fc.arc(
-                p.x,
-                p.y,
-                p.size,
-                0,
-                Math.PI*2
-            );
-
-
-            fc.fillStyle=
-                `rgba(
-                    255,
-                    ${120+Math.random()*55},
-                    ${165+Math.random()*60},
-                    ${alpha*.8}
-                )`;
-
-
-            fc.fill();
-        }
-
-
-        else if(
             p.type==="heart"
         ){
 
             drawHeart(
-                fc,
                 p.x,
                 p.y,
                 p.size,
                 alpha,
                 p.rotation
             );
+
         }
 
+        else if(
+            p.type==="powder"
+        ){
+
+            drawPowder(
+                p.x,
+                p.y,
+                p.size,
+                alpha*p.alpha
+            );
+
+        }
 
         else if(
             p.type==="spark"
         ){
 
-            fc.save();
-
-            fc.translate(
-                p.x,
-                p.y
-            );
-
-            fc.rotate(
-                p.rotation
-            );
-
-
-            fc.strokeStyle=
-                `rgba(
-                    255,
-                    225,
-                    240,
-                    ${alpha}
-                )`;
-
-            fc.lineWidth=
-                1;
-
-
-            fc.beginPath();
-
-            fc.moveTo(
-                -p.size,
-                0
-            );
-
-            fc.lineTo(
-                p.size,
-                0
-            );
-
-            fc.moveTo(
-                0,
-                -p.size
-            );
-
-            fc.lineTo(
-                0,
-                p.size
-            );
-
-            fc.stroke();
-
-            fc.restore();
-        }
-
-
-        else if(
-            p.type==="ring"
-        ){
-
-            fc.beginPath();
-
-            fc.arc(
+            drawSpark(
                 p.x,
                 p.y,
-                p.radius,
-                0,
-                Math.PI*2
+                p.size,
+                alpha
             );
-
-
-            fc.strokeStyle=
-                `rgba(
-                    255,
-                    144,
-                    195,
-                    ${alpha*.65}
-                )`;
-
-
-            fc.lineWidth=
-                1.5;
-
-
-            fc.shadowBlur=
-                16;
-
-            fc.shadowColor=
-                "rgba(255,45,140,.65)";
-
-
-            fc.stroke();
-
-
-            fc.shadowBlur=0;
         }
     }
-}
-
-
-/* =========================================================
-   MAIN LOOP
-========================================================= */
-
-function loop(now){
-
-    let dt=
-        (now-previousTime)/
-        1000;
-
-
-    previousTime=now;
-
-
-    dt=
-        Math.min(
-            dt,
-            .033
-        );
-
-
-    updateParticles(dt);
-
-    drawParticles();
 
 
     requestAnimationFrame(
-        loop
+        animate
     );
 }
 
 
-requestAnimationFrame(
-    loop
+/* =========================================================
+   IMAGE INITIALIZATION
+========================================================= */
+
+function initialize(){
+
+    if(
+        photo.complete &&
+        photo.naturalWidth>0
+    ){
+
+        requestAnimationFrame(
+            resize
+        );
+
+    }else{
+
+        setTimeout(
+            initialize,
+            40
+        );
+    }
+}
+
+
+photo.addEventListener(
+    "load",
+    ()=>{
+        resize();
+    }
+);
+
+
+window.addEventListener(
+    "resize",
+    ()=>{
+
+        if(!completed){
+
+            resize();
+        }
+
+        fx.width=
+            Math.round(
+                innerWidth*dpr
+            );
+
+        fx.height=
+            Math.round(
+                innerHeight*dpr
+            );
+
+        fctx.setTransform(
+            dpr,
+            0,
+            0,
+            dpr,
+            0,
+            0
+        );
+    }
 );
 
 
 /* =========================================================
-   SAFETY
+   START
 ========================================================= */
 
-document.addEventListener(
-    "visibilitychange",
-    ()=>{
+initialize();
 
-        previousTime=
-            performance.now();
-
-        drawing=false;
-
-        lastPoint=null;
-    }
+requestAnimationFrame(
+    animate
 );
-
-
-document.addEventListener(
-    "contextmenu",
-    e=>{
-        e.preventDefault();
-    }
-);
-
-})();
 
 </script>
 
 </body>
-</html>
-
-
+      </html>
